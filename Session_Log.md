@@ -685,3 +685,20 @@ answer. All three 2026 exercises now written.
 
 Built strict clean, deployed green (chapters 3.6 and 4 as separate commits). Next: chapter 5 (energy-
 management synthesis) or 6 (scalar/vector, after reading Lecture 9), then priority 2 LoRaWAN.
+
+### Chapter 6 and the scalar/vector settlement (same day)
+
+Chris asked whether the p_i formula is in the handwritten notes: it is NOT. The notes (§17-18) describe the
+concept of a calculated per-ring p_i and contrast it with LEACH's uniform p, but never write the formula;
+the only threshold formula the notes work out is LEACH's T(n). The p_i closed form is slide-only (Lecture 3,
+slide 17). Softened chapter 3's §3.6 exam box accordingly: unlike the LEACH and ETX exercises (which the
+notes work through with numbers), this one is slide-only, so a long shot, given "as a safety, not a
+prediction".
+
+Then "do 6+9 to settle it": read Lecture 9 to settle the scalar/vector question, and wrote Chapter 6.
+Settled: the notes' scalar/vector (sensor data: temperature vs wind velocity) and Lecture 9's Scalar
+Charging Model / Vector Model (wireless-power-transfer physics: additive Friis power vs the 2D electric
+field with phase under charger interference) are DIFFERENT concepts sharing only the words. Chapter 6 is the
+notes' sensor-data concept, with a §6.3 box holding the distinction; the charging models stay for the WPT
+chapter (priority 4). Short chapter (not examined), one hand-authored two-panel figure (thermometer, vector
+arrow). Cookbook §10 note updated from "check" to "settled". Built strict clean, deployed green.

@@ -727,7 +727,7 @@ Mapped against the sources on the same day:
 | ✅ | LEACH, including the cluster head election exercise | pages 7 to 11 | 2026 Β.1 (2.5 marks) | 2 |
 | ✅ | Energy Balance Protocol | pages 12 to 14 | 2026 Α.2 | 3 |
 | ✅ | Routing metrics and ETX, including the multi-hop energy exercise | pages 15 to 16 | 2026 Δ.1 (2.5 marks) | 4 / 5 |
-| 1 | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
+| ✅ | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
 | ✅ | Scalar and vector sensor data | pages 17 to 18 | none | notes only (see note below) |
 | **2** | **Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison** | none | **2026 Γ.1 to Γ.3 (2.5 marks)** | 6a, 8a, 8b |
 | 3 | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3 | 7a, 7b, extra notes |

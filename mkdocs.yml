@@ -149,7 +149,7 @@ nav:
       - 2. LEACH: chapters/02-leach.md
       - 3. Εξισορρόπηση Ενέργειας: chapters/03-energy-balance.md
       - 4. Μετρικές Δρομολόγησης: chapters/04-routing-metrics.md
-      - "5. Ενεργειακή Διαχείριση ☆": chapters/05-energy-management.md
+      - 5. Ενεργειακή Διαχείριση: chapters/05-energy-management.md
       - 6. Βαθμωτά & Διανυσματικά: chapters/06-scalar-vector.md
       - "7. LPWAN & LoRaWAN ☆": chapters/07-lpwan-lorawan.md
       - "8. Σχεδίαση IoT ☆": chapters/08-iot-system-design.md

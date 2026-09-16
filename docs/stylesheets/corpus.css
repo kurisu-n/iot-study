@@ -1664,3 +1664,33 @@ form[data-md-component="palette"] > label {
   margin-left: 0.4rem;
   white-space: nowrap;
 }
+
+/* ========================================================================
+ * 18 - Formula traces.
+ *
+ * A solve shown in the smallest possible steps: each line changes one thing
+ * from the line above (one substitution, or one arithmetic operation), with a
+ * note in the right column saying exactly what changed, so a reader can see
+ * which number replaced which symbol. Ruled by Chris, 2026-09-16, for every
+ * formula solved in the corpus. The maths is a MathJax `aligned` block; the
+ * per-line notes are kept purely numeric so they render in the maths font.
+ * ==================================================================== */
+
+.md-typeset .trace {
+  margin: 0.9rem 0 1.1rem;
+  padding: 0.15rem 0 0.15rem 1rem;
+  border-left: 3px solid var(--c-accent);
+  overflow-x: auto;
+}
+
+.md-typeset .trace .arithmatex {
+  margin: 0.2rem 0;
+  text-align: left;
+}
+
+/* The step label above a trace: "Γύρος r = 2, βήμα προς βήμα". */
+.md-typeset .trace-label {
+  margin: 0.9rem 0 0.2rem;
+  font-weight: 700;
+  color: var(--c-text);
+}

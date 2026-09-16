@@ -765,3 +765,35 @@ Written 2026-09-16. Nothing overturned §9; three things worth carrying forward:
 appear in the lectures is Lecture 9 on wireless power transfer, as the *Scalar Charging Model* and the
 *Vector Model*, which are about charging. The notes may have attached an unrelated explanation to the
 lecture's terms. Read Lecture 9 before trusting either.
+
+## 11. Exam pages
+
+Added 2026-09-16. A `Θέματα Εξετάσεων` nav section sits before `Κεφάλαια`, one page per
+exam (`docs/exams/2026.md`, `2025.md`, `2022.md`). Each page has two parts.
+
+**The facsimile.** A `<div class="exam-facsimile" markdown="0">` reproduces the original paper as
+closely as the source allows: the institution header, the course and date block, the name and student
+number fill-in lines, the italic return note, the θέματα with their marks in bold, and any diagram the
+paper carries (the 2026 ETX topology, drawn as a small inline SVG). It is a fixed cream sheet with dark
+ink in every scheme, framed with a border and shadow, so it reads as the physical paper rather than as
+our writing. Two rules:
+
+- ⛔ **The facsimile is verbatim source.** `hooks/shorthand.py` lists `exam-facsimile` in `SKIP_CLASSES`,
+  so the paper keeps its own acronyms (WiFi, LoRaWAN, EBP, SF) untouched, with no define-first links. The
+  answers below it are our prose and obey the no-shorthand rule as usual, defining each acronym on the
+  page before use (the skipped facsimile does not count as a definition).
+- ⛔ **Do not copy an institution's logo artwork.** The 2026 paper has an emblem; the facsimile uses the
+  text header only. Reproduce the layout and wording, not the trademark.
+
+**The answers.** Under `## Απαντήσεις`, each question gets a heading with a marks chip
+(`<span class="q-marks">`), a one-line restatement, and then:
+
+- `!!! answer "Σύντομη απάντηση"` (open) for the short answer, and
+- `??? answer-more "Εκτενής απάντηση"` (collapsed) for the expanded one, so a reader can attempt the
+  question first.
+- A question whose chapter is not written yet gets `!!! todo "..."` naming the chapter that will fill it,
+  instead of the two answer blocks. Populate answers as the chapters land.
+
+The three admonition types (`answer`, `answer-more`, `todo`) and the facsimile frame live in
+`corpus.css` §16-17. When a covered answer restates a worked chapter result, link to the chapter section
+rather than duplicating the figure (e.g. the 2026 Β.1 answer links to `02-leach.md#worked-2026`).

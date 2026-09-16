@@ -553,3 +553,38 @@ components are Chapter 1's, already validated).
    uniform) are distinct but not dramatically so. If you want the contrast sharper I can retune the seed
    and counts. It is explicitly labelled schematic.
 2. Still deferred from before: publishing the lecture PDFs so slide citations can link to a page.
+
+## 2026-09-16 (late) · Exam papers section
+
+Chris asked for a section before `Κεφάλαια`, one page per exam, each drawn as close to the original as
+possible, with a short and an expanded answer per question (answering only what the current chapters
+cover, and populating the rest as chapters land).
+
+### Built
+
+- **`Θέματα Εξετάσεων` nav section** before the chapters, with `docs/exams/2026.md`, `2025.md`, `2022.md`.
+- **Facsimiles.** Each page opens with a framed cream sheet reproducing the original: header, course and
+  date, name and student-number fill-in lines, the return note, the θέματα with their marks, and the
+  2026 ETX topology diagram as a small inline SVG. The 2026 layout was matched against the original photo
+  (`ΙοΤ - Θέματα 2026.jpg`). The 2025 and 2022 papers came from the `.docx` files, extracted with the
+  venv python. The institution's logo artwork was not reproduced; text header only.
+- **Answers.** Short (`!!! answer`, open) and expanded (`??? answer-more`, collapsed) per question, with a
+  marks chip on each heading. Covered now: 2026 Α.1 (DD, via Ch1), 2026 Β.1 (LEACH, via Ch2, linking the
+  worked example), and the WSN energy-waste part of 2022 Θέμα 2Γ (via Ch1). Everything else carries a
+  `!!! todo` naming the chapter that will fill it.
+- **The 2022 answer file was NOT used.** It is student-notes style, not instructor material (index
+  ruling), so only the questions were reproduced.
+
+### Traps handled
+
+- **The facsimile is verbatim source**, so its acronyms must not be touched by the no-shorthand rule.
+  Added `exam-facsimile` to `hooks/shorthand.py` `SKIP_CLASSES`. The answers below obey the rule normally.
+- `corpus.css` §16-17: the facsimile frame (fixed cream + dark ink so it is legible in all four schemes),
+  the `answer` / `answer-more` / `todo` admonitions, the `q-marks` chip, and a `.steps--four`-style
+  responsive shrink for narrow screens.
+
+### Verified
+
+Build `--strict` clean, shorthand hook 10/10 and 0 page problems, deploy green (run 35112336858), all
+three pages live (200). Headless-Edge screenshots confirm the 2026 facsimile matches the original and the
+answer blocks render (short open, expanded collapsed, todo muted).

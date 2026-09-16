@@ -33,7 +33,11 @@ TERMS_FILE = Path(__file__).resolve().parent.parent / "terms.yml"
 
 # Text inside these is never checked or linked.
 SKIP_TAGS = {"code", "pre", "script", "style", "svg", "math", "kbd", "samp", "a", "abbr", "dfn", "textarea"}
-SKIP_CLASSES = {"arithmatex"}
+SKIP_CLASSES = {"arithmatex", "exam-facsimile"}
+# "exam-facsimile" holds a verbatim reproduction of an original exam paper. The
+# real paper uses acronyms (WiFi, LoRaWAN, EBP, SF) without ever writing them out,
+# so the define-first rule must not touch it: the facsimile is quoted source, not
+# our prose. Our answers below it obey the rule as usual.
 HEADINGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 

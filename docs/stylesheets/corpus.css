@@ -1421,3 +1421,211 @@ form[data-md-component="palette"] > label {
   background: var(--c-highlight);
   border-radius: 2px;
 }
+
+/* ========================================================================
+ * 16 - Exam facsimile.
+ *
+ * Each exam page opens with a reproduction of the original paper, framed so it
+ * reads as the physical sheet rather than as our own writing. The paper is a
+ * fixed warm cream with dark ink in every scheme, on purpose: it is a
+ * photocopy-like artifact, dark-on-cream is legible on all four backgrounds, and
+ * a sheet that changed colour with the theme would stop looking like the
+ * original. hooks/shorthand.py skips everything inside .exam-facsimile, so the
+ * paper keeps its own acronyms verbatim (WiFi, LoRaWAN) without our links.
+ * ==================================================================== */
+
+.md-typeset .exam-facsimile {
+  --paper: #faf8f2;
+  --ink: #211e18;
+  --ink-soft: #4c473d;
+  --rule: #cec6b4;
+  max-width: 46rem;
+  margin: 1.4rem auto 2.2rem;
+  padding: 2.2rem 2.6rem 2.6rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.16);
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.5;
+  font-size: 0.82rem;
+  text-align: justify;
+}
+
+.md-typeset .exam-facsimile p,
+.md-typeset .exam-facsimile li {
+  color: var(--ink);
+}
+
+.exam-facsimile__head {
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+.exam-facsimile__inst {
+  font-weight: 700;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.exam-facsimile__course {
+  margin-top: 0.7rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.exam-facsimile__course strong { font-weight: 700; }
+
+.exam-facsimile__fill {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 1.1rem 0 0.4rem;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.exam-facsimile__fill span:first-child { flex: 1 1 auto; }
+
+.exam-facsimile__fill .line {
+  display: inline-block;
+  border-bottom: 1px solid var(--ink-soft);
+  min-width: 4rem;
+}
+
+.exam-facsimile__fill span:first-child .line { min-width: 60%; }
+
+.exam-facsimile__note {
+  text-align: center;
+  font-style: italic;
+  margin: 0.6rem 0 1.4rem;
+}
+
+.exam-facsimile__theme {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 1.4rem 0 0.5rem;
+}
+
+.md-typeset .exam-facsimile ol {
+  margin: 0 0 0.4rem;
+  padding-left: 1.6rem;
+}
+
+.md-typeset .exam-facsimile ol li { margin-bottom: 0.7rem; }
+.md-typeset .exam-facsimile ol ol { margin-top: 0.5rem; }
+
+.exam-facsimile .marks {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* The topology sketch inside Theme D. Kept out of a <figure> so the corpus
+   figure audit, which targets figure svg, leaves its labels alone: this is a
+   verbatim reproduction of the paper's own diagram, not a corpus step figure. */
+.exam-facsimile__diagram {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.exam-facsimile__diagram svg {
+  width: 100%;
+  max-width: 22rem;
+  height: auto;
+}
+
+@media screen and (max-width: 44.98em) {
+  .md-typeset .exam-facsimile {
+    padding: 1.4rem 1.2rem 1.6rem;
+  }
+}
+
+/* ========================================================================
+ * 17 - Answer blocks.
+ *
+ * Below each facsimile, every question gets a short answer (open) and an
+ * expanded one (a collapsible details, closed, so a reader can attempt the
+ * question first). Questions whose chapter is not written yet get a "todo"
+ * note instead, naming the chapter that will carry the answer.
+ * ==================================================================== */
+
+:root {
+  --md-admonition-icon--answer: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/></svg>');
+  --md-admonition-icon--answer-more: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 2H5c-1.11 0-2 .89-2 2v16c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2m0 18H5V4h14v16M7 6h10v2H7V6m0 4h10v2H7v-2m0 4h7v2H7v-2z"/></svg>');
+  --md-admonition-icon--todo: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6,2V8H6V8L10,12L6,16V16H6V22H18V16H18V16L14,12L18,8V8H18V2H6M16,16.5V20H8V16.5L12,12.5L16,16.5M12,11.5L8,7.5V4H16V7.5L12,11.5Z"/></svg>');
+}
+
+.md-typeset .admonition.answer,
+.md-typeset details.answer {
+  border-color: var(--c-primary);
+  border-left-width: 4px;
+  background: var(--c-exam-bg);
+}
+
+.md-typeset .answer > .admonition-title,
+.md-typeset .answer > summary {
+  background: transparent;
+  color: var(--c-primary);
+}
+
+.md-typeset .answer > .admonition-title::before,
+.md-typeset .answer > summary::before {
+  background-color: var(--c-primary);
+  -webkit-mask-image: var(--md-admonition-icon--answer);
+          mask-image: var(--md-admonition-icon--answer);
+}
+
+.md-typeset .admonition.answer-more,
+.md-typeset details.answer-more {
+  border-color: var(--c-border);
+  border-left-width: 4px;
+  background: var(--c-bg-alt);
+}
+
+.md-typeset .answer-more > .admonition-title,
+.md-typeset .answer-more > summary {
+  background: transparent;
+  color: var(--c-text);
+}
+
+.md-typeset .answer-more > .admonition-title::before,
+.md-typeset .answer-more > summary::before {
+  background-color: var(--c-text);
+  -webkit-mask-image: var(--md-admonition-icon--answer-more);
+          mask-image: var(--md-admonition-icon--answer-more);
+}
+
+.md-typeset .admonition.todo,
+.md-typeset details.todo {
+  border-color: var(--c-muted);
+  border-left-width: 4px;
+  background: var(--c-bg-alt);
+}
+
+.md-typeset .todo > .admonition-title,
+.md-typeset .todo > summary {
+  background: transparent;
+  color: var(--c-muted);
+}
+
+.md-typeset .todo > .admonition-title::before,
+.md-typeset .todo > summary::before {
+  background-color: var(--c-muted);
+  -webkit-mask-image: var(--md-admonition-icon--todo);
+          mask-image: var(--md-admonition-icon--todo);
+}
+
+/* A small marks chip beside an answer heading, echoing the paper. */
+.q-marks {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  border: 1px solid var(--c-exam-border);
+  background: var(--c-exam-bg);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  vertical-align: 0.12em;
+  margin-left: 0.4rem;
+  white-space: nowrap;
+}

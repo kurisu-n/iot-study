@@ -140,6 +140,10 @@ plugins:
 
 nav:
   - Αρχική: index.md
+  - Θέματα Εξετάσεων:
+      - 2026: exams/2026.md
+      - 2025: exams/2025.md
+      - 2022: exams/2022.md
   - Κεφάλαια:
       - 1. Διάδοση Δεδομένων: chapters/01-data-propagation.md
       - 2. LEACH: chapters/02-leach.md

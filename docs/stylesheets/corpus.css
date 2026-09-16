@@ -948,6 +948,18 @@ form[data-md-component="palette"] > label {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+/* Four across, for a sequence of small panels such as the rounds of one LEACH
+   period. Two across on a tablet, where four would shrink each panel too far. */
+.steps--four .steps__grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media screen and (max-width: 76.24em) {
+  .steps--four .steps__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .step {
   display: flex;
   flex-direction: column;
@@ -990,7 +1002,8 @@ form[data-md-component="palette"] > label {
    network about 180px wide, too small to read the arrows. */
 @media screen and (max-width: 44.98em) {
   .steps__grid,
-  .steps--three .steps__grid {
+  .steps--three .steps__grid,
+  .steps--four .steps__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }

@@ -25,9 +25,13 @@
 
     Flooding, Directed Diffusion, Omniscient Multicast, και η διάκριση ανάμεσα σε επίπεδη και ιεραρχική δρομολόγηση.
 
+- **[2. LEACH](chapters/02-leach.md)**
+
+    Ιεραρχική δρομολόγηση με συστάδες: γύροι και φάσεις, ο μηχανισμός εκλογής αρχηγού, η λυμένη άσκηση του 2026, και η πειραματική αξιολόγηση.
+
 </div>
 
-Τα υπόλοιπα κεφάλαια γράφονται σταδιακά: LEACH, Energy Balance Protocol, μετρικές δρομολόγησης, δίκτυα Low Power Wide Area Networks (LPWAN) και LoRaWAN, το Routing Protocol for Low-power and Lossy Networks (RPL), τα πρότυπα 802.11 του Institute of Electrical and Electronics Engineers (IEEE), πρωτόκολλα εφαρμογής, ασύρματη μεταφορά ενέργειας (Wireless Power Transfer) και κινητικότητα, και τέλος οι ασκήσεις.
+Τα υπόλοιπα κεφάλαια γράφονται σταδιακά: Energy Balance Protocol, μετρικές δρομολόγησης, δίκτυα Low Power Wide Area Networks (LPWAN) και LoRaWAN, το Routing Protocol for Low-power and Lossy Networks (RPL), τα πρότυπα 802.11 του Institute of Electrical and Electronics Engineers (IEEE), πρωτόκολλα εφαρμογής, ασύρματη μεταφορά ενέργειας (Wireless Power Transfer) και κινητικότητα, και τέλος οι ασκήσεις.
 
 ## Πώς να διαβάσετε τα κεφάλαια
 

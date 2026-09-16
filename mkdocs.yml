@@ -142,3 +142,4 @@ nav:
   - Αρχική: index.md
   - Κεφάλαια:
       - 1. Διάδοση Δεδομένων: chapters/01-data-propagation.md
+      - 2. LEACH: chapters/02-leach.md

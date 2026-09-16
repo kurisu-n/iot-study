@@ -17,6 +17,22 @@
 terms:
   BS:
     - Base Station                               # Lecture 2, slide 2 figure; the course's control centre
+  CH:
+    - cluster head                               # Lecture 2, slides 41 to 45
+    - cluster heads
+  CSMA:
+    - Carrier Sense Multiple Access              # Lecture 8a, slide 5
+  DT:
+    - Direct Transmission                        # Lecture 2, slides 60 and 67
+  MTE:
+    - Minimum-Energy-Transmission                # Lecture 2, slide 60, which pairs this name with MTE
+    - Minimum Transmission Energy
+  PEGASIS:
+    - Power-Efficient GAthering in Sensor Information Systems   # named on Lecture 2, slide 68; expansion not in the course
+  TDMA:
+    - Time Division Multiple Access              # not expanded in the course; the scheme's own name
+  TEEN:
+    - Threshold sensitive Energy Efficient sensor Network       # named on Lecture 2, slide 68; expansion not in the course
   DD:
     - Directed Diffusion                         # Lecture 2, slides 5 to 8
   EBP:

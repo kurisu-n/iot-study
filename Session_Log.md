@@ -702,3 +702,28 @@ field with phase under charger interference) are DIFFERENT concepts sharing only
 notes' sensor-data concept, with a §6.3 box holding the distinction; the charging models stay for the WPT
 chapter (priority 4). Short chapter (not examined), one hand-authored two-panel figure (thermometer, vector
 arrow). Cookbook §10 note updated from "check" to "settled". Built strict clean, deployed green.
+
+## 2026-09-16 (late) · Chapter 5 (synthesis) and Chapter 7 (LoRaWAN)
+
+**Chapter 5, energy management synthesis.** A short capstone tying chapters 1 to 4: the shift from
+node-centric/IP to data-centric and hierarchical, the realization that the goal is smart distribution not
+just low consumption, and a toolbox table (aggregation, clustering, role rotation, probabilistic balancing,
+path selection) mapping each method to what it does and which chapter. Notes-sourced (page 17), not
+examined.
+
+**Chapter 7, LPWAN and LoRaWAN.** Priority 2, the last real 2026 exam topic (Θέμα Γ, 2.5 marks). Grounded
+in Lecture 6a (LoRaWAN architecture, data rates, Spreading Factor) and Lectures 7b/8a/8b (Wi-Fi). Covers:
+what LPWANs are; the LoRaWAN architecture (end devices, gateways, network server, application server;
+multicast; 0.3-50 Kbps) with a hand-authored architecture figure; the Spreading Factor and the
+range/rate/energy trade-off (Ts = 2^SF/BW = 32.8 ms for SF=12, traced, and the key exam point that higher SF
+means more energy because time on air grows exponentially); and the Wi-Fi comparison (opposite design
+goals). Filled the exam 2026 Γ.1, Γ.2, Γ.3 answers. **The entire 2026 exam is now answered (A, B, C, D).**
+
+Traps: many acronyms in the new chapter. Fixed LPWAN/LoRaWAN in headings, added SF to terms and LoRa/kHz to
+proper_names, defined IEEE and SF on the pages that use them, mathified BW (proper_names does not silence
+ALLCAPS, only inner-cap), and replaced π.χ. with "για παράδειγμα". Both chapters built strict clean and
+deployed green.
+
+Chapters done: 1, 2, 3, 4, 5, 6, 7. Remaining are priority 3 (2025/2022 theory: IoT system design, access
+protocols, cloud/edge/Industry 4.0, 802.11ah/security/smart cities) and priority 4 (RPL, application
+protocols, wireless power transfer).

@@ -1715,25 +1715,27 @@ form[data-md-component="palette"] > label {
    seam. */
 @keyframes figFlow   { to { stroke-dashoffset: -11; } }
 @keyframes figStrain { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
-/* Full -> drained -> held dead -> eased back to full. 0% and 100% are the SAME
-   value, so the loop has no jump: the earlier version snapped from empty to full
-   and read as a flash. One slow cycle: batteries fall, the network sits dead a
-   moment, then the next cycle refills. */
+/* Full -> drained -> HELD DEAD for most of the cycle -> quick eased refill.
+   0% and 100% are the SAME value, so the loop seam has no jump (the first
+   version snapped empty->full and read as a flash). The empty state is the
+   point of the figure, so it holds for the majority of the (long) cycle: the
+   drain and the refill are the short parts, the dead network is what the reader
+   is meant to sit and look at. */
 @keyframes figDie {
-  0%,  14% { fill-opacity: 1; }
-  44%, 66% { fill-opacity: 0.06; }
-  100%     { fill-opacity: 1; }
+  0%,  8%  { fill-opacity: 1; }    /* full, briefly */
+  22%, 92% { fill-opacity: 0.06; } /* drained and dead, held ~70% of the cycle */
+  100%     { fill-opacity: 1; }    /* quick refill back to the seam */
 }
 
 .md-typeset .fig-flow {
   stroke-dasharray: 5 6;
-  animation: figFlow 1.5s linear infinite;
+  animation: figFlow 1.8s linear infinite;
 }
 .md-typeset .fig-strain {
-  animation: figStrain 2.6s ease-in-out infinite;
+  animation: figStrain 2.8s ease-in-out infinite;
 }
 .md-typeset .fig-die {
-  animation: figDie 13s ease-in-out infinite;
+  animation: figDie 20s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

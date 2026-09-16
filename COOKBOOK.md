@@ -840,3 +840,36 @@ block `$$`.)
 ⚠ Greek inside `\text{}` **does** render in this MathJax setup (the cases labels "αν n ∈ G / αλλιώς"
 prove it), so an earlier worry about Greek annotations was unfounded. Numeric notes are still preferred,
 because they show the arithmetic rather than describe it.
+
+## 13. Figure animation
+
+Ruled by Chris, 2026-09-16. The generated step figures may be animated, and when they are, the animation
+must **carry information the static panel only implies**, never decorate. Movement shows a mechanism (traffic
+converging on the near-sink nodes), a process (a message travelling an option), or a timeline (the order in
+which nodes die). If an animation would only be pretty, leave it off.
+
+The classes and keyframes live in `corpus.css` §19 with generic names (`fig-flow`, `fig-strain`, `fig-die`),
+so any chapter's generator can reuse them. The generators (`tools/ebp_figures.py` and siblings) tag the
+elements; per-element timing (a death sweep, say) is set with an inline `animation-delay`.
+
+The rules, each learned the hard way:
+
+- ⛔ **Loop seamlessly: the `0%` and `100%` keyframe values must be identical.** A keyframe that ends on a
+  different value than it starts snaps back instantly at the loop seam and reads as a **flash**. `figDie`
+  starts and ends at `fill-opacity: 1`; `figFlow` steps the dash offset by exactly one dash period (`5 + 6`)
+  so the stream restarts invisibly.
+- ⭐ **Hold the meaningful end-state for most of the cycle.** The point of an animation is usually its
+  *result*, not its transition. `figDie` spends ~70% of a long (20s) cycle in the dead state, with a short
+  drain and a short refill, so the reader sits and looks at the empty network rather than watching it blink.
+  Make the cycle long (tens of seconds), the transitions short, and the state you care about dominant.
+- ⛔ **Respect `prefers-reduced-motion`: still everything, and make sure the resting frame still tells the
+  story.** Under reduced motion the animation is `none`, so the element's *static* attributes must carry the
+  meaning on their own: hot nodes stay red, dead nodes rest looking hollow (drawn as `fill-opacity: 0.06`,
+  which is also `figDie`'s dead value), arrowheads still show direction. Never animate a fact that only
+  exists while the animation runs.
+- ⚠ **The figures sit below the fold, so animations must loop, not play once.** A one-shot animation finishes
+  during page load, before the reader ever scrolls to it. (A future refinement could start them with an
+  intersection observer, but looping is the current answer.)
+- **Technique.** Flow along a line: `stroke-dashoffset` stepped by one dash period. Drain a node: animate
+  `fill-opacity` (not `fill`), so the outline survives as the dead/hollow shape. Draw attention to a node:
+  animate `opacity` (not `r`, which the figure audit skips and which can nudge overlap). Keep it slow.

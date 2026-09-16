@@ -133,12 +133,12 @@ $$P_2 = \frac{P}{1 - 2P}$$
 <div class="trace" markdown="1">
 $$
 \begin{aligned}
-T(n) &= \frac{P}{1 - P\,(r \bmod \tfrac{1}{P})} && \\
-     &= \frac{0.2}{1 - 0.2\,(2 \bmod 5)}  && (P = 0.2,\ r = 2) \\
-     &= \frac{0.2}{1 - 0.2 \cdot 2}        && (2 \bmod 5 = 2) \\
-     &= \frac{0.2}{1 - 0.4}                && (0.2 \cdot 2 = 0.4) \\
-     &= \frac{0.2}{0.6}                    && (1 - 0.4 = 0.6) \\
-     &= \tfrac{1}{3}                       && (0.2 \div 0.6 = \tfrac{1}{3})
+T(n) &= \frac{P}{1 - P\,(r \bmod 1/P)} && \\[0.7em]
+     &= \frac{0.2}{1 - 0.2\,(2 \bmod 5)}  && (P = 0.2,\ r = 2) \\[0.7em]
+     &= \frac{0.2}{1 - 0.2 \cdot 2}        && (2 \bmod 5 = 2) \\[0.7em]
+     &= \frac{0.2}{1 - 0.4}                && (0.2 \cdot 2 = 0.4) \\[0.7em]
+     &= \frac{0.2}{0.6}                    && (1 - 0.4 = 0.6) \\[0.7em]
+     &= \frac{1}{3}                        && (0.2 \div 0.6 = 1/3)
 \end{aligned}
 $$
 </div>
@@ -148,9 +148,9 @@ $$
 <div class="trace" markdown="1">
 $$
 \begin{aligned}
-N_{\text{CH}} &= T(n) \times |G|      && \\
-              &= \tfrac{1}{3} \times 60 && (T(n) = \tfrac{1}{3},\ |G| = 60) \\
-              &= \tfrac{60}{3}          && \\
+N_{\text{CH}} &= T(n) \times |G|       && \\[0.7em]
+              &= (1/3) \times 60        && (T(n) = 1/3,\ |G| = 60) \\[0.7em]
+              &= \frac{60}{3}           && \\[0.7em]
               &= 20                     &&
 \end{aligned}
 $$
@@ -208,12 +208,12 @@ $$T(n) = \frac{1/7}{1 - \frac{1}{7}\left(r \bmod 7\right)} \quad \text{για } 
 <div class="trace" markdown="1">
 $$
 \begin{aligned}
-T(n) &= \frac{P}{1 - P\,(r \bmod \tfrac{1}{P})} && \\
-     &= \frac{1/7}{1 - \tfrac{1}{7}\,(2 \bmod 7)} && (P = \tfrac{1}{7},\ r = 2) \\
-     &= \frac{1/7}{1 - \tfrac{1}{7} \cdot 2}       && (2 \bmod 7 = 2) \\
-     &= \frac{1/7}{1 - \tfrac{2}{7}}               && (\tfrac{1}{7} \cdot 2 = \tfrac{2}{7}) \\
-     &= \frac{1/7}{5/7}                            && (1 - \tfrac{2}{7} = \tfrac{5}{7}) \\
-     &= \tfrac{1}{5}                               && (\tfrac{1}{7} \div \tfrac{5}{7} = \tfrac{1}{5})
+T(n) &= \frac{P}{1 - P\,(r \bmod 1/P)} && \\[0.7em]
+     &= \frac{1/7}{1 - (1/7)\,(2 \bmod 7)} && (P = 1/7,\ r = 2) \\[0.7em]
+     &= \frac{1/7}{1 - (1/7) \cdot 2}       && (2 \bmod 7 = 2) \\[0.7em]
+     &= \frac{1/7}{1 - 2/7}                 && ((1/7) \cdot 2 = 2/7) \\[0.7em]
+     &= \frac{1/7}{5/7}                     && (1 - 2/7 = 5/7) \\[0.7em]
+     &= \frac{1}{5}                         && ((1/7) \div (5/7) = 1/5)
 \end{aligned}
 $$
 </div>
@@ -221,9 +221,9 @@ $$
 <div class="trace" markdown="1">
 $$
 \begin{aligned}
-N_{\text{CH}} &= T(n) \times |G|        && \\
-              &= \tfrac{1}{5} \times 50  && (T(n) = \tfrac{1}{5},\ |G| = 50) \\
-              &= \tfrac{50}{5}           && \\
+N_{\text{CH}} &= T(n) \times |G|        && \\[0.7em]
+              &= (1/5) \times 50         && (T(n) = 1/5,\ |G| = 50) \\[0.7em]
+              &= \frac{50}{5}            && \\[0.7em]
               &= 10                      &&
 \end{aligned}
 $$
@@ -235,11 +235,11 @@ $$
 <div class="trace" markdown="1">
 $$
 \begin{aligned}
-T(n) &= \frac{1/7}{1 - \tfrac{1}{7}\,(6 \bmod 7)} && (P = \tfrac{1}{7},\ r = 6) \\
-     &= \frac{1/7}{1 - \tfrac{1}{7} \cdot 6}       && (6 \bmod 7 = 6) \\
-     &= \frac{1/7}{1 - \tfrac{6}{7}}               && (\tfrac{1}{7} \cdot 6 = \tfrac{6}{7}) \\
-     &= \frac{1/7}{1/7}                            && (1 - \tfrac{6}{7} = \tfrac{1}{7}) \\
-     &= 1                                          && (\tfrac{1}{7} \div \tfrac{1}{7} = 1)
+T(n) &= \frac{1/7}{1 - (1/7)\,(6 \bmod 7)} && (P = 1/7,\ r = 6) \\[0.7em]
+     &= \frac{1/7}{1 - (1/7) \cdot 6}       && (6 \bmod 7 = 6) \\[0.7em]
+     &= \frac{1/7}{1 - 6/7}                 && ((1/7) \cdot 6 = 6/7) \\[0.7em]
+     &= \frac{1/7}{1/7}                     && (1 - 6/7 = 1/7) \\[0.7em]
+     &= 1                                   && ((1/7) \div (1/7) = 1)
 \end{aligned}
 $$
 </div>

@@ -728,7 +728,7 @@ Mapped against the sources on the same day:
 | ✅ | Energy Balance Protocol | pages 12 to 14 | 2026 Α.2 | 3 |
 | ✅ | Routing metrics and ETX, including the multi-hop energy exercise | pages 15 to 16 | 2026 Δ.1 (2.5 marks) | 4 / 5 |
 | 1 | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
-| 1 | Scalar and vector models | pages 17 to 18 | none | 9 (see warning) |
+| ✅ | Scalar and vector sensor data | pages 17 to 18 | none | notes only (see note below) |
 | **2** | **Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison** | none | **2026 Γ.1 to Γ.3 (2.5 marks)** | 6a, 8a, 8b |
 | 3 | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3 | 7a, 7b, extra notes |
 | 3 | Comparing access protocols, and why no single wireless technology fits all | none | 2025 2α and 2022 2Α (asked twice); 2022 2Ε | 7b, 8b |
@@ -763,11 +763,14 @@ Written 2026-09-16. Nothing overturned §9; three things worth carrying forward:
   a `!!! warning` (here the slide-53 typo `1/(1-2P)`, correctly `P/(1-2P)`), with the derivation that
   proves which is right.
 
-⚠ **Check before writing the scalar and vector chapter.** The notes' table describes scalar and vector
-*sensor data* (temperature as one value, wind velocity with a direction). The only place those words
-appear in the lectures is Lecture 9 on wireless power transfer, as the *Scalar Charging Model* and the
-*Vector Model*, which are about charging. The notes may have attached an unrelated explanation to the
-lecture's terms. Read Lecture 9 before trusting either.
+✅ **Settled 2026-09-16, they are DIFFERENT concepts.** The notes' table (pages 17 to 18) is scalar vs
+vector *sensor data* (temperature as one value, wind velocity with magnitude and direction). Lecture 9's
+*Scalar Charging Model* and *Vector Model* (slides 39 to 45) are *wireless-power-transfer physics*: the
+scalar model treats received power as additive (the Friis model, one dimension), the vector model handles
+the 2D electric field with phase when nearby chargers make waves interfere. Same two words, unrelated
+topics, connected only by the generic meaning of scalar vs vector. Chapter 6 was written on the notes'
+sensor-data concept, with a `§6.3` box keeping it distinct; Lecture 9's charging models belong to the
+wireless-power-transfer chapter (priority 4), not here.
 
 ## 11. Exam pages
 

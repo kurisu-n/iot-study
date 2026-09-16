@@ -1,0 +1,76 @@
+# iot.chris-nasiou.com
+#
+# Server configuration for the built site. Hostinger serves the deploy branch
+# directly and runs no build, so this file has to be part of the build output.
+# It lives outside docs/ because MkDocs skips dotfiles, and is copied into the
+# build by .github/workflows/deploy.yml.
+#
+# The caching rules follow the FaceCue site's, which were measured against the
+# live host rather than reasoned about. See Current Workspace/Resources/
+# WEBSITE_RULEBOOK.md before changing any of them.
+#
+# ⛔ A cache header that has gone out cannot be withdrawn. A reader who was told
+# to hold a file for a year will hold it for a year, and nothing served later
+# reaches them until it expires. That is why nothing here is immutable unless
+# its filename contains a content hash.
+
+
+# ---- The documentation's own "page not found" ---------------------------
+#
+# MkDocs Material builds 404.html with every link written from the root, so it
+# works at whatever depth the missing address was.
+#
+# A local path, never a full URL. A URL here makes the server redirect, so the
+# reader's address bar changes and the response becomes a 302 to a page that
+# answers 200, which search engines read as a real page. A path keeps the 404.
+
+ErrorDocument 404 /404.html
+
+
+<IfModule mod_headers.c>
+
+  # ---- HTML ------------------------------------------------------------
+  #
+  # A page's URL is what people link and what search indexes, so there is
+  # nowhere to put a content hash in it. max-age=0 with must-revalidate means
+  # the browser re-checks every time and a deploy is visible at once;
+  # s-maxage=300 lets Hostinger's CDN answer that check from a nearby edge for
+  # five minutes rather than crossing to the origin every view.
+  #
+  # ⚠ The same five-minute window applies to a NEW address: a page just added
+  # can still answer 404 from some edges for up to five minutes.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, s-maxage=300, must-revalidate"
+  </FilesMatch>
+
+  # ---- Unhashed assets -------------------------------------------------
+  #
+  # corpus.css, fc-tokens.css and mathjax.js are served under stable names, so
+  # they cannot be held for long: an edit to a colour has to reach a returning
+  # reader. Five minutes, revalidated.
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|mp4|webm)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+
+  # ---- Content-hashed assets -------------------------------------------
+  #
+  # Material names its own bundles with an 8-character content hash, so the
+  # filename changes whenever the bytes do and an old copy is never asked for
+  # again. Those are safe to hold for a year.
+  #
+  # ⛔ These MUST stay below the generic css/js rule above. With `Header set`
+  # the later match wins, so moving them up would let the generic five-minute
+  # rule overwrite the one-year rule rather than the other way round.
+  <FilesMatch "\.[0-9a-f]{8}\.(min\.)?(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.[0-9a-f]{8}\.(jpg|jpeg|png|gif|webp|svg|ico|mp4|webm|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+</IfModule>

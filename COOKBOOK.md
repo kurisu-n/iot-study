@@ -333,19 +333,29 @@ fails the build if a literal hex appears in a chapter, which catches the SVG cas
 | | |
 |:---|:---|
 | Repository | <https://github.com/kurisu-n/iot-study> (public) |
-| Published at | <https://kurisu-n.github.io/iot-study/> |
+| Published at | <https://iot.chris-nasiou.com/> |
+| Served by | Hostinger, from the `deploy` branch |
 | Built with | MkDocs Material, pinned in `requirements.txt` |
 | Deployed by | `.github/workflows/deploy.yml`, on every push to `main` |
 
 ### 8.1 The shape of it
 
-Source lives on `main`. The workflow builds with `--strict`, runs one guard, and force-pushes the
-finished HTML to the **`gh-pages`** branch, which GitHub Pages serves. The two branches never mix.
+Source lives on `main`. The workflow builds with `--strict`, runs one guard, copies
+`hosting/.htaccess` into the output, and force-pushes the finished HTML to the **`deploy`** branch,
+which Hostinger pulls and serves. The two branches never mix.
 
-This is the FaceCue site's architecture with one change at the end. FaceCue publishes to a branch
-called `deploy` that Hostinger pulls, because `facecue.net` is hosted there. This repository is
-public, so GitHub Pages serves it for nothing and needs no domain. Moving to a real domain later
-means changing the publish step and `site_url`, and nothing else.
+This is now the FaceCue site's architecture exactly, ending included. Hostinger runs no build step,
+so the deploy branch holds finished HTML and nothing else.
+
+⛔ **Push `main` and nothing else.** `deploy` is machine-written and replaced wholesale on every
+build, so a hand-made commit there is destroyed by the next push to `main`, silently and with no
+conflict.
+
+> ⚠ **Changed 2026-09-16.** The site was published to GitHub Pages at
+> `https://kurisu-n.github.io/iot-study/` for a few hours, from a `gh-pages` branch. It moved to its
+> own subdomain the same day, and Pages was switched off so there is one live copy at one address.
+> Two copies would mean two addresses for one document, and `site_url` can only name one of them as
+> canonical.
 
 ⛔ **`--strict` is what keeps the site honest.** A broken internal link or a page missing from the
 nav fails the build rather than becoming a quiet gap on the live site.
@@ -359,9 +369,22 @@ looking at the page.
 
 ### 8.3 Traps worth knowing
 
-- ⚠ **`mkdocs serve` mounts the site under the `site_url` path.** It opens at
-  `http://127.0.0.1:8000/iot-study/`, not at the root. A request to the root returns a 404 that looks
-  like a broken build and is not one.
+- ⚠ **`mkdocs serve` mounts the site under the `site_url` path.** That is now the domain root, so it
+  opens at `http://127.0.0.1:8000/` as expected. While the site was on GitHub Pages the path was
+  `/iot-study/`, and a request to the root returned a 404 that looked like a broken build and was
+  not one. If `site_url` ever gains a path again, this comes back.
+- ⚠ **Hostinger serves the output directly, so server configuration has to be IN the build.**
+  `hosting/.htaccess` carries the 404 mapping and the cache rules, and the workflow copies it into
+  `site/`. It cannot live under `docs/`, because MkDocs skips dotfiles.
+- ⛔ **Cache headers cannot be withdrawn.** Nothing is marked immutable unless its filename carries a
+  content hash. Material's own bundles do (`bundle.d7400e89.min.js`); `corpus.css`, `fc-tokens.css`
+  and `mathjax.js` do not, and are held for five minutes with revalidation. The immutable rules must
+  stay *below* the generic ones in the file: with `Header set`, the later match wins.
+- ⚠ **Search runs the English pipeline, and not for the reason you would guess.** lunr-languages does
+  ship a Greek stemmer, and Material even bundles the file. Material's search plugin simply does not
+  accept `el` as an index language: setting it prints *"Option search.lang 'el' is not supported,
+  falling back to 'en'"* and builds anyway. So Greek is tokenised and searchable word for word but
+  not stemmed, and «κόμβος» does not also match «κόμβου». Re-test when Material is upgraded.
 - ⚠ **pip cannot reach PyPI on this machine** — the TLS proxy presents a self-signed certificate and
   every install fails on `CERTIFICATE_VERIFY_FAILED`. Local builds use the MkDocs in the FaceCue site
   venv (`D:\Development\FaceCue Workspace\facecue-site\.venv\Scripts\mkdocs.exe`), which is pinned to

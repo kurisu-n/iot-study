@@ -12,10 +12,15 @@ site_description: >-
   Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων»,
   Διεθνές Πανεπιστήμιο της Ελλάδος.
 
-# A GitHub Pages project site is served from a subpath, not the domain root, so
-# this has to carry the repository name or every generated absolute URL is
-# wrong. Moving the site to its own domain means changing this line.
-site_url: https://kurisu-n.github.io/iot-study/
+# Every canonical tag, the sitemap and the search index base are generated from
+# this, and `mkdocs serve` mounts the site under its path, so it has to match
+# where the site is actually served, exactly.
+#
+# The corpus has its own subdomain and sits at the root of it. It was published
+# at https://kurisu-n.github.io/iot-study/ until 2026-09-16, which is why the
+# earlier form carried a /iot-study/ path: a GitHub Pages project site is served
+# from a subpath. GitHub Pages is now switched off, so there is one address.
+site_url: https://iot.chris-nasiou.com/
 
 docs_dir: docs
 site_dir: site
@@ -90,10 +95,16 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
-  # Greek is not one of the languages lunr ships a stemmer for, so the index is
-  # built with the English pipeline. Greek text is still tokenised and still
-  # searchable word for word; what is missing is stemming, meaning a search for
-  # «κόμβος» will not also match «κόμβου». Searching a stem («κόμβ») works.
+  # English, and NOT because Greek has no stemmer. lunr-languages ships one, and
+  # Material even bundles the file (assets/javascripts/lunr/min/lunr.el.min.js,
+  # carrying el.stemmer, el.trimmer and el.stop). Material's search plugin just
+  # does not list `el` among the index languages it accepts: set it and the
+  # build prints "Option search.lang 'el' is not supported, falling back to
+  # 'en'" and carries on. Measured against Material 9.7.7 on 2026-09-16.
+  #
+  # The practical effect is that Greek text is tokenised and searchable word for
+  # word, but not stemmed, so «κόμβος» does not also match «κόμβου». Searching a
+  # stem («κόμβ») works. Worth re-testing whenever Material is upgraded.
   - search:
       lang: en
 

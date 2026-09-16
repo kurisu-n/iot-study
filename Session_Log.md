@@ -193,9 +193,8 @@ are what the verification rests on; screenshots only ever confirmed the overall 
 
 - ~~Academic fails contrast in three places and was left alone on purpose.~~ **Ruled by Chris the
   same day: fix it. Done, see the entry below.**
-- Search runs the English lunr pipeline, because lunr ships no Greek stemmer. Greek text is tokenised
-  and searchable word for word; what is missing is stemming, so «κόμβος» does not also match
-  «κόμβου». Searching a stem works.
+- ~~Search runs the English lunr pipeline, because lunr ships no Greek stemmer.~~ **Wrong reason,
+  corrected later the same day: lunr does ship a Greek stemmer. See the entry below.**
 - Nine chapters still to write.
 - The lecture PDFs (46 MB) are committed so the repository stands alone. MkDocs never sees them; only
   `docs/` is published.
@@ -256,3 +255,76 @@ happens in GitHub Actions.
 ⛔ The thing not to do is accept such an importer's offer to "continue as a static website" against
 `main`. `main` holds Markdown source, not HTML. The built site lives on `gh-pages`, and a host
 pointed at `main` would serve the raw sources. Nothing is missing and nothing needs adding.
+
+---
+
+## 2026-09-16 (later still) · Moved to iot.chris-nasiou.com, GitHub Pages removed
+
+### What was asked
+
+Chris pointed at `https://iot.chris-nasiou.com/docs/`, then chose to serve at the **root** of that
+subdomain and to remove GitHub Pages.
+
+### What was already true
+
+The subdomain answered 403 at both `/` and `/docs/`. That is Hostinger's empty-directory response,
+not a permissions fault: DNS resolves, TLS works, nothing had been deployed. Both `iot.chris-nasiou.com`
+and `facecue.net` sit on the same Hostinger edge (`92.113.x`, `Server: hcdn`), so the FaceCue deploy
+pattern transfers exactly.
+
+`/docs/` would have been an empty prefix on every URL. It exists on `facecue.net` because the
+Eleventy marketing site holds the root there; here the subdomain is dedicated to one thing. Chris
+chose the root.
+
+### What changed
+
+- `site_url` to `https://iot.chris-nasiou.com/`. This is load-bearing: canonical tags, the sitemap
+  and the search index base all come from it, and `mkdocs serve` mounts under its path.
+- The workflow publishes to **`deploy`** instead of `gh-pages`, the FaceCue convention, because
+  Hostinger pulls a branch and runs no build.
+- A new `hosting/.htaccess`, copied into the build by the workflow. It cannot live under `docs/`,
+  because MkDocs skips dotfiles.
+- GitHub Pages disabled, and the `gh-pages` branch deleted.
+
+### The .htaccess, and why it is not improvised
+
+The cache rules follow the FaceCue site's, which the website rulebook records as measured against the
+live host rather than reasoned about. The rule that matters: **nothing is immutable unless its
+filename carries a content hash**, because a cache header that has gone out cannot be withdrawn.
+
+Checked rather than assumed, by running the regex over the real build output: Material's own bundles
+(`bundle.d7400e89.min.js`, `main.ec1eaa64.min.css`, `palette.ab4e12ef.min.css`, `search.2c215733.min.js`)
+match the 8-hex-character pattern and get a year. Our three editable files (`corpus.css`,
+`fc-tokens.css`, `mathjax.js`) do not match and get five minutes with revalidation, which is what
+lets a colour edit reach a returning reader.
+
+⛔ The immutable rules sit *below* the generic css/js rule in the file. With `Header set` the later
+match wins, so moving them up would let the five-minute rule overwrite the one-year rule.
+
+Also carried over: `ErrorDocument 404 /404.html` as a local path, never a full URL. A URL there makes
+the server redirect, which turns a missing page into a 302 to something that answers 200, and search
+engines read that as a real page.
+
+### A correction to the previous entry
+
+The earlier log said search falls back to English *because lunr ships no Greek stemmer*. That is
+wrong, and I found it while listing the build output for the cache check: `lunr.el.min.js` is right
+there in the bundle, carrying `el.stemmer`, `el.trimmer` and `el.stop`.
+
+The real reason is narrower. Material's **search plugin** does not accept `el` as an index language.
+Setting `lang: el` builds fine and prints *"Option search.lang 'el' is not supported, falling back to
+'en'"*. Measured against Material 9.7.7.
+
+The practical effect is the same, so nothing needed fixing, but the reason matters: it means this may
+simply start working on a Material upgrade, which "lunr has no Greek stemmer" would have ruled out
+forever. Worth re-testing after each upgrade.
+
+⭐ The general shape of this: a wrong *reason* attached to a right *observation* survives review,
+because the observation keeps checking out. It only fell over when an unrelated task listed the same
+directory.
+
+### Left open
+
+- **Hostinger's git integration still has to be pointed at the `deploy` branch** in hPanel, with the
+  subdomain's docroot as the target. That is the one step that cannot be done from here. Until then
+  the subdomain keeps answering 403, and that is expected rather than a fault.

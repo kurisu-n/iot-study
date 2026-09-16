@@ -4,9 +4,9 @@ A study corpus for the MSc course **«Διαδίκτυο των Πραγμάτω
 International Hellenic University.
 
 The corpus is written in Greek prose with English technical terms, in the register of a university
-textbook rather than a set of notes. It is built with MkDocs Material and published to GitHub Pages:
+textbook rather than a set of notes. It is built with MkDocs Material and published to:
 
-**<https://kurisu-n.github.io/iot-study/>**
+**<https://iot.chris-nasiou.com/>**
 
 ## Repository layout
 
@@ -17,6 +17,7 @@ textbook rather than a set of notes. It is built with MkDocs Material and publis
 | `docs/stylesheets/` | The theme: four colour schemes and the diagram palette. |
 | `Transcriptions/` | Lecture and exam material transcribed to Markdown. Source, not published. |
 | `Corpus/` | The original single-file HTML draft of Chapter 1, kept for reference. |
+| `hosting/` | Server configuration that ships with the build (`.htaccess`). |
 | `COOKBOOK.md` | The living project document: method, style guide, theme system, progress. |
 | `Session_Log.md` | What each working session did, and why. |
 
@@ -30,14 +31,20 @@ pip install -r requirements.txt
 mkdocs serve
 ```
 
-The dev server mounts the site under the path in `site_url`, so it opens at
-`http://127.0.0.1:8000/iot-study/` rather than at the root.
+The dev server mounts the site under the path in `site_url`. That path is now the domain root, so it
+opens at `http://127.0.0.1:8000/` as you would expect. It served under `/iot-study/` while the site
+was on GitHub Pages.
 
 ## How it deploys
 
 `.github/workflows/deploy.yml` runs on every push to `main`: it builds with `--strict`, checks that
-no chapter carries a literal colour, and force-pushes the result to the `gh-pages` branch, which
-GitHub Pages serves. Source lives on `main`, built output lives on `gh-pages`, and the two never mix.
+no chapter carries a literal colour, adds `hosting/.htaccess` to the output, and force-pushes the
+result to the `deploy` branch. Hostinger's git integration pulls that branch and serves it; it runs
+no build of its own, which is why the branch holds finished HTML and nothing else.
+
+Source lives on `main`, built output lives on `deploy`, and the two never mix. **Push `main` and
+nothing else** — each deploy replaces the `deploy` branch wholesale, so anything committed there by
+hand is destroyed on the next build.
 
 ## The theme
 

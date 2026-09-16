@@ -1,13 +1,13 @@
-# Builds the corpus and force-pushes the result to the gh-pages branch.
+# Builds the corpus and force-pushes the result to the deploy branch.
 #
-# Shaped after the FaceCue site's deploy workflow, with one difference at the
-# end: FaceCue publishes to a `deploy` branch that Hostinger pulls, because
-# facecue.net is hosted there. This repository is public, so GitHub Pages serves
-# it for free and the published branch is the conventional `gh-pages`.
+# The same shape as the FaceCue site's deploy workflow, and now the same ending
+# too: Hostinger's git integration does not run a build step, so the deploy
+# branch holds finished HTML and nothing else. Hostinger pulls it and serves it
+# at iot.chris-nasiou.com.
 #
-# Source lives on `main`, the built site lives on `gh-pages`, and the two never
-# mix. Moving this to a real domain later means changing the publish step and
-# `site_url` in mkdocs.yml, nothing else.
+# Source lives on `main`, the built site lives on `deploy`, and the two never
+# mix. This published to `gh-pages` for GitHub Pages until 2026-09-16; Pages is
+# switched off now, so there is one live copy at one address.
 
 name: Build and deploy
 
@@ -60,12 +60,19 @@ jobs:
           fi
           echo "Clean: every colour in the chapters comes from a token."
 
-      - name: Publish to the gh-pages branch
+      # Hostinger serves this directly, so the server configuration has to travel
+      # with the built site. MkDocs skips dotfiles under docs/, which is why the
+      # file is kept outside it and copied in here rather than being picked up
+      # by the build.
+      - name: Add the server configuration to the build
+        run: cp hosting/.htaccess site/.htaccess
+
+      - name: Publish to the deploy branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-          publish_branch: gh-pages
+          publish_branch: deploy
           # Each deploy replaces the branch rather than adding to it. Built
           # output has no history worth keeping, and without this the branch
           # grows forever with copies of the same HTML.

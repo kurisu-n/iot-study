@@ -509,3 +509,47 @@ re-measured: 0 figure defects, 0 text failures, 0 graphic failures in all four s
    ruled those rules apply here.
 3. **Contents column at rest.** Faithful to FaceCue means resting section entries at 2.35 to 2.99:1, below
    AA by design. One dial raises it.
+
+## 2026-09-16 (late) · Chapter 2: LEACH
+
+### What was built
+
+Chapter 2, `docs/chapters/02-leach.md`, live at
+https://iot.chris-nasiou.com/chapters/02-leach/ (commit `33bfef8`, Actions run 35106217585 green):
+
+- **§2.1 the idea** (clusters, heads, why the role rotates), **§2.2 rounds and phases** (the set-up and
+  steady phases from the notes reconciled with the slides' three-phase split), **§2.3 the election
+  mechanism** (the T(n) threshold, the induction that shows the head count stays constant, the slide
+  example with N=100 P=0.2 including the r=5 "new era" answer), **§2.4 the worked 2026 Β.1**, **§2.5 the
+  experimental evaluation** (dead-node distributions, the lifetime table from slide 66), **§2.6 limits and
+  extensions**. Every claim cited to the slides, notes or exam. Plain language, no shorthand, no em dashes,
+  an exam box per section, extracurricular marks on TEEN/PEGASIS and the static-clustering aside.
+- **`tools/leach_figures.py`**, four figures: two rounds side by side (2.1), one round step by step (2.2),
+  the seven-round era over 70 nodes (2.3), and the schematic dead-node distributions (2.4). All labels in
+  HTML, all colours `--fig-*`, markers rewritten in place. Added `.steps--four` to `corpus.css` §11.
+- Nav and index card for chapter 2, chapter 1's forward link, the new LEACH terms in `terms.yml`.
+
+### Two source problems handled in the text
+
+- **Slide 53 typo.** The derivation prints the third-round threshold as `P₂ = 1/(1-2P)`. It is
+  `P₂ = P/(1-2P)`: the induction and the general T(n) for r=2 both give the P in the numerator, and
+  `1/(1-2P)` would exceed 1 for small P. Corrected inline in a `!!! warning`, with the derivation.
+- **"14%" vs 1/7.** The 2026 Β.1 says 7-round eras and 14% heads. Those are consistent only for P=1/7
+  (14.29%); the chapter works in 1/7 and an extracurricular note shows the literal 0.14 breaks (era does
+  not close in 7 rounds, and r=7 would give T=7).
+
+### Verified
+
+Build `--strict` clean; shorthand hook 10/10 and 0 page problems after fixing LEACH-in-heading, the P₀/P₁
+math subscripts read as acronyms, and TEEN/PEGASIS in an admonition title before their definition. The CI
+literal-hex guard finds no literal colour in the built chapter. Headless-Edge screenshots (warm-light)
+confirm all four figures, the MathJax formulas, and both worked tables render correctly; a warm-dark
+capture of the page top confirms the dark tokens apply (the chapter adds no new colour CSS, so the dark
+components are Chapter 1's, already validated).
+
+### Open, for Chris
+
+1. **Schematic dead-node figure (2.4).** The three panels (MTE dead near the BS, DT dead far, LEACH
+   uniform) are distinct but not dramatically so. If you want the contrast sharper I can retune the seed
+   and counts. It is explicitly labelled schematic.
+2. Still deferred from before: publishing the lecture PDFs so slide citations can link to a page.

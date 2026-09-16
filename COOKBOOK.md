@@ -724,7 +724,7 @@ Mapped against the sources on the same day:
 | Priority | Chapter topic | Handwritten notes | Exams | Lecture |
 |:---:|:---|:---|:---|:---|
 | ✅ | Data propagation: flooding, Directed Diffusion | pages 1 to 6 | 2026 Α.1, Α.2; 2022 Θέμα 2Γ | 2, 3 |
-| **1** | **LEACH**, including the cluster head election exercise | pages 7 to 11 | **2026 Β.1 (2.5 marks)** | 2 |
+| ✅ | LEACH, including the cluster head election exercise | pages 7 to 11 | 2026 Β.1 (2.5 marks) | 2 |
 | **1** | **Energy Balance Protocol** | pages 12 to 14 | **2026 Α.2** | 3 |
 | **1** | **Routing metrics and ETX**, including the multi-hop energy exercise | pages 15 to 16 | **2026 Δ.1 (2.5 marks)** | 4 / 5 |
 | 1 | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
@@ -738,9 +738,27 @@ Mapped against the sources on the same day:
 
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
 
-**So the next three chapters are LEACH, the Energy Balance Protocol, and routing metrics with ETX**, in
-that order: each is covered by the notes and carried 1.5 to 2.5 marks in 2026, and two of them are the
-2026 exercises.
+**Next up are the Energy Balance Protocol and routing metrics with ETX** (LEACH is done, 2026-09-16),
+in that order: each is covered by the notes and carried 1.5 to 2.5 marks in 2026, and both are 2026
+exercises.
+
+### 10.1 What the LEACH chapter added to the template
+
+Written 2026-09-16. Nothing overturned §9; three things worth carrying forward:
+
+- **A generator per chapter, same contract as `dd_panels.py`.** `tools/leach_figures.py` reuses the
+  `<figure class="steps">` fragment, the HTML-only labels, the `--fig-*` colours, and the
+  `<!-- leach_figures:NAME -->` markers rewritten in place by `--apply`. A four-across variant
+  (`.steps--four`, added to `corpus.css` §11) holds a row of small panels such as the rounds of one era;
+  it drops to two across below 76.24em so a phone never shrinks a panel past reading size.
+- **Schematic figures are labelled as such.** The dead-node distribution (Σχήμα 2.4) redraws the *shape*
+  of what slides 61 to 63 show, not their data, and the caption says so. When a figure stands in for a
+  measurement rather than reproducing it, the caption states that plainly.
+- **A worked exam answer gets its own numbered section**, not a box: the 2026 Β.1 solution is §2.4, with
+  the question in a `!!! question` admonition, then numbered steps, the era figure, and an
+  extracurricular note on why the literal 0.14 fails where P = 1/7 works. Correct a slide error inline in
+  a `!!! warning` (here the slide-53 typo `1/(1-2P)`, correctly `P/(1-2P)`), with the derivation that
+  proves which is right.
 
 ⚠ **Check before writing the scalar and vector chapter.** The notes' table describes scalar and vector
 *sensor data* (temperature as one value, wind velocity with a direction). The only place those words

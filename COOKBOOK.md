@@ -518,9 +518,8 @@ it is in the handwritten notes and on Δ3, διαφ. 4.
 - The 2022 "indicative answers" file reads like student notes. Use the 2022 *questions* as evidence, not
   those answers.
 
-⏳ **Open:** Chris asked for the box "at the end of each section". Chapter 1 reads that literally, one per
-numbered section, seven in all, several of them saying "not examined". The alternative is one rollup per
-chapter.
+✅ **Ruled by Chris, 2026-09-16: one box per numbered section**, kept even where the section was never
+examined.
 
 ### 9.4 Protocols get step-by-step figures
 
@@ -572,14 +571,22 @@ Traps, every one of them hit on Chapter 1:
   and read the PNG.
 - To load a probe into the page without shell escaping trouble, copy it into `docs/_devprobe/` briefly,
   `fetch` it, store it in localStorage, and **delete the copy before building for commit**.
+- ⛔⛔ **Map EVERY colour variable Material uses.** Material declares its palette on `:root` as light-theme
+  literals, and a custom scheme name matches none of its scheme rules, so an unmapped variable keeps its
+  light value in every scheme: harmless on the light schemes, broken on the dark ones. The body text of
+  every box was black at 87% on the dark box surface (1.12 to 1.37:1) because `--md-admonition-fg-color`
+  was never mapped. A sweep for colour variables equal under a light and a dark scheme found 57; see
+  `corpus.css` section 5 for the procedure. Re-run it after any Material upgrade.
+- ⛔ **A probe that reads the first match measures the wrong element.** The first `<p>` inside a box is its
+  title, so "box body" measured the readable title and passed the unreadable body. Measure every match
+  and report the worst, and test the probe against the broken page before trusting it on the fixed one.
 
 ### 9.6 Voice
 
 Greek textbook prose with English technical terms, as §4 says. Chapter 1 was rewritten **without em
 dashes**; the previous text had 32.
 
-⏳ **Open:** that follows the copy rules of Chris's FaceCue documentation, but nobody has ruled that those
-rules apply to this corpus.
+✅ **Ruled by Chris, 2026-09-16: no em dashes** in this corpus.
 
 ### 9.7 The table of contents
 
@@ -587,6 +594,16 @@ Ported from the FaceCue documentation: every entry rests faded, and the reader's
 fade coming off. Sections get a hairline beneath, subsections a short bar. `toc_depth: 3` keeps step-level
 content out of the column. The selector traps are documented in `corpus.css` section 10.
 
-⏳ **Open:** measured, the port matches FaceCue's own documented numbers, which means a *resting* section
-entry sits at 2.35 to 2.99:1, under AA by design. The section the reader is in rises to 5.6 to 9.6:1.
-Raising the resting fade is a one-dial change if Chris wants the column legible at rest.
+✅ **Ruled by Chris, 2026-09-16: the dark schemes are fine as ported; the light ones want more contrast,
+especially on the selected entry.** Light dials raised and the reader's position painted in
+`--toc-strong`, which in Warm Light is FaceCue's deeper tan (its ordinary tan tops out at 6.72:1 even at
+full strength). Measured after:
+
+| | Section, resting | Subsection, resting | Selected |
+|:---|:---:|:---:|:---:|
+| FaceCue Ανοιχτό | 2.35 → **3.53** | 4.39 → **6.02** | 6.72 → **9.59** |
+| Ακαδημαϊκό | 2.99 → **5.19** | 4.64 → **6.46** | 12.14 |
+| Dark schemes | unchanged | unchanged | unchanged |
+
+The live FaceCue documentation measured 2.35 / 5.55 / 6.72 to 7.66 in its light scheme on the same day,
+identical to this corpus before the change, so the same lift applies there if Chris wants it.

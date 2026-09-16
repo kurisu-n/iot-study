@@ -726,7 +726,7 @@ Mapped against the sources on the same day:
 | ✅ | Data propagation: flooding, Directed Diffusion | pages 1 to 6 | 2026 Α.1, Α.2; 2022 Θέμα 2Γ | 2, 3 |
 | ✅ | LEACH, including the cluster head election exercise | pages 7 to 11 | 2026 Β.1 (2.5 marks) | 2 |
 | ✅ | Energy Balance Protocol | pages 12 to 14 | 2026 Α.2 | 3 |
-| **1** | **Routing metrics and ETX**, including the multi-hop energy exercise | pages 15 to 16 | **2026 Δ.1 (2.5 marks)** | 4 / 5 |
+| ✅ | Routing metrics and ETX, including the multi-hop energy exercise | pages 15 to 16 | 2026 Δ.1 (2.5 marks) | 4 / 5 |
 | 1 | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
 | 1 | Scalar and vector models | pages 17 to 18 | none | 9 (see warning) |
 | **2** | **Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison** | none | **2026 Γ.1 to Γ.3 (2.5 marks)** | 6a, 8a, 8b |
@@ -738,10 +738,12 @@ Mapped against the sources on the same day:
 
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
 
-**Next up is routing metrics with ETX** (LEACH and the Energy Balance Protocol are done, 2026-09-16):
-it is covered by the notes, carries 2.5 marks in 2026 (Θέμα Δ.1), and is the last of the 2026 exercises.
-The full chapter skeleton (chapters 3 to 12) now exists as placeholder pages in the menu, marked with a
-`☆`, so the order and what is deferred are visible up front.
+**All three 2026 exercises are now written** (LEACH Β.1, EBP Α.2, ETX Δ.1), plus their theory. Chapters 1
+to 4 are done, 2026-09-16. **Next up (priority 1, notes-covered) is the energy-management synthesis
+(chapter 5) and then scalar/vector models (chapter 6)**, followed by priority 2, the Low Power Wide Area
+Networks / LoRaWAN chapter (2026 Θέμα Γ). ⚠ Before writing chapter 6, read Lecture 9: the notes' scalar/
+vector table may have attached an unrelated meaning to the lecture's charging-model terms. The full chapter
+skeleton (chapters 5 to 12) exists as placeholder pages in the menu, marked `☆`.
 
 ### 10.1 What the LEACH chapter added to the template
 

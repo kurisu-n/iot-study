@@ -15,6 +15,9 @@
 # abbreviation like "π.χ." or "διαφ.". Add a term here before using it.
 
 terms:
+  ACK:
+    - Acknowledgement                            # Lecture 4, slide 7; the receipt a receiver sends back
+    - Acknowledgment
   BS:
     - Base Station                               # Lecture 2, slide 2 figure; the course's control centre
   CH:
@@ -43,6 +46,10 @@ terms:
     - Energy Balance Protocol                    # Lecture 3, slide 4
   ETX:
     - Expected Transmission Count                # handwritten notes, pages 15 to 16
+  ExOR:
+    - Extremely Opportunistic Routing            # Lecture 4, slides 18 to 19; a link-distance routing method
+  PFR:
+    - Probabilistic Forwarding Protocol          # Lecture 4, slide 30; a multipath routing method
   FND:
     - First Node Dies                            # handwritten notes, page 12; a network-lifetime metric
   HND:
@@ -56,6 +63,11 @@ terms:
     - Διαδίκτυο των Πραγμάτων
   LEACH:
     - Low Energy Adaptive Clustering Hierarchy   # Lecture 2, slide 40
+  LTP:
+    - Local Target Protocol                      # Lecture 4, slide 20; a link-distance routing method
+  MOR:
+    - Minimum Outage Route                       # Lecture 4, slides 13 to 15 (slide 6 calls it Minimum Outage Rate)
+    - Minimum Outage Rate
   LoRaWAN:
     - Long Range Wide Area Network               # Lecture 6a
   LPWAN:
@@ -83,3 +95,4 @@ terms:
 # look like that are listed here.
 proper_names:
   - FaceCue
+  - nJ    # nanojoule, an energy unit; looks like shorthand but is not an abbreviation to expand

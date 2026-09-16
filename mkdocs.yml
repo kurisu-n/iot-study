@@ -148,7 +148,7 @@ nav:
       - 1. Διάδοση Δεδομένων: chapters/01-data-propagation.md
       - 2. LEACH: chapters/02-leach.md
       - 3. Εξισορρόπηση Ενέργειας: chapters/03-energy-balance.md
-      - "4. Μετρικές Δρομολόγησης ☆": chapters/04-routing-metrics.md
+      - 4. Μετρικές Δρομολόγησης: chapters/04-routing-metrics.md
       - "5. Ενεργειακή Διαχείριση ☆": chapters/05-energy-management.md
       - "6. Βαθμωτά & Διανυσματικά ☆": chapters/06-scalar-vector.md
       - "7. LPWAN & LoRaWAN ☆": chapters/07-lpwan-lorawan.md

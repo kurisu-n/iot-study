@@ -1,0 +1,18 @@
+# MkDocs output. Built by the workflow, never committed: the deploy branch
+# carries the built site and `main` carries only source.
+/site/
+
+# Python, for a local build
+.venv/
+__pycache__/
+*.pyc
+
+# Windows leaves these in every folder Explorer has customised. They carry
+# folder view settings and nothing this project needs.
+desktop.ini
+Thumbs.db
+
+# Machine-specific: the launch config points at the MkDocs install in the
+# FaceCue site venv, because pip cannot reach PyPI through the TLS proxy on
+# this machine. Nothing another checkout should inherit.
+.claude/

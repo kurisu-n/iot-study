@@ -1,0 +1,73 @@
+# Builds the corpus and force-pushes the result to the gh-pages branch.
+#
+# Shaped after the FaceCue site's deploy workflow, with one difference at the
+# end: FaceCue publishes to a `deploy` branch that Hostinger pulls, because
+# facecue.net is hosted there. This repository is public, so GitHub Pages serves
+# it for free and the published branch is the conventional `gh-pages`.
+#
+# Source lives on `main`, the built site lives on `gh-pages`, and the two never
+# mix. Moving this to a real domain later means changing the publish step and
+# `site_url` in mkdocs.yml, nothing else.
+
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  # So a deploy can be forced without an edit, which is what you want when
+  # something on the server needs re-pushing.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  # A second push while one build is running would race to force-push the same
+  # branch. Queue instead, and do not cancel: a cancelled run could leave the
+  # published branch mid-write.
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - run: pip install -r requirements.txt
+
+      # --strict turns a broken internal link or a page missing from the nav
+      # into a failed build rather than a quiet gap on the live site.
+      - run: mkdocs build --strict
+
+      # Every colour in a chapter must come from a theme token, or the diagrams
+      # stop following the scheme the reader picked. A literal hex inside a
+      # chapter's own markup is invisible until someone switches theme, so it is
+      # caught here instead. The stylesheets are where literals legitimately
+      # live, so they are not searched.
+      - name: Assert no literal colours in chapter markup
+        run: |
+          if grep -rEn '#[0-9a-fA-F]{6}' site/chapters/; then
+            echo "::error::A chapter carries a literal colour. \
+          Use a --fig-* or --c-* token from docs/stylesheets/corpus.css."
+            exit 1
+          fi
+          echo "Clean: every colour in the chapters comes from a token."
+
+      - name: Publish to the gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages
+          # Each deploy replaces the branch rather than adding to it. Built
+          # output has no history worth keeping, and without this the branch
+          # grows forever with copies of the same HTML.
+          force_orphan: true
+          commit_message: "Build from ${{ github.sha }}"

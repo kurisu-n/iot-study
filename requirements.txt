@@ -1,0 +1,11 @@
+# Pinned so the deploy workflow and a local build produce the same site.
+#
+# MkDocs is pinned on its own line as well, for the reason the FaceCue
+# documentation pins it: Material 9 does not run on the MkDocs 2.0 line, and a
+# loose resolve could pick it up and fail the build.
+#
+# pymdown-extensions is not pinned here because Material depends on it and
+# brings a compatible version. The maths, admonition and tabs syntax this
+# corpus uses all come from it.
+mkdocs==1.6.1
+mkdocs-material==9.7.7

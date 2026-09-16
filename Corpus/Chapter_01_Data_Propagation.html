@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Κεφάλαιο 1 — Διάδοση Δεδομένων σε Ασύρματα Δίκτυα Αισθητήρων</title>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  /* ===== THEME VARIABLES ===== */
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f7fafc;
+    --primary: #1a365d;
+    --accent: #2b6cb0;
+    --highlight: #ebf4ff;
+    --warn: #fef3c7;
+    --exam-bg: #f0fff4;
+    --exam-border: #38a169;
+    --text: #1a202c;
+    --muted: #718096;
+    --formula-bg: #f7fafc;
+    --border: #e2e8f0;
+    --code-bg: #edf2f7;
+    --th-text: #ffffff;
+    --pre-text: #2d3748;
+    --compare-h: #92400e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.85;
+    color: var(--text);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    background: var(--bg);
+    transition: background 0.3s, color 0.3s;
+  }
+  h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  p { margin-bottom: 1rem; text-align: justify; }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.4rem; }
+  blockquote { background: var(--highlight); border-left: 3px solid var(--accent); padding: 0.8rem 1rem; margin: 1rem 0; font-style: italic; }
+  pre { background: var(--code-bg) !important; color: var(--pre-text) !important; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.9rem; margin: 1rem 0; }
+
+  .formula-box {
+    background: var(--formula-bg);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  .formula-box .label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .exam-tip {
+    background: var(--exam-bg);
+    border-left: 4px solid var(--exam-border);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .exam-tip::before {
+    content: "📝 Σημείωση Εξεταστικής";
+    display: block;
+    font-weight: bold;
+    color: var(--exam-border);
+    margin-bottom: 0.4rem;
+  }
+
+  .key-term {
+    background: var(--highlight);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  th {
+    background: var(--primary);
+    color: var(--th-text);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+  }
+  td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) { background: var(--bg-alt); }
+
+  figure { margin: 2rem 0; text-align: center; }
+  figure svg { max-width: 100%; height: auto; }
+  figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+
+  .comparison-box { background: var(--warn); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+  .comparison-box h4 { color: var(--compare-h); margin-bottom: 0.5rem; }
+
+  /* Animation keyframes */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pulse { 0%,100% { r: 6; opacity:1; } 50% { r: 9; opacity:0.7; } }
+  @keyframes flowRight { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+  @keyframes flowLeft { from { stroke-dashoffset: -20; } to { stroke-dashoffset: 0; } }
+
+  .anim-flow-right { stroke-dasharray: 8 4; animation: flowRight 1s linear infinite; }
+  .anim-flow-left { stroke-dasharray: 8 4; animation: flowLeft 1s linear infinite; }
+  .anim-pulse { animation: pulse 2s ease-in-out infinite; }
+  .anim-fadein-1 { animation: fadeIn 0.8s ease-in 0.5s both; }
+  .anim-fadein-2 { animation: fadeIn 0.8s ease-in 1.2s both; }
+  .anim-fadein-3 { animation: fadeIn 0.8s ease-in 1.9s both; }
+  .anim-fadein-4 { animation: fadeIn 0.8s ease-in 2.6s both; }
+
+  .chapter-num {
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--muted); display: block; margin-bottom: 0.3rem;
+  }
+
+  /* ===== THEME PANEL ===== */
+  #theme-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 10001;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent); color: white; border: none;
+    font-size: 1.3rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+  #theme-toggle:hover { transform: scale(1.1); }
+
+  #theme-panel {
+    position: fixed; top: 0; right: -380px; width: 370px; height: 100vh;
+    background: var(--bg); border-left: 2px solid var(--border);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+    z-index: 10000; overflow-y: auto; padding: 1rem 1.25rem 2rem;
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.85rem; line-height: 1.5;
+  }
+  #theme-panel.open { right: 0; }
+  #theme-panel h3 { font-size: 1rem; margin: 1rem 0 0.5rem; color: var(--primary); border: none; padding: 0; }
+  #theme-panel h4 { font-size: 0.8rem; margin: 0.8rem 0 0.3rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .preset-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 1rem;
+  }
+  .preset-btn {
+    padding: 8px 10px; border: 2px solid var(--border); border-radius: 6px;
+    cursor: pointer; font-size: 0.78rem; font-weight: 600;
+    text-align: center; transition: all 0.15s;
+  }
+  .preset-btn:hover { border-color: var(--accent); }
+  .preset-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+
+  .color-row {
+    display: flex; align-items: center; gap: 8px; margin: 4px 0;
+  }
+  .color-row label {
+    flex: 1; font-size: 0.8rem; color: var(--text);
+  }
+  .color-row input[type="color"] {
+    width: 32px; height: 26px; border: 1px solid var(--border);
+    border-radius: 4px; cursor: pointer; padding: 1px;
+  }
+  .color-row .hex-val {
+    font-family: monospace; font-size: 0.75rem; color: var(--muted); width: 60px;
+  }
+
+  .panel-actions {
+    display: flex; gap: 6px; margin-top: 1rem;
+  }
+  .panel-actions button {
+    flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--accent); color: white; cursor: pointer;
+    font-size: 0.8rem; font-weight: 600; transition: opacity 0.15s;
+  }
+  .panel-actions button:hover { opacity: 0.85; }
+  .panel-actions button.secondary { background: var(--bg-alt); color: var(--text); }
+
+  #copy-feedback {
+    font-size: 0.75rem; color: var(--exam-border); margin-top: 0.4rem;
+    min-height: 1.2em;
+  }
+</style>
+
+<!-- ===== THEME PANEL UI ===== -->
+<button id="theme-toggle" onclick="togglePanel()" title="Theme Settings">🎨</button>
+<div id="theme-panel">
+  <h3>🎨 Θέμα & Χρώματα</h3>
+
+  <h4>Preset Themes</h4>
+  <div class="preset-grid">
+    <div class="preset-btn active" onclick="applyPreset('light-academic')" id="pre-light-academic" style="background:#fff;color:#1a365d;">☀️ Academic</div>
+    <div class="preset-btn" onclick="applyPreset('light-warm')" id="pre-light-warm" style="background:#faf8f3;color:#6e5418;">☀️ Warm</div>
+    <div class="preset-btn" onclick="applyPreset('dark-navy')" id="pre-dark-navy" style="background:#1a202c;color:#a0cef8;">🌙 Navy</div>
+    <div class="preset-btn" onclick="applyPreset('dark-warm')" id="pre-dark-warm" style="background:#141414;color:#d0c090;">🌙 Warm</div>
+  </div>
+
+  <h4>Fine-Tune Colors</h4>
+  <div id="color-controls"></div>
+
+  <div class="panel-actions">
+    <button onclick="copyStyle()">📋 Copy Style</button>
+    <button class="secondary" onclick="resetToPreset()">↩ Reset</button>
+  </div>
+  <div id="copy-feedback"></div>
+</div>
+
+<script>
+const VARS = [
+  { key: '--bg',          label: 'Background' },
+  { key: '--bg-alt',      label: 'Alt Background' },
+  { key: '--primary',     label: 'Primary (headings)' },
+  { key: '--accent',      label: 'Accent (links/borders)' },
+  { key: '--text',        label: 'Body Text' },
+  { key: '--muted',       label: 'Muted Text' },
+  { key: '--highlight',   label: 'Highlight / Key Term BG' },
+  { key: '--formula-bg',  label: 'Formula Box BG' },
+  { key: '--code-bg',     label: 'Code Block BG' },
+  { key: '--pre-text',    label: 'Code Text' },
+  { key: '--exam-bg',     label: 'Exam Tip BG' },
+  { key: '--exam-border', label: 'Exam Tip Border' },
+  { key: '--warn',        label: 'Warning / Compare BG' },
+  { key: '--compare-h',   label: 'Compare Heading' },
+  { key: '--border',      label: 'Borders & Dividers' },
+  { key: '--th-text',     label: 'Table Header Text' },
+];
+
+const PRESETS = {
+  'light-academic': {
+    '--bg':'#ffffff','--bg-alt':'#f7fafc','--primary':'#1a365d','--accent':'#2b6cb0',
+    '--text':'#1a202c','--muted':'#718096','--highlight':'#ebf4ff','--formula-bg':'#f7fafc',
+    '--code-bg':'#edf2f7','--pre-text':'#2d3748','--exam-bg':'#f0fff4','--exam-border':'#38a169',
+    '--warn':'#fef3c7','--border':'#e2e8f0','--th-text':'#ffffff','--compare-h':'#92400e'
+  },
+  // The two warm presets are the FaceCue documentation palette, token for token.
+  // Source: fc-tokens.css (:root, the dark scheme) and facecue.css
+  // ([data-md-color-scheme="facecue-light"]) in the facecue-site-docs worktree.
+  // The FaceCue token each value came from is named beside it, so a later drift
+  // in the docs can be reconciled against this without guessing.
+  'light-warm': {
+    '--bg':'#faf8f3',        // fc-panel
+    '--bg-alt':'#f2eee6',    // fc-section
+    '--primary':'#6e5418',   // fc-tan
+    '--accent':'#86642a',    // fc-gold
+    '--text':'#26231f',      // fc-text
+    '--muted':'#6b6457',     // fc-text-muted
+    '--highlight':'#eae4d5', // fc-hub-group
+    '--formula-bg':'#f2eee6',// fc-section
+    '--code-bg':'#e8e2d4',   // fc-section-header, via pg-code-bg
+    '--pre-text':'#14120f',  // fc-text-bright, via pg-code-fg
+    '--exam-bg':'#f2eee6',   // fc-section, the tip callout's surface
+    '--exam-border':'#6e5418',// fc-tan, the colour a FaceCue callout heads in
+    '--warn':'#f7ecc9',      // fc-warning-bg
+    '--compare-h':'#7a5a10', // fc-yellow, the warning text colour
+    '--border':'#ccc3af',    // fc-section-border
+    '--th-text':'#faf8f3'    // fc-panel, reading on the fc-tan header bar
+  },
+  'dark-navy': {
+    '--bg':'#1a202c','--bg-alt':'#2d3748','--primary':'#a0cef8','--accent':'#63b3ed',
+    '--text':'#e2e8f0','--muted':'#a0aec0','--highlight':'#2a4365','--formula-bg':'#2d3748',
+    '--code-bg':'#2d3748','--pre-text':'#e2e8f0','--exam-bg':'#1c3a2a','--exam-border':'#68d391',
+    '--warn':'#3d2e14','--border':'#4a5568','--th-text':'#1a202c','--compare-h':'#f2c766'
+  },
+  'dark-warm': {
+    '--bg':'#141414',        // fc-panel
+    '--bg-alt':'#282726',    // fc-section
+    '--primary':'#d0c090',   // fc-tan
+    '--accent':'#c09a5c',    // fc-gold
+    '--text':'#cccccc',      // fc-text
+    '--muted':'#8a857f',     // fc-text-muted
+    '--highlight':'#2a2620', // fc-hub-group
+    '--formula-bg':'#282726',// fc-section
+    '--code-bg':'#1e1d1c',   // fc-section-header, via pg-code-bg
+    '--pre-text':'#e6e6e6',  // fc-text-bright, via pg-code-fg
+    '--exam-bg':'#282726',   // fc-section, the tip callout's surface
+    '--exam-border':'#d0c090',// fc-tan, the colour a FaceCue callout heads in
+    '--warn':'#2c2721',      // fc-warning-bg
+    '--compare-h':'#f2c766', // fc-yellow, the warning text colour
+    '--border':'#3a3836',    // fc-section-border
+    '--th-text':'#1e1d1c'    // fc-section-header, reading on the fc-tan header bar
+  }
+};
+
+let currentPreset = 'light-academic';
+
+function buildControls() {
+  const c = document.getElementById('color-controls');
+  c.innerHTML = '';
+  VARS.forEach(v => {
+    const val = getComputedStyle(document.documentElement).getPropertyValue(v.key).trim();
+    const row = document.createElement('div');
+    row.className = 'color-row';
+    row.innerHTML = `
+      <label>${v.label}</label>
+      <input type="color" value="${val}" data-var="${v.key}"
+        oninput="setVar('${v.key}', this.value); this.nextElementSibling.textContent=this.value; clearActivePreset();">
+      <span class="hex-val">${val}</span>
+    `;
+    c.appendChild(row);
+  });
+}
+
+function setVar(k, v) {
+  document.documentElement.style.setProperty(k, v);
+}
+
+function applyPreset(name) {
+  const p = PRESETS[name];
+  if (!p) return;
+  currentPreset = name;
+  Object.entries(p).forEach(([k,v]) => setVar(k, v));
+  buildControls();
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('pre-' + name);
+  if (el) el.classList.add('active');
+}
+
+function clearActivePreset() {
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+}
+
+function resetToPreset() {
+  applyPreset(currentPreset);
+}
+
+function getCurrentValues() {
+  const result = {};
+  VARS.forEach(v => {
+    result[v.key] = getComputedStyle(document.documentElement).getPropertyValue(v.key).trim();
+  });
+  return result;
+}
+
+function copyStyle() {
+  const vals = getCurrentValues();
+  const text = JSON.stringify(vals, null, 2);
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('copy-feedback').textContent = '✅ Copied to clipboard!';
+    setTimeout(() => document.getElementById('copy-feedback').textContent = '', 3000);
+  }).catch(() => {
+    // Fallback: select a textarea
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    document.getElementById('copy-feedback').textContent = '✅ Copied to clipboard!';
+    setTimeout(() => document.getElementById('copy-feedback').textContent = '', 3000);
+  });
+}
+
+function togglePanel() {
+  document.getElementById('theme-panel').classList.toggle('open');
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  applyPreset('light-academic');
+});
+</script>
+</head>
+<body>
+
+<span class="chapter-num">Κεφάλαιο 1</span>
+<h1>Διάδοση Δεδομένων σε Ασύρματα Δίκτυα Αισθητήρων</h1>
+
+<p><em>Καλύπτει: Flooding, Directed Diffusion, Omniscient Multicast, Flat vs Hierarchical Routing</em></p>
+
+<!-- ========== 1.1 ========== -->
+<h2>1.1 Το Θεμελιώδες Πρόβλημα</h2>
+
+<p>Φανταστείτε ένα πεδίο καλυμμένο με εκατοντάδες μικροσκοπικούς, αυτόνομους αισθητήρες που τροφοδοτούνται από μπαταρία. Ένας από αυτούς ανιχνεύει κάτι ενδιαφέρον — μια απότομη αύξηση θερμοκρασίας, μια χημική ανωμαλία, μια κίνηση. Η μέτρηση αυτή δεν έχει καμία αξία αν παραμείνει αποθηκευμένη στον κόμβο. Πρέπει να φτάσει σε ένα κέντρο ελέγχου — τον λεγόμενο <span class="key-term">sink</span> ή <span class="key-term">Base Station (BS)</span> — όπου μπορεί κάποιος να δράσει.</p>
+
+<p>Το ερώτημα που κινεί ολόκληρη αυτή τη θεματική ενότητα, όπως διατυπώνεται στις διαφάνειες του μαθήματος, είναι:</p>
+
+<blockquote>
+  «How can sensor p, via cooperation with the rest of the sensors in the network, propagate information about event E to the control center(s)?»
+</blockquote>
+
+<p>Οι αισθητήρες δεν μπορούν να εκπέμψουν απευθείας στο BS — είναι συσκευές χαμηλής ισχύος με περιορισμένη εμβέλεια ραδιοεπικοινωνίας. Κάθε κόμβος επικοινωνεί μόνο με τους άμεσους γείτονές του. Τα δεδομένα πρέπει λοιπόν να μεταπηδήσουν (<em>hop</em>) από κόμβο σε κόμβο μέχρι να φτάσουν στον sink. Ο τρόπος οργάνωσης αυτών των «πηδημάτων» ονομάζεται <span class="key-term">πρωτόκολλο δρομολόγησης</span> (routing protocol), και η επιλογή πρωτοκόλλου καθορίζει πόσο θα επιβιώσει το δίκτυο, πόσο γρήγορα φτάνουν τα δεδομένα, και πόση ενέργεια σπαταλιέται στη διαδρομή.</p>
+
+<!-- ======= FIGURE: The problem ======= -->
+<figure>
+<svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sensor field cloud -->
+  <ellipse cx="300" cy="150" rx="250" ry="120" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="300" y="30" text-anchor="middle" font-size="13" fill="#718096">Πεδίο Αισθητήρων (Sensor Field)</text>
+
+  <!-- Random sensor nodes -->
+  <circle cx="120" cy="130" r="6" fill="#a0aec0"/>
+  <circle cx="170" cy="90" r="6" fill="#a0aec0"/>
+  <circle cx="200" cy="170" r="6" fill="#a0aec0"/>
+  <circle cx="250" cy="110" r="6" fill="#a0aec0"/>
+  <circle cx="280" cy="200" r="6" fill="#a0aec0"/>
+  <circle cx="310" cy="80" r="6" fill="#a0aec0"/>
+  <circle cx="340" cy="160" r="6" fill="#a0aec0"/>
+  <circle cx="380" cy="120" r="6" fill="#a0aec0"/>
+  <circle cx="420" cy="180" r="6" fill="#a0aec0"/>
+  <circle cx="450" cy="100" r="6" fill="#a0aec0"/>
+  <circle cx="160" cy="200" r="6" fill="#a0aec0"/>
+  <circle cx="390" cy="210" r="6" fill="#a0aec0"/>
+  <circle cx="480" cy="150" r="6" fill="#a0aec0"/>
+
+  <!-- Event node (pulsing) -->
+  <circle cx="170" cy="170" r="6" fill="#e53e3e" class="anim-pulse"/>
+  <text x="170" y="163" text-anchor="middle" font-size="10" font-weight="bold" fill="#e53e3e">Event E</text>
+
+  <!-- Path from event to sink -->
+  <line x1="170" y1="170" x2="250" y2="110" stroke="#e53e3e" stroke-width="2.5" class="anim-flow-right" marker-end="url(#arrowRed)"/>
+  <line x1="250" y1="110" x2="340" y2="160" stroke="#e53e3e" stroke-width="2.5" class="anim-flow-right" marker-end="url(#arrowRed)"/>
+  <line x1="340" y1="160" x2="420" y2="180" stroke="#e53e3e" stroke-width="2.5" class="anim-flow-right" marker-end="url(#arrowRed)"/>
+  <line x1="420" y1="180" x2="480" y2="150" stroke="#e53e3e" stroke-width="2.5" class="anim-flow-right" marker-end="url(#arrowRed)"/>
+
+  <!-- Path nodes highlighted -->
+  <circle cx="250" cy="110" r="7" fill="#fc8181" stroke="#e53e3e" stroke-width="2"/>
+  <circle cx="340" cy="160" r="7" fill="#fc8181" stroke="#e53e3e" stroke-width="2"/>
+  <circle cx="420" cy="180" r="7" fill="#fc8181" stroke="#e53e3e" stroke-width="2"/>
+
+  <!-- Sink / BS -->
+  <rect x="610" y="100" width="70" height="90" rx="6" fill="#2b6cb0" stroke="#1a365d" stroke-width="2"/>
+  <text x="645" y="135" text-anchor="middle" font-size="11" fill="white" font-weight="bold">Sink</text>
+  <text x="645" y="150" text-anchor="middle" font-size="10" fill="#bee3f8">(BS)</text>
+  <!-- Antenna -->
+  <line x1="645" y1="100" x2="645" y2="70" stroke="#1a365d" stroke-width="2"/>
+  <circle cx="645" cy="67" r="4" fill="#1a365d"/>
+  <path d="M632 76 Q645 60 658 76" stroke="#1a365d" stroke-width="1.5" fill="none"/>
+  <path d="M625 82 Q645 62 665 82" stroke="#1a365d" stroke-width="1.5" fill="none"/>
+
+  <!-- Link from field to sink -->
+  <line x1="480" y1="150" x2="610" y2="145" stroke="#e53e3e" stroke-width="2.5" class="anim-flow-right" marker-end="url(#arrowRed)"/>
+
+  <!-- Node label -->
+  <text x="172" y="195" text-anchor="middle" font-size="10" fill="#e53e3e">κόμβος p</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e53e3e"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2b6cb0"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#38a169"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#dd6b20"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>Σχήμα 1.1 — Το θεμελιώδες πρόβλημα: ο κόμβος p ανιχνεύει ένα γεγονός E και πρέπει, σε συνεργασία με τους υπόλοιπους κόμβους, να μεταφέρει την πληροφορία στο κέντρο ελέγχου (Sink/BS).</figcaption>
+</figure>
+
+<p>Υπάρχουν δύο θεμελιωδώς διαφορετικές φιλοσοφίες αντιμετώπισης αυτού του προβλήματος:</p>
+
+<ul>
+  <li><strong>Επίπεδη δρομολόγηση (flat routing):</strong> κάθε κόμβος-αισθητήρας είναι ισότιμος — κανείς δεν αναλαμβάνει ειδικό ρόλο. Τα δεδομένα ρέουν στο δίκτυο με βάση το <em>περιεχόμενο</em> της πληροφορίας. Χαρακτηριστικό παράδειγμα: <strong>Directed Diffusion (DD)</strong>.</li>
+  <li><strong>Ιεραρχική δρομολόγηση (hierarchical routing):</strong> ορισμένοι κόμβοι αναλαμβάνουν ρόλους αρχηγών, οργανώνοντας τους γείτονές τους σε ομάδες (clusters). Χαρακτηριστικό παράδειγμα: <strong>LEACH</strong>.</li>
+</ul>
+
+<p>Πριν εμβαθύνουμε στο Directed Diffusion, αξίζει να κατανοήσουμε την πιο απλή δυνατή προσέγγιση — και γιατί αποτυγχάνει.</p>
+
+<!-- ========== 1.2 FLOODING ========== -->
+<h2>1.2 Flooding: Η Ωμή Βία ως Σημείο Αναφοράς</h2>
+
+<p>Το Flooding είναι ακριβώς αυτό που υποδηλώνει το όνομά του — πλημμύρα. Όταν ένας αισθητήρας ανιχνεύει ένα γεγονός, εκπέμπει (broadcast) τα δεδομένα σε κάθε γείτονά του. Κάθε γείτονας τα αναμεταδίδει σε κάθε <em>δικό του</em> γείτονα. Η διαδικασία συνεχίζεται μέχρι κάθε κόμβος του δικτύου να έχει λάβει το μήνυμα — συμπεριλαμβανομένου του sink.</p>
+
+<p>Ο μηχανισμός λειτουργεί ως εξής:</p>
+<ol>
+  <li>Ο κόμβος-πηγή ανιχνεύει ένα γεγονός και το εκπέμπει.</li>
+  <li>Κάθε κόμβος που λαμβάνει το μήνυμα το αναμεταδίδει <strong>ακριβώς μία φορά</strong>, ώστε να αποφευχθούν άπειροι βρόχοι.</li>
+  <li>Τελικά, το μήνυμα κατακλύζει ολόκληρο το δίκτυο.</li>
+</ol>
+
+<p>Αν υπάρχουν $n$ πηγές και $N$ συνολικοί κόμβοι, έχουμε $nN$ μεταδόσεις. Σε ένα τετραγωνικό πλέγμα (square grid) μεγέθους $\sqrt{N} \times \sqrt{N}$, κάθε μήνυμα στέλνεται δύο φορές σε κάθε κανάλι, οπότε οι συνολικές λήψεις είναι $2n(2\sqrt{N}(\sqrt{N}-1) + 2(\sqrt{N}-1)^2)$. Το συνολικό κόστος μετάδοσης και λήψης υπολογίζεται ως:</p>
+
+<div class="formula-box">
+  $$C_f = nN + 4n(\sqrt{N} - 1)(2\sqrt{N} - 1)$$
+  <span class="label">Κόστος Flooding — τάξη μεγέθους: $\mathcal{O}(nN)$</span>
+</div>
+
+<p>Αυτό το κόστος αυξάνεται <strong>γραμμικά</strong> με το $N$ — αν διπλασιάσουμε το μέγεθος του δικτύου, διπλασιάζουμε περίπου και τον ενεργειακό λογαριασμό. Στην πράξη, αυτό σημαίνει ότι το flooding εξαντλεί τις μπαταρίες με ανησυχητικό ρυθμό, επειδή κάθε γεγονός σπρώχνεται σε κάθε γωνιά του δικτύου ανεξάρτητα από το αν κάποιος εκεί ενδιαφέρεται.</p>
+
+<!-- Animated Flooding Figure -->
+<figure>
+<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid of nodes -->
+  <g id="flood-nodes">
+    <!-- Row 1 -->
+    <circle cx="80"  cy="60"  r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="160" cy="60"  r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="240" cy="60"  r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="320" cy="60"  r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="400" cy="60"  r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <!-- Row 2 -->
+    <circle cx="80"  cy="140" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="160" cy="140" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="240" cy="140" r="8" fill="#e53e3e" stroke="#c53030" stroke-width="2"/> <!-- SOURCE -->
+    <circle cx="320" cy="140" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="400" cy="140" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <!-- Row 3 -->
+    <circle cx="80"  cy="220" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="160" cy="220" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="240" cy="220" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="320" cy="220" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="400" cy="220" r="8" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+  </g>
+
+  <!-- Animated flood waves expanding from source (240,140) -->
+  <circle cx="240" cy="140" r="0" fill="none" stroke="#e53e3e" stroke-width="2" opacity="0">
+    <animate attributeName="r" from="0" to="140" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.7" to="0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="240" cy="140" r="0" fill="none" stroke="#e53e3e" stroke-width="2" opacity="0">
+    <animate attributeName="r" from="0" to="140" dur="3s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.7" to="0" dur="3s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="240" cy="140" r="0" fill="none" stroke="#e53e3e" stroke-width="2" opacity="0">
+    <animate attributeName="r" from="0" to="140" dur="3s" begin="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="0.7" to="0" dur="3s" begin="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="240" y="135" text-anchor="middle" font-size="10" fill="white" font-weight="bold">SRC</text>
+  <text x="240" y="270" text-anchor="middle" font-size="12" fill="#e53e3e" font-style="italic">Κάθε γεγονός πλημμυρίζει ολόκληρο το δίκτυο</text>
+</svg>
+<figcaption>Σχήμα 1.2 — Flooding: ο κόμβος-πηγή εκπέμπει ένα γεγονός και τα κύματα μεταδόσεων εξαπλώνονται σε όλους τους κόμβους, ανεξαρτήτως αν ενδιαφέρονται για τα δεδομένα. Κόστος: $\mathcal{O}(nN)$.</figcaption>
+</figure>
+
+<p>Πέρα από τη σπατάλη ενέργειας, υπάρχουν και πρακτικά προβλήματα. Όταν εκατοντάδες κόμβοι προσπαθούν να αναμεταδώσουν ταυτόχρονα, τα ραδιοσήματά τους <strong>συγκρούονται</strong> στο επίπεδο MAC (Media Access Control), προκαλώντας καθυστερήσεις (delays) και αναγκαστικές επαναμεταδόσεις. Επιπλέον, ακόμα και οι κόμβοι που δεν εκπέμπουν καταναλώνουν ενέργεια κρατώντας τους πομποδέκτες τους ενεργοποιημένους — φαινόμενο γνωστό ως <span class="key-term">idle listening</span>, που αποδεικνύεται εκπληκτικά δαπανηρό.</p>
+
+<p>Το flooding χρησιμεύει ως <strong>αναλυτικό σημείο αναφοράς</strong> (baseline): αν ένα νέο πρωτόκολλο δεν μπορεί να νικήσει το flooding, κάτι έχει πάει πολύ στραβά. Κανείς όμως δεν θα το ανέπτυσσε σε πραγματικό δίκτυο αισθητήρων.</p>
+
+<!-- ========== 1.3 DD ========== -->
+<h2>1.3 Directed Diffusion: Data-Centric, Demand-Driven</h2>
+
+<p>Το Directed Diffusion (DD), που παρουσιάστηκε από τους Intanagonwiwat, Govindan και Estrin στο 6ο Διεθνές Συνέδριο Mobile Computing and Networking (2000), ακολουθεί την αντίθετη λογική από το flooding. Αντί να σπρώχνει δεδομένα παντού ελπίζοντας ότι κάποιος τα θέλει, το DD επιτρέπει στον sink να <strong>τραβήξει</strong> (pull) μόνο τα δεδομένα που πραγματικά χρειάζεται.</p>
+
+<p>Είναι ένα <span class="key-term">data-centric</span> πρωτόκολλο — ενδιαφέρεται για το <em>τι</em> λένε τα δεδομένα, όχι <em>ποιος</em> τα παρήγαγε. Είναι επίσης <span class="key-term">application-aware</span> (αναγνωρίζει το είδος των δεδομένων) και <span class="key-term">energy-efficient</span> (σχεδιασμένο για ενεργειακή αποδοτικότητα).</p>
+
+<p>Σύμφωνα με τις διαφάνειες, τα βασικά στοιχεία (elements) του DD είναι τέσσερα: <strong>Interest messages</strong>, <strong>Data messages</strong>, <strong>Gradients</strong>, και <strong>Reinforcements of gradients</strong>. Αυτά αντιστοιχούν στις τέσσερις φάσεις λειτουργίας που επαναλαμβάνονται κυκλικά.</p>
+
+<h3>Φάση 1 — Διάδοση Ενδιαφέροντος (Interest Propagation)</h3>
+
+<p>Ο sink κατασκευάζει ένα μήνυμα που περιγράφει το είδος δεδομένων που θέλει, εκφρασμένο ως ζεύγη ιδιότητας-τιμής (attribute-value pairs). Αυτό το μήνυμα ονομάζεται <span class="key-term">interest</span>. Ένα παράδειγμα από τις διαφάνειες:</p>
+
+<pre>
+type     = wheeled vehicle      // ανίχνευση τοποθεσίας οχήματος
+interval = 100 ms               // αποστολή γεγονότων κάθε 100ms
+duration = 10 seconds           // για τα επόμενα 10 δευτερόλεπτα
+rect     = [-100, 100, 200, 400] // από κόμβους εντός ορθογωνίου
+</pre>
+
+<p>Ο sink πλημμυρίζει (flood) το interest στο δίκτυο. Ναι, αυτό χρησιμοποιεί flooding — αλλά πρόκειται για <strong>εφάπαξ κόστος εγκατάστασης</strong>, όχι κόστος ανά γεγονός. Σημαντικό: το interest <strong>δεν περιέχει πληροφορία για τον sink</strong> — ο sink μαθαίνεται μόνο μέσω των gradients.</p>
+
+<p>Κάθε κόμβος διατηρεί ένα <span class="key-term">interest cache</span>. Όταν ένα interest φτάσει, αποθηκεύεται τοπικά. Αν ήδη υπάρχει ίδιο interest στο cache, δημιουργείται μόνο ένα νέο gradient. Τα interests σβήνονται μόνο όταν εκπνεύσουν όλα τα σχετιζόμενα gradients.</p>
+
+<h3>Φάση 2 — Δημιουργία Κλίσεων (Gradient Setup)</h3>
+
+<p>Καθώς το interest κυματίζει προς τα έξω από τον sink, κάθε κόμβος που το λαμβάνει δημιουργεί ένα <span class="key-term">gradient</span> — ένα βέλος που δείχνει πίσω προς τον γείτονα που του παρέδωσε το interest. Κάθε gradient αποθηκεύει δύο πληροφορίες: <strong>data rate</strong> (ρυθμός δεδομένων) και <strong>duration</strong> (διάρκεια).</p>
+
+<p>Σκεφτείτε τα gradients σαν βέλη ζωγραφισμένα στο πάτωμα ενός κτιρίου, που δείχνουν όλα προς την έξοδο. Δεν μεταφέρουν δεδομένα — σημαδεύουν την κατεύθυνση που πρέπει να ακολουθήσουν τα δεδομένα όταν εμφανιστούν. Μπορούν να υπάρχουν <strong>πολλαπλά gradients</strong> σε κάθε κόμβο (ένα για κάθε γείτονα που προώθησε το interest), δημιουργώντας εφεδρικά μονοπάτια.</p>
+
+<!-- Animated DD 4-phase figure -->
+<figure>
+<svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- PHASE 1: Interest Propagation -->
+  <g class="anim-fadein-1">
+    <rect x="10" y="10" width="330" height="220" rx="10" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="1.5"/>
+    <text x="175" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a365d">Φάση 1: Interest Propagation</text>
+
+    <!-- Sink -->
+    <rect x="250" y="100" width="60" height="35" rx="5" fill="#2b6cb0"/>
+    <text x="280" y="122" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Sink</text>
+
+    <!-- Nodes -->
+    <circle cx="60"  cy="120" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="120" cy="80"  r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="120" cy="160" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="180" cy="120" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="180" cy="180" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+
+    <!-- Interest arrows (sink → outward) dashed blue -->
+    <line x1="250" y1="117" x2="187" y2="120" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+    <line x1="180" y1="113" x2="127" y2="83"  stroke="#2b6cb0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+    <line x1="180" y1="127" x2="127" y2="157" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+    <line x1="120" y1="87"  x2="67"  y2="115" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+    <line x1="120" y1="153" x2="67"  y2="125" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+    <line x1="180" y1="127" x2="180" y2="173" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+
+    <text x="175" y="210" text-anchor="middle" font-size="10" fill="#2b6cb0">Ο Sink πλημμυρίζει interests στο δίκτυο</text>
+  </g>
+
+  <!-- PHASE 2: Gradient Setup -->
+  <g class="anim-fadein-2">
+    <rect x="360" y="10" width="330" height="220" rx="10" fill="#f0fff4" stroke="#38a169" stroke-width="1.5"/>
+    <text x="525" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="#276749">Φάση 2: Gradient Setup</text>
+
+    <!-- Sink -->
+    <rect x="600" y="100" width="60" height="35" rx="5" fill="#2b6cb0"/>
+    <text x="630" y="122" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Sink</text>
+
+    <!-- Nodes -->
+    <circle cx="410" cy="120" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="470" cy="80"  r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="470" cy="160" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="530" cy="120" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="530" cy="180" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+
+    <!-- Gradient arrows (nodes → sink direction) solid green -->
+    <line x1="417" y1="118" x2="463" y2="83"  stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+    <line x1="417" y1="122" x2="463" y2="157" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+    <line x1="477" y1="80"  x2="523" y2="115" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+    <line x1="477" y1="157" x2="523" y2="123" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+    <line x1="537" y1="118" x2="597" y2="115" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+    <line x1="533" y1="173" x2="533" y2="127" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+    <text x="525" y="210" text-anchor="middle" font-size="10" fill="#38a169">Τα gradients δείχνουν «πίσω» προς τον Sink</text>
+  </g>
+
+  <!-- PHASE 3: Data Propagation -->
+  <g class="anim-fadein-3">
+    <rect x="10" y="250" width="330" height="230" rx="10" fill="#fffaf0" stroke="#dd6b20" stroke-width="1.5"/>
+    <text x="175" y="275" text-anchor="middle" font-size="13" font-weight="bold" fill="#c05621">Φάση 3: Data Propagation</text>
+
+    <!-- Source -->
+    <circle cx="50" cy="370" r="9" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+    <text x="50" y="395" text-anchor="middle" font-size="9" fill="#e53e3e" font-weight="bold">Source</text>
+
+    <!-- Sink -->
+    <rect x="270" y="340" width="50" height="30" rx="5" fill="#2b6cb0"/>
+    <text x="295" y="360" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Sink</text>
+
+    <!-- Intermediate nodes -->
+    <circle cx="120" cy="340" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="120" cy="400" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="190" cy="370" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="190" cy="310" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+
+    <!-- Exploratory data flows (multiple paths, orange dashed) -->
+    <line x1="57" y1="367" x2="113" y2="343" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+    <line x1="57" y1="373" x2="113" y2="397" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+    <line x1="127" y1="338" x2="183" y2="315" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+    <line x1="127" y1="342" x2="183" y2="367" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+    <line x1="127" y1="398" x2="183" y2="373" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+    <line x1="197" y1="367" x2="268" y2="355" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+    <line x1="195" y1="313" x2="268" y2="348" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4 3" class="anim-flow-right" marker-end="url(#arrowOrange)"/>
+
+    <text x="175" y="445" text-anchor="middle" font-size="10" fill="#dd6b20">Διερευνητικά δεδομένα σε χαμηλό ρυθμό</text>
+    <text x="175" y="460" text-anchor="middle" font-size="10" fill="#dd6b20">μέσω πολλαπλών μονοπατιών</text>
+  </g>
+
+  <!-- PHASE 4: Reinforcement -->
+  <g class="anim-fadein-4">
+    <rect x="360" y="250" width="330" height="230" rx="10" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.5"/>
+    <text x="525" y="275" text-anchor="middle" font-size="13" font-weight="bold" fill="#c53030">Φάση 4: Reinforcement</text>
+
+    <!-- Source -->
+    <circle cx="400" cy="380" r="9" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+    <text x="400" y="405" text-anchor="middle" font-size="9" fill="#e53e3e" font-weight="bold">Source</text>
+
+    <!-- Sink -->
+    <rect x="620" y="350" width="50" height="30" rx="5" fill="#2b6cb0"/>
+    <text x="645" y="370" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Sink</text>
+
+    <!-- Intermediate nodes -->
+    <circle cx="470" cy="350" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="470" cy="410" r="7" fill="#e2e8f0" stroke="#cbd5e0" stroke-width="1.5"/>
+    <circle cx="540" cy="370" r="7" fill="#a0aec0" stroke="#4a5568" stroke-width="1.5"/>
+    <circle cx="540" cy="320" r="7" fill="#e2e8f0" stroke="#cbd5e0" stroke-width="1.5"/>
+
+    <!-- Faded non-reinforced paths -->
+    <line x1="407" y1="383" x2="463" y2="407" stroke="#cbd5e0" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <line x1="477" y1="348" x2="533" y2="323" stroke="#cbd5e0" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+    <!-- REINFORCED PATH (thick, solid red) -->
+    <line x1="407" y1="377" x2="463" y2="353" stroke="#e53e3e" stroke-width="4" marker-end="url(#arrowRed)">
+      <animate attributeName="stroke-width" values="2;4;2" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="477" y1="352" x2="533" y2="368" stroke="#e53e3e" stroke-width="4" marker-end="url(#arrowRed)">
+      <animate attributeName="stroke-width" values="2;4;2" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="547" y1="370" x2="618" y2="365" stroke="#e53e3e" stroke-width="4" marker-end="url(#arrowRed)">
+      <animate attributeName="stroke-width" values="2;4;2" dur="2s" repeatCount="indefinite"/>
+    </line>
+
+    <text x="525" y="445" text-anchor="middle" font-size="10" fill="#c53030">Ο Sink ενισχύει το ταχύτερο μονοπάτι</text>
+    <text x="525" y="460" text-anchor="middle" font-size="10" fill="#c53030">— τα υπόλοιπα σβήνουν σταδιακά</text>
+  </g>
+</svg>
+<figcaption>Σχήμα 1.3 — Οι τέσσερις φάσεις του Directed Diffusion: (1) ο Sink πλημμυρίζει interests, (2) οι κόμβοι δημιουργούν gradients προς τον Sink, (3) διερευνητικά δεδομένα ρέουν σε χαμηλό ρυθμό μέσω πολλαπλών μονοπατιών, (4) ο Sink ενισχύει (reinforce) το ταχύτερο μονοπάτι.</figcaption>
+</figure>
+
+<h3>Φάση 3 — Διάδοση Δεδομένων (Data Propagation)</h3>
+
+<p>Όταν ένας κόμβος-αισθητήρας ανιχνεύσει ένα γεγονός που ταιριάζει με κάποιο αποθηκευμένο interest, αρχίζει να αισθητηριάζει (sensing). Υπολογίζει τον υψηλότερο ρυθμό αποστολής (data rate) μεταξύ των gradients του και δημιουργεί δείγματα γεγονότων (event samples) σε αυτόν τον ρυθμό.</p>
+
+<p>Ένα data message, σύμφωνα με τις διαφάνειες, μοιάζει κάπως έτσι:</p>
+
+<pre>
+type       = wheeled vehicle      // τύπος γεγονότος
+instance   = truck                // στιγμιότυπο
+location   = [125, 220]           // τοποθεσία κόμβου
+intensity  = 0.6                  // πλάτος σήματος
+confidence = 0.85                 // βαθμός εμπιστοσύνης
+timestamp  = 01:20:40             // τοπικός χρόνος
+</pre>
+
+<p>Τα data messages αποστέλλονται ως <strong>unicast</strong> στους γείτονες προς τους οποίους δείχνουν τα gradients. Κάθε κόμβος διατηρεί ένα <span class="key-term">data cache</span>: αν λάβει μήνυμα χωρίς αντίστοιχο interest στο cache ή αν τα δεδομένα ήδη υπάρχουν, το μήνυμα απορρίπτεται. Αλλιώς, αποθηκεύεται και προωθείται.</p>
+
+<h3>Φάση 4 — Ενίσχυση (Reinforcement)</h3>
+
+<p>Αρχικά, ο sink εκπέμπει interests χαμηλού ρυθμού — τα αντίστοιχα gradients ονομάζονται <span class="key-term">exploratory gradients</span>. Μόλις ο sink αρχίσει να λαμβάνει διερευνητικά δεδομένα, <strong>ενισχύει</strong> (reinforce) τον γείτονα που του τα παρέδωσε πρώτος, στέλνοντας ξανά το ίδιο interest αλλά με μικρότερο interval (δηλαδή υψηλότερο ρυθμό).</p>
+
+<p>Η επιλογή γείτονα προς ενίσχυση βασίζεται σε <strong>τοπικά κριτήρια</strong> — για παράδειγμα, ενισχύεται ο γείτονας που ανέφερε πρώτος ένα νέο γεγονός. Τα αντίστοιχα gradients ονομάζονται <span class="key-term">data gradients</span> (υψηλού ρυθμού). Τα exploratory gradients στα μη-ενισχυμένα μονοπάτια σταδιακά εκπνέουν (timeout) εκτός αν ανανεωθούν.</p>
+
+<p>Αυτό το σχήμα είναι <strong>αντιδραστικό</strong> (reactive): όποτε ένα μονοπάτι παραδίδει γεγονός ταχύτερα από τα υπόλοιπα, ενισχύεται αυτόματα. Υποστηρίζει επίσης πολλαπλούς sinks και πολλαπλές πηγές ταυτόχρονα.</p>
+
+<h3>Τοπική Επισκευή και Αρνητική Ενίσχυση</h3>
+
+<p>Τα μονοπάτια μπορούν να υποβαθμιστούν με τον χρόνο — κόμβοι εξαντλούν τη μπαταρία τους ή αυξάνονται οι παρεμβολές. Ένας ενδιάμεσος κόμβος μπορεί να <strong>ανιχνεύσει</strong> αυτή την υποβάθμιση (π.χ. παρατηρώντας μειωμένο ρυθμό γεγονότων) και να εφαρμόσει <span class="key-term">τοπική επισκευή (local repair)</span> ενισχύοντας έναν εναλλακτικό γείτονα.</p>
+
+<p>Η <span class="key-term">αρνητική ενίσχυση (negative reinforcement)</span> λειτουργεί στην αντίθετη κατεύθυνση: ένα interest αποστέλλεται ξανά αλλά με <em>χαμηλό</em> ρυθμό (exploratory), σηματοδοτώντας ότι αυτό το μονοπάτι δεν χρειάζεται πλέον υψηλό ρυθμό. Αν όλα τα εξερχόμενα gradients ενός κόμβου γίνουν exploratory, ο κόμβος εφαρμόζει αρνητική ενίσχυση στους γείτονές του.</p>
+
+<h3>In-Network Aggregation</h3>
+
+<p>Η μεγάλη κομψότητα του DD βρίσκεται στη δυνατότητα <span class="key-term">in-network aggregation</span>: καθώς τα δεδομένα ρέουν κατά μήκος των gradients, οι ενδιάμεσοι κόμβοι μπορούν να συνδυάσουν μετρήσεις από πολλαπλές πηγές. Αν δύο αισθητήρες αναφέρουν πανομοιότυπα δεδομένα, ένας ενδιάμεσος κόμβος μπορεί να <strong>καταστείλει το διπλότυπο</strong> (duplicate suppression) και να προωθήσει μόνο ένα αντίγραφο. Η προσομοίωση δείχνει ότι χωρίς aggregation, το DD καταναλώνει <strong>3× έως 5× περισσότερη ενέργεια</strong>.</p>
+
+<div class="exam-tip">
+  Στο Θέμα Α.1 της εξεταστικής 2026, ζητήθηκε συνοπτική περιγραφή της λειτουργίας του DD. Τα κλειδιά: data-centric, τέσσερις φάσεις (interests → gradients → data → reinforcement), in-network aggregation, local repair.
+</div>
+
+<!-- ========== 1.4 OMNISCIENT MULTICAST ========== -->
+<h2>1.4 Omniscient Multicast: Το Θεωρητικό Ανώτατο Όριο</h2>
+
+<p>Για να αξιολογηθεί σωστά το DD, η αναλυτική σύγκριση (από τις διαφάνειες 23–27) χρησιμοποιεί ένα ιδεατό πρωτόκολλο: <span class="key-term">Omniscient Multicast</span>. Δεν πρόκειται για πραγματικό πρωτόκολλο — υποθέτει ότι κάθε πηγή γνωρίζει το <strong>shortest-path multicast tree</strong> προς κάθε sink, και τα δεδομένα ταξιδεύουν χωρίς συγκρούσεις.</p>
+
+<p>Έστω $T_i$ το δέντρο multicast με ρίζα την πηγή $i$, και $C(T_i)$ το κόστος παράδοσης δεδομένων γι' αυτό το δέντρο. Αποδεικνύεται ότι:</p>
+
+<div class="formula-box">
+  $$C(T_i) = \mathcal{O}(\sqrt{N}) \quad \text{για } m \ll \sqrt{N}$$
+  $$C_o = \mathcal{O}(n\sqrt{N})$$
+  <span class="label">Κόστος Omniscient Multicast</span>
+</div>
+
+<p>Αξιοσημείωτο: το DD, αν και πλήρως κατανεμημένο (κανένας κόμβος δεν γνωρίζει την καθολική τοπολογία), πετυχαίνει κόστος ίδιας τάξης μεγέθους — $C_d = \mathcal{O}(n\sqrt{N})$. Μάλιστα, χάρη στο in-network aggregation, η προσομοίωση σε ns-2 δείχνει ότι <strong>$C_d < C_o$</strong> σε πραγματικές συνθήκες.</p>
+
+<!-- ========== 1.5 COMPARISON ========== -->
+<h2>1.5 Αναλυτική Σύγκριση</h2>
+
+<p>Η σύγκριση βασίζεται σε τετραγωνικό πλέγμα $\sqrt{N} \times \sqrt{N}$ με $n$ πηγές και $m$ sinks. Τα αποτελέσματα προσομοίωσης (ns-2) μετρούν τρεις μετρικές: μέση ενέργεια, μέση καθυστέρηση, και delivery ratio.</p>
+
+<table>
+  <tr>
+    <th>Μετρική</th>
+    <th>Flooding</th>
+    <th>Omniscient Multicast</th>
+    <th>Directed Diffusion</th>
+  </tr>
+  <tr>
+    <td><strong>Πολυπλοκότητα κόστους</strong></td>
+    <td>$\mathcal{O}(nN)$</td>
+    <td>$\mathcal{O}(n\sqrt{N})$</td>
+    <td>$\mathcal{O}(n\sqrt{N})$</td>
+  </tr>
+  <tr>
+    <td><strong>Μηχανισμός</strong></td>
+    <td>Broadcast σε όλους</td>
+    <td>Shortest-path multicast tree</td>
+    <td>Interests, gradients, reinforcement</td>
+  </tr>
+  <tr>
+    <td><strong>Ενεργειακή απόδοση</strong></td>
+    <td>Πολύ χαμηλή</td>
+    <td>Υψηλή</td>
+    <td><strong>Υψηλότερη</strong> (aggregation)</td>
+  </tr>
+  <tr>
+    <td><strong>Μέση καθυστέρηση</strong></td>
+    <td>Πολύ υψηλή (collisions)</td>
+    <td>Χαμηλή</td>
+    <td>Χαμηλή (συγκρίσιμη)</td>
+  </tr>
+  <tr>
+    <td><strong>Ανοχή σε σφάλματα</strong></td>
+    <td>Εγγενώς ανθεκτικό</td>
+    <td>Ευάλωτο (ένα δέντρο)</td>
+    <td>Ανθεκτικό (local repair)</td>
+  </tr>
+  <tr>
+    <td><strong>Aggregation</strong></td>
+    <td>Καμία</td>
+    <td>Καμία</td>
+    <td>Ναι (duplicate suppression)</td>
+  </tr>
+</table>
+
+<!-- ========== 1.6 DD STRENGTHS & LIMITS ========== -->
+<h2>1.6 Πλεονεκτήματα και Περιορισμοί του DD</h2>
+
+<h3>Πλεονεκτήματα</h3>
+<ul>
+  <li><strong>Ενεργειακή αποδοτικότητα:</strong> Κόστος $\mathcal{O}(n\sqrt{N})$ — τάξεις μεγέθους κάτω από flooding.</li>
+  <li><strong>Ανοχή σε σφάλματα:</strong> Η μέση ενέργεια δεν αυξάνεται σημαντικά ακόμα και με αστοχίες κόμβων. Η καθυστέρηση αυξάνεται το πολύ 20% (σύμφωνα με προσομοίωση, διαφ. 34).</li>
+  <li><strong>In-network aggregation:</strong> Μειώνει 3×–5× την ενέργεια σε σχέση με DD χωρίς aggregation.</li>
+  <li><strong>Αρνητική ενίσχυση:</strong> Χωρίς αυτή, η ενέργεια διπλασιάζεται (διαφ. 37).</li>
+</ul>
+
+<h3>Περιορισμοί</h3>
+<ul>
+  <li><strong>Idle listening:</strong> Αν οι πομποδέκτες καταναλώνουν σημαντική ενέργεια σε κατάσταση αναμονής, η απόδοση του DD μειώνεται δραματικά. Η ενέργεια αδράνειας κυριαρχεί σε όλα τα πρωτόκολλα (διαφ. 38).</li>
+  <li><strong>MAC layer dependency:</strong> Ο σχεδιασμός του MAC επηρεάζει σημαντικά την τελική απόδοση.</li>
+</ul>
+
+<!-- ========== 1.7 FLAT VS HIERARCHICAL ========== -->
+<h2>1.7 Επίπεδη vs Ιεραρχική Δρομολόγηση</h2>
+
+<p>Το DD αποτελεί παράδειγμα <strong>επίπεδης δρομολόγησης</strong> (flat routing) στα καλύτερά της: κανείς κόμβος δεν χρειάζεται ειδικό ρόλο, δεν απαιτείται σχηματισμός συστάδων, και το δίκτυο αυτο-οργανώνεται γύρω από τη ζήτηση δεδομένων.</p>
+
+<p>Η flat δρομολόγηση έχει όμως μια <strong>δομική αδυναμία</strong> σε πυκνά δίκτυα με υψηλή κυκλοφορία: όλα τα gradients συγκλίνουν προς τον sink, οπότε οι κόμβοι στη γειτονιά του προωθούν την κυκλοφορία <em>όλων</em> και εξαντλούνται πρώτοι. Αυτό δημιουργεί <span class="key-term">ενεργειακές τρύπες (energy holes)</span>.</p>
+
+<table>
+  <tr>
+    <th>Χαρακτηριστικό</th>
+    <th>Flat Routing (DD)</th>
+    <th>Hierarchical (LEACH)</th>
+  </tr>
+  <tr>
+    <td><strong>Ρόλοι κόμβων</strong></td>
+    <td>Ισότιμοι</td>
+    <td>Cluster Heads vs Members</td>
+  </tr>
+  <tr>
+    <td><strong>Πολυπλοκότητα</strong></td>
+    <td>Σχετικά απλή</td>
+    <td>Πιο περίπλοκη (CH election, TDMA)</td>
+  </tr>
+  <tr>
+    <td><strong>Κόστος οργάνωσης</strong></td>
+    <td>Χαμηλό</td>
+    <td>Υψηλότερο (set-up phase)</td>
+  </tr>
+  <tr>
+    <td><strong>Επεξεργασία δεδομένων</strong></td>
+    <td>Aggregation στους ενδιάμεσους κόμβους</td>
+    <td>Compression από τις κεφαλές συστάδων</td>
+  </tr>
+  <tr>
+    <td><strong>Ενεργειακές τρύπες</strong></td>
+    <td>Πιθανές (κοντά στο sink)</td>
+    <td>Μετριάζονται (rotation)</td>
+  </tr>
+</table>
+
+<p>Αυτό ακριβώς είναι το πρόβλημα που σχεδιάστηκαν να λύσουν τα ιεραρχικά πρωτόκολλα — κάτι που θα εξετάσουμε στο <strong>Κεφάλαιο 2: LEACH</strong>.</p>
+
+<div class="exam-tip">
+  Στο Θέμα A.2 της εξεταστικής 2026, ζητήθηκε συγκριτική αξιολόγηση DD vs EBP ως προς την κατανάλωση ενέργειας σε κάθε κόμβο και συνολικά. Το DD είναι energy-efficient αλλά δεν εγγυάται ομοιόμορφη κατανομή ενέργειας (energy balance) — αυτό ακριβώς προσφέρει το EBP.
+</div>
+
+<hr style="margin: 3rem 0; border: none; border-top: 2px solid #e2e8f0;">
+<p style="text-align: center; color: var(--muted); font-size: 0.85rem;">
+  <em>Κεφάλαιο 1 — Διαδίκτυο των Πραγμάτων — Σώμα Μελέτης</em><br>
+  Πηγές: Lecture 2 (DD &amp; LEACH), Lecture 3 (EBP), Handwritten Notes σελ. 1–6, Θέματα 2026
+</p>
+
+</body>
+</html>

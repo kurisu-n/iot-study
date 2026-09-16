@@ -1,0 +1,103 @@
+# The IoT study corpus.
+#
+# One MkDocs Material site, built by .github/workflows/deploy.yml and served by
+# GitHub Pages from the `gh-pages` branch. Source lives on `main`; the built
+# site never touches it.
+#
+# The theme is the FaceCue documentation's, reused deliberately: see
+# COOKBOOK.md section 7 for where the palette comes from and why.
+
+site_name: Διαδίκτυο των Πραγμάτων
+site_description: >-
+  Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων»,
+  Διεθνές Πανεπιστήμιο της Ελλάδος.
+
+# A GitHub Pages project site is served from a subpath, not the domain root, so
+# this has to carry the repository name or every generated absolute URL is
+# wrong. Moving the site to its own domain means changing this line.
+site_url: https://kurisu-n.github.io/iot-study/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: el
+
+  font: false
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+
+  # Four schemes, cycled by one button in the header. The two Warm schemes are
+  # the FaceCue documentation palette; Academic and Navy are this corpus's own.
+  # Material cycles in list order, so the order here is the click order, and
+  # each entry's `toggle.name` is the tooltip for what the NEXT click gives you.
+  palette:
+    - scheme: academic
+      toggle:
+        icon: material/white-balance-sunny
+        name: Ζεστό ανοιχτό θέμα
+
+    - scheme: warm-light
+      toggle:
+        icon: material/weather-sunny
+        name: Σκούρο θέμα
+
+    - scheme: navy
+      toggle:
+        icon: material/weather-night
+        name: Ζεστό σκούρο θέμα
+
+    - scheme: warm-dark
+      toggle:
+        icon: material/moon-waning-crescent
+        name: Ανοιχτό ακαδημαϊκό θέμα
+
+extra_css:
+  - stylesheets/fc-tokens.css
+  - stylesheets/corpus.css
+
+markdown_extensions:
+  # Maths. `generic: true` makes it emit the \( \) and \[ \] delimiters MathJax
+  # is configured for below, rather than relying on MathJax scanning for $.
+  - pymdownx.arithmatex:
+      generic: true
+
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.keys
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      permalink_title: Σύνδεσμος σε αυτή την ενότητα
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  # Greek is not one of the languages lunr ships a stemmer for, so the index is
+  # built with the English pipeline. Greek text is still tokenised and still
+  # searchable word for word; what is missing is stemming, meaning a search for
+  # «κόμβος» will not also match «κόμβου». Searching a stem («κόμβ») works.
+  - search:
+      lang: en
+
+nav:
+  - Αρχική: index.md
+  - Κεφάλαια:
+      - 1. Διάδοση Δεδομένων: chapters/01-data-propagation.md

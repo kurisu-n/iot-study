@@ -1,0 +1,482 @@
+/* The corpus theme: four colour schemes and the components they paint.
+ *
+ * Three layers, the way the FaceCue documentation arranges it:
+ *
+ *   --fc-*    the FaceCue asset colours. One set, in fc-tokens.css.
+ *   --c-*     this corpus's own roles: page, heading, formula box, exam tip.
+ *   --fig-*   the diagram palette. Declared per scheme so an inline SVG can
+ *             adapt to the page instead of carrying baked-in colours.
+ *
+ * Material's own --md-* variables are mapped onto --c-* at the end of the file,
+ * once, so the theme's chrome follows the corpus rather than the other way
+ * round.
+ *
+ * NEVER put a literal colour in a chapter, in prose or inside an SVG. It is
+ * invisible until someone switches scheme, which is exactly how the original
+ * single-file chapter ended up with 21 hard-coded colours in its figures.
+ */
+
+/* ========================================================================
+ * 1 - ACADEMIC (light), the original white-and-navy default.
+ *
+ * The figure values here are the literals the first draft of Chapter 1 used,
+ * so this scheme renders every diagram exactly as it was authored.
+ * ==================================================================== */
+
+[data-md-color-scheme="academic"] {
+  --c-bg:          #ffffff;
+  --c-bg-alt:      #f7fafc;
+  --c-primary:     #1a365d;
+  --c-accent:      #2b6cb0;
+  --c-text:        #1a202c;
+  --c-muted:       #718096;
+  --c-highlight:   #ebf4ff;
+  --c-formula-bg:  #f7fafc;
+  --c-code-bg:     #edf2f7;
+  --c-pre-text:    #2d3748;
+  --c-exam-bg:     #f0fff4;
+  --c-exam-border: #38a169;
+  --c-warn:        #fef3c7;
+  --c-compare-h:   #92400e;
+  --c-border:      #e2e8f0;
+  --c-th-text:     #ffffff;
+
+  --fig-surface-accent: #ebf4ff;
+  --fig-surface-soft:   #e2e8f0;
+  --fig-surface-warn:   #fffaf0;
+  --fig-surface-event:  #fff5f5;
+  --fig-surface-ok:     #f0fff4;
+  --fig-node:           #a0aec0;
+  --fig-node-soft:      #cbd5e0;
+  --fig-line:           #4a5568;
+  --fig-label:          #718096;
+  --fig-accent:         #2b6cb0;
+  --fig-accent-deep:    #1a365d;
+  --fig-on-accent:      #ffffff;
+  --fig-on-accent-soft: #bee3f8;
+  --fig-event:          #e53e3e;
+  --fig-event-deep:     #c53030;
+  --fig-event-soft:     #fc8181;
+  --fig-warn:           #dd6b20;
+  --fig-warn-deep:      #c05621;
+  --fig-ok:             #38a169;
+  --fig-ok-deep:        #276749;
+
+  color-scheme: light;
+}
+
+/* ========================================================================
+ * 2 - WARM LIGHT, the FaceCue documentation's light scheme.
+ * Source: facecue.css, the facecue-light block.
+ * ==================================================================== */
+
+[data-md-color-scheme="warm-light"] {
+  --fc-panel:          #FAF8F3;
+  --fc-section:        #F2EEE6;
+  --fc-section-header: #E8E2D4;
+  --fc-section-border: #CCC3AF;
+  --fc-headless:       #EFEADF;
+  --fc-hub-group:      #EAE4D5;
+  --fc-hairline:       #B39A5C;
+  --fc-callout-border: #B39A5C;
+  --fc-text:           #26231F;
+  --fc-text-bright:    #14120F;
+  --fc-text-muted:     #6B6457;
+  --fc-tan:            #6E5418;
+  --fc-gold:           #86642A;
+  --fc-olive:          #C4B389;
+  --fc-red:            #9E3535;
+  --fc-yellow:         #7A5A10;
+  --fc-green:          #3F8F4A;
+  --fc-blue:           #2F6BC2;
+  --fc-warning-bg:     #F7ECC9;
+
+  --c-bg:          var(--fc-panel);
+  --c-bg-alt:      var(--fc-section);
+  --c-primary:     var(--fc-tan);
+  --c-accent:      var(--fc-gold);
+  --c-text:        var(--fc-text);
+  --c-muted:       var(--fc-text-muted);
+  --c-highlight:   var(--fc-hub-group);
+  --c-formula-bg:  var(--fc-section);
+  --c-code-bg:     var(--fc-section-header);
+  --c-pre-text:    var(--fc-text-bright);
+  --c-exam-bg:     var(--fc-section);
+  --c-exam-border: var(--fc-tan);
+  --c-warn:        var(--fc-warning-bg);
+  --c-compare-h:   var(--fc-yellow);
+  --c-border:      var(--fc-section-border);
+  --c-th-text:     var(--fc-panel);
+
+  --fig-surface-accent: #EAE4D5;
+  --fig-surface-soft:   #F2EEE6;
+  --fig-surface-warn:   #F7ECC9;
+  --fig-surface-event:  #F8E3E3;
+  --fig-surface-ok:     #E8F0E4;
+  --fig-node:           #7D7668;
+  --fig-node-soft:      #B8AE96;
+  --fig-line:           #6B6457;
+  --fig-label:          #6B6457;
+  --fig-accent:         #86642A;
+  --fig-accent-deep:    #533E0F;
+  --fig-on-accent:      #FAF8F3;
+  --fig-on-accent-soft: #E8E2D4;
+  --fig-event:          #9E3535;
+  --fig-event-deep:     #7A2626;
+  --fig-event-soft:     #C98080;
+  --fig-warn:           #8F6B10;
+  --fig-warn-deep:      #6B5008;
+  --fig-ok:             #3F8F4A;
+  --fig-ok-deep:        #2E6B37;
+
+  color-scheme: light;
+}
+
+/* ========================================================================
+ * 3 - NAVY (dark), dark slate and pale blue, this corpus's own.
+ *
+ * The figure values invert the light logic: a "deep" token is BRIGHTER than
+ * its base here, because it draws the outline on top of the fill rather than
+ * under it. Same for --fig-event-soft, which is a fill, so it goes dark while
+ * --fig-event goes bright.
+ * ==================================================================== */
+
+[data-md-color-scheme="navy"] {
+  --c-bg:          #1a202c;
+  --c-bg-alt:      #2d3748;
+  --c-primary:     #a0cef8;
+  --c-accent:      #63b3ed;
+  --c-text:        #e2e8f0;
+  --c-muted:       #a0aec0;
+  --c-highlight:   #2a4365;
+  --c-formula-bg:  #2d3748;
+  --c-code-bg:     #2d3748;
+  --c-pre-text:    #e2e8f0;
+  --c-exam-bg:     #1c3a2a;
+  --c-exam-border: #68d391;
+  --c-warn:        #3d2e14;
+  --c-compare-h:   #f2c766;
+  --c-border:      #4a5568;
+  --c-th-text:     #1a202c;
+
+  --fig-surface-accent: #2a4365;
+  --fig-surface-soft:   #2d3748;
+  --fig-surface-warn:   #3d2e14;
+  --fig-surface-event:  #3b2626;
+  --fig-surface-ok:     #1c3a2a;
+  --fig-node:           #a0aec0;
+  --fig-node-soft:      #718096;
+  --fig-line:           #cbd5e0;
+  --fig-label:          #bccadb;
+  --fig-accent:         #63b3ed;
+  --fig-accent-deep:    #a0cef8;
+  --fig-on-accent:      #1a202c;
+  --fig-on-accent-soft: #2a4365;
+  --fig-event:          #fc8181;
+  --fig-event-deep:     #feb2b2;
+  --fig-event-soft:     #7b2d2d;
+  --fig-warn:           #f6ad55;
+  --fig-warn-deep:      #fbd38d;
+  --fig-ok:             #68d391;
+  --fig-ok-deep:        #9ae6b4;
+
+  color-scheme: dark;
+}
+
+/* ========================================================================
+ * 4 - WARM DARK, the FaceCue documentation's dark scheme.
+ *
+ * The --fc-* tokens are NOT repeated here. fc-tokens.css declares the dark set
+ * on :root, so this scheme inherits every one of them and only maps the roles.
+ * ==================================================================== */
+
+[data-md-color-scheme="warm-dark"] {
+  --c-bg:          var(--fc-panel);
+  --c-bg-alt:      var(--fc-section);
+  --c-primary:     var(--fc-tan);
+  --c-accent:      var(--fc-gold);
+  --c-text:        var(--fc-text);
+  --c-muted:       var(--fc-text-muted);
+  --c-highlight:   var(--fc-hub-group);
+  --c-formula-bg:  var(--fc-section);
+  --c-code-bg:     var(--fc-section-header);
+  --c-pre-text:    var(--fc-text-bright);
+  --c-exam-bg:     var(--fc-section);
+  --c-exam-border: var(--fc-tan);
+  --c-warn:        var(--fc-warning-bg);
+  --c-compare-h:   var(--fc-yellow);
+  --c-border:      var(--fc-section-border);
+  --c-th-text:     var(--fc-section-header);
+
+  --fig-surface-accent: #2A2620;
+  --fig-surface-soft:   #282726;
+  --fig-surface-warn:   #2C2721;
+  --fig-surface-event:  #322525;
+  --fig-surface-ok:     #242A22;
+  --fig-node:           #8A857F;
+  --fig-node-soft:      #5A5650;
+  --fig-line:           #A8A29A;
+  --fig-label:          #9E9890;
+  --fig-accent:         #C09A5C;
+  --fig-accent-deep:    #D0C090;
+  --fig-on-accent:      #141414;
+  --fig-on-accent-soft: #2A2620;
+  --fig-event:          #F27373;
+  --fig-event-deep:     #F7A0A0;
+  --fig-event-soft:     #5A2E2E;
+  --fig-warn:           #F2C766;
+  --fig-warn-deep:      #F7DC9E;
+  --fig-ok:             #5CB85C;
+  --fig-ok-deep:        #8FD08F;
+
+  color-scheme: dark;
+}
+
+/* ========================================================================
+ * 5 - Material's variables, mapped onto the corpus roles.
+ *
+ * Written once against --c-*, not repeated per scheme, because --c-* is
+ * already resolved by the time these are read.
+ * ==================================================================== */
+
+[data-md-color-scheme] {
+  --md-default-bg-color:           var(--c-bg);
+  --md-default-fg-color:           var(--c-text);
+  --md-default-fg-color--light:    var(--c-muted);
+  --md-default-fg-color--lighter:  var(--c-muted);
+  --md-default-fg-color--lightest: var(--c-border);
+
+  --md-primary-fg-color:           var(--c-bg-alt);
+  --md-primary-fg-color--light:    var(--c-highlight);
+  --md-primary-fg-color--dark:     var(--c-bg);
+  --md-primary-bg-color:           var(--c-text);
+  --md-primary-bg-color--light:    var(--c-muted);
+
+  --md-accent-fg-color:            var(--c-accent);
+  --md-accent-bg-color:            var(--c-bg);
+
+  --md-typeset-color:              var(--c-text);
+  --md-typeset-a-color:            var(--c-accent);
+  --md-typeset-table-color:        var(--c-border);
+
+  --md-code-bg-color:              var(--c-code-bg);
+  --md-code-fg-color:              var(--c-pre-text);
+
+  --md-footer-bg-color:            var(--c-bg-alt);
+  --md-footer-bg-color--dark:      var(--c-bg-alt);
+  --md-footer-fg-color:            var(--c-text);
+  --md-footer-fg-color--light:     var(--c-muted);
+  --md-footer-fg-color--lighter:   var(--c-muted);
+}
+
+/* ========================================================================
+ * 6 - Type.
+ *
+ * A serif face for long Greek prose, which is what the original single-file
+ * chapter used and what a Greek textbook looks like. Material's font loading
+ * is off in mkdocs.yml, so these are system stacks and nothing is fetched.
+ * ==================================================================== */
+
+:root {
+  --md-text-font: "Georgia", "Times New Roman", serif;
+  --md-code-font: "Consolas", "SFMono-Regular", "Menlo", monospace;
+}
+
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.85;
+}
+
+.md-typeset p {
+  text-align: justify;
+}
+
+.md-typeset h1 {
+  color: var(--c-primary);
+  font-weight: 700;
+  border-bottom: 3px solid var(--c-accent);
+  padding-bottom: 0.4rem;
+}
+
+.md-typeset h2 {
+  color: var(--c-primary);
+  font-weight: 700;
+  border-left: 4px solid var(--c-accent);
+  padding-left: 0.6rem;
+}
+
+.md-typeset h3 {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* The line above the chapter title: "Κεφάλαιο 1", small and spaced out. */
+.md-typeset .chapter-num {
+  display: block;
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--c-muted);
+  margin-bottom: 0.3rem;
+}
+
+/* ========================================================================
+ * 7 - Components.
+ * ==================================================================== */
+
+.md-typeset .key-term {
+  background: var(--c-highlight);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.md-typeset blockquote {
+  background: var(--c-highlight);
+  border-left: 3px solid var(--c-accent);
+  color: var(--c-text);
+  padding: 0.6rem 0.9rem;
+  font-style: italic;
+}
+
+/* The boxed equation. Centred, on a raised surface, inside an accent rule. */
+.md-typeset .formula {
+  background: var(--c-formula-bg);
+  border: 2px solid var(--c-accent);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.md-typeset .formula .label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--c-muted);
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* Tables. --c-primary paints the header as a BACKGROUND, which is why
+   --c-th-text is a surface colour in the dark schemes rather than a text one. */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--c-border);
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--c-primary);
+  color: var(--c-th-text);
+  font-weight: 700;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background: var(--c-bg-alt);
+}
+
+/* Figures. The SVGs inside read the --fig-* tokens, so they follow the scheme
+   and need no per-figure styling of their own. */
+.md-typeset figure {
+  margin: 2rem 0;
+}
+
+.md-typeset figure svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.md-typeset figcaption {
+  font-size: 0.85em;
+  color: var(--c-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* ---- Custom admonitions -------------------------------------------------
+ *
+ * Two beyond Material's own set. Both are declared the way Material declares
+ * its own: an icon as a masked SVG, then the two colours.
+ */
+
+:root {
+  --md-admonition-icon--exam: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>');
+  --md-admonition-icon--compare: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8 16H5V5h6v14Z"/></svg>');
+}
+
+/* The exam tip. Drawn as a FaceCue callout: the section surface for the fill,
+   the tan for both the left rule and the heading. */
+.md-typeset .admonition.exam,
+.md-typeset details.exam {
+  border-color: var(--c-exam-border);
+  border-left-width: 4px;
+  background: var(--c-exam-bg);
+}
+
+.md-typeset .exam > .admonition-title,
+.md-typeset .exam > summary {
+  background: transparent;
+  color: var(--c-exam-border);
+}
+
+.md-typeset .exam > .admonition-title::before,
+.md-typeset .exam > summary::before {
+  background-color: var(--c-exam-border);
+  -webkit-mask-image: var(--md-admonition-icon--exam);
+          mask-image: var(--md-admonition-icon--exam);
+}
+
+/* The protocol comparison box. */
+.md-typeset .admonition.compare,
+.md-typeset details.compare {
+  border-color: var(--c-compare-h);
+  background: var(--c-warn);
+}
+
+.md-typeset .compare > .admonition-title,
+.md-typeset .compare > summary {
+  background: transparent;
+  color: var(--c-compare-h);
+}
+
+.md-typeset .compare > .admonition-title::before,
+.md-typeset .compare > summary::before {
+  background-color: var(--c-compare-h);
+  -webkit-mask-image: var(--md-admonition-icon--compare);
+          mask-image: var(--md-admonition-icon--compare);
+}
+
+/* ========================================================================
+ * 8 - Figure animation.
+ *
+ * Carried over from the single-file chapter. Held still for a reader who has
+ * asked their system for reduced motion: a looping dash on every arrow in a
+ * revision document is the kind of thing that setting exists for.
+ * ==================================================================== */
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { r: 6; opacity: 1; } 50% { r: 9; opacity: 0.7; } }
+@keyframes flowRight { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+@keyframes flowLeft { from { stroke-dashoffset: -20; } to { stroke-dashoffset: 0; } }
+
+.anim-flow-right { stroke-dasharray: 8 4; animation: flowRight 1s linear infinite; }
+.anim-flow-left  { stroke-dasharray: 8 4; animation: flowLeft 1s linear infinite; }
+.anim-pulse      { animation: pulse 2s ease-in-out infinite; }
+.anim-fadein-1   { animation: fadeIn 0.8s ease-in 0.5s both; }
+.anim-fadein-2   { animation: fadeIn 0.8s ease-in 1.2s both; }
+.anim-fadein-3   { animation: fadeIn 0.8s ease-in 1.9s both; }
+.anim-fadein-4   { animation: fadeIn 0.8s ease-in 2.6s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-flow-right,
+  .anim-flow-left,
+  .anim-pulse,
+  .anim-fadein-1,
+  .anim-fadein-2,
+  .anim-fadein-3,
+  .anim-fadein-4 {
+    animation: none;
+  }
+  .anim-flow-right,
+  .anim-flow-left { stroke-dasharray: none; }
+}

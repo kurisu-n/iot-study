@@ -1,0 +1,7 @@
+# Normalise line endings in the repository, whatever the checkout platform.
+* text=auto eol=lf
+
+# Binary sources: never touched, never diffed as text.
+*.pdf  binary
+*.jpg  binary
+*.docx binary

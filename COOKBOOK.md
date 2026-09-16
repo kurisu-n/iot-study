@@ -1,0 +1,250 @@
+# IoT Study Corpus — Project Cookbook
+
+> **Living document.** Updated as the project progresses.  
+> Last updated: 2026-09-16
+
+---
+
+## 1. What We're Building
+
+A self-contained **study corpus** for the MSc course "Διαδίκτυο των Πραγμάτων" (Internet of Things) at the International Hellenic University, taught by Prof. Konstantinos Marios Angelopoulos.
+
+The corpus is a **textbook-style HTML document** written in Greek prose (with English technical terms), covering all theory and exercises likely to appear in the September 2026 resit exam. It is designed to be:
+
+- **Readable** — long, flowing prose like a university textbook, not bullet-point notes
+- **Complete** — covers every topic from the lectures, raw notes, and past exams
+- **Exercise-focused** — reflects the 2026 shift from theory-only exams to 50% exercises
+- **Self-contained** — one HTML file, opens in any browser, includes rendered math and diagrams
+
+### Target Exam Format (2026 onward)
+
+Based on the February 2026 exam:
+
+| Component | Marks | Type |
+|:---|:---:|:---|
+| Protocol theory (DD, EBP, LoRaWAN) | 5.0 | Short-answer theory |
+| LEACH CH election calculation | 2.5 | Mathematical exercise |
+| ETX multi-hop energy calculation | 2.5 | Mathematical exercise |
+| **Total** | **10.0** | **~50% exercises, ~50% theory** |
+
+This is a significant departure from the 2025 exam, which was 100% theory (system design, Cloud vs Edge, Industry 4.0, standardization). The study corpus prioritises exercise practice while maintaining full theory coverage.
+
+---
+
+## 2. Source Materials
+
+All source materials live under `D:\Development\Claude Workspace\Workspace\Current Workspace\IoT Study\`.
+
+### 2.1 Lecture PDFs (Σημειώσεις)
+
+| File | Topics | Exam Relevance |
+|:---|:---|:---|
+| Lecture 2 - DD - Leach.pdf | Directed Diffusion, LEACH | HIGH (Θέμα Α + Β) |
+| Lecture 3 - LEC-Energy Balance Protocols.pdf | EBP, ring model, FND/HND/LND | HIGH (Θέμα Α.2) |
+| Lecture 4/5 - Routing Metrics.pdf | ETX, link quality, energy models | HIGH (Θέμα Δ) |
+| Lecture 6a - LPWANs - RPL.pdf | LoRaWAN, RPL, 6LoWPAN | HIGH (Θέμα Γ) |
+| Lecture 7a - IoT topics.pdf | IIoT, 5G, IoT verticals | MEDIUM |
+| Lecture 7b - IoT protocols.pdf | CoAP, MQTT, protocol stacks | MEDIUM |
+| Lecture 8a - IEEE 802.11 MAC.pdf | WiFi MAC layer, CSMA/CA | HIGH (Θέμα Γ.1) |
+| Lecture 8b - IEEE 802.11 standards.pdf | WiFi standards, 802.11a/b/g/n/ac | MEDIUM |
+| Lecture 9 - WPT models.pdf | Wireless Power Transfer | LOW-MEDIUM |
+| Lecture 10 - Mobility in IoT.pdf | Mobility models, handover | LOW-MEDIUM |
+
+Note: Lectures 4 and 5 are identical files (confirmed by agents).
+
+### 2.2 Handwritten Notes (Raw)
+
+18 JPG images of handwritten notes shared via Viber (Feb 2026). Transcribed into `Transcribed_Raw_Notes.md`. Content covers DD, Flooding, LEACH, EBP, ETX (with solved exercise), and Scalar vs Vector models.
+
+### 2.3 Extra Notes PDFs
+
+| File | Content |
+|:---|:---|
+| SYNOLIKO.pdf | Comprehensive Greek summary of IoT architecture, protocols |
+| ΣΗΜΕΙΩΣΕΙΣ GTP.pdf | GPT-generated study notes (Greek) |
+| Μερικά από τα πιο δημοφιλή... .pdf | IoT communication protocols overview |
+
+### 2.4 Past Exams (Θέματα)
+
+| Year | Format | Key Shift |
+|:---|:---|:---|
+| 2022 | Theory-only | System design, protocol comparison |
+| 2025 | Theory-only | IoT agriculture, Cloud/Edge, Industry 4.0 |
+| **2026** | **Theory + Exercises** | DD, EBP, LEACH T(n) calculation, ETX energy calculation, LoRaWAN |
+
+The 2026 exam is the most important reference — it establishes the new format.
+
+---
+
+## 3. Methodology
+
+### Phase 1: Transcription ✅ COMPLETE
+
+All source materials have been transcribed into markdown:
+
+```
+IoT Study/
+├── Transcribed_Raw_Notes.md          (handwritten notes, 18 pages)
+├── Exam_2026_Transcription_and_Analysis.md
+└── Transcriptions/
+    ├── Lectures_2_3.md               (DD, LEACH, EBP)
+    ├── Lectures_4_5.md               (Routing Metrics / ETX)
+    ├── Lectures_6a_7a.md             (LPWANs, LoRaWAN, RPL, 5G)
+    ├── Lectures_7b_8a.md             (IoT protocols, WiFi MAC)
+    ├── Lectures_8b_9_10.md           (WiFi standards, WPT, Mobility)
+    └── Extra_Notes_and_Exams.md      (supplementary PDFs + all exam docs)
+```
+
+### Phase 2: Style Calibration ✅ COMPLETE
+
+Wrote a sample chapter (DD + Flooding + Omniscient Multicast) in both English and Greek. Decisions made:
+
+- **Language:** Greek prose, English technical terms (matching real Greek CS textbooks)
+- **Tone:** Explanatory, expanded, textbook-style — not bullet-point notes
+- **Format:** HTML (not markdown) — supports rendered math (MathJax), inline SVG diagrams, CSS styling, and embedded/generated images
+- **Math:** MathJax for rendered LaTeX formulas
+- **Diagrams:** Mix of generated images (for complex network topologies) and inline SVGs (for simple flow diagrams)
+
+### Phase 3: Corpus Writing 🔄 IN PROGRESS
+
+Write the full textbook-style HTML document. Planned chapter structure (provisional):
+
+1. **Διάδοση Δεδομένων** — Flooding, DD, Omniscient Multicast, flat vs hierarchical
+2. **LEACH** — Phases, T(n) election mechanism, worked examples
+3. **Energy Balance Protocol (EBP)** — Ring model, variable p_i, FND/HND/LND
+4. **Μετρικές Δρομολόγησης** — ETX formula, energy models, worked exercises
+5. **LPWANs & LoRaWAN** — Architecture, SF trade-offs, device classes, WiFi comparison
+6. **RPL** — DAG construction, rank, objective functions
+7. **IEEE 802.11 (WiFi)** — MAC layer, CSMA/CA, standards overview
+8. **IoT Πρωτόκολλα Εφαρμογής** — CoAP, MQTT, protocol stacks
+9. **WPT & Mobility** — Wireless power transfer, mobility models
+10. **Ασκήσεις & Λυμένα Παραδείγματα** — All exam-style exercises with step-by-step solutions
+
+### Phase 4: Study Protocol (PLANNED)
+
+After corpus is complete:
+- Structured reading order based on exam weight
+- Exercise drill sessions (AI-generated practice problems)
+- Interactive Q&A testing (conversational exam simulation)
+
+---
+
+## 4. Style Guide
+
+### Language Rules
+- Prose in **Greek**
+- Technical terms in **English** where a Greek student would naturally use them: protocol, sink, base station, cluster head, flooding, gradient, reinforcement, broadcast, idle listening, MAC layer, etc.
+- Formulas and variable names in English/math notation
+- Exam-specific Greek terminology preserved exactly (e.g., «κόμβος», «δακτύλιος», «ζεύξη», «μονάδες»)
+
+### Formatting Rules
+- HTML with embedded CSS, MathJax CDN for math rendering
+- Chapter → Section → Subsection hierarchy
+- Comparison tables for protocol contrasts
+- Boxed/highlighted formulas for key equations
+- Dedicated "Worked Example" sections with step-by-step solutions
+- Figure captions in Greek
+- Colour-coded alerts for exam tips
+
+### Content Rules
+- Every topic that appeared in 2025 or 2026 exams gets full coverage
+- Every formula gets at least one worked example with realistic numbers
+- Exercises use the same energy model and notation as the 2026 exam
+- Protocol comparisons include both narrative explanation and summary tables
+
+---
+
+## 5. Progress Log
+
+| Date | What happened |
+|:---|:---|
+| 2026-09-15 | Transcribed 18 raw handwritten note images (3 parallel agents) |
+| 2026-09-15 | Transcribed 2026 exam, gap analysis vs raw notes |
+| 2026-09-15 | Transcribed all lecture PDFs + extra notes + past exams (6 parallel agents) |
+| 2026-09-16 | Style calibration — wrote sample chapter in English then Greek |
+| 2026-09-16 | Decision: HTML format, Greek prose, English terms, MathJax, diagrams |
+| 2026-09-16 | Created this cookbook document |
+| 2026-09-16 | Starting corpus writing (Phase 3) |
+| 2026-09-16 | Chapter 1 written (DD, Flooding, OM, flat vs hierarchical) with animated SVGs |
+| 2026-09-16 | Added theme system: 4 presets (Light Academic, Light Warm, Dark Navy, Dark Warm), side panel with color pickers, copy-to-clipboard for custom palettes |
+| 2026-09-16 | Both Warm presets repainted in the FaceCue documentation palette (see §7) |
+
+---
+
+## 6. File Locations
+
+| What | Where |
+|:---|:---|
+| Project root | `D:\Development\Claude Workspace\Workspace\Current Workspace\IoT Study\` |
+| Source materials | `..\Διαδίκτυο Των Πραγμάτων - Σημειώσεις\` |
+| Past exams | `..\Διαδίκτυο των Πραγμάτων - Θέματα\` |
+| Transcriptions | `.\Transcriptions\` |
+| **Study corpus (HTML)** | `.\IoT_Study_Corpus.html` (to be created) |
+| This cookbook | `.\COOKBOOK.md` |
+
+---
+
+## 7. The Theme System
+
+The corpus HTML carries its own colour system: fifteen CSS custom properties on `:root`, a floating
+🎨 panel that swaps between named presets, and a per-variable colour picker with a Copy Style button
+that writes the current values out as JSON. Nothing about the prose or the diagrams depends on which
+preset is active, so a preset is purely a palette swap.
+
+### 7.1 The four presets
+
+| Preset | What it is |
+|:---|:---|
+| ☀️ Academic | The original white-and-navy default. Untouched. |
+| ☀️ Warm | **The FaceCue documentation light scheme.** |
+| 🌙 Navy | Dark slate and pale blue. Untouched apart from a table-header repair. |
+| 🌙 Warm | **The FaceCue documentation dark scheme.** |
+
+### 7.2 Where the two Warm palettes come from
+
+Both are lifted token for token from the FaceCue documentation site, so the study corpus reads the
+same way FaceCue's own manual does. The two source files live in the docs worktree at
+`D:\Development\FaceCue Workspace\facecue-site-docs\`:
+
+| Scheme | Source of truth |
+|:---|:---|
+| Dark Warm | `src\static\assets\fc-tokens.css`, the `:root` block |
+| Light Warm | `documentation\docs\stylesheets\facecue.css`, `[data-md-color-scheme="facecue-light"]` |
+
+The FaceCue tokens are themselves lifted from the FaceCue Unity editor theme, so the chain runs
+editor → `fc-tokens.css` → docs site → this corpus. Every value in the two presets carries an inline
+comment naming the FaceCue token it came from, which is what makes a later reconciliation possible:
+if the docs palette drifts, the comments say exactly which token to re-read rather than leaving a
+future session to eyeball hexes.
+
+The mapping is mostly direct. Three places needed a decision, because the corpus has components
+FaceCue's documentation does not:
+
+- **The formula box** has no FaceCue counterpart. It takes `--fc-section` as its fill and keeps its
+  `--fc-gold` border, so it reads as a lighter surface inside a gold rule.
+- **The exam tip** is drawn as a FaceCue callout: `--fc-section` for the fill, and `--fc-tan` for both
+  the left rule and the «📝 Σημείωση Εξεταστικής» heading. An earlier draft used FaceCue's green
+  signal colour, which was wrong on two counts — FaceCue's callouts are ruled in warm gold, not green,
+  and green on the light section surface only reached 3.5:1 against a bold 15px label.
+- **The table header** paints `--primary` as a background, which FaceCue never does with its tan. So
+  `--th-text` is the *dark* surface colour in both Warm presets, giving a tan bar with dark type.
+
+### 7.3 Two repairs made along the way
+
+Neither was part of the palette work, but both would have shown as defects in the new presets:
+
+1. `.comparison-box h4` had its colour hard-coded to `#92400e`, a dark brown that vanished on any
+   dark preset's warning fill. It is now `--compare-h`, a sixteenth theme variable with a value in
+   every preset and its own row in the colour picker.
+2. 🌙 Navy set `--th-text` to `#e2e8f0`, pale text on its equally pale `--primary` table-header bar.
+   It is now the dark page colour, matching the fix the Warm presets needed.
+
+### 7.4 Contrast
+
+Every text-on-surface pair in both Warm presets clears WCAG AA (4.5:1), measured in the browser
+rather than estimated. The weakest pair is the muted caption text at 5.04:1 dark and 5.11:1 light.
+Borders sit near 1.6:1 against their page, which is a visible hairline and is what FaceCue uses.
+
+⚠ When a new component is added to a chapter, give it a theme variable rather than a literal colour,
+and re-run the contrast probe across all four presets. A literal colour is invisible until someone
+switches preset, which is how the `.comparison-box` heading survived this long.

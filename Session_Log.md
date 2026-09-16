@@ -191,13 +191,68 @@ are what the verification rests on; screenshots only ever confirmed the overall 
 
 ### Left open, and one decision waiting
 
-- **Academic fails contrast in three places and was left alone on purpose.** Muted text 4.02:1, the
-  exam-tip heading 3.14:1, sensor dots 2.03:1. All three predate this work. Fixing them means
-  altering a palette that was authored deliberately, and Academic exists precisely to render the
-  diagrams as drawn. Chris's call, recorded in cookbook section 7.6 rather than silently changed.
+- ~~Academic fails contrast in three places and was left alone on purpose.~~ **Ruled by Chris the
+  same day: fix it. Done, see the entry below.**
 - Search runs the English lunr pipeline, because lunr ships no Greek stemmer. Greek text is tokenised
   and searchable word for word; what is missing is stemming, so «κόμβος» does not also match
   «κόμβου». Searching a stem works.
 - Nine chapters still to write.
 - The lecture PDFs (46 MB) are committed so the repository stands alone. MkDocs never sees them; only
   `docs/` is published.
+
+
+---
+
+## 2026-09-16 (later) · Academic contrast fixed, and a fifth failure found while fixing it
+
+### What was asked
+
+Fix the Academic contrast too. And: is this a problem — *"This repository is missing a package.json
+file. Add a package.json file to your repo to enable full import, or continue as a static website."*
+
+### The fixes
+
+Four values in Academic were solved rather than eyeballed: each original was walked toward black in
+one per cent steps until it cleared its threshold, which keeps the hue and changes only the depth.
+Thresholds applied were 4.5:1 for anything that is text and 3:1 for a non-text graphic, so the sensor
+dots were held to the looser bar and the figure labels to the stricter one.
+
+`--c-muted` and `--fig-label` were the same colour in the original palette and were kept the same
+afterwards, both landing on `#626f83`, so the scheme still has one muted colour rather than two that
+nearly match.
+
+⚠ Academic is no longer byte-identical to the first draft, which it was on purpose until today. That
+is recorded at the top of its block in `corpus.css` and in cookbook section 7.6.
+
+### The fifth failure, which was mine
+
+Adding `muted/altbg` and `muted/formulabg` to the probe surfaced a pair nobody had measured:
+**Warm Dark muted text on the section surface, 4.08:1.**
+
+It would have been easy to file this under "FaceCue's palette, leave it" and move on. It is not.
+FaceCue uses `--fc-text-muted` for subtitle text on the *panel*, where it measures 5.04:1. This
+corpus also puts muted text on the *section* surface, in the formula box caption and under figures,
+which FaceCue never does. Our composition, our fix: the token is brightened to `#95908B`, enough to
+clear 4.5:1 on the section, and every other Warm Dark value is still FaceCue's.
+
+⭐ The lesson is about the probe, not the palette. The first sweep checked muted text against the
+page and passed it; the failure lived on a surface the sweep never paired it with. **A contrast probe
+certifies the pairs it was given, not the design.** When a token is used on more than one surface,
+every surface has to be in the list.
+
+### Verification
+
+All four schemes, sixteen text pairs and four graphic pairs each: no failures anywhere. Lowest text
+figure is 4.59:1 (Academic), lowest graphic figure 3.20:1 (Academic sensor dots). Build clean under
+`--strict`, colour guard clean.
+
+### The package.json message
+
+Not a problem, and nothing to act on. It comes from a host's import wizard (Vercel, Netlify,
+Cloudflare Pages and similar all say a version of it) looking for a Node project to run a build
+command against. This corpus has no Node in it at all: it is Python and MkDocs, and the build already
+happens in GitHub Actions.
+
+⛔ The thing not to do is accept such an importer's offer to "continue as a static website" against
+`main`. `main` holds Markdown source, not HTML. The built site lives on `gh-pages`, and a host
+pointed at `main` would serve the raw sources. Nothing is missing and nothing needs adding.

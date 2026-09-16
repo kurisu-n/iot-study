@@ -293,14 +293,33 @@ it was first authored.
 ### 7.6 Contrast
 
 Measured in the browser against the live computed values, not estimated, and against two thresholds:
-**4.5:1 for text** (including figure labels) and **3:1 for non-text graphics** (the sensor dots, the
-rules). Warm Light, Navy and Warm Dark pass every pair on both counts.
+**4.5:1 for text** (including figure labels and the small caption under a formula) and **3:1 for
+non-text graphics** (the sensor dots, the rules). **All four schemes pass every pair**, sixteen text
+comparisons and four graphic ones each.
 
-**Academic does not, and was left alone deliberately.** It carries three shortfalls that predate all
-of this work: muted text at 4.02:1, the exam-tip heading at 3.14:1, and the sensor dots at 2.03:1 on
-the field surface. Fixing them means changing a palette that was authored on purpose, and the scheme
-exists to render the diagrams as they were drawn. It is a decision waiting to be made, not an
-oversight.
+Getting there took five corrections, and it is worth recording which, because each one came from
+measuring a pair nobody had thought to measure:
+
+| Scheme | Token | Was | Now | Why |
+|:---|:---|:---|:---|:---|
+| Academic | `--c-muted` | `#718096` | `#626f83` | 4.02:1 on the page |
+| Academic | `--c-exam-border` | `#38a169` | `#2b7d51` | 3.14:1, and it is the heading text, not just the rule |
+| Academic | `--fig-node` | `#a0aec0` | `#7d8998` | 2.03:1 on the field surface |
+| Academic | `--fig-label` | `#718096` | `#626f83` | 3.62:1 on the field surface |
+| Warm Light | `--fig-node` | `#9A9384` | `#7D7668` | 2.41:1 on the field surface |
+| Warm Dark | `--c-muted` | `--fc-text-muted` | `#95908B` | 4.08:1 on the section surface |
+
+⚠ **Academic is therefore no longer byte-identical to the first draft.** It was, deliberately, until
+2026-09-16. Four of its values are now darker. The hues are unchanged, and each new value is the
+original walked toward black until it cleared its threshold with a little headroom, so the scheme
+still reads the way it was drawn.
+
+⚠ **The Warm Dark correction is a deviation from the FaceCue palette, and the fault is ours.**
+FaceCue uses `--fc-text-muted` for subtitle text on the *panel*, where it measures 5.04:1 and is
+perfectly fine. This corpus also puts muted text on the *section* surface, inside the formula box and
+under figures, which FaceCue never does, and there the same colour drops to 4.08:1. The token is
+brightened just enough to clear the threshold on the section. Every other Warm Dark value is still
+FaceCue's.
 
 ⚠ When a new component is added to a chapter, give it a token rather than a literal colour, and
 re-run the contrast probe across all four schemes. A literal is invisible until someone switches

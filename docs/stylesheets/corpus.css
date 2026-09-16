@@ -20,7 +20,13 @@
  * 1 - ACADEMIC (light), the original white-and-navy default.
  *
  * The figure values here are the literals the first draft of Chapter 1 used,
- * so this scheme renders every diagram exactly as it was authored.
+ * so this scheme renders the diagrams as they were authored, with FOUR
+ * exceptions marked below. Those four were darkened on 2026-09-16 because the
+ * originals failed contrast: muted text and figure labels sat at about 4:1
+ * against their surfaces where text needs 4.5:1, the exam-tip heading at
+ * 3.14:1, and the sensor dots at 2.03:1 where a non-text graphic needs 3:1.
+ * The hues are unchanged; each value is the original walked toward black until
+ * it cleared its threshold with a little headroom.
  * ==================================================================== */
 
 [data-md-color-scheme="academic"] {
@@ -29,13 +35,13 @@
   --c-primary:     #1a365d;
   --c-accent:      #2b6cb0;
   --c-text:        #1a202c;
-  --c-muted:       #718096;
+  --c-muted:       #626f83;   /* was #718096: 4.02:1 on white */
   --c-highlight:   #ebf4ff;
   --c-formula-bg:  #f7fafc;
   --c-code-bg:     #edf2f7;
   --c-pre-text:    #2d3748;
   --c-exam-bg:     #f0fff4;
-  --c-exam-border: #38a169;
+  --c-exam-border: #2b7d51;   /* was #38a169: 3.14:1 on the tip fill */
   --c-warn:        #fef3c7;
   --c-compare-h:   #92400e;
   --c-border:      #e2e8f0;
@@ -46,10 +52,10 @@
   --fig-surface-warn:   #fffaf0;
   --fig-surface-event:  #fff5f5;
   --fig-surface-ok:     #f0fff4;
-  --fig-node:           #a0aec0;
+  --fig-node:           #7d8998;   /* was #a0aec0: 2.03:1 on the field */
   --fig-node-soft:      #cbd5e0;
   --fig-line:           #4a5568;
-  --fig-label:          #718096;
+  --fig-label:          #626f83;   /* was #718096: 3.62:1 on the field */
   --fig-accent:         #2b6cb0;
   --fig-accent-deep:    #1a365d;
   --fig-on-accent:      #ffffff;
@@ -196,7 +202,16 @@
   --c-primary:     var(--fc-tan);
   --c-accent:      var(--fc-gold);
   --c-text:        var(--fc-text);
-  --c-muted:       var(--fc-text-muted);
+
+  /* NOT --fc-text-muted, and the deviation is ours rather than FaceCue's.
+     FaceCue uses that colour (#8A857F) for subtitle text on the panel, where it
+     measures 5.04:1 and is fine. This corpus also puts muted text on the
+     SECTION surface, inside the formula box and under figures, which FaceCue
+     never does, and there it drops to 4.08:1. Brightened just enough to clear
+     4.5:1 on the section while staying the same hue: 4.71:1 there, 5.81:1 on
+     the panel. */
+  --c-muted:       #95908B;
+
   --c-highlight:   var(--fc-hub-group);
   --c-formula-bg:  var(--fc-section);
   --c-code-bg:     var(--fc-section-header);

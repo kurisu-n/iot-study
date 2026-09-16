@@ -75,18 +75,24 @@ def sink():
             f'stroke="var(--fig-accent-deep)" stroke-width="1.8"/>')
 
 
-def node(p, kind="live"):
+def node(p, kind="live", cls="", style=""):
+    attr = (f' class="{cls}"' if cls else "") + (f' style="{style}"' if style else "")
     if kind == "hot":
         return (f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_NODE + 0.5}" fill="var(--fig-event)" '
-                f'stroke="var(--fig-event-deep)" stroke-width="1.6"/>')
+                f'stroke="var(--fig-event-deep)" stroke-width="1.6"{attr}/>')
     if kind == "dead":
         return (f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_NODE}" fill="none" '
-                f'stroke="var(--fig-line)" stroke-width="1.6"/>')
+                f'stroke="var(--fig-line)" stroke-width="1.6"{attr}/>')
+    if kind == "dying":
+        # Looks dead at rest (nearly hollow); the fig-die animation makes it fade
+        # from full to this state, so with motion off it reads as a dead node.
+        return (f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_NODE}" fill="var(--fig-node)" '
+                f'fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6"{attr}/>')
     return (f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{R_NODE}" fill="var(--fig-node)" '
-            f'stroke="var(--fig-line)" stroke-width="1.3"/>')
+            f'stroke="var(--fig-line)" stroke-width="1.3"{attr}/>')
 
 
-def arrow(p, q, stroke, width, r_from, r_to, dash=None, gap=3):
+def arrow(p, q, stroke, width, r_from, r_to, dash=None, gap=3, cls=""):
     (x1, y1), (x2, y2) = p, q
     d = math.hypot(x2 - x1, y2 - y1)
     if d == 0:
@@ -99,8 +105,9 @@ def arrow(p, q, stroke, width, r_from, r_to, dash=None, gap=3):
     hx, hy = tx - ux * head, ty - uy * head
     lx, ly = tx - ux * head * 0.8, ty - uy * head * 0.8
     dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
+    cls_attr = f' class="{cls}"' if cls else ""
     return (f'<line x1="{sx:.1f}" y1="{sy:.1f}" x2="{lx:.1f}" y2="{ly:.1f}" stroke="{stroke}" '
-            f'stroke-width="{width}"{dash_attr} stroke-linecap="round"/>'
+            f'stroke-width="{width}"{dash_attr}{cls_attr} stroke-linecap="round"/>'
             f'<polygon points="{tx:.1f},{ty:.1f} {hx + px * half:.1f},{hy + py * half:.1f} '
             f'{hx - px * half:.1f},{hy - py * half:.1f}" fill="{stroke}"/>')
 
@@ -135,13 +142,13 @@ def strain_panel(kind):
                 nxt = (max(X0 + 2, cur[0] - SLICE_W), cur[1])
                 tgt = SINK if s == steps - 1 else nxt
                 parts.append(arrow(cur, tgt, "var(--fig-warn)", 1.4,
-                                    R_NODE, SINK_HALF if tgt is SINK else R_NODE))
+                                    R_NODE, SINK_HALF if tgt is SINK else R_NODE, cls="fig-flow"))
                 cur = tgt
     else:
         for i in [6, 12, 18, 23]:
-            parts.append(arrow(NODES[i], SINK, "var(--fig-warn)", 1.6, R_NODE, SINK_HALF))
+            parts.append(arrow(NODES[i], SINK, "var(--fig-warn)", 1.6, R_NODE, SINK_HALF, cls="fig-flow"))
     for p in NODES:
-        parts.append(node(p, "hot" if hot(p) else "live"))
+        parts.append(node(p, "hot" if hot(p) else "live", cls="fig-strain" if hot(p) else ""))
     return svg(parts)
 
 
@@ -153,9 +160,9 @@ def choice_panel(option):
     dst = min((q for q in NODES if slice_of(q[0]) == slice_of(src[0]) - 1),
               key=lambda q: abs(q[1] - src[1]), default=None)
     if option == "hop" and dst is not None:
-        parts.append(arrow(src, dst, "var(--fig-warn)", 1.8, R_NODE, R_NODE))
+        parts.append(arrow(src, dst, "var(--fig-warn)", 1.8, R_NODE, R_NODE, cls="fig-flow"))
     elif option == "direct":
-        parts.append(arrow(src, SINK, "var(--fig-warn)", 3.0, R_NODE, SINK_HALF))
+        parts.append(arrow(src, SINK, "var(--fig-warn)", 3.0, R_NODE, SINK_HALF, cls="fig-flow"))
     for p in NODES:
         parts.append(node(p))
     parts.append(halo(src))
@@ -165,15 +172,27 @@ def choice_panel(option):
 
 
 def energy_panel(kind):
-    """kind: 'holes' drains the near-sink slice first; 'balanced' drains evenly."""
+    """kind: 'holes' drains the near-sink slice first; 'balanced' drains evenly.
+
+    Dead nodes are drawn as "dying": they rest looking dead (nearly hollow), and
+    the fig-die animation fades them from full to empty in an order set by their
+    animation-delay. In 'holes' the delay grows with distance from the sink, so
+    the near-sink nodes die first and the hole visibly opens; in 'balanced' the
+    delay is a small jitter, so the scattered deaths happen almost together.
+    """
     parts = [slices_bg(), sink()]
     rng = random.Random(3 if kind == "holes" else 7)
     for p in NODES:
         if kind == "holes":
             dead = slice_of(p[0]) == 1 or (slice_of(p[0]) == 2 and rng.random() < 0.4)
+            delay = (slice_of(p[0]) - 1) * 0.7
         else:
             dead = rng.random() < 0.25
-        parts.append(node(p, "dead" if dead else "live"))
+            delay = rng.uniform(0, 0.7)
+        if dead:
+            parts.append(node(p, "dying", cls="fig-die", style=f"animation-delay:{delay:.2f}s"))
+        else:
+            parts.append(node(p, "live"))
     return svg(parts)
 
 

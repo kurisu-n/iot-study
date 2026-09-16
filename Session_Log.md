@@ -652,3 +652,36 @@ in inline math `\(iR\)`, `\(cR^2\)`. General rule: symbolic quantities in prose 
 
 Built strict clean, deployed green (skeleton and chapter as separate commits). Next: routing metrics and
 ETX (chapter 4), the last 2026 exercise.
+
+## 2026-09-16 (late) · Chapter 3 p_i formula, then Chapter 4 (routing metrics + ETX)
+
+### Chapter 3: the computable p_i (new section 3.6)
+
+Chris asked whether "how p_i is chosen" should be added. Assessment: the *derivation* (the recurrence and
+exact closed form) is graduate-level and out of proportion with the exam's arithmetic exercises, so it stays
+in the beyond-scope box. But the *closed approximate form* p_i = 1 - 3x/((i+1)(i-1)), p_2 = 1/2 (slide 17)
+is exactly the LEACH-shaped plug-and-chug that could become an exercise, and it makes 3.5's qualitative
+behaviour concrete. Added it as section 3.6 with a traced p_3 and a table p_2..p_6 (rising toward 1),
+renumbered lifetime/comparison to 3.7/3.8, reconciled the two boxes that said "not needed".
+
+### Chapter 4: routing metrics and ETX
+
+Both of Chris's leanings (next-on-notes, 2026 Θέμα Δ) point here. Grounded in Lecture 4/5 (the full ETX
+taxonomy) and notes pages 15-16 (ETX = 1/(d_f d_r), the worked energy example). The 2026 Δ.1 is the notes'
+Example 2 applied to two links: per-attempt cost of a 5m link = E_c*b + E_tx(5)*b + E_c*b = 40*200 + 25*200
++ 40*200 = 21000 nJ; A→B = 4.3*21000 = 90300; B→C = 1.5*21000 = 31500; total = 121800 nJ = 121.8 μJ.
+Wrote 4.1-4.7 (link quality, the metric, the 3-route example, advantages/limits, the energy model with a
+traced Example 2, the worked Δ.1 traced in three steps, and a brief breadth section for MOR/ExOR/LTP/PFR
+marked beyond scope). `tools/etx_figures.py` for the 3-route and A-B-C figures. Filled the exam 2026 Δ.1
+answer. All three 2026 exercises now written.
+
+### Traps
+
+- The hook flagged `nJ` (inner-cap) as shorthand; it is a unit, added to proper_names. `ACK` needed a
+  terms entry + a define-first ("Acknowledgement (ACK)"). Two section headings had `ETX` in them; renamed
+  to acronym-free headings.
+- The dev server (`mkdocs serve` on 8090) wedged again mid-session and served an Edge error page to a
+  screenshot; killed the PID and restarted via preview_start. Build itself was always clean.
+
+Built strict clean, deployed green (chapters 3.6 and 4 as separate commits). Next: chapter 5 (energy-
+management synthesis) or 6 (scalar/vector, after reading Lecture 9), then priority 2 LoRaWAN.

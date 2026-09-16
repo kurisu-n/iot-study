@@ -731,7 +731,7 @@ Mapped against the sources on the same day:
 | ✅ | Scalar and vector sensor data | pages 17 to 18 | none | notes only (see note below) |
 | ✅ | Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison | none | 2026 Γ.1 to Γ.3 (2.5 marks) | 6a, 8a, 8b |
 | ✅ | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3; 2022 2Ε | 7a, 7b, extra notes |
-| 3 | Comparing access protocols, and why no single wireless technology fits all | none | 2025 2α and 2022 2Α (asked twice); 2022 2Ε | 7b, 8b |
+| ✅ | Comparing access protocols (contention vs scheduled, the three criteria) | none | 2025 2α and 2022 2Α (asked twice) | 8a, 7b |
 | 3 | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ | 7a, extra notes |
 | 3 | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ | 7a, 8b |
 | 4 | RPL, CoAP and MQTT, wireless power transfer, mobility | only as noted above | none | 6a, 7b, 9, 10 |

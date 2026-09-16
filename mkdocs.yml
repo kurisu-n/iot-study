@@ -153,7 +153,7 @@ nav:
       - "6. Βαθμωτά & Διανυσματικά ★": chapters/06-scalar-vector.md
       - 7. LPWAN & LoRaWAN: chapters/07-lpwan-lorawan.md
       - "8. Σχεδίαση IoT": chapters/08-iot-system-design.md
-      - "9. Πρωτόκολλα Πρόσβασης ○": chapters/09-access-protocols.md
+      - "9. Πρωτόκολλα Πρόσβασης": chapters/09-access-protocols.md
       - "10. Νέφος & Βιομηχανία 4.0 ○": chapters/10-cloud-edge-industry.md
       - "11. Ασφάλεια & Έξυπνες Πόλεις ○": chapters/11-security-smart-cities.md
       - "12. RPL & Πρωτόκολλα Εφαρμογής ○": chapters/12-rpl-app-protocols.md

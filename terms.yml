@@ -82,6 +82,9 @@ terms:
     - Network Simulator 2                        # not expanded in the course; the tool's own name
   RPL:
     - Routing Protocol for Low-power and Lossy Networks   # Lecture 6a
+  SF:
+    - Spreading Factor                           # Lecture 6a; LoRa's tunable range-vs-rate parameter
+    - Spread Factor
   WPT:
     - Wireless Power Transfer                    # Lecture 9
   WSN:
@@ -95,4 +98,6 @@ terms:
 # look like that are listed here.
 proper_names:
   - FaceCue
-  - nJ    # nanojoule, an energy unit; looks like shorthand but is not an abbreviation to expand
+  - LoRa   # the proprietary radio modulation LoRaWAN is built on (Semtech); a name, not an abbreviation
+  - nJ     # nanojoule, an energy unit; looks like shorthand but is not an abbreviation to expand
+  - kHz    # kilohertz, a frequency unit

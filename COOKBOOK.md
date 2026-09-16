@@ -729,7 +729,7 @@ Mapped against the sources on the same day:
 | ✅ | Routing metrics and ETX, including the multi-hop energy exercise | pages 15 to 16 | 2026 Δ.1 (2.5 marks) | 4 / 5 |
 | ✅ | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
 | ✅ | Scalar and vector sensor data | pages 17 to 18 | none | notes only (see note below) |
-| **2** | **Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison** | none | **2026 Γ.1 to Γ.3 (2.5 marks)** | 6a, 8a, 8b |
+| ✅ | Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison | none | 2026 Γ.1 to Γ.3 (2.5 marks) | 6a, 8a, 8b |
 | 3 | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3 | 7a, 7b, extra notes |
 | 3 | Comparing access protocols, and why no single wireless technology fits all | none | 2025 2α and 2022 2Α (asked twice); 2022 2Ε | 7b, 8b |
 | 3 | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ | 7a, extra notes |

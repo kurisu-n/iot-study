@@ -103,3 +103,101 @@ calls, the two repairs, and the rule that a new component gets a variable rather
 - The corpus is still one chapter. §3 of the cookbook lists the remaining nine.
 - The two untouched presets (Academic, Navy) are now the odd ones out stylistically. Whether they
   stay at all is Chris's call; they cost nothing to keep.
+
+---
+
+## 2026-09-16 · Ported to a built site, and published
+
+### What was asked
+
+Make a repository for this, the same way the FaceCue website works. And: does the domain matter for
+the repo name, or can any name be picked?
+
+### The domain question
+
+Any name. FaceCue's site is not GitHub Pages at all: Actions builds it and force-pushes the finished
+HTML to a `deploy` branch, and Hostinger pulls that branch. The domain lives entirely in Hostinger's
+configuration, so `FaceCue-Site` is an arbitrary name. The only case where a repository name is
+forced is a GitHub Pages **user** site, which must be `<username>.github.io`.
+
+Chris chose option C, the build-step architecture, with the name `iot-study`. Since the repository is
+public, the serving end went to GitHub Pages rather than Hostinger: free, no domain, no paid plan.
+
+### Retiring a principle
+
+The cookbook recorded "self-contained, one HTML file, opens in any browser" as a design decision, and
+option C is incompatible with it. Rather than quietly break it, it was put to Chris, who retired it.
+The cookbook now carries the retirement and the reason inline, so a later reader does not find a
+principle that the repository contradicts.
+
+The port itself was cheap because of the palette work earlier the same day: FaceCue's documentation
+*is* MkDocs Material wearing the two schemes we had just matched, so the corpus could reuse the
+tokens directly and Material's palette toggle replaced the hand-built panel.
+
+### The figures were theme-blind
+
+Found while porting, not looked for. Every SVG in Chapter 1 carried literal hex colours from the
+Academic palette: 21 distinct values, 178 occurrences. On a dark scheme the sensor-field ellipse
+would have been a pale blue glowing on near-black.
+
+The replacement is twenty `--fig-*` tokens declared per scheme. The substitution was done with `sed`
+rather than by hand, which is what made it a ten-minute job instead of an afternoon, and the result
+was verified by grepping for surviving literals (zero) and by reading the computed `fill` of real SVG
+elements in all four schemes.
+
+Academic maps every token back to its original literal, so it renders exactly as authored. That was
+deliberate: it is the scheme the diagrams were drawn against.
+
+### Three defects found by measuring, one of them mine
+
+**The MathJax delimiters were wrong, and this is the one worth remembering.** The live config showed
+`inlineMath: [["(", ")"]]` — bare parentheses — because the file contained `"\("` with a single
+backslash, and `\(` is not a JavaScript escape, so it collapses to `(`. MathJax was hunting bare
+parens, matching from the wrong place in every formula on the page.
+
+What made this hard to see is that it *looked* like a partial failure: 10 of 21 inline formulas
+rendered and 11 did not, which reads like a timing or config-scope problem. It was neither. All 21
+were being matched wrongly; the 10 that "worked" had matched from a stray paren and left a visible
+backslash in front of the output, and the 11 that failed had produced invalid TeX and been dropped.
+The leftover backslash in the DOM was the actual tell, and I chased two wrong theories (double
+typesetting, then the CDN) before reading the live `MathJax.config`.
+
+⚠ The cause was a **bash heredoc eating the escape.** The project rule says to use the Edit tool for
+anything with string literals rather than a heredoc; I used a heredoc for a JS file full of
+backslashes and got exactly the failure the rule exists to prevent. Two heredocs failed this session,
+the other on an apostrophe. Use Write and Edit for content.
+
+The other two:
+
+- `$$...$$` followed immediately by another line is parsed as part of the same paragraph and rendered
+  **inline**, not as display maths. Needs a blank line after it.
+- A `$...$` inside a figure caption never converts at all, because Markdown passes raw HTML blocks
+  through untouched. Written as an explicit `<span class="arithmatex">` instead.
+
+### Verification
+
+Against the **live** site, not the local build, since a 200 proves only that a file exists:
+
+- 20 of 20 inline formulas and 3 of 3 display blocks typeset, zero MathJax errors, no raw `$` left.
+- All four schemes cycle from the header toggle, and the figure's field fill changes with each one:
+  `#ebf4ff` → `#eae4d5` → `#2a4365` → `#2a2620`.
+- Contrast measured against two thresholds, 4.5:1 for text and 3:1 for non-text graphics. Warm Light,
+  Navy and Warm Dark pass every pair. Three fixes were needed to get there: Warm Light's sensor dots
+  were at 2.41:1, and the figure labels in both dark schemes sat just under 4.5:1.
+- The build's own colour guard runs clean.
+
+⚠ The preview pane clipped or mis-rendered almost every screenshot this session. The numeric probes
+are what the verification rests on; screenshots only ever confirmed the overall cast.
+
+### Left open, and one decision waiting
+
+- **Academic fails contrast in three places and was left alone on purpose.** Muted text 4.02:1, the
+  exam-tip heading 3.14:1, sensor dots 2.03:1. All three predate this work. Fixing them means
+  altering a palette that was authored deliberately, and Academic exists precisely to render the
+  diagrams as drawn. Chris's call, recorded in cookbook section 7.6 rather than silently changed.
+- Search runs the English lunr pipeline, because lunr ships no Greek stemmer. Greek text is tokenised
+  and searchable word for word; what is missing is stemming, so «κόμβος» does not also match
+  «κόμβου». Searching a stem works.
+- Nine chapters still to write.
+- The lecture PDFs (46 MB) are committed so the repository stands alone. MkDocs never sees them; only
+  `docs/` is published.

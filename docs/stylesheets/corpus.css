@@ -1371,3 +1371,40 @@ form[data-md-component="palette"] > label {
       padding .25s cubic-bezier(.86, 0, .07, 1), opacity .15s .1s, visibility 0ms;
   }
 }
+
+/* ========================================================================
+ * 15 - Abbreviations: the definition and every link back to it.
+ *
+ * Written by hooks/shorthand.py. A page defines each abbreviation where its
+ * full name first appears, and every later use links back there. Chapter 1
+ * alone carries over thirty such links, so they are styled as abbreviations,
+ * not as navigation: the text keeps its own colour and weight, and a dotted
+ * underline in the accent says there is more on hover or click. An ordinary
+ * link colour on every "DD" would turn a paragraph into a field of links.
+ * ==================================================================== */
+
+.md-typeset dfn.abbr-def {
+  font-style: normal;
+}
+
+.md-typeset a.abbr-link,
+.md-typeset a.abbr-link:visited {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--c-accent);
+  text-underline-offset: 0.18em;
+}
+
+.md-typeset a.abbr-link:hover,
+.md-typeset a.abbr-link:focus-visible {
+  color: var(--c-accent);
+  text-decoration-style: solid;
+}
+
+/* The definition is where a link lands, so it shows briefly which word the
+   reader was sent to. */
+.md-typeset dfn.abbr-def:target {
+  background: var(--c-highlight);
+  border-radius: 2px;
+}

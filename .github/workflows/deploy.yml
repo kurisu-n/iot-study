@@ -42,8 +42,16 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # The shorthand hook must still FAIL on shorthand. A checker that silently
+      # stopped catching anything would let every build below pass, so its own
+      # tests run first.
+      - name: Test the shorthand rule's checker
+        run: python tools/test_shorthand.py
+
       # --strict turns a broken internal link or a page missing from the nav
-      # into a failed build rather than a quiet gap on the live site.
+      # into a failed build rather than a quiet gap on the live site. The
+      # shorthand hook (hooks/shorthand.py) also fails it on any abbreviation
+      # used before it is defined on its page.
       - run: mkdocs build --strict
 
       # Every colour in a chapter must come from a theme token, or the diagrams

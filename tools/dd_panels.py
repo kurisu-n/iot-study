@@ -38,6 +38,7 @@ Or, to write each figure to its own file for inspection:
 """
 
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -209,8 +210,9 @@ for _a, _b in LINKS:
 # ---- The figures ----------------------------------------------------------
 #
 # Captions are HTML, in the corpus's voice: Greek prose, English terms, a slide
-# reference where the step comes straight from the lecture. (Δ2, διαφ. N) means
-# Lecture 2, slide N.
+# reference where the step comes straight from the lecture. References are
+# written out in full, "(Διάλεξη 2, διαφάνεια N)": hooks/shorthand.py fails the
+# build on the abbreviated form, including inside these captions.
 
 FIGURES = {
     "overview": {
@@ -234,22 +236,22 @@ FIGURES = {
             dict(active=["K"],
                  arrows=[("K", "A", "interest"), ("K", "B", "interest")],
                  caption="Ο Sink δημιουργεί ένα <em>task</em> και στέλνει στους γείτονές του ένα "
-                         "<strong>exploratory interest</strong> με <code>interval = 100 ms</code> (Δ2, διαφ. 10)."),
+                         "<strong>exploratory interest</strong> με <code>interval = 100 ms</code> (Διάλεξη 2, διαφάνεια 10)."),
             dict(active=["A", "B"],
                  arrows=[("K", "A", "interest"), ("K", "B", "interest"),
                          ("A", "C", "interest"), ("B", "D", "interest"),
                          ("A", "B", "interest", 1), ("B", "A", "interest", 1)],
                  caption="Οι A και B καταχωρούν το interest στο <strong>interest cache</strong> μαζί με "
-                         "ένα timestamp και το αναμεταδίδουν σε όλους τους γείτονές τους (Δ2, διαφ. 11)."),
+                         "ένα timestamp και το αναμεταδίδουν σε όλους τους γείτονές τους (Διάλεξη 2, διαφάνεια 11)."),
             dict(active=["C"],
                  arrows=[("A", "C", "interest"), ("D", "C", "interest", 1),
                          ("C", "D", "interest", 1)],
                  caption="Ο C λαμβάνει το <em>ίδιο</em> interest από τον A και από τον D. "
-                         "Η δεύτερη λήψη δεν δημιουργεί νέα εγγραφή στο cache (Δ2, διαφ. 11)."),
+                         "Η δεύτερη λήψη δεν δημιουργεί νέα εγγραφή στο cache (Διάλεξη 2, διαφάνεια 11)."),
             dict(active=["S"],
                  arrows=[("C", "S", "interest"), ("D", "S", "interest")],
                  caption="Το interest φτάνει στη Source. Δεν περιέχει καμία πληροφορία για τον Sink, "
-                         "και ο Sink το ανανεώνει περιοδικά μέχρι το <code>expiresAt</code> (Δ2, διαφ. 10)."),
+                         "και ο Sink το ανανεώνει περιοδικά μέχρι το <code>expiresAt</code> (Διάλεξη 2, διαφάνεια 10)."),
         ],
     },
 
@@ -259,15 +261,15 @@ FIGURES = {
             dict(active=["A"],
                  arrows=[("K", "A", "interest", 1), ("A", "K", "grad", 1)],
                  caption="Ο A λαμβάνει το interest από τον Sink και δημιουργεί <strong>gradient</strong> "
-                         "προς αυτόν, που αποθηκεύει <em>data rate</em> και <em>duration</em> (Δ2, διαφ. 11)."),
+                         "προς αυτόν, που αποθηκεύει <em>data rate</em> και <em>duration</em> (Διάλεξη 2, διαφάνεια 11)."),
             dict(active=["A"],
                  arrows=[("A", "K", "grad", 1), ("B", "A", "interest", 1), ("A", "B", "grad", 1)],
                  caption="Ο A λαμβάνει το ίδιο interest και από τον B. Αφού υπάρχει ήδη στο cache, "
-                         "προστίθεται <em>μόνο</em> νέο gradient, ένα ανά γείτονα (Δ2, διαφ. 11)."),
+                         "προστίθεται <em>μόνο</em> νέο gradient, ένα ανά γείτονα (Διάλεξη 2, διαφάνεια 11)."),
             dict(active=[],
                  arrows=ALL_GRADIENTS,
                  caption="Κάθε κόμβος κάνει το ίδιο, άρα οι γείτονες δημιουργούν gradients "
-                         "<strong>ο ένας προς τον άλλον</strong> (Δ2, διαφ. 12)."),
+                         "<strong>ο ένας προς τον άλλον</strong> (Διάλεξη 2, διαφάνεια 12)."),
             dict(active=["S"],
                  arrows=[("S", "C", "grad"), ("C", "A", "grad"), ("A", "K", "grad"),
                          ("S", "D", "grad"), ("D", "B", "grad"), ("B", "K", "grad")],
@@ -283,22 +285,22 @@ FIGURES = {
                  arrows=[("S", "C", "grad"), ("S", "D", "grad")],
                  caption="Η Source ανιχνεύει γεγονός που ταιριάζει με το interest. Διαλέγει τον "
                          "<strong>υψηλότερο</strong> ρυθμό που ζητούν τα gradients της και παράγει δείγματα "
-                         "σε αυτόν (Δ2, διαφ. 13)."),
+                         "σε αυτόν (Διάλεξη 2, διαφάνεια 13)."),
             dict(active=["S"],
                  arrows=[("S", "C", "data"), ("S", "D", "data")],
                  caption="Στέλνει κάθε data message ως <strong>unicast</strong> σε κάθε γείτονα όπου "
-                         "δείχνει gradient, εδώ στους C και D (Δ2, διαφ. 13)."),
+                         "δείχνει gradient, εδώ στους C και D (Διάλεξη 2, διαφάνεια 13)."),
             dict(active=["D"],
                  arrows=[("C", "A", "data"), ("D", "B", "data"), ("C", "D", "data")],
                  drops=["D"],
                  caption="Κάθε κόμβος ελέγχει το <strong>data cache</strong>. Ο D παίρνει από τον C μήνυμα "
                          "που έχει ήδη από τη Source, και το <em>απορρίπτει</em>. Ό,τι είναι νέο αποθηκεύεται "
-                         "και προωθείται (Δ2, διαφ. 14)."),
+                         "και προωθείται (Διάλεξη 2, διαφάνεια 14)."),
             dict(active=["K"],
                  arrows=[("A", "K", "data"), ("B", "K", "data")],
                  caption="Τα διερευνητικά δεδομένα φτάνουν στον Sink από δύο μονοπάτια. Όπου ένα gradient "
                          "ζητά χαμηλότερο ρυθμό από τον εισερχόμενο, ο κόμβος κάνει "
-                         "<strong>down-conversion</strong> πριν προωθήσει (Δ2, διαφ. 14)."),
+                         "<strong>down-conversion</strong> πριν προωθήσει (Διάλεξη 2, διαφάνεια 14)."),
         ],
     },
 
@@ -313,19 +315,19 @@ FIGURES = {
                  arrows=[("K", "A", "reinforce", 1), ("A", "K", "grad-strong", 1)],
                  caption="Ο Sink <strong>ενισχύει</strong> τον A: του ξαναστέλνει το ίδιο interest με "
                          "<code>interval = 10 ms</code> αντί για 100 ms. Ο A αναβαθμίζει το gradient του "
-                         "προς τον Sink (Δ2, διαφ. 16)."),
+                         "προς τον Sink (Διάλεξη 2, διαφάνεια 16)."),
             dict(active=["C"],
                  arrows=[("A", "K", "grad-strong"),
                          ("A", "C", "reinforce", 1), ("C", "A", "grad-strong", 1),
                          ("C", "S", "reinforce", 1), ("S", "C", "grad-strong", 1)],
                  caption="Ο ζητούμενος ρυθμός είναι πλέον <em>υψηλότερος</em> από αυτόν που δέχεται ο A, "
                          "οπότε ενισχύει κι εκείνος τον γείτονα που του έφερε πρώτος το γεγονός, τον C, "
-                         "κι ο C τη Source (Δ2, διαφ. 16–17)."),
+                         "κι ο C τη Source (Διάλεξη 2, διαφάνειες 16 έως 17)."),
             dict(active=[],
                  arrows=[("S", "C", "grad-strong"), ("C", "A", "grad-strong"), ("A", "K", "grad-strong"),
                          ("S", "D", "grad"), ("D", "B", "grad"), ("B", "K", "grad")],
                  caption="Τα δεδομένα ρέουν με υψηλό ρυθμό στο <strong>ενισχυμένο μονοπάτι</strong>. "
-                         "Τα διερευνητικά gradients λήγουν όσο δεν ανανεώνονται (Δ2, διαφ. 20)."),
+                         "Τα διερευνητικά gradients λήγουν όσο δεν ανανεώνονται (Διάλεξη 2, διαφάνεια 20)."),
         ],
     },
 
@@ -335,13 +337,13 @@ FIGURES = {
             dict(active=["A"],
                  arrows=[("S", "C", "grad-strong"), ("C", "A", "degraded"), ("A", "K", "grad-strong")],
                  caption="Η ζεύξη C → A <strong>υποβαθμίζεται</strong>. Ο A το αντιλαμβάνεται επειδή "
-                         "τα γεγονότα από τον C φτάνουν πιο αραιά (Δ2, διαφ. 19)."),
+                         "τα γεγονότα από τον C φτάνουν πιο αραιά (Διάλεξη 2, διαφάνεια 19)."),
             dict(active=["A"],
                  arrows=[("S", "C", "grad-strong"), ("C", "A", "degraded"), ("A", "K", "grad-strong"),
                          ("A", "B", "reinforce", 1), ("B", "D", "reinforce", 1), ("D", "S", "reinforce", 1),
                          ("S", "D", "grad-strong", 1), ("D", "B", "grad-strong", 1), ("B", "A", "grad-strong", 1)],
                  caption="Ο A εφαρμόζει <strong>τοπικά</strong> τους ίδιους κανόνες ενίσχυσης: ενισχύει "
-                         "τον B, και η ενίσχυση ταξιδεύει μέσω D ως τη Source (Δ2, διαφ. 19)."),
+                         "τον B, και η ενίσχυση ταξιδεύει μέσω D ως τη Source (Διάλεξη 2, διαφάνεια 19)."),
             dict(active=["C"],
                  arrows=[("S", "D", "grad-strong"), ("D", "B", "grad-strong"), ("B", "A", "grad-strong"),
                          ("A", "K", "grad-strong"),
@@ -349,7 +351,7 @@ FIGURES = {
                          ("C", "A", "grad", 1), ("S", "C", "grad", 1)],
                  caption="<strong>Αρνητική ενίσχυση:</strong> ο A στέλνει στον C interest με διερευνητικό "
                          "ρυθμό. Όλα τα εξερχόμενα gradients του C είναι πλέον διερευνητικά, άρα ενισχύει "
-                         "αρνητικά τη Source, και το παλιό μονοπάτι αποκόπτεται (Δ2, διαφ. 20)."),
+                         "αρνητικά τη Source, και το παλιό μονοπάτι αποκόπτεται (Διάλεξη 2, διαφάνεια 20)."),
         ],
     },
 }
@@ -402,7 +404,11 @@ def figure_html(name, caption):
             '</div>'
         )
     cols = " steps--three" if len(spec["panels"]) == 3 else ""
-    return (f'<figure class="steps{cols}">\n'
+    # The id is the figure's number, so the text can link to it: "Σχήμα 1.3" in
+    # the caption is id="fig-1-3".
+    number = re.search(r"Σχήμα (\d+)\.(\d+)", caption)
+    fig_id = f' id="fig-{number.group(1)}-{number.group(2)}"' if number else ""
+    return (f'<figure class="steps{cols}"{fig_id}>\n'
             f'<div class="steps__grid">{"".join(cells)}</div>\n'
             f'{legend_html(spec["legend"])}\n'
             f'<figcaption>{caption}</figcaption>\n'

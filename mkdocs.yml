@@ -25,6 +25,17 @@ site_url: https://iot.chris-nasiou.com/
 docs_dir: docs
 site_dir: site
 
+# The shorthand rule: every abbreviation defined on the page before it is used,
+# and every later use linked back to that definition. Fails the build on any
+# violation. The abbreviations it knows are in terms.yml.
+hooks:
+  - hooks/shorthand.py
+
+# A link to an anchor that does not exist is a build failure under --strict, so a
+# cross-reference to a section or figure cannot silently point nowhere.
+validation:
+  anchors: warn
+
 theme:
   name: material
   language: el
@@ -39,6 +50,9 @@ theme:
     - toc.follow
     - search.highlight
     - search.suggest
+    # Shows an abbreviation's full name on hover over its link, from the title
+    # the shorthand hook writes.
+    - content.tooltips
     - content.code.copy
 
   # Four schemes, presented as a dropdown rather than Material's cycler. The

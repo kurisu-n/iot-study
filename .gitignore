@@ -16,3 +16,6 @@ Thumbs.db
 # FaceCue site venv, because pip cannot reach PyPI through the TLS proxy on
 # this machine. Nothing another checkout should inherit.
 .claude/
+
+# Written by hooks/shorthand.py when the build finds shorthand problems.
+shorthand-report.txt

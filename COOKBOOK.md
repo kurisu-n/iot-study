@@ -484,8 +484,8 @@ became an exam warning, not a silent pick.
 
 | Form | Meaning |
 |:---|:---|
-| **(Δ2, διαφ. 16)** | Lecture 2, slide 16 |
-| **(χειρόγρ. σημ., σ. 9)** | The handwritten class notes, page 9 |
+| **(Διάλεξη 2, διαφάνεια 16)** | Lecture 2, slide 16. Plural for a range: "διαφάνειες 25 έως 27" |
+| **(χειρόγραφες σημειώσεις, σελίδα 9)** | The handwritten class notes, page 9 |
 | `!!! extra "Εκτός ύλης"` | A paragraph or more that comes from neither |
 | `<span class="extra-tag">εκτός ύλης</span>` | A single claim that comes from neither |
 
@@ -494,7 +494,10 @@ property. **What does not** is explanation that only unpacks course material: an
 consequence, a "because". Marking every inference would bury the page.
 
 ⚠ Check a suspicion before marking it. "Energy holes" looked extracurricular in Chapter 1 and is not:
-it is in the handwritten notes and on Δ3, διαφ. 4.
+it is in the handwritten notes and on Lecture 3, slide 4.
+
+⛔ Citations are written out in full. The abbreviated forms used until 2026-09-16, "(Δ2, διαφ. 16)"
+and "(χειρόγρ. σημ., σ. 9)", now fail the build; see §9.9.
 
 ### 9.3 Every section ends with "Τι να περιμένετε στην εξέταση"
 
@@ -502,9 +505,9 @@ it is in the handwritten notes and on Δ3, διαφ. 4.
 !!! exam "Τι να περιμένετε στην εξέταση"
 
     <div class="exam-record">
-      <span class="exam-chip is-hit"><strong>6/2/2026</strong> Θέμα Α.1, 1 μονάδα</span>
-      <span class="exam-chip"><strong>15/2/2025</strong> όχι</span>
-      <span class="exam-chip"><strong>2/2022</strong> όχι</span>
+      <a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Α.1, 1 μονάδα</a>
+      <a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a>
+      <a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a>
     </div>
 
     What was asked, paraphrased. How to answer it. Traps.
@@ -628,3 +631,51 @@ takes a coloured stripe and a tinted row. Code in `corpus.css` section 14 and `j
   hard-wired to its own page order.
 - ⚠ **Deliberately different:** FaceCue hides the sidebar's title row at every width. Here it is hidden on
   desktop only, because on a phone Material's drawer uses that row as the back control inside a chapter.
+
+### 9.9 No shorthand, anywhere
+
+Ruled by Chris, 2026-09-16: **no shorthand anywhere.** An abbreviation may only appear after its full name
+has been written out, and every use after that links back to where it was written out. References to
+other things get links too.
+
+**It is enforced by the build, not by care.** `hooks/shorthand.py` reads every rendered page and fails
+the build on any of:
+
+| Problem | Example that fails |
+|:---|:---|
+| An abbreviation used before its full name on the same page | "Το WSN είναι…" with no "Wireless Sensor Network (WSN)" above it |
+| Shorthand in a heading | "## Τα όρια του DD" (headings use the full name) |
+| An acronym missing from `terms.yml` | "CH", until it is listed |
+| A word with an inner capital that is not a listed name | "WiFi", "LoRaWAN" unlisted |
+| A Greek abbreviation | "π.χ.", "διαφ.", "σελ.", "Δ2" |
+
+**How to write a definition:** the full name, then the abbreviation inside parentheses, within about
+160 characters: "Directed Diffusion (DD)" or "ασύρματο δίκτυο αισθητήρων (Wireless Sensor Network, WSN)".
+The hook turns that first abbreviation into the anchor and **every later use on the page into a link
+back to it**, with the full name as a tooltip. Authors write plain "DD" in the Markdown; the links are
+generated.
+
+**Per page, on purpose.** Each page defines its own abbreviations, so a reader who opens Chapter 5
+directly still meets "WSN" spelled out before it is used. The cost is a little repetition across
+chapters; the gain is that no chapter depends on having read another.
+
+**Adding a term:** list it in `terms.yml` with the full names it may be introduced by, and note where
+the course spells it out. `ns-2` is the one expansion the course never gives; it uses the tool's own
+name.
+
+**Cross-references.** Section headings carry stable English ids (`{#flat-vs-hierarchical}`), figures
+carry their number (`fig-1-3`), and the front page's exam table is `#exam-papers`, which every exam
+chip links to. `validation: anchors: warn` in `mkdocs.yml` makes a Markdown link to a missing anchor a
+strict-build failure. ⚠ The exam chips are raw HTML, so MkDocs neither rewrites nor validates their
+`../../#exam-papers` path; it is correct for a page two levels deep, which every chapter is.
+
+**Tests.** `tools/test_shorthand.py` feeds the hook deliberately broken input, since a checker that only
+ever sees clean pages proves nothing. The deploy workflow runs it before building. 10 cases as of
+2026-09-16, covering each failure above plus the places it must stay silent: code, maths and SVG.
+
+⏳ **Not linked yet, and why:**
+- **"Κεφάλαιο 2", "Κεφάλαιο 3"** in Chapter 1: those chapters do not exist, and a link to a missing page
+  fails the strict build. Link them when they are written.
+- **Slide citations** ("Διάλεξη 2, διαφάνεια 16") point at the lecture PDFs, which are in the repository
+  but not published. Linking would mean publishing them; a browser opens `file.pdf#page=16` at that
+  page. Decision for Chris.

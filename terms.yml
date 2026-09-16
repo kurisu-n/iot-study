@@ -1,0 +1,59 @@
+# The abbreviations this corpus may use, and what each one stands for.
+#
+# Read by hooks/shorthand.py on every build. The rule it enforces (Chris,
+# 2026-09-16): no shorthand anywhere. An abbreviation may appear on a page only
+# after its full name has been written out on that same page, immediately
+# followed by the abbreviation in parentheses, e.g. "Directed Diffusion (DD)".
+# That first mention becomes the definition, and every later use on the page is
+# linked back to it automatically.
+#
+# Each entry lists the full names the definition may use. The first is used as
+# the link's tooltip. Where the course material spells the term out, that
+# wording is used; the source is noted beside each entry.
+#
+# ⛔ An acronym that is NOT listed here fails the build, as does a Greek
+# abbreviation like "π.χ." or "διαφ.". Add a term here before using it.
+
+terms:
+  BS:
+    - Base Station                               # Lecture 2, slide 2 figure; the course's control centre
+  DD:
+    - Directed Diffusion                         # Lecture 2, slides 5 to 8
+  EBP:
+    - Energy Balance Protocol                    # Lecture 3, slide 4
+  ETX:
+    - Expected Transmission Count                # handwritten notes, pages 15 to 16
+  IEEE:
+    - Institute of Electrical and Electronics Engineers
+  IoT:
+    - Internet of Things
+    - Διαδίκτυο των Πραγμάτων
+  LEACH:
+    - Low Energy Adaptive Clustering Hierarchy   # Lecture 2, slide 40
+  LoRaWAN:
+    - Long Range Wide Area Network               # Lecture 6a
+  LPWAN:
+    - Low Power Wide Area Network                # Lecture 6a
+    - Low Power Wide Area Networks
+  MAC:
+    - Medium Access Control                      # Lecture 8a
+  MANET:
+    - Mobile Ad-Hoc Network                      # 2022 exam, question 2C
+    - Mobile Ad-Hoc Networks
+  ns-2:
+    - Network Simulator 2                        # not expanded in the course; the tool's own name
+  RPL:
+    - Routing Protocol for Low-power and Lossy Networks   # Lecture 6a
+  WPT:
+    - Wireless Power Transfer                    # Lecture 9
+  WSN:
+    - Wireless Sensor Network                    # 2022 exam and the extra notes
+    - Wireless Sensor Networks
+    - Ασύρματο Δίκτυο Αισθητήρων
+    - Ασύρματα Δίκτυα Αισθητήρων
+
+# Mixed-case words that are names, not abbreviations. The hook flags any word
+# with an inner capital (IoT, LoRaWAN) as possible shorthand, so real names that
+# look like that are listed here.
+proper_names:
+  - FaceCue

@@ -178,6 +178,8 @@ After corpus is complete:
 | 2026-09-16 | Ported to a built MkDocs Material site; Chapter 1 converted to Markdown (see §8) |
 | 2026-09-16 | Figures made theme-aware: 21 literal SVG colours replaced by 20 `--fig-*` tokens |
 | 2026-09-16 | Repository created and published to GitHub Pages |
+| 2026-09-16 | Moved to iot.chris-nasiou.com (Hostinger); GitHub Pages removed |
+| 2026-09-16 | Theme selector made a dropdown; FaceCue Ανοιχτό made the default |
 
 ---
 
@@ -198,8 +200,8 @@ After corpus is complete:
 
 ## 7. The Theme System
 
-Four colour schemes, cycled by the icon in the site header. Nothing about the prose or the diagrams
-depends on which one is active, so a scheme is purely a palette swap.
+Four colour schemes, chosen from a dropdown in the site header. Nothing about the prose or the
+diagrams depends on which one is active, so a scheme is purely a palette swap.
 
 > ⚠ **Changed 2026-09-16.** Until the port to MkDocs, this was a hand-built floating 🎨 panel in the
 > single HTML file, with its own colour pickers and a Copy Style button. Material's palette toggle
@@ -208,15 +210,67 @@ depends on which one is active, so a scheme is purely a palette swap.
 
 ### 7.1 The four presets
 
-| Scheme | CSS name | What it is |
-|:---|:---|:---|
-| ☀️ Academic | `academic` | The original white-and-navy default. Untouched. |
-| ☀️ Warm | `warm-light` | **The FaceCue documentation light scheme.** |
-| 🌙 Navy | `navy` | Dark slate and pale blue. Untouched apart from a table-header repair. |
-| 🌙 Warm | `warm-dark` | **The FaceCue documentation dark scheme.** |
+| # | Menu name | CSS name | What it is |
+|:---:|:---|:---|:---|
+| 1 | ☀️ FaceCue Ανοιχτό | `warm-light` | **The FaceCue documentation light scheme. The default.** |
+| 2 | 🌙 FaceCue Σκούρο | `warm-dark` | **The FaceCue documentation dark scheme.** |
+| 3 | ☀️ Ακαδημαϊκό | `academic` | The original white-and-navy scheme. |
+| 4 | 🌙 Σκούρο Μπλε | `navy` | Dark slate and pale blue. |
 
 All four live in `docs/stylesheets/corpus.css`, one block each, and are listed in `mkdocs.yml` under
-`theme.palette` in the order the toggle cycles them.
+`theme.palette`.
+
+⛔ **The order in `mkdocs.yml` is meaningful twice over.** The first entry is the default for a reader
+who has never chosen, and the dropdown lists them in that order: the two FaceCue schemes first, then
+this corpus's own two, light before dark in each pair.
+
+### 7.1.1 The dropdown
+
+Material's palette control is a *cycler*: one button, each click advancing to the next scheme. With
+four schemes that means up to three clicks to reach one, without seeing what you are choosing.
+`docs/javascripts/palette-menu.js` replaces it with a menu listing all four, each with its icon, its
+name and a small swatch previewing that scheme's page and heading colours.
+
+⭐ **It drives Material's palette rather than replacing it.** Material still renders a radio per
+scheme and still owns what happens on a change: the scheme attribute on `<body>`, the localStorage
+that remembers a choice, and instant navigation. The menu only clicks the right radio. That is why a
+choice survives a reload and a page change without the menu storing anything itself.
+
+Four traps, all of them found by testing rather than anticipated:
+
+- ⚠ **Labels pair with radios by index, not by `for`.** Material's label N carries scheme N's icon and
+  name, but its `for` points at scheme N+1, because in the cycler the label *is* the "next" button.
+  Pairing by `for` gives every row the wrong icon, off by one, which looks plausible.
+- ⚠ **`toggle.name` and `toggle.icon` must describe their own scheme.** In the cycler they describe
+  what the *next* click gives. Once the menu shows entry N's name beside entry N's radio, they have to
+  name themselves.
+- ⛔ **Hide Material's labels with CSS, never with the `hidden` attribute.** Material toggles `hidden`
+  on them every time the scheme changes, so setting it once works until the first pick, and then a
+  second icon appears in the header beside the menu button.
+- ⛔ **Read the active scheme from `<body>`, not from `input.checked`.** Material restores a
+  remembered choice *after* the menu is built, so at build time no radio is checked and the tick
+  lands on the first row. That is invisible whenever the first row is also the default, which it is,
+  so it only shows for a reader who chose something else and came back. The menu watches the
+  attribute with a `MutationObserver` rather than racing it.
+
+The localStorage key is namespaced by the site's base path (`/.__palette` at the root). It moved when
+the site moved off `/iot-study/`, so a choice made on the old address does not carry over.
+
+### 7.1.2 Every scheme block declares every token it reads
+
+The swatch preview exposed a structural flaw. It works by giving each swatch its own
+`data-md-color-scheme`, so that span resolves *that* scheme's tokens while the page keeps the active
+one. For Warm Dark it drew a light circle.
+
+Warm Dark had never declared its own `--fc-*` tokens. It inherited them from `:root`, where
+`fc-tokens.css` puts the dark values. That holds only while Warm Dark is the *outermost* scheme. Nest
+it inside a Warm Light element and inheritance finds Warm Light's re-declared tokens first. The
+swatch was simply the first thing ever to nest one scheme inside another.
+
+Warm Dark now declares all nineteen `--fc-*` tokens itself, mirroring `fc-tokens.css`, so every scheme
+block is correct wherever it sits. The cost is duplication: **change a FaceCue dark value in both
+places.** Measured afterwards, every swatch resolves to identical colours under all four active
+schemes, and the page contrast figures did not move.
 
 ### 7.2 Where the two Warm palettes come from
 

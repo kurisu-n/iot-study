@@ -192,11 +192,37 @@
 /* ========================================================================
  * 4 - WARM DARK, the FaceCue documentation's dark scheme.
  *
- * The --fc-* tokens are NOT repeated here. fc-tokens.css declares the dark set
- * on :root, so this scheme inherits every one of them and only maps the roles.
+ * The --fc-* tokens ARE repeated here, although fc-tokens.css already puts the
+ * same dark values on :root. This block used to rely on inheriting them, and
+ * that only holds while warm-dark is the OUTERMOST scheme on the page. Nest a
+ * warm-dark element inside a warm-light one and inheritance finds warm-light's
+ * re-declared tokens first: the theme menu's warm-dark swatch did exactly that
+ * on 2026-09-16 and drew a light circle. Every scheme block now declares every
+ * token it reads, so each one is correct wherever it sits. Values mirror
+ * fc-tokens.css; change both together.
  * ==================================================================== */
 
 [data-md-color-scheme="warm-dark"] {
+  --fc-panel:          #141414;
+  --fc-section:        #282726;
+  --fc-section-header: #1E1D1C;
+  --fc-section-border: #3A3836;
+  --fc-headless:       #2E2D2C;
+  --fc-hub-group:      #2A2620;
+  --fc-hairline:       #7A6A40;
+  --fc-callout-border: #6B5E38;
+  --fc-text:           #CCCCCC;
+  --fc-text-bright:    #E6E6E6;
+  --fc-text-muted:     #8A857F;
+  --fc-tan:            #D0C090;
+  --fc-gold:           #C09A5C;
+  --fc-olive:          #6A5A4A;
+  --fc-red:            #F27373;
+  --fc-yellow:         #F2C766;
+  --fc-green:          #5CB85C;
+  --fc-blue:           #73A2E6;
+  --fc-warning-bg:     #2C2721;
+
   --c-bg:          var(--fc-panel);
   --c-bg-alt:      var(--fc-section);
   --c-primary:     var(--fc-tan);
@@ -494,4 +520,150 @@
   }
   .anim-flow-right,
   .anim-flow-left { stroke-dasharray: none; }
+}
+
+/* ========================================================================
+ * 9 - The theme dropdown.
+ *
+ * Material's palette is a cycler: one button, each click advancing to the next
+ * scheme. docs/javascripts/palette-menu.js replaces that button with a menu
+ * listing all four, and still drives Material's own radios underneath.
+ *
+ * The menu paints itself from the ACTIVE scheme's tokens, like the rest of the
+ * page. The one exception is each row's swatch, which carries its own
+ * data-md-color-scheme and so resolves that scheme's tokens instead. That is
+ * what lets a row preview the scheme it selects.
+ * ==================================================================== */
+
+.theme-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Material's own cycler labels. Hidden with CSS rather than the `hidden`
+   attribute, because Material toggles `hidden` on these every time the scheme
+   changes: set it once and the next pick shows the active scheme's label again,
+   leaving a second icon in the header beside the menu button. */
+form[data-md-component="palette"] > label {
+  display: none !important;
+}
+
+.theme-menu__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: currentcolor;
+  padding: 0;
+}
+
+.theme-menu__button-icon {
+  display: flex;
+}
+
+.theme-menu__button-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentcolor;
+}
+
+.theme-menu__list {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  z-index: 100;
+
+  display: none;
+  min-width: 11.5rem;
+  padding: 0.25rem;
+
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+
+  font-family: var(--md-text-font), sans-serif;
+}
+
+.theme-menu.is-open .theme-menu__list {
+  display: block;
+}
+
+.theme-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  color: var(--c-text);
+  font-size: 0.68rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.theme-menu__item:hover,
+.theme-menu__item:focus-visible {
+  background: var(--c-highlight);
+}
+
+.theme-menu__item.is-active {
+  color: var(--c-primary);
+  font-weight: 700;
+}
+
+.theme-menu__icon {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.theme-menu__icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: currentcolor;
+}
+
+.theme-menu__name {
+  flex: 1 1 auto;
+}
+
+/* The preview chip. Its background is the scheme's page colour and the dot
+   inside is that scheme's heading colour, so a row shows the two colours that
+   actually distinguish one scheme from another. */
+.theme-menu__swatch {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+}
+
+.theme-menu__swatch i {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
+/* The header is a flex row that can clip an absolutely positioned child on
+   narrow screens. Anchoring the menu to the header itself rather than to the
+   button keeps it on screen at phone width. */
+@media screen and (max-width: 44.98em) {
+  .theme-menu__list {
+    right: -0.4rem;
+  }
 }

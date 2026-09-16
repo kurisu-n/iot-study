@@ -41,30 +41,40 @@ theme:
     - search.suggest
     - content.code.copy
 
-  # Four schemes, cycled by one button in the header. The two Warm schemes are
-  # the FaceCue documentation palette; Academic and Navy are this corpus's own.
-  # Material cycles in list order, so the order here is the click order, and
-  # each entry's `toggle.name` is the tooltip for what the NEXT click gives you.
+  # Four schemes, presented as a dropdown rather than Material's cycler. The
+  # form Material renders is still what drives the change: the dropdown in
+  # docs/javascripts/palette-menu.js clicks these radios, so Material keeps
+  # handling the scheme attribute and the localStorage that remembers a choice.
+  #
+  # ⛔ ORDER IS MEANINGFUL, in two ways. The FIRST entry is the default for a
+  # reader who has never chosen, so warm-light leads. And the dropdown lists
+  # them in this order, so it reads: the two FaceCue schemes, then the two of
+  # this corpus's own, light before dark in each pair.
+  #
+  # ⚠ Each entry's `toggle.icon` and `toggle.name` describe THAT scheme, not
+  # what clicking does next. Material's cycler means the opposite, and these
+  # said so until the dropdown replaced it. The menu pairs entry N's icon and
+  # name with entry N's radio, so they have to describe themselves.
   palette:
-    - scheme: academic
-      toggle:
-        icon: material/white-balance-sunny
-        name: Ζεστό ανοιχτό θέμα
-
     - scheme: warm-light
       toggle:
-        icon: material/weather-sunny
-        name: Σκούρο θέμα
-
-    - scheme: navy
-      toggle:
-        icon: material/weather-night
-        name: Ζεστό σκούρο θέμα
+        icon: material/white-balance-sunny
+        name: FaceCue Ανοιχτό
 
     - scheme: warm-dark
       toggle:
         icon: material/moon-waning-crescent
-        name: Ανοιχτό ακαδημαϊκό θέμα
+        name: FaceCue Σκούρο
+
+    - scheme: academic
+      toggle:
+        icon: material/weather-sunny
+        name: Ακαδημαϊκό
+
+    - scheme: navy
+      toggle:
+        icon: material/weather-night
+        name: Σκούρο Μπλε
 
 extra_css:
   - stylesheets/fc-tokens.css
@@ -91,6 +101,7 @@ markdown_extensions:
       permalink_title: Σύνδεσμος σε αυτή την ενότητα
 
 extra_javascript:
+  - javascripts/palette-menu.js
   - javascripts/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 

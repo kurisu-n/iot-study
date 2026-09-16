@@ -328,3 +328,83 @@ directory.
 - **Hostinger's git integration still has to be pointed at the `deploy` branch** in hPanel, with the
   subdomain's docroot as the target. That is the one step that cannot be done from here. Until then
   the subdomain keeps answering 403, and that is expected rather than a fault.
+
+
+---
+
+## 2026-09-16 (evening) · Theme selector as a dropdown, FaceCue Ανοιχτό by default
+
+### What was asked
+
+Hostinger confirmed working. Then: turn the theme button into a dropdown that shows all four and lets
+you pick; make the FaceCue light scheme the default; order them FaceCue light, FaceCue dark, light,
+dark. Mid-way, Chris added: title-case the names.
+
+### The approach
+
+Material's palette control is a cycler, so a dropdown means custom code, and there were two ways to
+write it. A fully custom selector would own its own localStorage and scheme switching, duplicating
+logic Material already has and drifting from it. The menu written instead **clicks Material's own
+radios**, so persistence, the `<body>` attribute and instant navigation all stay Material's. The menu
+stores nothing.
+
+Default and order both come from `mkdocs.yml`: Material treats the first palette entry as the default,
+and the menu lists entries in file order.
+
+### Four bugs, every one found by testing
+
+The first two came from reading Material's markup before writing anything, which is the only reason
+they were never shipped:
+
+- **Label N carries scheme N's icon, but its `for` points at scheme N+1**, because in the cycler the
+  label is the "next" button. Pairing by index, not by `for`.
+- **`toggle.name` described the next click**, as it should for a cycler. Rewritten to name each scheme
+  itself.
+
+The other two only appeared in testing, and both were the kind that passes the obvious check:
+
+**The tick was on the wrong row after a reload.** The first test cleared storage, loaded the page,
+and saw the tick on "FaceCue Ανοιχτό", which was correct, because that is the default. It only broke
+for a *remembered* non-default: `navy` applied, tick still on row 1. Material restores the choice
+after the menu is built, so reading `input.checked` at build time found nothing checked. Now reads the
+attribute on `<body>` and watches it with a `MutationObserver`.
+
+⭐ A default-state test cannot catch a bug whose symptom *is* the default state. The check has to
+start from something other than the default.
+
+**A second icon appeared in the header, and the dark swatch was light.** These only showed once a
+screenshot rendered properly, after numbers had passed. Diagnosed before fixing:
+
+- Material toggles `hidden` on its labels on every scheme change, undoing the menu's one-time `hidden`.
+  Now hidden by a CSS rule it cannot toggle.
+- The Warm Dark swatch resolved `--fc-panel` to `#FAF8F3`, Warm Light's value. Warm Dark had always
+  *inherited* its `--fc-*` tokens from `:root`, which only works while it is the outermost scheme. The
+  swatch nests it inside `<body data-md-color-scheme="warm-light">`, where inheritance finds Warm
+  Light's tokens first. This was a latent flaw in the scheme structure, not in the swatch: the swatch
+  was just the first thing to nest one scheme in another. Warm Dark now declares all nineteen tokens.
+
+### A detour: a stale dev server
+
+Mid-test, instant navigation landed on `/iot-study/`, the old base path. Before touching config, the
+build output was checked and found clean; the only mentions of `iot-study` were historical comments.
+The `mkdocs serve` process had been started before `site_url` moved to the root and was still
+mounting the old path. Restarted, and the problem went with it.
+
+⚠ `mkdocs serve` picks up content and most config changes live, but not a change to the mount path.
+After editing `site_url`, restart it.
+
+### Verification
+
+- Fresh visitor gets `warm-light`; menu order FaceCue Ανοιχτό, FaceCue Σκούρο, Ακαδημαϊκό, Σκούρο Μπλε.
+- Every item applies its scheme, moves the tick, and closes the menu; outside click and Escape close it.
+- A remembered non-default survives reload with the tick on the right row.
+- Instant navigation: one menu (not two), choice carried over, figure follows the scheme, maths still
+  typesets 20 of 20.
+- Exactly one visible header icon under every active scheme.
+- Every swatch resolves identically under all four active schemes.
+- Page contrast regression after restructuring Warm Dark: figures unchanged, all four still pass.
+
+### Left open
+
+- A reader who picked a scheme on the old GitHub Pages address loses it: Material namespaces the
+  storage key by base path, and the path changed.

@@ -20,8 +20,12 @@ terms:
   CH:
     - cluster head                               # Lecture 2, slides 41 to 45
     - cluster heads
+  CoAP:
+    - Constrained Application Protocol           # Lecture 7b; application-layer protocol for IoT
   CSMA:
     - Carrier Sense Multiple Access              # Lecture 8a, slide 5
+  MQTT:
+    - Message Queuing Telemetry Transport        # Lecture 7b; the name is officially just "MQTT" now
   DT:
     - Direct Transmission                        # Lecture 2, slides 60 and 67
   MTE:

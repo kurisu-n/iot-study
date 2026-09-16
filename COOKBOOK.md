@@ -679,3 +679,71 @@ ever sees clean pages proves nothing. The deploy workflow runs it before buildin
 - **Slide citations** ("Διάλεξη 2, διαφάνεια 16") point at the lecture PDFs, which are in the repository
   but not published. Linking would mean publishing them; a browser opens `file.pdf#page=16` at that
   page. Decision for Chris.
+
+### 9.10 Plain language: keep the term, say what it means
+
+Ruled by Chris, 2026-09-16, after a paragraph on how well DD copes with a changing network used
+"δυναμικότητα", "κατατάσσοντάς το" and "ρευστά δίκτυα" and never said what the practical point was.
+
+**The rule:** every technical term the course or the exam uses stays, and it comes with its meaning in
+ordinary words, right there. "Κλιμάκωση" becomes "συνεχίζει να δουλεύει σωστά όταν το δίκτυο μεγαλώνει";
+"διάμετρος του δικτύου" becomes "τα βήματα από τη μία άκρη του ως την άλλη (η διάμετρός του)".
+
+What the Chapter 1 sweep changed, 27 places, as a checklist for the next chapter:
+
+- **Abstract nouns that hide a situation.** "Δυναμικότητα" is "κόμβοι χαλάνε, μετακινούνται ή εμφανίζονται,
+  ώστε οι διαδρομές να αλλάζουν". Say the situation, then name it.
+- **Notation left unread.** "$\mathcal{O}(n\sqrt{N})$ για $m \ll \sqrt{N}$" gets a sentence: what $m \ll
+  \sqrt{N}$ means, and what the growth rate does in practice ("τετραπλάσιοι κόμβοι, περίπου διπλάσιο
+  κόστος").
+- **Terms of art named but not explained.** "Shortest-path multicast tree", "σε επίπεδο εφαρμογής",
+  "distinct-event delivery ratio" (as a question the metric answers).
+- **Words that read two ways.** "Το σχήμα είναι αντιδραστικό" can be read as *the figure*. Say "ο μηχανισμός".
+- **Clever phrasing.** "Λένε περισσότερα από μια παράγραφο επιθέτων" is style, not information.
+- **A contrast between two sources gets a question, the two answers, and the reconciliation**, in that order,
+  not one dense sentence.
+
+⛔ **An explanation may unpack the source, never extend it.** "Proportionally to node failure percentage"
+does not mean one-to-one, so the text says the drop "follows" the failure rate and gives no "10% fail,
+10% lost" example. A draft sentence explaining *why* delivery drops was removed, because the slide says
+only *that* it does.
+
+---
+
+## 10. Chapter Order
+
+Ruled by Chris, 2026-09-16. **Write chapters in this order of priority, even if that means skipping some:**
+
+1. **Topics the handwritten notes cover.** They record what was actually taught and emphasised in class.
+2. **Topics of the 2026 exam**, the paper that set the current format.
+3. **Topics of the 2025 and 2022 exams.**
+4. **Everything else.**
+
+Mapped against the sources on the same day:
+
+| Priority | Chapter topic | Handwritten notes | Exams | Lecture |
+|:---:|:---|:---|:---|:---|
+| ✅ | Data propagation: flooding, Directed Diffusion | pages 1 to 6 | 2026 Α.1, Α.2; 2022 Θέμα 2Γ | 2, 3 |
+| **1** | **LEACH**, including the cluster head election exercise | pages 7 to 11 | **2026 Β.1 (2.5 marks)** | 2 |
+| **1** | **Energy Balance Protocol** | pages 12 to 14 | **2026 Α.2** | 3 |
+| **1** | **Routing metrics and ETX**, including the multi-hop energy exercise | pages 15 to 16 | **2026 Δ.1 (2.5 marks)** | 4 / 5 |
+| 1 | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
+| 1 | Scalar and vector models | pages 17 to 18 | none | 9 (see warning) |
+| **2** | **Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison** | none | **2026 Γ.1 to Γ.3 (2.5 marks)** | 6a, 8a, 8b |
+| 3 | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3 | 7a, 7b, extra notes |
+| 3 | Comparing access protocols, and why no single wireless technology fits all | none | 2025 2α and 2022 2Α (asked twice); 2022 2Ε | 7b, 8b |
+| 3 | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ | 7a, extra notes |
+| 3 | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ | 7a, 8b |
+| 4 | RPL, CoAP and MQTT, wireless power transfer, mobility | only as noted above | none | 6a, 7b, 9, 10 |
+
+⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
+
+**So the next three chapters are LEACH, the Energy Balance Protocol, and routing metrics with ETX**, in
+that order: each is covered by the notes and carried 1.5 to 2.5 marks in 2026, and two of them are the
+2026 exercises.
+
+⚠ **Check before writing the scalar and vector chapter.** The notes' table describes scalar and vector
+*sensor data* (temperature as one value, wind velocity with a direction). The only place those words
+appear in the lectures is Lecture 9 on wireless power transfer, as the *Scalar Charging Model* and the
+*Vector Model*, which are about charging. The notes may have attached an unrelated explanation to the
+lecture's terms. Read Lecture 9 before trusting either.

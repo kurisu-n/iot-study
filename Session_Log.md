@@ -727,3 +727,39 @@ deployed green.
 Chapters done: 1, 2, 3, 4, 5, 6, 7. Remaining are priority 3 (2025/2022 theory: IoT system design, access
 protocols, cloud/edge/Industry 4.0, 802.11ah/security/smart cities) and priority 4 (RPL, application
 protocols, wireless power transfer).
+
+## 2026-09-16 (later) · Chapter 8 (IoT system design), first tier-3 chapter
+
+**Chapter 8, designing an IoT system.** Priority 3, the first purely 2025/2022 theory chapter. Steps back
+from inside-the-network to the whole-system, sensor-to-app view. Grounded in Lecture 7b slide 3 (the
+authoritative "IoT common architecture": Edge-side Thing/Radio/Gateway/Connectivity, Cloud-side
+Ingestion/Processing, User-side Apps), Lecture 7a (IoT elements and the PAN/LPWAN/Cellular technology
+zones), and the two exam questions themselves.
+
+Content: (8.1) the three-side architecture; (8.2) the examined five-layer IoT OSI model (End Points,
+Connectivity, Middleware, IoT Services, Apps) as a table mapped to both the traffic and irrigation examples,
+plus a hand-authored layer-stack figure, and an "εκτός ύλης" box reconciling it with the extra-notes
+Perception/Network/Processing/Application/Security naming; (8.3) technology selection and "no single
+technology fits all"; (8.4) a full worked irrigation system with a control-loop architecture figure;
+(8.5) implementation challenges; (8.6) benefits.
+
+**Grounding calls.** The 2022 answer file is student-notes style, so only its *questions* and the five
+layer names were treated as authoritative, not its prose. The two competing five-layer models were
+reconciled rather than picked between (they are the same jobs under different names; the extra-notes model's
+only real addition is pulling security into a cross-cutting layer). The exam names are led with because 2022
+asks for them by name.
+
+**Exam answers filled.** 2025 Θέμα 1 (irrigation, 4 marks, fully in-chapter). 2022 Θέμα 3 (traffic, 4
+marks): part 1 (five layers) full; part 2 (connectivity security) scoped now with a pointer to chapter 11;
+part 3 (cloud vs edge) answered on principle with the systematic comparison deferred to chapter 10. 2022 2Ε
+("no single technology") filled from 8.3.
+
+**Traps.** OSI, LoRaWAN and IoT flagged as used-before-defined on several pages; fixed by reordering the OSI
+definition ahead of "IoT OSI", defining Long Range Wide Area Network (LoRaWAN) at first use in the table,
+defining Internet of Things (IoT) in the index intro, and dropping the OSI acronym from the 2022 answer.
+Renamed two headings to drop IoT/OSI. Added OSI and TLS to terms, ZigBee to proper_names. Built strict
+clean; both figures verified present in the DOM with correct shape and legend counts (the preview pane was
+suspended so screenshots came back blank, a known gotcha).
+
+Chapters done: 1 to 8. Remaining: tier 3 chapters 9 (access protocols), 10 (cloud/edge/Industry 4.0), 11
+(802.11ah/security/smart cities), and tier 4 chapter 12 (RPL, application protocols, wireless power).

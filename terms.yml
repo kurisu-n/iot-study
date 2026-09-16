@@ -78,6 +78,10 @@ terms:
   MANET:
     - Mobile Ad-Hoc Network                      # 2022 exam, question 2C
     - Mobile Ad-Hoc Networks
+  OSI:
+    - Open Systems Interconnection               # the classic 7-layer reference model; the 2022 exam borrows the name for its "IoT OSI" 5-layer stack
+  TLS:
+    - Transport Layer Security                   # the standard transport-layer encryption protocol; named in the IoT security discussion
   ns-2:
     - Network Simulator 2                        # not expanded in the course; the tool's own name
   RPL:
@@ -101,3 +105,4 @@ proper_names:
   - LoRa   # the proprietary radio modulation LoRaWAN is built on (Semtech); a name, not an abbreviation
   - nJ     # nanojoule, an energy unit; looks like shorthand but is not an abbreviation to expand
   - kHz    # kilohertz, a frequency unit
+  - ZigBee # the IEEE 802.15.4-based low-power PAN stack (ZigBee Alliance); a name, not an abbreviation

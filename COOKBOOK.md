@@ -730,7 +730,7 @@ Mapped against the sources on the same day:
 | ✅ | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
 | ✅ | Scalar and vector sensor data | pages 17 to 18 | none | notes only (see note below) |
 | ✅ | Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison | none | 2026 Γ.1 to Γ.3 (2.5 marks) | 6a, 8a, 8b |
-| 3 | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3 | 7a, 7b, extra notes |
+| ✅ | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3; 2022 2Ε | 7a, 7b, extra notes |
 | 3 | Comparing access protocols, and why no single wireless technology fits all | none | 2025 2α and 2022 2Α (asked twice); 2022 2Ε | 7b, 8b |
 | 3 | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ | 7a, extra notes |
 | 3 | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ | 7a, 8b |
@@ -739,11 +739,14 @@ Mapped against the sources on the same day:
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
 
 **All three 2026 exercises are now written** (LEACH Β.1, EBP Α.2, ETX Δ.1), plus their theory. Chapters 1
-to 4 are done, 2026-09-16. **Next up (priority 1, notes-covered) is the energy-management synthesis
-(chapter 5) and then scalar/vector models (chapter 6)**, followed by priority 2, the Low Power Wide Area
-Networks / LoRaWAN chapter (2026 Θέμα Γ). ⚠ Before writing chapter 6, read Lecture 9: the notes' scalar/
-vector table may have attached an unrelated meaning to the lecture's charging-model terms. The full chapter
-skeleton (chapters 5 to 12) exists as placeholder pages in the menu, marked with a circle; chapters covered by the handwritten notes carry a filled star ★ (marker scheme changed 2026-09-16).
+to 8 are done, 2026-09-16: priorities 1 and 2 complete (chapters 1 to 7), and the first tier-3 chapter,
+the IoT system-design chapter (chapter 8), which answers 2025 Θέμα 1, 2022 Θέμα 3, and 2022 2Ε. **Next up
+is the rest of tier 3: chapter 9 (comparing access protocols, 2025 2α and 2022 2Α), chapter 10 (cloud and
+edge, Industry 4.0, standardisation, 2025 2β to 2δ), and chapter 11 (802.11ah, security, WSN and MANET,
+smart cities, 2022 Θέμα 1 and 2Β to 2Δ)**, then priority 4, chapter 12 (RPL, application protocols,
+wireless power transfer). The full chapter skeleton (chapters 9 to 12) exists as placeholder pages in the
+menu, marked with a circle; chapters covered by the handwritten notes carry a filled star ★ (marker scheme
+changed 2026-09-16).
 
 ### 10.1 What the LEACH chapter added to the template
 

@@ -99,6 +99,10 @@ markdown_extensions:
   - toc:
       permalink: true
       permalink_title: Σύνδεσμος σε αυτή την ενότητα
+      # Sections and subsections only. The step-by-step walkthroughs inside a
+      # phase are numbered lists beside figures, not headings, so they never
+      # reach the contents column, which is what keeps it from crowding.
+      toc_depth: 3
 
 extra_javascript:
   - javascripts/palette-menu.js

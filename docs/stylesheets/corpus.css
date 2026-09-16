@@ -123,15 +123,25 @@
   --fig-node-soft:      #B8AE96;
   --fig-line:           #6B6457;
   --fig-label:          #6B6457;
-  --fig-accent:         #86642A;
-  --fig-accent-deep:    #533E0F;
+  /* ⚠ The figure hues are NOT the page's tan and gold. The step panels tell an
+     interest, a data message and a reinforcement apart by hue alone, and in this
+     palette the accent (#86642A), the amber (#8F6B10) and the deep tan (#533E0F)
+     are one family of browns: each passed contrast against the page, and none
+     could be told from the others. Measured by eye on 2026-09-16, which no
+     contrast check can catch. So the panels take FaceCue's own SIGNAL colours,
+     which exist precisely to mean the same thing whatever the page wears: blue
+     for the sink and its interests, green for gradients, red for the source.
+     Orange is DERIVED, not lifted: FaceCue has no orange, and data messages need
+     a fourth hue distinct from all three. */
+  --fig-accent:         #2F6BC2;   /* --fc-blue, light */
+  --fig-accent-deep:    #1D4A8C;   /* derived: --fc-blue, deepened */
   --fig-on-accent:      #FAF8F3;
   --fig-on-accent-soft: #E8E2D4;
   --fig-event:          #9E3535;
   --fig-event-deep:     #7A2626;
   --fig-event-soft:     #C98080;
-  --fig-warn:           #8F6B10;
-  --fig-warn-deep:      #6B5008;
+  --fig-warn:           #B8561A;   /* derived orange */
+  --fig-warn-deep:      #8A3F12;   /* derived orange, deepened */
   --fig-ok:             #3F8F4A;
   --fig-ok-deep:        #2E6B37;
 
@@ -258,15 +268,17 @@
   --fig-node-soft:      #5A5650;
   --fig-line:           #A8A29A;
   --fig-label:          #9E9890;
-  --fig-accent:         #C09A5C;
-  --fig-accent-deep:    #D0C090;
+  /* Same reasoning as Warm Light: gold, tan and yellow are one family here, so
+     the figures take FaceCue's signal blue, and a derived orange for data. */
+  --fig-accent:         #73A2E6;   /* --fc-blue, dark */
+  --fig-accent-deep:    #A9C8F2;   /* derived: --fc-blue, brightened */
   --fig-on-accent:      #141414;
   --fig-on-accent-soft: #2A2620;
   --fig-event:          #F27373;
   --fig-event-deep:     #F7A0A0;
   --fig-event-soft:     #5A2E2E;
-  --fig-warn:           #F2C766;
-  --fig-warn-deep:      #F7DC9E;
+  --fig-warn:           #E8964A;   /* derived orange */
+  --fig-warn-deep:      #F4B77E;   /* derived orange, brightened */
   --fig-ok:             #5CB85C;
   --fig-ok-deep:        #8FD08F;
 
@@ -666,4 +678,334 @@ form[data-md-component="palette"] > label {
   .theme-menu__list {
     right: -0.4rem;
   }
+}
+
+/* ========================================================================
+ * 10 - The table of contents, after the FaceCue documentation's.
+ *
+ * Ported from facecue.css, where every choice below was measured. The idea is
+ * subtraction: everything in the column rests well faded, and the reader's
+ * position is shown by taking the fade OFF rather than by adding a highlight.
+ * The column is a navigation aid beside the page, not a second copy of it, so
+ * the page's own shape is what should stand out.
+ *
+ * Each level borrows the mark its heading carries in the body: a section (h2)
+ * gets a hairline beneath it, a subsection (h3) a short bar at its start. The
+ * depth is capped at h3 in mkdocs.yml; a fourth level only crowds the column.
+ *
+ * Token mapping from FaceCue: --pg-heading is our --c-primary, --pg-heading-rule
+ * our --c-accent (the colour of the h2 bar and h1 rule), --sb-link our --c-text,
+ * --sb-link-rail our --c-border.
+ *
+ * ⛔⛔ Selector shape, inherited from FaceCue along with its reasons, and every
+ * part of it fails silently on its own:
+ *   - Reach the nav as a DESCENDANT of .md-sidebar--secondary. A direct child
+ *     selector matches nothing: Material nests .md-sidebar__scrollwrap and
+ *     .md-sidebar__inner in between.
+ *   - Never use .md-nav--secondary alone. Material renders the contents twice,
+ *     the second copy folded into the primary nav for the phone drawer.
+ *   - Count levels with an explicit > chain. .md-nav--secondary carries the
+ *     class .md-nav itself, so `.md-nav--secondary .md-nav .md-nav__item`
+ *     matches the SECOND level, one level shallower than it reads.
+ * ==================================================================== */
+
+.md-sidebar--secondary .md-nav__title {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0;
+}
+
+.md-sidebar--secondary .md-nav__link {
+  color: var(--c-muted);
+  font-size: 0.7rem;
+}
+
+/* The fade dials, one pair per level. The light schemes get their own numbers,
+   and not merely scaled: mixing toward transparent moves a colour toward what is
+   behind it, and on a light page a mid colour gives up contrast far faster than
+   on a dark one, so shared numbers invert the ladder. FaceCue's two sets, used
+   as is, then re-measured here. */
+[data-md-color-scheme="warm-dark"] .md-sidebar--secondary .md-nav--secondary,
+[data-md-color-scheme="navy"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-fade-head: 40%;
+  --toc-fade-head-on: 88%;
+  --toc-fade-rule: 44%;
+  --toc-fade-rule-on: 75%;
+  --toc-fade-h3: 60%;
+  --toc-fade-bar3: 85%;
+}
+
+[data-md-color-scheme="warm-light"] .md-sidebar--secondary .md-nav--secondary,
+[data-md-color-scheme="academic"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-fade-head: 52%;
+  --toc-fade-head-on: 92%;
+  --toc-fade-rule: 52%;
+  --toc-fade-rule-on: 80%;
+  --toc-fade-h3: 62%;
+  --toc-fade-bar3: 85%;
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav__item .md-nav__list {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Second level: a section. Named in the heading colour and closed by a hairline,
+   which doubles as the divider between one section and the next. */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--c-primary) var(--toc-fade-head), transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-accent) var(--toc-fade-rule), transparent);
+  padding-bottom: 0.16em;
+  margin-top: 0.7em;
+  margin-bottom: 0.3em;
+}
+
+/* Third level: a subsection, one short bar per entry. The bar is a border on the
+   LINK, not on the group, so each line carries its own with a gap between them;
+   on the nested nav it would run as one long rule. */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav {
+  margin-left: 0.5rem;
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
+  > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-size: 0.66rem;
+  color: color-mix(in srgb, var(--c-text) var(--toc-fade-h3), transparent);
+  border-left: 2px solid color-mix(in srgb, var(--c-border) var(--toc-fade-bar3), transparent);
+  margin-left: 0;
+  margin-top: 0.34rem;
+  padding-left: 0.42rem;
+  padding-right: 0.4rem;
+}
+
+/* Where the reader is standing: the fade comes off the entry they are in and off
+   the section that owns it. :has is what lets the owner see its active child.
+
+   ⚠ Each rule repeats its level's whole selector. The short form
+   `.md-sidebar--secondary .md-nav__link--active` has too few classes to beat the
+   level rules above and loses silently: the current entry never changes. */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list
+  > .md-nav__item:has(.md-nav__link--active) > .md-nav__link {
+  color: color-mix(in srgb, var(--c-primary) var(--toc-fade-head-on), transparent);
+  border-bottom-color: color-mix(in srgb, var(--c-accent) var(--toc-fade-rule-on), transparent);
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item
+  > .md-nav__link.md-nav__link--active,
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item
+  > .md-nav__link:hover {
+  color: var(--c-primary);
+  border-bottom-color: color-mix(in srgb, var(--c-accent) var(--toc-fade-rule-on), transparent);
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
+  > .md-nav__list > .md-nav__item > .md-nav__link.md-nav__link--active,
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
+  > .md-nav__list > .md-nav__item > .md-nav__link:hover {
+  color: var(--c-primary);
+  border-left-color: var(--c-accent);
+}
+
+/* ========================================================================
+ * 11 - Step-by-step figures.
+ *
+ * A grid of small panels, each an SVG with its explanation underneath in HTML.
+ * Generated by tools/dd_panels.py, which draws every panel on the same network
+ * so the reader can follow one node through the whole protocol.
+ *
+ * ⛔ The explanation is HTML, never SVG text. HTML text reflows, wraps, and sits
+ * on the page background whose contrast is already measured; SVG text does none
+ * of that and is where every overlap defect in Chapter 1 came from.
+ * ==================================================================== */
+
+.md-typeset figure.steps {
+  margin: 1.6rem 0 2rem;
+  text-align: left;
+}
+
+.steps__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.4rem;
+}
+
+.steps--three .steps__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.md-typeset .step svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  background: var(--c-bg);
+}
+
+.md-typeset .step__text {
+  margin: 0.5rem 0 0;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.md-typeset .step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: var(--c-th-text);
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-style: normal;
+  vertical-align: 0.08em;
+}
+
+/* One column on a phone. Two panels side by side at 400px would make each
+   network about 180px wide, too small to read the arrows. */
+@media screen and (max-width: 44.98em) {
+  .steps__grid,
+  .steps--three .steps__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* The key under a figure. Only the marks that figure actually uses are listed,
+   so a reader never decodes a symbol that is not there. */
+.md-typeset .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0.9rem 0 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  background: var(--c-bg-alt);
+  font-size: 0.68rem;
+  color: var(--c-text);
+}
+
+.md-typeset .legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.md-typeset .legend__swatch {
+  width: 1.1rem;
+  height: 0.86rem;
+  flex: 0 0 auto;
+}
+
+/* ========================================================================
+ * 12 - "Εκτός ύλης": material that is not from the course.
+ *
+ * The chapters cite their source as (Δ2, διαφ. 16), Lecture 2 slide 16, or the
+ * handwritten class notes. Anything that comes from neither is marked, so a
+ * reader always knows what they could be examined on and what is only there to
+ * help it make sense.
+ *
+ * Two forms: an admonition for a paragraph or more, and an inline tag for a
+ * single claim. Both are drawn as QUIETER than the text around them, with a
+ * dashed rule, because the point is "optional", not "important".
+ * ==================================================================== */
+
+:root {
+  --md-admonition-icon--extra: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2z"/></svg>');
+}
+
+.md-typeset .admonition.extra,
+.md-typeset details.extra {
+  border: 1px dashed var(--c-border);
+  border-left: 3px dashed var(--c-muted);
+  background: transparent;
+  box-shadow: none;
+}
+
+.md-typeset .extra > .admonition-title,
+.md-typeset .extra > summary {
+  background: transparent;
+  color: var(--c-muted);
+  font-weight: 700;
+}
+
+.md-typeset .extra > .admonition-title::before,
+.md-typeset .extra > summary::before {
+  background-color: var(--c-muted);
+  -webkit-mask-image: var(--md-admonition-icon--extra);
+          mask-image: var(--md-admonition-icon--extra);
+}
+
+.md-typeset .extra-tag {
+  display: inline-block;
+  padding: 0 0.35rem;
+  border: 1px dashed var(--c-muted);
+  border-radius: 3px;
+  color: var(--c-muted);
+  font-size: 0.72em;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: 0.08em;
+}
+
+/* ========================================================================
+ * 13 - "Τι να περιμένετε στην εξέταση".
+ *
+ * Every section closes with one. Its first line is a record of the three known
+ * exam papers, each as a chip, so an absence reads as information: a topic that
+ * appeared in none of them is worth knowing about as much as one that did.
+ * ==================================================================== */
+
+.md-typeset .exam-record {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.2rem 0 0.7rem;
+}
+
+.md-typeset .exam-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  background: var(--c-bg);
+  color: var(--c-muted);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.md-typeset .exam-chip strong {
+  color: var(--c-text);
+}
+
+/* A paper that DID examine this section. The rule, not the fill, carries the
+   emphasis, so the chip's text keeps the page contrast it already has. */
+.md-typeset .exam-chip.is-hit {
+  border: 1.5px solid var(--c-exam-border);
+  color: var(--c-text);
+  font-weight: 700;
 }

@@ -408,3 +408,104 @@ After editing `site_url`, restart it.
 
 - A reader who picked a scheme on the old GitHub Pages address loses it: Material namespaces the
   storage key by base path, and the path changed.
+
+
+---
+
+## 2026-09-16 (night) · Chapter 1 rebuilt as the template
+
+### What was asked
+
+Four things, with the instruction to nail Chapter 1's voice, style and structure before expanding:
+
+1. The "SRC" label in the flooding figure was invisible on both light schemes. More generally, never let
+   text overlap other elements.
+2. Make the table of contents look like the FaceCue documentation's; it was crowded.
+3. Content: (a) the four DD phases were hand-waved, reinforcement especially; show each phase step by step,
+   2 to 4 steps, and mark anything extracurricular clearly. (b) End every section with "what to expect on
+   the exam", based on past papers, with dates.
+
+### Grounding first
+
+Nothing was written until the sources were read: Lecture 2 in full (DD, slides 1 to 39), Lecture 3's
+framing slides, the handwritten notes for pages 1 to 9, 12 and 15 to 16, and all three exam papers.
+
+That reading is what the rest of the session stands on, and it turned up more than gaps:
+
+- **Four factual errors in the existing chapter**, all plausible on a read-through: that sensors cannot
+  transmit directly to the BS (they can; EBP depends on it), that the interest flood is a one-off cost
+  (the sink refreshes it periodically), that phases 1 and 2 are sequential (the same reception does both),
+  and that flooding is never deployed (DD floods its own interests).
+- **What "hand-waved" meant, concretely.** Reinforcement is the same interest resent with a tenfold rate,
+  and a node that receives a rate higher than what it is getting reinforces a neighbour of its own, which
+  is how the path is built hop by hop back to the source (Δ2, διαφ. 16). The old chapter said only that
+  "the sink reinforces the fastest path". Also missing: the forwarding rate rule and down-conversion
+  (διαφ. 14), task generation and interest aggregation (διαφ. 10), loops that cannot be broken (διαφ. 21).
+- **A notation clash** between slides ($n$ sources, $m$ sinks) and notes ($m$ for sources).
+- **Exam dates as they actually survive:** 6 February 2026, 15 February 2025, and only "February 2022".
+  A Viber photo dated the day before the 2026 exam turned out to be the 2025 paper, not new guidance.
+- **A suspicion that was wrong.** "Energy holes" looked like my own addition and would have been marked
+  extracurricular. It is in the notes and on Δ3, διαφ. 4. Checked before marking.
+
+### The figures: a tool first, then the fix
+
+Rather than patch the one label, `tools/figure-audit.js` was written to check every label against every
+shape, using `isPointInFill` and `isPointInStroke`, and against what is actually behind it. Run first on
+the unchanged chapter, it had to reproduce the reported bug to be trusted, and it did: "SRC" at **1.0:1 on
+the page**. It also found ten other defects that nobody had reported.
+
+Root cause of "SRC", stated plainly because the earlier sweep had passed it: the label was drawn in the
+colour for text *on* an accent fill, but it straddled a 16px node and sat mostly on the page. The sweep
+had checked the pair the label was designed for, not the pair it landed on.
+
+Defects went 11, then 2, then 0 across all four schemes. Two of the fixes were geometric (stacked labels
+too close, a label clipped by a sideways-offset arrow) and one was a colour misuse (event red, a graphic
+colour, used as text; the fix was the scheme's existing deep variant, no new token).
+
+### Four of my own tools and scripts were wrong at some point
+
+Worth recording because each one produced a confident, plausible answer:
+
+- **The contrast probe ignored alpha**, so the faded contents column read at full strength.
+- **It then misparsed `color(srgb …)` notation**, whose channels run 0 to 1, as 0 to 255. That reported the
+  dark-scheme contents at 1.06:1, a false failure, and the light-scheme contents as passing, a false pass.
+  Diagnosed by reading the computed colour string rather than by editing CSS that was already correct.
+- **A bash heredoc ate escapes twice more**: once breaking a Python f-string's `\n`, once on apostrophes.
+  The project rule says to use the Edit tool for string literals; after the second failure, all prose and
+  code went through Write and Edit.
+- **The generator's in-place apply rewrote all 452 lines** as CRLF on Windows while changing no figure.
+  Caught by insisting the apply be byte-idempotent; fixed with `newline=""`.
+
+### The failure no measurement could catch
+
+With every numeric check passing, a real screenshot (headless Edge, since the Browser pane would not
+render reliably) showed the step panels were unreadable in the warm schemes. The accent (#86642A), amber
+(#8F6B10) and deep tan (#533E0F) are one family of browns, so an interest, a data message and a
+reinforcement were visually the same line. Each colour passed contrast against the page; they failed
+against *each other*, and no contrast check measures that.
+
+Fixed by giving the warm schemes' figures FaceCue's own signal colours (blue for the sink and interests,
+green for gradients, red for the source) plus a derived orange for data, and by making the active-node
+ring a dotted neutral that shares no hue with any arrow. Re-screenshotted in both warm schemes, then
+re-measured: 0 figure defects, 0 text failures, 0 graphic failures in all four schemes.
+
+### What was built
+
+- **Chapter 1**, rewritten against the sources: every course claim cited as (Δ2, διαφ. N) or to the notes;
+  a comparison table of the exploratory and reinforced interest; seven exam boxes; one extracurricular
+  block and one extracurricular tag, the latter on a comparison-table row the slides never evaluate.
+- **22 step panels** in six figures (overview, four phases, repair), from `tools/dd_panels.py`, living in
+  the chapter between comment markers so the generator can rewrite them in place.
+- **The FaceCue contents column**, with `toc_depth: 3`, measured and matching FaceCue's documented numbers.
+- **The index page** now explains citations, the extracurricular mark, the exam boxes, and lists the three
+  papers with what can and cannot be trusted about each.
+- **Cookbook §9**, the chapter template, so Chapter 2 starts from settled rules.
+
+### Open, for Chris
+
+1. **Exam box placement.** "At the end of each section" was taken literally: seven boxes, several saying
+   "not examined". The alternative is one rollup per chapter.
+2. **Voice.** The rewrite has no em dashes, following the FaceCue documentation's copy rules. Nobody has
+   ruled those rules apply here.
+3. **Contents column at rest.** Faithful to FaceCue means resting section entries at 2.35 to 2.99:1, below
+   AA by design. One dial raises it.

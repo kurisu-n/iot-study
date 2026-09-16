@@ -180,6 +180,7 @@ After corpus is complete:
 | 2026-09-16 | Repository created and published to GitHub Pages |
 | 2026-09-16 | Moved to iot.chris-nasiou.com (Hostinger); GitHub Pages removed |
 | 2026-09-16 | Theme selector made a dropdown; FaceCue Ανοιχτό made the default |
+| 2026-09-16 | Chapter 1 rebuilt as the template for every chapter: grounded against slides and notes, four factual errors corrected, 22 step panels, an exam box per section, extracurricular marking, FaceCue-style contents column (see §9) |
 
 ---
 
@@ -450,3 +451,142 @@ looking at the page.
   `<span class="arithmatex">\(...\)</span>` instead.
 - ⚠ **`$$...$$` needs a blank line after it** to be treated as display maths. Followed immediately by
   another line, it is parsed as part of the same paragraph and rendered inline.
+
+---
+
+## 9. The Chapter Template
+
+> **Settled on Chapter 1, 2026-09-16. Every later chapter follows it.** Chris's brief was to nail
+> Chapter 1's voice, style and structure first, then expand. This section is that template. Where a
+> decision is still open, it says so.
+
+### 9.1 Ground the chapter before writing it
+
+Read the lecture transcription (`Transcriptions/`) and the handwritten notes (`Transcribed_Raw_Notes.md`)
+for the chapter's topic **before** writing a sentence, and check every claim against them afterwards,
+including the claims you added yourself.
+
+This is not a formality. Doing it for Chapter 1 found **four factual errors in the existing text**, all
+of which read as perfectly plausible:
+
+| The chapter said | The course says |
+|:---|:---|
+| Sensors *cannot* transmit directly to the BS | They can, it is just expensive. EBP is built on it (Δ3, διαφ. 6) and LEACH cluster heads do it |
+| Flooding the interest is a *one-off* setup cost | The sink *periodically refreshes* the interest (Δ2, διαφ. 10). Recurring, just not per event |
+| Phases 1 and 2 happen one after the other | They happen at the same instant: receiving an interest creates the gradient (Δ2, διαφ. 11) |
+| Nobody would deploy flooding | DD itself floods its interests |
+
+It also found that the handwritten notes and the slides **disagree on notation**: the slides use $n$
+sources and $m$ sinks (Δ2, διαφ. 23), while the notes write the same cost with $m$ for the sources. That
+became an exam warning, not a silent pick.
+
+### 9.2 Cite the source; mark what has none
+
+| Form | Meaning |
+|:---|:---|
+| **(Δ2, διαφ. 16)** | Lecture 2, slide 16 |
+| **(χειρόγρ. σημ., σ. 9)** | The handwritten class notes, page 9 |
+| `!!! extra "Εκτός ύλης"` | A paragraph or more that comes from neither |
+| `<span class="extra-tag">εκτός ύλης</span>` | A single claim that comes from neither |
+
+**What gets marked** is a *fact* that is not in the slides or notes: a term, a list, a result, a
+property. **What does not** is explanation that only unpacks course material: an analogy, a worked
+consequence, a "because". Marking every inference would bury the page.
+
+⚠ Check a suspicion before marking it. "Energy holes" looked extracurricular in Chapter 1 and is not:
+it is in the handwritten notes and on Δ3, διαφ. 4.
+
+### 9.3 Every section ends with "Τι να περιμένετε στην εξέταση"
+
+```text
+!!! exam "Τι να περιμένετε στην εξέταση"
+
+    <div class="exam-record">
+      <span class="exam-chip is-hit"><strong>6/2/2026</strong> Θέμα Α.1, 1 μονάδα</span>
+      <span class="exam-chip"><strong>15/2/2025</strong> όχι</span>
+      <span class="exam-chip"><strong>2/2022</strong> όχι</span>
+    </div>
+
+    What was asked, paraphrased. How to answer it. Traps.
+```
+
+- **All three papers, every time**, with `is-hit` on the ones that examined the section. An absence is
+  information, and a uniform record makes it visible.
+- **Dates as known.** 2026 and 2025 carry a day; 2022 survives only as a month. Never invent the day.
+- **Paraphrase the question**, do not quote it at length.
+- **Guidance is labelled as guidance.** There are no marking schemes; "how to answer" is an assessment.
+- The 2022 "indicative answers" file reads like student notes. Use the 2022 *questions* as evidence, not
+  those answers.
+
+⏳ **Open:** Chris asked for the box "at the end of each section". Chapter 1 reads that literally, one per
+numbered section, seven in all, several of them saying "not examined". The alternative is one rollup per
+chapter.
+
+### 9.4 Protocols get step-by-step figures
+
+- **One small network per protocol, reused in every panel**, so the reader follows the same nodes through
+  the whole cycle. Chapter 1 uses Sink, A, B, C, D, Source: two disjoint routes plus two cross links, the
+  smallest shape that still shows multiple paths, a choice to reinforce, and an alternative for repair.
+- **2 to 4 steps per phase**, each a panel with its explanation under it.
+- ⛔ **Explanatory text lives in HTML, never inside the SVG.** The only SVG text is a node's name, in clear
+  space. This removes most overlap defects by construction, and HTML text reflows and sits on a page
+  background whose contrast is already measured.
+- **A legend under each figure, listing only the marks that figure uses.**
+- **Hue says what a line is; weight says how strong.** Interest and reinforcement share blue, because a
+  reinforcement *is* an interest. A gradient is green whether exploratory (dashed) or reinforced (thick).
+  Data is orange, the source red. The ring around the node a step is about is a dotted neutral, sharing a
+  hue with no arrow.
+- Panels are generated by **`tools/dd_panels.py`** and live in the chapter between
+  `<!-- dd_panels:NAME -->` markers. Edit the generator, then run
+  `python tools/dd_panels.py --apply docs/chapters/01-data-propagation.md`. Apply is byte-idempotent and
+  fails loudly on a broken marker. ⛔ Never hand-edit between the markers.
+
+### 9.5 Figures are checked, not eyeballed, and then eyeballed anyway
+
+Chris's rule, 2026-09-16: **text never overlaps other elements**. Two tools enforce the measurable part:
+
+| Tool | Checks |
+|:---|:---|
+| `tools/figure-audit.js` | Every SVG label against every shape, sampled with `isPointInFill` and `isPointInStroke`, and its contrast against what is **actually behind it** |
+| `tools/contrast-probe.js` | Captions, legend, exam and extracurricular boxes, the contents column, and graphic marks at 3:1 |
+
+Traps, every one of them hit on Chapter 1:
+
+- ⛔ **A colour-pair sweep certifies the pair you give it, not the page.** The "SRC" label passed a sweep of
+  on-accent text against an accent fill, but actually sat mostly on the page, at 1.0:1. The audit
+  measures what is behind each label instead.
+- ⛔ **Measure after a navigation, never after toggling the scheme in place.** A hidden Browser pane
+  suspends style recalculation and returns stale colours. Set the remembered palette in localStorage,
+  navigate, then measure.
+- ⛔ **Alpha and notation.** The contents column fades with `color-mix(... transparent)`, which computes to
+  `color(srgb r g b / a)` on a 0 to 1 scale. Ignore the alpha and a faded entry reads at full strength;
+  parse it as 0 to 255 and a pale blue reads as black. Both happened, producing a false failure on the
+  dark schemes and a false pass on the light ones.
+- ⛔ **No contrast check catches colours that each pass against the page but cannot be told apart.** In
+  the warm schemes the figure accent, amber and deep tan were one family of browns, so an interest, a
+  data message and a reinforcement looked identical. Only a screenshot showed it. The warm schemes now
+  take FaceCue's signal blue, green and red for figures, plus a derived orange.
+- ⚠ **The Browser pane screenshots unreliably.** Headless Edge is dependable: build a preview page from the
+  real CSS and panels, run
+  `msedge --headless=new --disable-gpu --window-size=965,870 --screenshot=out.png file:///preview.html`,
+  and read the PNG.
+- To load a probe into the page without shell escaping trouble, copy it into `docs/_devprobe/` briefly,
+  `fetch` it, store it in localStorage, and **delete the copy before building for commit**.
+
+### 9.6 Voice
+
+Greek textbook prose with English technical terms, as §4 says. Chapter 1 was rewritten **without em
+dashes**; the previous text had 32.
+
+⏳ **Open:** that follows the copy rules of Chris's FaceCue documentation, but nobody has ruled that those
+rules apply to this corpus.
+
+### 9.7 The table of contents
+
+Ported from the FaceCue documentation: every entry rests faded, and the reader's position shows by the
+fade coming off. Sections get a hairline beneath, subsections a short bar. `toc_depth: 3` keeps step-level
+content out of the column. The selector traps are documented in `corpus.css` section 10.
+
+⏳ **Open:** measured, the port matches FaceCue's own documented numbers, which means a *resting* section
+entry sits at 2.35 to 2.99:1, under AA by design. The section the reader is in rises to 5.6 to 9.6:1.
+Raising the resting fade is a one-dial change if Chris wants the column legible at rest.

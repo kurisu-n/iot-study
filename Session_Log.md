@@ -598,3 +598,19 @@ A first attempt split 2026 and 2022 into two sheets, on a fill measurement taken
 (which inflates line-wrapping to ~1.7 A4). Chris pointed out they fit one page at real width; measured at the
 capped 46rem width, all three fit one A4 at ~1.95cqi (≈14px, larger than the previous fixed size), so the
 splits were reverted. Cookbook §11 updated with the sizing rule and the measure-at-real-width caveat.
+
+## 2026-09-16 (late) · Smallest-step formula traces
+
+Chris asked that solving the cluster-head threshold be broken into the smallest steps, showing which number
+replaces which symbol, and the same for every formula solve. Added a `.trace` block (corpus.css §18): a
+MathJax `aligned` derivation, one substitution or operation per line, with a purely numeric right-column
+note. Applied to the LEACH slide example (2.3, r=2), the worked 2026 exercise (2.4, r=2 and the r=6
+threshold-hits-1 case), and the exam 2026 Β.1 answer, each also tracing the head count
+`N_CH = T(n)×|G|`. Tables kept as summaries.
+
+Trap found and recorded (cookbook §12): block `$$` maths inside a `???`/`!!!` admonition (pymdownx.details
++ md_in_html) renders as inline with a stray `$` — the exam page's existing B.1 formula was already broken
+this way, unseen because the panel is collapsed by default. Fixed by using inline `\(\displaystyle ...\)`
+inside admonitions; top-level block `$$` is fine. Also confirmed Greek renders in `\text{}` here, so the
+earlier concern was moot. Built strict, deployed green, both chapter (block) and exam (inline) traces
+verified rendering.

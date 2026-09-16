@@ -810,3 +810,32 @@ font. Two rules on content:
 The three admonition types (`answer`, `answer-more`, `todo`) and the facsimile frame live in
 `corpus.css` §16-17. When a covered answer restates a worked chapter result, link to the chapter section
 rather than duplicating the figure (e.g. the 2026 Β.1 answer links to `02-leach.md#worked-2026`).
+
+## 12. Formula traces (smallest-step solving)
+
+Ruled by Chris, 2026-09-16. **Every formula solved in the corpus is shown as a trace: the smallest
+possible steps, one change per line, so it is clear which number replaces which symbol.** A line either
+substitutes one value or performs one arithmetic operation, never both, and a right-column note says what
+changed.
+
+**Shape.** A `<div class="trace" markdown="1">` (a light left-ruled block, `corpus.css` §18) holding a
+MathJax `aligned` environment. The `&&` opens a right column for the per-line note, kept **purely
+numeric** so it needs no words: `(P = 1/7,\ r = 2)`, `(2 \bmod 7 = 2)`, `(\tfrac17\cdot2=\tfrac27)`. A
+`<div class="trace-label">` above it names the case (e.g. "Γύρος r = 2"). Trace the count too, not just
+the threshold: `N_{\text{CH}} = T(n)\times|G| = \tfrac15\times50 = \tfrac{50}{5} = 10`.
+
+**How much to trace.** Trace one representative case fully (in the worked exercise, two: a middle round
+and the boundary round where the threshold hits 1), then give the remaining cases in a summary table. The
+table is the reference; the trace is the teaching.
+
+⛔ **Block `$$` maths break inside a `???`/`!!!` admonition.** `pymdownx.details` + `admonition` +
+`md_in_html` (`markdown="1"`) does not recognise the block-maths pattern: a `$$...$$` (or a
+`<div class="formula">$$...$$`) inside a collapsible renders as **inline** maths with a **stray `$`**
+left in the text. Inside an admonition, write the maths as **inline** `\(\displaystyle ...\)` instead,
+which renders as a proper display block. At the top level of a page, block `$$...$$` is fine. (Found on
+the exam pages, where the answers live inside `??? answer-more`; the chapter traces are top-level and use
+block `$$`.)
+
+⚠ Greek inside `\text{}` **does** render in this MathJax setup (the cases labels "αν n ∈ G / αλλιώς"
+prove it), so an earlier worry about Greek annotations was unfounded. Numeric notes are still preferred,
+because they show the arithmetic rather than describe it.

@@ -588,3 +588,13 @@ cover, and populating the rest as chapters land).
 Build `--strict` clean, shorthand hook 10/10 and 0 page problems, deploy green (run 35112336858), all
 three pages live (200). Headless-Edge screenshots confirm the 2026 facsimile matches the original and the
 answer blocks render (short open, expanded collapsed, todo muted).
+
+### A4 refinement (same day)
+
+Chris asked the facsimiles to be A4-proportioned like the original, with a slightly larger font, splitting
+to a second page only if a paper will not fit. Each `.exam-sheet` became an A4 page (aspect-ratio 210:297),
+type sized in `cqi` so it scales with the sheet, A4 as a minimum with `overflow: visible` so nothing clips.
+A first attempt split 2026 and 2022 into two sheets, on a fill measurement taken in the narrow preview pane
+(which inflates line-wrapping to ~1.7 A4). Chris pointed out they fit one page at real width; measured at the
+capped 46rem width, all three fit one A4 at ~1.95cqi (≈14px, larger than the previous fixed size), so the
+splits were reverted. Cookbook §11 updated with the sizing rule and the measure-at-real-width caveat.

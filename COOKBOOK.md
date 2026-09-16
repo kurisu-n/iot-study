@@ -771,12 +771,25 @@ lecture's terms. Read Lecture 9 before trusting either.
 Added 2026-09-16. A `Θέματα Εξετάσεων` nav section sits before `Κεφάλαια`, one page per
 exam (`docs/exams/2026.md`, `2025.md`, `2022.md`). Each page has two parts.
 
-**The facsimile.** A `<div class="exam-facsimile" markdown="0">` reproduces the original paper as
+**The facsimile.** A `<div class="exam-facsimile" markdown="0">` holds one or more `<div class="exam-sheet">`
+blocks, each an **A4 page** (the 210:297 proportion of the real thing), reproducing the original as
 closely as the source allows: the institution header, the course and date block, the name and student
 number fill-in lines, the italic return note, the θέματα with their marks in bold, and any diagram the
 paper carries (the 2026 ETX topology, drawn as a small inline SVG). It is a fixed cream sheet with dark
 ink in every scheme, framed with a border and shadow, so it reads as the physical paper rather than as
-our writing. Two rules:
+our writing.
+
+⭐ **How the A4 sizing works, ruled with Chris 2026-09-16.** The type is sized in **container units**
+(`cqi`, one per cent of the sheet width), so a sheet holds the same amount of text whatever its rendered
+width: the whole page scales like a photo of the original. That means the content-per-page is set by the
+font size alone, not by the screen. At the sheet's capped width (46rem) a readable ~2cqi font fits each of
+the three papers on one A4. `aspect-ratio: 210/297` is a **minimum, not a hard clip** (`overflow: visible`):
+a short paper (2025) sits in an exact A4 with whitespace below, a fuller one grows a little rather than
+cutting a question off. Below 45em the sheet drops the fixed height and reflows at a fixed readable size,
+because a true A4 on a phone shrinks the type past reading. ⚠ **Measure fit at the real 46rem width, not in
+the preview pane** — the pane is narrower, which inflates line-wrapping and made a one-page paper look like
+1.7 pages. Split into two `exam-sheet` blocks only if a paper genuinely will not fit one A4 at a readable
+font. Two rules on content:
 
 - ⛔ **The facsimile is verbatim source.** `hooks/shorthand.py` lists `exam-facsimile` in `SKIP_CLASSES`,
   so the paper keeps its own acronyms (WiFi, LoRaWAN, EBP, SF) untouched, with no define-first links. The

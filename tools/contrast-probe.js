@@ -79,23 +79,34 @@ function contrastProbe() {
   });
 
   // Text components, each against whatever paints behind it. Need 4.5:1.
+  //
+  // ⛔ EVERY match is measured and the WORST is reported. This used to take the
+  // first match only, and the first <p> inside an admonition is its title. So
+  // "exam body" measured the tan title twice and never the body, and passed
+  // while the body text was black at 87% on the dark box (2026-09-16). The
+  // body selectors also exclude the title explicitly now.
   var sel = {
     "step caption": ".step__text",
     "step number": ".step__num",
-    "legend": ".legend",
+    "legend": ".legend__item",
     "exam chip": ".exam-chip",
     "exam chip date": ".exam-chip strong",
-    "exam chip hit": ".exam-chip.is-hit",
     "extra tag": ".extra-tag",
-    "extra title": ".admonition.extra .admonition-title",
-    "extra body": ".admonition.extra p",
-    "exam title": ".admonition.exam .admonition-title",
-    "exam body": ".admonition.exam p",
-    "table header": ".md-typeset table th"
+    "extra title": ".admonition.extra > .admonition-title",
+    "extra body": ".admonition.extra > p:not(.admonition-title), .admonition.extra li",
+    "exam title": ".admonition.exam > .admonition-title",
+    "exam body": ".admonition.exam > p:not(.admonition-title), .admonition.exam li, .admonition.exam strong",
+    "table header": ".md-typeset table th",
+    "table cell": ".md-typeset table td",
+    "body text": ".md-typeset > p"
   };
   Object.keys(sel).forEach(function (k) {
-    var e = document.querySelector(sel[k]);
-    if (e) out.text[k] = contrastRatio(getComputedStyle(e).color, paintedBackground(e));
+    var worst = null;
+    Array.prototype.forEach.call(document.querySelectorAll(sel[k]), function (e) {
+      var r = contrastRatio(getComputedStyle(e).color, paintedBackground(e));
+      if (worst === null || r < worst) worst = r;
+    });
+    if (worst !== null) out.text[k] = worst;
   });
 
   // Table of contents. Resting colours are read from the DOM; the "on" state is
@@ -107,14 +118,22 @@ function contrastProbe() {
   if (nav && h2) {
     var bg = paintedBackground(h2);
     var cs = getComputedStyle(nav);
-    var primary = parseColor(tokenColor("--c-primary"));
+    // The reader's position is painted in --toc-strong, which is not always
+    // --c-primary (Warm Light uses a deeper tan). Resolve it ON the nav, where
+    // it is declared, rather than assuming.
+    var strongProbe = document.createElement("span");
+    strongProbe.style.color = "var(--toc-strong)";
+    nav.appendChild(strongProbe);
+    var strongColor = getComputedStyle(strongProbe).color;
+    strongProbe.remove();
+    var strong = parseColor(strongColor);
     var mixed = function (pct) {
-      return "rgba(" + primary.r + ", " + primary.g + ", " + primary.b + ", " + (parseFloat(pct) / 100) + ")";
+      return "rgba(" + strong.r + ", " + strong.g + ", " + strong.b + ", " + (parseFloat(pct) / 100) + ")";
     };
     out.toc["section, resting"] = contrastRatio(getComputedStyle(h2).color, bg);
     out.toc["section, reader is in it"] = contrastRatio(mixed(cs.getPropertyValue("--toc-fade-head-on")), bg);
     if (h3) out.toc["subsection, resting"] = contrastRatio(getComputedStyle(h3).color, bg);
-    out.toc["active entry (full --c-primary)"] = contrastRatio(tokenColor("--c-primary"), bg);
+    out.toc["active entry (--toc-strong)"] = contrastRatio(strongColor, bg);
   }
 
   out.textFailures = Object.keys(out.text).filter(function (k) { return out.text[k] < 4.5; });

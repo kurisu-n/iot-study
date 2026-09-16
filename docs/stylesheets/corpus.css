@@ -89,6 +89,7 @@
   --fc-text-bright:    #14120F;
   --fc-text-muted:     #6B6457;
   --fc-tan:            #6E5418;
+  --fc-tan-bright:     #533E0F;
   --fc-gold:           #86642A;
   --fc-olive:          #C4B389;
   --fc-red:            #9E3535;
@@ -290,9 +291,50 @@
  *
  * Written once against --c-*, not repeated per scheme, because --c-* is
  * already resolved by the time these are read.
+ *
+ * ⛔⛔ MAP EVERY COLOUR VARIABLE MATERIAL USES, not just the obvious ones.
+ * Material declares its palette on :root with LIGHT-theme literals, and a
+ * custom scheme name like "warm-dark" matches none of Material's own scheme
+ * rules, so anything left unmapped here keeps its light default in every
+ * scheme. It is invisible on the light schemes and breaks the dark ones.
+ *
+ * Found the hard way, 2026-09-16: --md-admonition-fg-color stayed Material's
+ * #000000de, so the body text of every exam box was black at 87% on the dark
+ * box surface and unreadable in both dark schemes. A sweep for colour variables
+ * whose value is identical under a light and a dark scheme then found 57 of
+ * them. The ones this corpus can reach are mapped below; the Mermaid set is
+ * left alone because nothing here draws Mermaid diagrams.
+ *
+ * To re-run that sweep after a Material upgrade, read every --md-* property
+ * from the stylesheets, resolve each on a probe element carrying a light and
+ * then a dark data-md-color-scheme, and list the colours that come back equal.
  * ==================================================================== */
 
 [data-md-color-scheme] {
+  /* Boxes (admonitions): the one that broke the exam boxes. */
+  --md-admonition-fg-color:        var(--c-text);
+  --md-admonition-bg-color:        var(--c-bg);
+
+  /* Material's translucent overlays, used for hover and focus states. Its
+     defaults are translucent WHITE, which glares on a dark page. The
+     percentages are Material's own alpha steps: b3, 4d, 1f and 1a in hex. */
+  --md-default-bg-color--light:    color-mix(in srgb, var(--c-bg) 70%, transparent);
+  --md-default-bg-color--lighter:  color-mix(in srgb, var(--c-bg) 30%, transparent);
+  --md-default-bg-color--lightest: color-mix(in srgb, var(--c-bg) 12%, transparent);
+  --md-accent-bg-color--light:     color-mix(in srgb, var(--c-bg) 70%, transparent);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--c-accent) 10%, transparent);
+
+  --md-code-bg-color--light:       color-mix(in srgb, var(--c-code-bg) 70%, transparent);
+  --md-code-bg-color--lighter:     color-mix(in srgb, var(--c-code-bg) 30%, transparent);
+  --md-code-hl-color:              var(--c-accent);
+  --md-code-hl-color--light:       color-mix(in srgb, var(--c-accent) 10%, transparent);
+
+  --md-typeset-mark-color:         color-mix(in srgb, var(--c-accent) 30%, transparent);
+  --md-typeset-kbd-color:          var(--c-bg-alt);
+  --md-typeset-kbd-accent-color:   var(--c-bg);
+  --md-typeset-kbd-border-color:   var(--c-border);
+  --md-typeset-table-color--light: color-mix(in srgb, var(--c-text) 4%, transparent);
+
   --md-default-bg-color:           var(--c-bg);
   --md-default-fg-color:           var(--c-text);
   --md-default-fg-color--light:    var(--c-muted);
@@ -320,6 +362,42 @@
   --md-footer-fg-color:            var(--c-text);
   --md-footer-fg-color--light:     var(--c-muted);
   --md-footer-fg-color--lighter:   var(--c-muted);
+}
+
+/* Syntax highlighting, which needs a light and a dark set rather than one
+   mapping, because token colours are not derived from the page. FaceCue's
+   documentation settled this choice: VS Code's Light+ and Dark+, the schemes a
+   reader who writes code has seen every day. Values copied from facecue.css. */
+[data-md-color-scheme="warm-light"],
+[data-md-color-scheme="academic"] {
+  --md-code-hl-comment-color:      #008000;
+  --md-code-hl-keyword-color:      #0000FF;
+  --md-code-hl-string-color:       #A31515;
+  --md-code-hl-number-color:       #098658;
+  --md-code-hl-function-color:     #795E26;
+  --md-code-hl-constant-color:     #0070C1;
+  --md-code-hl-name-color:         #001080;
+  --md-code-hl-variable-color:     #001080;
+  --md-code-hl-generic-color:      #001080;
+  --md-code-hl-operator-color:     #333333;
+  --md-code-hl-punctuation-color:  #333333;
+  --md-code-hl-special-color:      #AF00DB;
+}
+
+[data-md-color-scheme="warm-dark"],
+[data-md-color-scheme="navy"] {
+  --md-code-hl-comment-color:      #6A9955;
+  --md-code-hl-keyword-color:      #569CD6;
+  --md-code-hl-string-color:       #CE9178;
+  --md-code-hl-number-color:       #B5CEA8;
+  --md-code-hl-function-color:     #DCDCAA;
+  --md-code-hl-constant-color:     #4FC1FF;
+  --md-code-hl-name-color:         #9CDCFE;
+  --md-code-hl-variable-color:     #9CDCFE;
+  --md-code-hl-generic-color:      #9CDCFE;
+  --md-code-hl-operator-color:     #D4D4D4;
+  --md-code-hl-punctuation-color:  #D4D4D4;
+  --md-code-hl-special-color:      #C586C0;
 }
 
 /* ========================================================================
@@ -739,16 +817,45 @@ form[data-md-component="palette"] > label {
   --toc-fade-rule-on: 75%;
   --toc-fade-h3: 60%;
   --toc-fade-bar3: 85%;
+  --toc-strong: var(--c-primary);
 }
 
+/* The light dials are RAISED from FaceCue's own numbers (Chris, 2026-09-16: the
+   dark contents column is fine, the light one wants more contrast, especially
+   on the selected entry). FaceCue's light set rested a section at 2.35:1 and
+   selected at 6.72:1 in Warm Light. Solved, not guessed, against both light
+   schemes:
+
+     Warm Light      section resting 2.35 -> 3.53  subsection 4.39 -> 6.02
+                     selected        6.72 -> 9.59
+     Academic        section resting 2.99 -> 5.19  subsection 4.64 -> 6.46
+                     selected        stays 12.14
+     (measured after the change, not the targets it was solved for)
+
+   The resting section stays deliberately below the selected one, which is what
+   keeps the "fade comes off where you are" idea working.
+
+   --toc-strong is the colour of the reader's position. The dials alone could not
+   lift the selected entry in Warm Light, because its tan tops out at 6.72:1
+   even at full strength; FaceCue's own light palette has a deeper tan for
+   exactly that, --fc-tan-bright, which its stylesheet uses for an active
+   section heading. */
 [data-md-color-scheme="warm-light"] .md-sidebar--secondary .md-nav--secondary,
 [data-md-color-scheme="academic"] .md-sidebar--secondary .md-nav--secondary {
-  --toc-fade-head: 52%;
-  --toc-fade-head-on: 92%;
-  --toc-fade-rule: 52%;
-  --toc-fade-rule-on: 80%;
-  --toc-fade-h3: 62%;
-  --toc-fade-bar3: 85%;
+  --toc-fade-head: 72%;
+  --toc-fade-head-on: 100%;
+  --toc-fade-rule: 64%;
+  --toc-fade-rule-on: 90%;
+  --toc-fade-h3: 72%;
+  --toc-fade-bar3: 90%;
+}
+
+[data-md-color-scheme="warm-light"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-strong: var(--fc-tan-bright);
+}
+
+[data-md-color-scheme="academic"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-strong: var(--c-primary);
 }
 
 .md-sidebar--secondary .md-nav--secondary .md-nav__item .md-nav__list {
@@ -794,7 +901,7 @@ form[data-md-component="palette"] > label {
    level rules above and loses silently: the current entry never changes. */
 .md-sidebar--secondary .md-nav--secondary > .md-nav__list
   > .md-nav__item:has(.md-nav__link--active) > .md-nav__link {
-  color: color-mix(in srgb, var(--c-primary) var(--toc-fade-head-on), transparent);
+  color: color-mix(in srgb, var(--toc-strong) var(--toc-fade-head-on), transparent);
   border-bottom-color: color-mix(in srgb, var(--c-accent) var(--toc-fade-rule-on), transparent);
 }
 
@@ -802,7 +909,7 @@ form[data-md-component="palette"] > label {
   > .md-nav__link.md-nav__link--active,
 .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item
   > .md-nav__link:hover {
-  color: var(--c-primary);
+  color: var(--toc-strong);
   border-bottom-color: color-mix(in srgb, var(--c-accent) var(--toc-fade-rule-on), transparent);
 }
 
@@ -810,7 +917,7 @@ form[data-md-component="palette"] > label {
   > .md-nav__list > .md-nav__item > .md-nav__link.md-nav__link--active,
 .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
   > .md-nav__list > .md-nav__item > .md-nav__link:hover {
-  color: var(--c-primary);
+  color: var(--toc-strong);
   border-left-color: var(--c-accent);
 }
 

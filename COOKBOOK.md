@@ -725,7 +725,7 @@ Mapped against the sources on the same day:
 |:---:|:---|:---|:---|:---|
 | ✅ | Data propagation: flooding, Directed Diffusion | pages 1 to 6 | 2026 Α.1, Α.2; 2022 Θέμα 2Γ | 2, 3 |
 | ✅ | LEACH, including the cluster head election exercise | pages 7 to 11 | 2026 Β.1 (2.5 marks) | 2 |
-| **1** | **Energy Balance Protocol** | pages 12 to 14 | **2026 Α.2** | 3 |
+| ✅ | Energy Balance Protocol | pages 12 to 14 | 2026 Α.2 | 3 |
 | **1** | **Routing metrics and ETX**, including the multi-hop energy exercise | pages 15 to 16 | **2026 Δ.1 (2.5 marks)** | 4 / 5 |
 | 1 | How technology changed energy management, a synthesis across the protocols | page 17 | none | notes cite "§12" |
 | 1 | Scalar and vector models | pages 17 to 18 | none | 9 (see warning) |
@@ -738,9 +738,10 @@ Mapped against the sources on the same day:
 
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
 
-**Next up are the Energy Balance Protocol and routing metrics with ETX** (LEACH is done, 2026-09-16),
-in that order: each is covered by the notes and carried 1.5 to 2.5 marks in 2026, and both are 2026
-exercises.
+**Next up is routing metrics with ETX** (LEACH and the Energy Balance Protocol are done, 2026-09-16):
+it is covered by the notes, carries 2.5 marks in 2026 (Θέμα Δ.1), and is the last of the 2026 exercises.
+The full chapter skeleton (chapters 3 to 12) now exists as placeholder pages in the menu, marked with a
+`☆`, so the order and what is deferred are visible up front.
 
 ### 10.1 What the LEACH chapter added to the template
 

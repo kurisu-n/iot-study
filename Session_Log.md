@@ -614,3 +614,41 @@ this way, unseen because the panel is collapsed by default. Fixed by using inlin
 inside admonitions; top-level block `$$` is fine. Also confirmed Greek renders in `\text{}` here, so the
 earlier concern was moot. Built strict, deployed green, both chapter (block) and exam (inline) traces
 verified rendering.
+
+## 2026-09-16 (late) · Chapter skeleton, then Chapter 3 (Energy Balance Protocol)
+
+Chris asked to build the full menu skeleton first, with placeholder pages marked by a symbol, so the
+reading/writing order and what gets deferred are visible, then move on to the next chapter (still exam/notes
+priority order).
+
+### Skeleton
+
+Chapters 3 to 12 created as placeholder pages in priority order, each with a `todo` box stating what it
+covers, which exam questions it answers, its priority, and its sources. Placeholders carry a `☆` in the
+nav label. Order: notes-covered first (EBP, ETX, energy synthesis, scalar/vector), then rest of 2026
+(LPWAN/LoRaWAN), then 2025/2022 theory, then the unexamined rest (RPL, application protocols, WPT). Index
+explains the `☆` and that the order is priority, not textbook order. Added CoAP and MQTT to terms.yml.
+
+### Chapter 3: Energy Balance Protocol
+
+Grounded in Lecture 3 (slides 1 to 29) and notes pages 12 to 16. The lecture goes deep (probabilistic
+recurrence, closed form, linear-programming lifespan maximisation, distributed potential algorithm); the
+notes are the accessible tier. Wrote the chapter around the accessible tier plus the energy model, marking
+the deep recurrence/LP as beyond the basic scope:
+
+- 3.1 efficiency vs balance, 3.2 why every scheme strains some nodes, 3.3 the slice-and-dice probabilistic
+  idea (hop with p_i, direct with 1-p_i), 3.4 the energy model with a traced E[ε] expansion and the balance
+  property, 3.5 how p_i behaves (far→hop, near→direct), 3.6 energy holes and FND/HND/LND, 3.7 the DD
+  comparison the 2026 Α.2 asks for.
+- `tools/ebp_figures.py`: three figures (strain patterns, the per-node choice over a sliced network, energy
+  holes vs uniform drain), HTML labels only, `--fig-*` colours, marker-rewritten.
+- Filled the exam 2026 Α.2 answer (DD vs EBP, short + expanded) now that the chapter covers it; removed the
+  `☆` from chapter 3's nav label.
+
+### Trap
+
+The hook read `iR` and `cR²` written as plain text in prose as inner-cap shorthand. Fixed by wrapping them
+in inline math `\(iR\)`, `\(cR^2\)`. General rule: symbolic quantities in prose go in math, not plain text.
+
+Built strict clean, deployed green (skeleton and chapter as separate commits). Next: routing metrics and
+ETX (chapter 4), the last 2026 exercise.

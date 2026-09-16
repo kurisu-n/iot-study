@@ -2,7 +2,7 @@
 
 # Δρομολόγηση, Πρωτόκολλα Εφαρμογής και Ασύρματη Ισχύς
 
-!!! todo "Υπό συγγραφή (☆)"
+!!! todo "Υπό συγγραφή (○)"
 
     Το κεφάλαιο αυτό δεν έχει γραφτεί ακόμη. Θα καλύψει το πρωτόκολλο δρομολόγησης Routing Protocol for Low-power and Lossy Networks (RPL), τα πρωτόκολλα εφαρμογής Constrained Application Protocol (CoAP) και Message Queuing Telemetry Transport (MQTT), την ασύρματη μεταφορά ενέργειας (Wireless Power Transfer) και την κινητικότητα στα δίκτυα.
 

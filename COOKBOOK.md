@@ -743,7 +743,7 @@ to 4 are done, 2026-09-16. **Next up (priority 1, notes-covered) is the energy-m
 (chapter 5) and then scalar/vector models (chapter 6)**, followed by priority 2, the Low Power Wide Area
 Networks / LoRaWAN chapter (2026 Θέμα Γ). ⚠ Before writing chapter 6, read Lecture 9: the notes' scalar/
 vector table may have attached an unrelated meaning to the lecture's charging-model terms. The full chapter
-skeleton (chapters 5 to 12) exists as placeholder pages in the menu, marked `☆`.
+skeleton (chapters 5 to 12) exists as placeholder pages in the menu, marked with a circle; chapters covered by the handwritten notes carry a filled star ★ (marker scheme changed 2026-09-16).
 
 ### 10.1 What the LEACH chapter added to the template
 

@@ -122,33 +122,50 @@ def svg(parts):
             + "".join(parts) + "</svg>")
 
 
+def packet(pts, delay=0.0):
+    """A data packet that travels the route through pts (a list of points) and
+    holds at the destination. The static arrow underneath shows the route when
+    motion is off; the fig-travel animation moves this dot along the same line."""
+    d = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in pts)
+    style = f"offset-path: path('{d}'); offset-rotate: 0deg;"
+    if delay:
+        style += f" animation-delay: {delay:.2f}s;"
+    return (f'<circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" '
+            f'class="fig-packet" style="{style}"/>')
+
+
 # ---- Panels ---------------------------------------------------------------------
 
 def strain_panel(kind):
     """kind: 'hop' overuses the slice nearest the sink; 'direct' overuses the far slice."""
     parts = [slices_bg(), sink()]
+    packets = []
     if kind == "hop":
         hot = lambda p: slice_of(p[0]) == 1
     else:
         hot = lambda p: slice_of(p[0]) >= N_SLICES
     # A few representative transmissions, so the reader sees why those nodes drain.
     if kind == "hop":
-        for i in [3, 9, 15, 20]:
+        for k, i in enumerate([3, 9, 15, 20]):
             p = NODES[i]
             # a chain of one-hop steps leftwards toward the sink
             steps = int(slice_of(p[0]))
-            cur = p
+            pts, cur = [p], p
             for s in range(steps):
                 nxt = (max(X0 + 2, cur[0] - SLICE_W), cur[1])
                 tgt = SINK if s == steps - 1 else nxt
                 parts.append(arrow(cur, tgt, "var(--fig-warn)", 1.4,
-                                    R_NODE, SINK_HALF if tgt is SINK else R_NODE, cls="fig-flow"))
+                                    R_NODE, SINK_HALF if tgt is SINK else R_NODE))
+                pts.append(tgt)
                 cur = tgt
+            packets.append(packet(pts, delay=k * 0.6))
     else:
-        for i in [6, 12, 18, 23]:
-            parts.append(arrow(NODES[i], SINK, "var(--fig-warn)", 1.6, R_NODE, SINK_HALF, cls="fig-flow"))
+        for k, i in enumerate([6, 12, 18, 23]):
+            parts.append(arrow(NODES[i], SINK, "var(--fig-warn)", 1.6, R_NODE, SINK_HALF))
+            packets.append(packet([NODES[i], SINK], delay=k * 0.6))
     for p in NODES:
         parts.append(node(p, "hot" if hot(p) else "live", cls="fig-strain" if hot(p) else ""))
+    parts.extend(packets)  # packets ride on top of the routes and nodes
     return svg(parts)
 
 
@@ -159,15 +176,20 @@ def choice_panel(option):
     # the neighbour one slice closer to the sink
     dst = min((q for q in NODES if slice_of(q[0]) == slice_of(src[0]) - 1),
               key=lambda q: abs(q[1] - src[1]), default=None)
+    route = None
     if option == "hop" and dst is not None:
-        parts.append(arrow(src, dst, "var(--fig-warn)", 1.8, R_NODE, R_NODE, cls="fig-flow"))
+        parts.append(arrow(src, dst, "var(--fig-warn)", 1.8, R_NODE, R_NODE))
+        route = [src, dst]
     elif option == "direct":
-        parts.append(arrow(src, SINK, "var(--fig-warn)", 3.0, R_NODE, SINK_HALF, cls="fig-flow"))
+        parts.append(arrow(src, SINK, "var(--fig-warn)", 3.0, R_NODE, SINK_HALF))
+        route = [src, SINK]
     for p in NODES:
         parts.append(node(p))
     parts.append(halo(src))
     if option == "hop" and dst is not None:
         parts.append(halo(dst))
+    if route:
+        parts.append(packet(route))  # the message travels this route on top
     return svg(parts)
 
 

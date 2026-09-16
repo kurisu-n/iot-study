@@ -1706,40 +1706,52 @@ form[data-md-component="palette"] > label {
  * stay red, dead nodes stay hollow).
  *
  * The generators (tools/ebp_figures.py and friends) tag elements with these
- * classes. fig-flow dashes a transmission and streams it along its line;
- * fig-strain pulses an overused node; fig-die fades a node's fill from full to
- * near-empty, staggered by an inline animation-delay so deaths sweep in order.
+ * classes. fig-packet is a data dot that travels a route (its offset-path) and
+ * holds at the destination; fig-strain pulses an overused node; fig-die fades a
+ * node's fill from full to near-empty, staggered by an inline animation-delay so
+ * deaths sweep in order.
  * ==================================================================== */
 
-/* One offset step equal to the dash period (5 + 6) so the stream loops with no
-   seam. */
-@keyframes figFlow   { to { stroke-dashoffset: -11; } }
+/* Rule of thumb (Chris, 2026-09-16): a transition is about five seconds, and it
+   holds on its final state for two to three seconds, then loops. */
+
 @keyframes figStrain { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
-/* Full -> drained -> HELD DEAD for most of the cycle -> quick eased refill.
-   0% and 100% are the SAME value, so the loop seam has no jump (the first
-   version snapped empty->full and read as a flash). The empty state is the
-   point of the figure, so it holds for the majority of the (long) cycle: the
-   drain and the refill are the short parts, the dead network is what the reader
-   is meant to sit and look at. */
-@keyframes figDie {
-  0%,  8%  { fill-opacity: 1; }    /* full, briefly */
-  22%, 92% { fill-opacity: 0.06; } /* drained and dead, held ~70% of the cycle */
-  100%     { fill-opacity: 1; }    /* quick refill back to the seam */
+
+/* A message travels its route, ARRIVES, and rests at the destination before the
+   next one starts. It fades in at the source, moves to the end over ~5s, holds
+   there ~2.5s, then fades out and resets to the source while invisible, so the
+   loop has no jump. The static route arrow underneath shows where it goes when
+   motion is off. */
+@keyframes figTravel {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  5%   { offset-distance: 0%;   opacity: 1; }
+  59%  { offset-distance: 100%; opacity: 1; }   /* ~5s of an 8.5s cycle */
+  88%  { offset-distance: 100%; opacity: 1; }   /* held at the destination ~2.5s */
+  95%  { offset-distance: 100%; opacity: 0; }
+  100% { offset-distance: 0%;   opacity: 0; }
 }
 
-.md-typeset .fig-flow {
-  stroke-dasharray: 5 6;
-  animation: figFlow 1.8s linear infinite;
+/* Full -> drained over ~5s -> held empty ~3s -> quick refill. 0% and 100% match,
+   so the loop seam has no jump. The empty state is the point, so it is held. */
+@keyframes figDie {
+  0%       { fill-opacity: 1; }
+  50%, 80% { fill-opacity: 0.06; }   /* drain by 5s, hold empty to 8s */
+  100%     { fill-opacity: 1; }      /* refill over the last 2s */
 }
+
 .md-typeset .fig-strain {
   animation: figStrain 2.8s ease-in-out infinite;
 }
+.md-typeset .fig-packet {
+  opacity: 0;
+  animation: figTravel 8.5s ease-in-out infinite;
+}
 .md-typeset .fig-die {
-  animation: figDie 20s ease-in-out infinite;
+  animation: figDie 10s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .md-typeset .fig-flow { animation: none; stroke-dasharray: none; }
   .md-typeset .fig-strain,
+  .md-typeset .fig-packet,
   .md-typeset .fig-die { animation: none; }
 }

@@ -848,7 +848,7 @@ must **carry information the static panel only implies**, never decorate. Moveme
 converging on the near-sink nodes), a process (a message travelling an option), or a timeline (the order in
 which nodes die). If an animation would only be pretty, leave it off.
 
-The classes and keyframes live in `corpus.css` §19 with generic names (`fig-flow`, `fig-strain`, `fig-die`),
+The classes and keyframes live in `corpus.css` §19 with generic names (`fig-packet`, `fig-strain`, `fig-die`),
 so any chapter's generator can reuse them. The generators (`tools/ebp_figures.py` and siblings) tag the
 elements; per-element timing (a death sweep, say) is set with an inline `animation-delay`.
 
@@ -870,6 +870,6 @@ The rules, each learned the hard way:
 - ⚠ **The figures sit below the fold, so animations must loop, not play once.** A one-shot animation finishes
   during page load, before the reader ever scrolls to it. (A future refinement could start them with an
   intersection observer, but looping is the current answer.)
-- **Technique.** Flow along a line: `stroke-dashoffset` stepped by one dash period. Drain a node: animate
+- **Technique.** A message that travels and arrives: a small circle on an `offset-path`, its `offset-distance` animated to 100% then held before an invisible reset. Drain a node: animate
   `fill-opacity` (not `fill`), so the outline survives as the dead/hollow shape. Draw attention to a node:
   animate `opacity` (not `r`, which the figure audit skips and which can nudge overlap). Keep it slow.

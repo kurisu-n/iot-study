@@ -1425,13 +1425,21 @@ form[data-md-component="palette"] > label {
 /* ========================================================================
  * 16 - Exam facsimile.
  *
- * Each exam page opens with a reproduction of the original paper, framed so it
- * reads as the physical sheet rather than as our own writing. The paper is a
- * fixed warm cream with dark ink in every scheme, on purpose: it is a
- * photocopy-like artifact, dark-on-cream is legible on all four backgrounds, and
- * a sheet that changed colour with the theme would stop looking like the
- * original. hooks/shorthand.py skips everything inside .exam-facsimile, so the
- * paper keeps its own acronyms verbatim (WiFi, LoRaWAN) without our links.
+ * Each exam page opens with a reproduction of the original paper as one or more
+ * A4 sheets (the 210:297 proportion of the real thing). A paper that does not
+ * fit one sheet at a readable size is authored as two .exam-sheet blocks.
+ *
+ * The type is sized in container units (cqi, one per cent of the sheet width),
+ * so a sheet always holds the same amount of text whatever its rendered width:
+ * the whole page scales like a photograph of the original rather than reflowing.
+ * On a phone that would make the text too small, so below 45em the sheet drops
+ * the fixed A4 height and reflows at a readable fixed size instead.
+ *
+ * The paper is a fixed warm cream with dark ink in every scheme, on purpose: it
+ * is a photocopy-like artifact, dark-on-cream is legible on all four
+ * backgrounds, and a sheet that changed colour with the theme would stop looking
+ * like the original. hooks/shorthand.py skips everything inside .exam-facsimile,
+ * so the paper keeps its own acronyms verbatim (WiFi, LoRaWAN) without our links.
  * ==================================================================== */
 
 .md-typeset .exam-facsimile {
@@ -1439,19 +1447,41 @@ form[data-md-component="palette"] > label {
   --ink: #211e18;
   --ink-soft: #4c473d;
   --rule: #cec6b4;
-  max-width: 46rem;
+  /* The container the sheets' cqi type resolves against. Capped to the sheet
+     width so one cqi is one per cent of a sheet, not of the whole content area.
+     container-type establishes it; a name lets the cqi units find it reliably. */
+  container: examsheet / inline-size;
+  width: min(100%, 46rem);
   margin: 1.4rem auto 2.2rem;
-  padding: 2.2rem 2.6rem 2.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.md-typeset .exam-facsimile .exam-sheet {
+  box-sizing: border-box;
+  width: 100%;
+  /* A4 is the sheet's MINIMUM shape, not a hard clip. A paper that fits sits in
+     an exact 210:297 page; one that runs a little longer lets the sheet grow
+     rather than cut a question off. overflow stays visible so nothing is ever
+     lost. */
+  aspect-ratio: 210 / 297;
+  flex: 0 0 auto;
+  overflow: visible;
+  padding: 5.5cqi 6.5cqi;
   background: var(--paper);
   color: var(--ink);
   border: 1px solid var(--rule);
   border-radius: 4px;
   box-shadow: 0 3px 18px rgba(0, 0, 0, 0.16);
   font-family: "Georgia", "Times New Roman", serif;
-  line-height: 1.5;
-  font-size: 0.82rem;
+  font-size: 1.95cqi;
+  line-height: 1.34;
   text-align: justify;
 }
+
+.md-typeset .exam-facsimile .exam-sheet > *:first-child { margin-top: 0; }
 
 .md-typeset .exam-facsimile p,
 .md-typeset .exam-facsimile li {
@@ -1460,18 +1490,17 @@ form[data-md-component="palette"] > label {
 
 .exam-facsimile__head {
   text-align: center;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1em;
 }
 
 .exam-facsimile__inst {
   font-weight: 700;
-  font-size: 0.86rem;
-  line-height: 1.35;
+  font-size: 1.05em;
+  line-height: 1.3;
 }
 
 .exam-facsimile__course {
-  margin-top: 0.7rem;
-  font-size: 0.86rem;
+  margin-top: 0.8em;
   line-height: 1.5;
 }
 
@@ -1480,10 +1509,9 @@ form[data-md-component="palette"] > label {
 .exam-facsimile__fill {
   display: flex;
   justify-content: space-between;
-  gap: 1.5rem;
-  margin: 1.1rem 0 0.4rem;
+  gap: 1.5em;
+  margin: 1em 0 0.4em;
   color: var(--ink-soft);
-  font-size: 0.8rem;
 }
 
 .exam-facsimile__fill span:first-child { flex: 1 1 auto; }
@@ -1491,7 +1519,7 @@ form[data-md-component="palette"] > label {
 .exam-facsimile__fill .line {
   display: inline-block;
   border-bottom: 1px solid var(--ink-soft);
-  min-width: 4rem;
+  min-width: 4em;
 }
 
 .exam-facsimile__fill span:first-child .line { min-width: 60%; }
@@ -1499,22 +1527,23 @@ form[data-md-component="palette"] > label {
 .exam-facsimile__note {
   text-align: center;
   font-style: italic;
-  margin: 0.6rem 0 1.4rem;
+  margin: 0.5em 0 1.1em;
 }
 
 .exam-facsimile__theme {
   font-weight: 700;
   letter-spacing: 0.02em;
-  margin: 1.4rem 0 0.5rem;
+  margin: 1.1em 0 0.45em;
 }
 
 .md-typeset .exam-facsimile ol {
-  margin: 0 0 0.4rem;
-  padding-left: 1.6rem;
+  margin: 0 0 0.4em;
+  padding-left: 1.6em;
 }
 
-.md-typeset .exam-facsimile ol li { margin-bottom: 0.7rem; }
-.md-typeset .exam-facsimile ol ol { margin-top: 0.5rem; }
+.md-typeset .exam-facsimile ol li { margin-bottom: 0.55em; }
+.md-typeset .exam-facsimile ol ol { margin-top: 0.4em; }
+.md-typeset .exam-facsimile p { margin: 0.5em 0; }
 
 .exam-facsimile .marks {
   font-weight: 700;
@@ -1526,19 +1555,25 @@ form[data-md-component="palette"] > label {
    verbatim reproduction of the paper's own diagram, not a corpus step figure. */
 .exam-facsimile__diagram {
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.8em 0;
 }
 
 .exam-facsimile__diagram svg {
   width: 100%;
-  max-width: 22rem;
+  max-width: 60%;
   height: auto;
 }
 
+/* On a phone a true A4 would shrink the type past reading. Drop the fixed
+   height and reflow at a readable fixed size, still framed as paper. */
 @media screen and (max-width: 44.98em) {
-  .md-typeset .exam-facsimile {
-    padding: 1.4rem 1.2rem 1.6rem;
+  .md-typeset .exam-facsimile .exam-sheet {
+    aspect-ratio: auto;
+    overflow: visible;
+    padding: 1.5rem 1.3rem 1.8rem;
+    font-size: 0.82rem;
   }
+  .exam-facsimile__diagram svg { max-width: 100%; }
 }
 
 /* ========================================================================

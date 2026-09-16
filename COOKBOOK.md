@@ -607,3 +607,24 @@ full strength). Measured after:
 
 The live FaceCue documentation measured 2.35 / 5.55 / 6.72 to 7.66 in its light scheme on the same day,
 identical to this corpus before the change, so the same lift applies there if Chris wants it.
+
+### 9.8 The left sidebar
+
+Ported on 2026-09-16 from the structure the FaceCue documentation actually ships, variant C, "inspector
+rows" (its `overrides/main.html` forces `data-fc-sidebar="c"`; variants A and B exist only for its preview
+switcher). A chapter group is a boxed header row, its pages hang off a thin rail, and the current page
+takes a coloured stripe and a tinted row. Code in `corpus.css` section 14 and `javascripts/nav-sections.js`.
+
+- **The group's name opens its first page; the rest of the row folds.** Material makes the whole label a
+  fold control, so `nav-sections.js` splits it. Unlike FaceCue's copy it runs on every `document$`
+  emission and marks each label it handles, because this site uses instant navigation and FaceCue's does
+  not. Verified: a row click folds and stays, a name click opens the chapter, and after navigating there is
+  still exactly one handler.
+- **Colours** are FaceCue's measured values in the two warm schemes, and derived from `--c-*` in Academic
+  and Navy. Lowest sidebar text contrast in any scheme: 5.95:1, the active page in FaceCue Ανοιχτό.
+- **The nav is 14.5rem wide on desktop**, FaceCue's width, so a chapter name does not wrap. Widening
+  `.md-sidebar` alone does nothing; the width lives on `.md-sidebar__inner`'s right padding.
+- **Not ported:** FaceCue's separators between conceptual groups, which are matched by nav position and
+  hard-wired to its own page order.
+- ⚠ **Deliberately different:** FaceCue hides the sidebar's title row at every width. Here it is hidden on
+  desktop only, because on a phone Material's drawer uses that row as the back control inside a chapter.

@@ -1116,3 +1116,258 @@ form[data-md-component="palette"] > label {
   color: var(--c-text);
   font-weight: 700;
 }
+
+/* ========================================================================
+ * 14 - The left sidebar, after the FaceCue documentation's.
+ *
+ * Ported from facecue.css, the structure that site actually ships: variant C,
+ * "inspector rows" (overrides/main.html forces data-fc-sidebar="c"). A chapter
+ * is a boxed header row, its pages hang off a thin rail beneath it, and the
+ * page the reader is on takes a coloured stripe and a tinted row.
+ *
+ * What was ported, and what was not:
+ *   - Ported: the header rows, the rail, the active row, the hover colours, the
+ *     split between a chapter's name (opens its first page, see
+ *     javascripts/nav-sections.js) and the rest of its row (folds), the wider
+ *     nav so chapter names do not wrap, and a closed chapter taking no room.
+ *   - Not ported: the separators between FaceCue's conceptual groups. FaceCue
+ *     draws them by nav POSITION, hard-wired to its own page order, so they would
+ *     land on arbitrary entries here.
+ *   - Deliberately different: FaceCue hides the sidebar's title row at every
+ *     width. Here it is hidden on desktop only, because on a phone Material's
+ *     drawer uses that row as the "back" control inside a chapter, and hiding it
+ *     there could strand a reader in the chapter list.
+ *
+ * The --sb-* tokens: the two warm schemes carry the exact values the FaceCue
+ * documentation resolved to on 2026-09-16, measured on the live site in its dark
+ * and light schemes. Academic and Navy have no FaceCue counterpart, so theirs
+ * are derived from their own --c-* roles.
+ * ==================================================================== */
+
+[data-md-color-scheme="warm-dark"] {
+  --sb-head-bg:       #1E1D1C;
+  --sb-head-fg:       #DBDBE0;
+  --sb-head-border:   #3A3836;
+  --sb-head-rule:     #615345;
+  --sb-link:          #CCCCCC;
+  --sb-link-rail:     #3A3836;
+  --sb-active-bg:     #2E2D2C;
+  --sb-active-fg:     #D0C090;
+  --sb-active-stripe: #D0C090;
+  --sb-arrow:         #C09A5C;
+  --sb-head-hover:    #E6D8A8;
+  --sb-link-hover:    #D0C090;
+  --sb-arrow-hover:   #E6D8A8;
+}
+
+[data-md-color-scheme="warm-light"] {
+  --sb-head-bg:       #DBD0B9;
+  --sb-head-fg:       #35322B;
+  --sb-head-border:   #CCC3AF;
+  --sb-head-rule:     #C9BFA6;
+  --sb-link:          #26231F;
+  --sb-link-rail:     #CCC3AF;
+  --sb-active-bg:     #EFEADF;
+  --sb-active-fg:     #6E5418;
+  --sb-active-stripe: #6E5418;
+  --sb-arrow:         #86642A;
+  --sb-head-hover:    #533E0F;
+  --sb-link-hover:    #6E5418;
+  --sb-arrow-hover:   #533E0F;
+}
+
+[data-md-color-scheme="academic"] {
+  --sb-head-bg:       var(--c-code-bg);
+  --sb-head-fg:       var(--c-primary);
+  --sb-head-border:   var(--c-border);
+  --sb-head-rule:     var(--c-border);
+  --sb-link:          var(--c-text);
+  --sb-link-rail:     var(--c-border);
+  --sb-active-bg:     var(--c-highlight);
+  --sb-active-fg:     var(--c-primary);
+  --sb-active-stripe: var(--c-accent);
+  --sb-arrow:         var(--c-accent);
+  --sb-head-hover:    var(--c-accent);
+  --sb-link-hover:    var(--c-accent);
+  --sb-arrow-hover:   var(--c-primary);
+}
+
+[data-md-color-scheme="navy"] {
+  --sb-head-bg:       var(--c-bg-alt);
+  --sb-head-fg:       var(--c-primary);
+  --sb-head-border:   var(--c-border);
+  --sb-head-rule:     var(--c-border);
+  --sb-link:          var(--c-text);
+  --sb-link-rail:     var(--c-border);
+  --sb-active-bg:     var(--c-highlight);
+  --sb-active-fg:     var(--c-primary);
+  --sb-active-stripe: var(--c-accent);
+  --sb-arrow:         var(--c-accent);
+  --sb-head-hover:    var(--c-accent);
+  --sb-link-hover:    var(--c-accent);
+  --sb-arrow-hover:   var(--c-primary);
+}
+
+/* ---- Width, desktop ---------------------------------------------------- */
+
+@media screen and (min-width: 76.25em) {
+  /* ⛔ Widening .md-sidebar alone does nothing: Material caps the nav inside it
+     with .md-sidebar__inner's right padding, and that padding is the gutter.
+     So the nav width is set on the inner, as FaceCue does. */
+  .md-sidebar--primary {
+    width: 16rem;
+  }
+
+  .md-sidebar--primary .md-sidebar__inner {
+    padding-right: calc(100% - 14.5rem);
+  }
+
+  .md-sidebar--primary .md-nav__title {
+    display: none;
+  }
+}
+
+/* ---- Shared ------------------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__link {
+  font-size: 0.74rem;
+  margin-top: 0.35em;
+}
+
+.md-sidebar--primary .md-nav__icon {
+  color: var(--sb-arrow);
+}
+
+/* A chapter row with its own page is a text link beside an arrow label. The
+   link is only as wide as its text and the arrow's label takes the rest of the
+   row, so the text opens the page and everything else, arrow included, folds. */
+.md-sidebar--primary .md-nav__container {
+  display: flex;
+  align-items: center;
+}
+
+.md-sidebar--primary .md-nav__container > a.md-nav__link:first-child {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-right: 0.4em;
+}
+
+.md-sidebar--primary .md-nav__container > label.md-nav__link:last-child {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
+  min-height: 1.6em;
+  cursor: pointer;
+}
+
+.md-sidebar--primary .md-nav__container:hover .md-nav__icon {
+  color: var(--sb-arrow-hover);
+}
+
+.md-sidebar--primary .md-nav__container > a.md-nav__link:hover ~ label.md-nav__link .md-nav__icon {
+  color: var(--sb-arrow);
+}
+
+/* A chapter with no page of its own is one label that folds the group, and
+   nav-sections.js makes the NAME inside it open the chapter's first page. The
+   two have to look different before they are tried: the row keeps an ordinary
+   cursor and only its arrow lights; the name alone takes the hand and the link
+   colour. */
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link {
+  cursor: default;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link:hover {
+  color: var(--sb-head-fg);
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link:hover > .md-nav__icon {
+  color: var(--sb-arrow-hover);
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link > .md-ellipsis {
+  flex: 0 1 auto;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link > .md-nav__icon {
+  margin-left: auto;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.fc-nav-section--linked > .md-ellipsis {
+  cursor: pointer;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.fc-nav-section--linked > .md-ellipsis:hover {
+  color: var(--sb-link-hover);
+}
+
+/* ---- Inspector rows ----------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav__container,
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link,
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--nested) > .md-nav__link {
+  margin: 0.3em 0 0;
+  padding: 0.3em 0.5em;
+  background-color: var(--sb-head-bg);
+  border: 1px solid var(--sb-head-border);
+  border-radius: 3px;
+  color: var(--sb-head-fg);
+  font-weight: 600;
+}
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav {
+  padding: 0.2em 0 0.3em 0.35em;
+}
+
+.md-sidebar--primary .md-nav__item--nested .md-nav__item > .md-nav__link {
+  margin-top: 0.1em;
+  padding: 0.14em 0.5em;
+  border-left: 3px solid var(--sb-link-rail);
+  color: var(--sb-link);
+  font-weight: 400;
+}
+
+.md-sidebar--primary .md-nav__item--nested .md-nav__item > .md-nav__link--active {
+  margin-left: 0;
+  border-left: 3px solid var(--sb-active-stripe);
+  border-radius: 0 3px 3px 0;
+  background-color: var(--sb-active-bg);
+  color: var(--sb-active-fg);
+}
+
+/* ---- Hover -------------------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav__container > a.md-nav__link:hover,
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--nested) > .md-nav__link:hover {
+  color: var(--sb-head-hover);
+}
+
+.md-sidebar--primary .md-nav__item--nested .md-nav__item > .md-nav__link:hover {
+  color: var(--sb-link-hover);
+}
+
+/* ---- A closed chapter takes no room ------------------------------------ */
+
+/* The padding under a chapter's page list stayed while the list was shut, so a
+   closed chapter took more room than a single page. Shut, the padding goes, and
+   Material's transition is restated with the padding in it so opening still
+   eases. Desktop only, since below 76.25em the drawer replaces the grid. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav__item--nested
+    > .md-nav__toggle:not(:checked):not(.md-toggle--indeterminate) ~ .md-nav {
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: grid-template-rows .25s cubic-bezier(.86, 0, .07, 1),
+      padding .25s cubic-bezier(.86, 0, .07, 1), opacity .25s, visibility 0ms .25s;
+  }
+
+  .md-sidebar--primary .md-nav__item--nested
+    > .md-nav__toggle:is(:checked, .md-toggle--indeterminate) ~ .md-nav {
+    transition: grid-template-rows .25s cubic-bezier(.86, 0, .07, 1),
+      padding .25s cubic-bezier(.86, 0, .07, 1), opacity .15s .1s, visibility 0ms;
+  }
+}

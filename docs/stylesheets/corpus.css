@@ -1711,19 +1711,29 @@ form[data-md-component="palette"] > label {
  * near-empty, staggered by an inline animation-delay so deaths sweep in order.
  * ==================================================================== */
 
-@keyframes figFlow   { to { stroke-dashoffset: -14; } }
-@keyframes figStrain { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-@keyframes figDie    { 0%, 5% { fill-opacity: 1; } 18%, 100% { fill-opacity: 0.05; } }
+/* One offset step equal to the dash period (5 + 6) so the stream loops with no
+   seam. */
+@keyframes figFlow   { to { stroke-dashoffset: -11; } }
+@keyframes figStrain { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+/* Full -> drained -> held dead -> eased back to full. 0% and 100% are the SAME
+   value, so the loop has no jump: the earlier version snapped from empty to full
+   and read as a flash. One slow cycle: batteries fall, the network sits dead a
+   moment, then the next cycle refills. */
+@keyframes figDie {
+  0%,  14% { fill-opacity: 1; }
+  44%, 66% { fill-opacity: 0.06; }
+  100%     { fill-opacity: 1; }
+}
 
 .md-typeset .fig-flow {
   stroke-dasharray: 5 6;
-  animation: figFlow 1.1s linear infinite;
+  animation: figFlow 1.5s linear infinite;
 }
 .md-typeset .fig-strain {
-  animation: figStrain 2.2s ease-in-out infinite;
+  animation: figStrain 2.6s ease-in-out infinite;
 }
 .md-typeset .fig-die {
-  animation: figDie 9s ease-in-out infinite;
+  animation: figDie 13s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -43,6 +43,12 @@ terms:
     - Energy Balance Protocol                    # Lecture 3, slide 4
   ETX:
     - Expected Transmission Count                # handwritten notes, pages 15 to 16
+  FND:
+    - First Node Dies                            # handwritten notes, page 12; a network-lifetime metric
+  HND:
+    - Half of Nodes Die                          # handwritten notes, page 12
+  LND:
+    - Last Node Dies                             # handwritten notes, page 12
   IEEE:
     - Institute of Electrical and Electronics Engineers
   IoT:

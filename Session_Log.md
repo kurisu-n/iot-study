@@ -763,3 +763,54 @@ suspended so screenshots came back blank, a known gotcha).
 
 Chapters done: 1 to 8. Remaining: tier 3 chapters 9 (access protocols), 10 (cloud/edge/Industry 4.0), 11
 (802.11ah/security/smart cities), and tier 4 chapter 12 (RPL, application protocols, wireless power).
+
+## 2026-09-17 · Chapter 9 (access protocols)
+
+**Chapter 9, comparing access protocols.** Priority 3. Answers the one question asked *identically* in
+2022 (Θέμα 2Α) and 2025 (Θέμα 2α): the three most important criteria for comparing IoT access protocols.
+Grounded in Lecture 8a (the shared-medium collision problem, the contention-vs-scheduled classification on
+slide 9, CSMA and its backoff, and slide 33's "ideal = perfect scheduling"). Structure: 9.1 the shared
+medium and collisions; 9.2 the two families (contention/CSMA vs scheduled/TDMA, plus centralized vs
+distributed) with a timeline figure contrasting a collision-and-gaps contention row against clean TDMA
+slots; 9.3 the three criteria (energy efficiency, scalability, latency/reliability), each tied to the
+contention-vs-scheduled trade-off.
+
+**Grounding call.** The course gives no closed "three criteria" list, and the only answer artifacts are the
+two student-notes files, which give slightly different triads (both include energy efficiency and security;
+they differ on the third). Framed it honestly as a propose-and-justify question with a source note, led with
+the triad that ties to real access-protocol characteristics (energy, scalability, latency/reliability), and
+told the reader security is an equally valid third if justified. Dropped the placeholder's claim that this
+chapter also answers 2022 2Ε (already answered in chapter 8) and corrected the sources to 8a.
+
+**Exam answers filled.** 2025 Θέμα 2α and 2022 Θέμα 2Α (the twice-asked question), each short + expanded.
+No new terms needed (avoided ALOHA and QoS acronyms; used CSMA/TDMA/MAC, all already defined). Built strict
+clean; figure structure verified in the DOM (9 rects, 2 axes, 3 legend items); deployed green and confirmed
+live.
+
+Chapters done: 1 to 9. Remaining tier 3: chapter 10 (cloud/edge, Industry 4.0, standardisation, 2025 2β to
+2δ) and chapter 11 (802.11ah, security, WSN/MANET, smart cities, 2022 Θέμα 1 and 2Β to 2Δ); then tier 4
+chapter 12.
+
+## 2026-09-17 · Dark-theme consistency and the key-term sweep
+
+**Dark theme (task b).** In warm-dark the key-term pills and blockquotes were filled with the warm
+HubGroupBackground (#2a2620), the only warm-fill surface on the neutral #141414 panel, so they read as
+inconsistent. Pointed --c-highlight at the neutral HeadlessBoxBackground (#2e2d2c) in warm-dark only; the
+other schemes keep their own highlight. Added a shared radius scale (--r-inline 4px, --r-box 6px) and
+applied it to key-terms, quotes, formulas, admonitions and legends, replacing a grab-bag of 0/2/3/4/6/8 px
+corners. Deployed green.
+
+**Key-terms recalibrated and swept (task a).** Chris's rule: a key-term pill marks only a term the student
+would have to PRODUCE as an exam answer, the subject X of a question or an item of an enumerable answer
+(characteristics, phases, layers, criteria, causes); bullet-label leads included. Everything else stays
+bold. Acronym-entangled terms (cluster head/CH, FND, SF): pill the spelled-out concept once, never the
+shorthand definition itself (it breaks the hook), leave the acronym link. Not inside the exam-answer boxes.
+Recorded as COOKBOOK §9.11.
+
+Chapter 1 recalibrated from 14 loose pills to 5 answer-terms (dropped sink, routing protocol, the two
+caches, local repair, Omniscient Multicast). Swept the rest: ch2 LEACH (6: clusters, cluster head, rounds,
+the two phases, the three characteristics), ch3 EBP (9: efficiency/balance, hop-by-hop/direct, slices,
+energy hole, FND/HND/LND), ch4 ETX (2: link quality, expected transmissions), ch5 (3: node/data-centric,
+hierarchical), ch6 (2: scalar/vector), ch7 (4: the four LoRaWAN architecture components), ch8 (13: five IoT
+OSI layers, four challenges, four benefits), ch9 (5: the two families, the three criteria). Built strict
+clean; the IoT-Services pill correctly nests the acronym link.

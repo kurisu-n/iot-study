@@ -708,6 +708,36 @@ does not mean one-to-one, so the text says the drop "follows" the failure rate a
 10% lost" example. A draft sentence explaining *why* delivery drops was removed, because the slide says
 only *that* it does.
 
+### 9.11 Key-terms mark the exam answers, not every important word
+
+Ruled by Chris, 2026-09-17, when the `.key-term` highlight (a filled neutral pill, corpus.css §7) that
+Chapter 1 had used loosely was swept across the whole corpus on one rule.
+
+**The rule:** a `<span class="key-term">…</span>` marks a term the student would have to **produce as an
+exam answer**, nothing else. Two kinds qualify:
+
+- **The subject X** of a question the chapter answers ("describe X", "the characteristics of X").
+- **Each item of an enumerable answer**: the characteristics, phases, components, criteria, layers, or
+  causes the question asks the student to name. Bullet-label leads count and get pilled (the LEACH three
+  characteristics, the five IoT OSI layers, the three access-protocol criteria).
+
+Everything else stays as it was: **bold** for ordinary emphasis, plain text for the rest. Framing words
+("routing protocol"), general vocabulary ("sink"), sub-mechanism detail ("interest cache", "local repair"),
+and evaluation baselines that were never asked for ("Omniscient Multicast") are **not** answers, so they are
+not pilled. Density lands around 2 to 6 pills for a focused chapter, more for a description-heavy one
+(Chapter 8 has 13: five layers, four challenges, four benefits).
+
+**Acronym-entangled terms.** A term that already carries an acronym (cluster head / CH, First Node Dies /
+FND, Spreading Factor / SF) is already marked by the shorthand system's dotted-underline link. Pill the
+**spelled-out concept once at its definition** (the Greek "κόμβο-αρχηγό", the Greek "Θάνατος του πρώτου
+κόμβου") and leave the acronym link alone. ⛔ **Never wrap the shorthand *definition* itself** — a span
+around "Spreading Factor (SF)" or "cluster head (CH)" breaks the hook's full-name-then-(ABBR) detection and
+fails the build. Where the only spelled-out form IS the definition and there is no separate Greek name (SF),
+do not pill it at all; the heading and the acronym link carry it.
+
+**Not inside the exam-answer admonition boxes.** Pills live in the teaching prose where a term is defined or
+enumerated. The answer boxes stay prose.
+
 ---
 
 ## 10. Chapter Order

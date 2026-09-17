@@ -814,3 +814,39 @@ energy hole, FND/HND/LND), ch4 ETX (2: link quality, expected transmissions), ch
 hierarchical), ch6 (2: scalar/vector), ch7 (4: the four LoRaWAN architecture components), ch8 (13: five IoT
 OSI layers, four challenges, four benefits), ch9 (5: the two families, the three criteria). Built strict
 clean; the IoT-Services pill correctly nests the acronym link.
+
+## 2026-09-17 · Chapter 10 (cloud/edge, Industry 4.0, standardisation) and template repairs
+
+**Chapter 10.** Tier 3. Answers 2025 Θέμα 2β, 2γ, 2δ, and backs 2022 Θέμα 3 part 3. The extra notes looked
+thin (the 2025 questions appear there with no answers), but the real material is in lectures not read
+before: Lecture 7b slides 14 to 24 (IIoT, the nine Industry 4.0 technologies, slide 20's four
+characteristics verbatim, the vibration-sensor predictive-maintenance example and the time-to-failure
+ladder, "End-to-End IoT System spans Edge/Fog and Cloud"), Lecture 8b slides 49 to 66 (standard
+definitions, six benefits, de facto vs de jure, SDO principles, the full IEEE lifecycle with the 75%/75%
+ballot), and Lecture 7a's Tactile Internet 1 ms budget (0.3 + 0.2 + 0.5 ms, computation budgeted with the
+base station), which became the course-grounded latency argument for edge computing.
+
+Cloud vs edge is the one question no slide answers directly. The three differences (location, latency,
+capacity) and the similarity (parts of one system) are each tied to a course statement; the
+speed-of-light argument and the other commonly cited differences (bandwidth, privacy, offline) sit in
+flagged extra boxes. Two hand-authored figures: the edge/cloud decision paths (short vs long return) and
+the four characteristics as a sense-communicate-decide-act loop, the loop explicitly marked as a memory
+aid rather than course content. 23 answer-term pills. New terms: IETF, IIoT, IPv6, 6LoWPAN, M2M, MEC,
+OASIS, SDO. Built strict clean on the first try.
+
+**Grounding corrections found while writing.**
+- `Lectures_6a_7a.md` is Lecture 6a up to line 109. The technology zones, 802.15.4, 6LoWPAN, CoAP, MQTT
+  and the 5G/MEC slide are 6a, not 7a or 7b. Fixed Chapter 8's citations (zones now "6a and 7a", CoAP and
+  MQTT now 6a), the 2022 2Ε answer, and the CoAP/MQTT comments in terms.yml.
+- COOKBOOK §9.11 (written the previous turn) claimed a pill around a full name breaks the shorthand hook's
+  definition detection. False: the hook joins text across tags and searches a 160-character window.
+  Corrected the section, pilled Spreading Factor in Chapter 7, and verified the SF dfn and all nine SF
+  links survive.
+- Chapters 8 and 9 had a single chapter-level exam section instead of Chris's one-box-per-section rule.
+  Both now have one `!!! exam` box with all three chips per section. Chapter 9's intro claimed we "know the
+  instructor likes" the criteria question (contradicts the index note that the instructor's identity is
+  unknown for 2022/2025); reworded. Its exam note gave 2025 as 1 mark; it was 1.5.
+- Chapter 8 §8.1 said "the next chapter" for the next section.
+
+The 2026 and 2025 papers are now fully answered. Chapters done: 1 to 10. Remaining: chapter 11 (tier 3),
+chapter 12 (tier 4).

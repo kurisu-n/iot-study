@@ -524,6 +524,10 @@ and "(χειρόγρ. σημ., σ. 9)", now fail the build; see §9.9.
 ✅ **Ruled by Chris, 2026-09-16: one box per numbered section**, kept even where the section was never
 examined.
 
+⚠ Chapters 8 and 9 were first written with a single chapter-level "Τι να περιμένετε στην εξέταση" section
+of `!!! note` boxes instead, which breaks this rule. Both were brought back to one `!!! exam` box per section
+on 2026-09-17. A description-heavy chapter still gets per-section boxes; do not collapse them.
+
 ### 9.4 Protocols get step-by-step figures
 
 - **One small network per protocol, reused in every panel**, so the reader follows the same nodes through
@@ -727,13 +731,17 @@ and evaluation baselines that were never asked for ("Omniscient Multicast") are 
 not pilled. Density lands around 2 to 6 pills for a focused chapter, more for a description-heavy one
 (Chapter 8 has 13: five layers, four challenges, four benefits).
 
-**Acronym-entangled terms.** A term that already carries an acronym (cluster head / CH, First Node Dies /
-FND, Spreading Factor / SF) is already marked by the shorthand system's dotted-underline link. Pill the
-**spelled-out concept once at its definition** (the Greek "κόμβο-αρχηγό", the Greek "Θάνατος του πρώτου
-κόμβου") and leave the acronym link alone. ⛔ **Never wrap the shorthand *definition* itself** — a span
-around "Spreading Factor (SF)" or "cluster head (CH)" breaks the hook's full-name-then-(ABBR) detection and
-fails the build. Where the only spelled-out form IS the definition and there is no separate Greek name (SF),
-do not pill it at all; the heading and the acronym link carry it.
+**Acronym-entangled terms.** A term that carries an acronym (cluster head / CH, First Node Dies / FND,
+Spreading Factor / SF) has its acronym marked by the shorthand system. Pill the **spelled-out concept once
+at its definition**: the Greek name where the course uses one ("κόμβο-αρχηγό", "Θάνατος του πρώτου
+κόμβου"), otherwise the English full name (`<span class="key-term">Spreading Factor</span> (SF)`). Never
+wrap the acronym token itself, which is the hook's own `dfn` or link.
+
+⚠ **Corrected 2026-09-17.** This section first claimed that a pill around the full name breaks the hook's
+definition detection, and Chapter 7 skipped pilling Spreading Factor because of it. That was never tested,
+and it is false: `hooks/shorthand.py` joins the text of every tag into one running buffer and looks for a
+full name anywhere in the last `DEFINITION_WINDOW` (160) characters, plus an unclosed "(" before the
+acronym. Markup between the name and the parenthesis does not matter. Chapter 7 now pills it.
 
 **Not inside the exam-answer admonition boxes.** Pills live in the teaching prose where a term is defined or
 enumerated. The answer boxes stay prose.
@@ -762,21 +770,20 @@ Mapped against the sources on the same day:
 | ✅ | Low Power Wide Area Networks and LoRaWAN, with the WiFi comparison | none | 2026 Γ.1 to Γ.3 (2.5 marks) | 6a, 8a, 8b |
 | ✅ | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3; 2022 2Ε | 7a, 7b, extra notes |
 | ✅ | Comparing access protocols (contention vs scheduled, the three criteria) | none | 2025 2α and 2022 2Α (asked twice) | 8a, 7b |
-| 3 | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ | 7a, extra notes |
+| ✅ | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ; 2022 Θέμα 3.3 | 6a, 7a, 7b, 8b, extra notes |
 | 3 | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ | 7a, 8b |
 | 4 | RPL, CoAP and MQTT, wireless power transfer, mobility | only as noted above | none | 6a, 7b, 9, 10 |
 
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
 
 **All three 2026 exercises are now written** (LEACH Β.1, EBP Α.2, ETX Δ.1), plus their theory. Chapters 1
-to 8 are done, 2026-09-16: priorities 1 and 2 complete (chapters 1 to 7), and the first tier-3 chapter,
-the IoT system-design chapter (chapter 8), which answers 2025 Θέμα 1, 2022 Θέμα 3, and 2022 2Ε. **Next up
-is the rest of tier 3: chapter 9 (comparing access protocols, 2025 2α and 2022 2Α), chapter 10 (cloud and
-edge, Industry 4.0, standardisation, 2025 2β to 2δ), and chapter 11 (802.11ah, security, WSN and MANET,
-smart cities, 2022 Θέμα 1 and 2Β to 2Δ)**, then priority 4, chapter 12 (RPL, application protocols,
-wireless power transfer). The full chapter skeleton (chapters 9 to 12) exists as placeholder pages in the
-menu, marked with a circle; chapters covered by the handwritten notes carry a filled star ★ (marker scheme
-changed 2026-09-16).
+to 10 are done as of 2026-09-17: priorities 1 and 2 (chapters 1 to 7), and tier 3's system design (8),
+access protocols (9), and cloud/edge, Industry 4.0 and standardisation (10). **The 2026 and 2025 papers
+are now fully answered.** **Next up is the last tier-3 chapter, chapter 11** (802.11ah, addressing and
+security, WSN and MANET, smart cities; answers 2022 Θέμα 1 and 2Β to 2Δ, and part 2 of 2022 Θέμα 3), then
+priority 4, chapter 12 (RPL, application protocols, wireless power transfer). Chapters 11 and 12 exist as
+placeholder pages in the menu, marked with a circle; chapters covered by the handwritten notes carry a
+filled star ★ (marker scheme changed 2026-09-16).
 
 ### 10.1 What the LEACH chapter added to the template
 

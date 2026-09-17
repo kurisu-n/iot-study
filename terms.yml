@@ -24,11 +24,11 @@ terms:
     - cluster head                               # Lecture 2, slides 41 to 45
     - cluster heads
   CoAP:
-    - Constrained Application Protocol           # Lecture 7b; application-layer protocol for IoT
+    - Constrained Application Protocol           # Lecture 6a (IETF); application-layer protocol for IoT
   CSMA:
     - Carrier Sense Multiple Access              # Lecture 8a, slide 5
   MQTT:
-    - Message Queuing Telemetry Transport        # Lecture 7b; the name is officially just "MQTT" now
+    - Message Queuing Telemetry Transport        # Lecture 6a (OASIS); the name is officially just "MQTT" now
   DT:
     - Direct Transmission                        # Lecture 2, slides 60 and 67
   MTE:
@@ -58,6 +58,23 @@ terms:
     - Last Node Dies                             # handwritten notes, page 12
   IEEE:
     - Institute of Electrical and Electronics Engineers
+  IETF:
+    - Internet Engineering Task Force            # Lecture 6a (6LoWPAN, CoAP); Lecture 7b, slide 34
+  IIoT:
+    - Industrial Internet of Things              # Lecture 7b, slide 14; IoT applied to industry
+  IPv6:
+    - Internet Protocol version 6                # Lecture 6a; not flagged by the hook's patterns, listed so it is still defined and linked
+  6LoWPAN:
+    - IPv6 over Low power Wireless Personal Area Networks   # Lecture 6a, as the slide spells it
+  M2M:
+    - Machine-to-Machine                         # Lecture 7b, slides 16 and 20
+  MEC:
+    - Multi-access Edge Computing                # Lecture 6a, the 5G architecture slide
+  OASIS:
+    - Organization for the Advancement of Structured Information Standards   # named for MQTT in Lecture 6a; expansion not in the course
+  SDO:
+    - Standards Development Organization         # Lecture 8b, slides 52 to 56
+    - Standards Development Organizations
   IoT:
     - Internet of Things
     - Διαδίκτυο των Πραγμάτων

@@ -249,7 +249,13 @@
      the panel. */
   --c-muted:       #95908B;
 
-  --c-highlight:   var(--fc-hub-group);
+  /* FaceCue's HubGroupBackground (#2A2620) is a warm brown, and on the neutral
+     #141414 panel it made the highlight boxes (key terms, quotes) the only warm
+     surface on the page. HeadlessBoxBackground (#2E2D2C) is neutral and a touch
+     lighter than the section, so highlights still lift off the page without
+     turning brown. The other schemes keep their own highlight, which is already
+     in key with each of them. */
+  --c-highlight:   var(--fc-headless);
   --c-formula-bg:  var(--fc-section);
   --c-code-bg:     var(--fc-section-header);
   --c-pre-text:    var(--fc-text-bright);
@@ -453,18 +459,31 @@
 
 /* ========================================================================
  * 7 - Components.
+ *
+ * One radius scale for every secondary box, so the corpus reads as one system
+ * rather than a grab-bag of 0/2/3/4/6/8 px corners. Inline marks (key terms,
+ * tags, inline code) share one radius; content boxes (formulas, quotes,
+ * admonitions, figure legends) share another; chips stay fully round. UI chrome
+ * (the theme menu, the sidebar, circular markers) keeps its own radii.
  * ==================================================================== */
+
+:root {
+  --r-inline: 4px;
+  --r-box:    6px;
+  --r-pill:   999px;
+}
 
 .md-typeset .key-term {
   background: var(--c-highlight);
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--r-inline);
   font-weight: 700;
 }
 
 .md-typeset blockquote {
   background: var(--c-highlight);
   border-left: 3px solid var(--c-accent);
+  border-radius: var(--r-box);
   color: var(--c-text);
   padding: 0.6rem 0.9rem;
   font-style: italic;
@@ -474,7 +493,7 @@
 .md-typeset .formula {
   background: var(--c-formula-bg);
   border: 2px solid var(--c-accent);
-  border-radius: 8px;
+  border-radius: var(--r-box);
   padding: 0.8rem 1.2rem;
   margin: 1.5rem 0;
   text-align: center;
@@ -522,6 +541,14 @@
   margin-top: 0.5rem;
   text-align: center;
   max-width: 100%;
+}
+
+/* Every admonition box (answer, note, exam, todo, extra, and the collapsible
+   details form) takes the shared box radius, so they match the formula box and
+   the figure legends instead of Material's own default corner. */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: var(--r-box);
 }
 
 /* ---- Custom admonitions -------------------------------------------------
@@ -1017,7 +1044,7 @@ form[data-md-component="palette"] > label {
   margin: 0.9rem 0 0;
   padding: 0.5rem 0.7rem;
   border: 1px solid var(--c-border);
-  border-radius: 6px;
+  border-radius: var(--r-box);
   background: var(--c-bg-alt);
   font-size: 0.68rem;
   color: var(--c-text);
@@ -1079,7 +1106,7 @@ form[data-md-component="palette"] > label {
   display: inline-block;
   padding: 0 0.35rem;
   border: 1px dashed var(--c-muted);
-  border-radius: 3px;
+  border-radius: var(--r-inline);
   color: var(--c-muted);
   font-size: 0.72em;
   font-weight: 700;

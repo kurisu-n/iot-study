@@ -924,3 +924,30 @@ The rules, each learned the hard way:
 - **Technique.** A message that travels and arrives: a small circle on an `offset-path`, its `offset-distance` animated to 100% then held before an invisible reset. Drain a node: animate
   `fill-opacity` (not `fill`), so the outline survives as the dead/hollow shape. Draw attention to a node:
   animate `opacity` (not `r`, which the figure audit skips and which can nudge overlap). Keep it slow.
+
+## 14. Revision pages
+
+Asked for by Chris, 2026-09-17, once chapters 1 to 11 were written: a formula sheet, a per-chapter
+overview, and variant exercises and theory questions as one section of two pages. They sit in the nav after
+Κεφάλαια: `revision/formulas.md` (Τυπολόγιο), `revision/overview.md` (Επισκόπηση), and the section Εξάσκηση
+with `practice/exercises.md` and `practice/theory.md`.
+
+- **They summarise, they never add.** Every formula, number and claim must already exist in a chapter, with
+  the same notation and source. When a chapter changes, these pages go stale silently. ⛔ **Update them in
+  the same commit as any chapter change that touches a formula, an answer-term list, or an exam mapping**,
+  and write chapter 12 into all four when it lands.
+- **Formula sheet.** One `.formula` box per formula, symbols and traps as bullets underneath, and an
+  `exam-record` chip for its status (examined as an exercise / possible exercise / argument only).
+- **Overview.** One section per chapter: exam chips, four to six bullets, the answer-terms pilled (the one
+  place outside the chapters where §9.11 pills belong, since the page exists to be memorised).
+- **Exercise variants.** Statement in `!!! question`, solution in `??? answer-more "Λύση"`. Inside an
+  admonition, block `$$` math breaks, so every trace is `<div class="trace" markdown="1">` holding one
+  inline `\(\displaystyle \begin{aligned} … \end{aligned}\)` on a single line, the pattern the 2026 exam
+  page already proved. Verify by opening every `details` in the browser and counting `.trace` elements
+  without an `mjx-container`; the answer must be zero. **Every number is hand-computed and the page's own
+  consistency checks included** (for LEACH, the elected count equals N·P in every round).
+- **Theory variants.** Each question says where it comes from (a variant of a named exam question, or new
+  material with the shape of a question), then a `??? answer "Απάντηση"` skeleton at exam length with a link
+  to the chapter section. No pills inside the answers.
+- **Shorthand.** Each page defines its own acronyms, and on these pages the first use is often inside a
+  collapsed answer. That is fine, the hook reads the HTML in order, but keep headings acronym-free.

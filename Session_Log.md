@@ -873,3 +873,30 @@ link). 38 answer-term pills after removing a redundant sentence. New terms: ITU,
 **Correction found while grounding.** Lecture 7b slide 32 lists deafness, idle listening and overhearing
 as MAC energy waste. Chapter 1's exam box and the 2022 2Γ answer both claimed overhearing was not in the
 slides; both corrected.
+
+## 2026-09-17 · Revision section: formula sheet, overview, exercise and theory variants
+
+Chris asked, after chapter 11, for a τυπολόγιο, a per-chapter overview for the days before the exam, and
+variant exercises and variant theory questions as one section of two pages. Nav, after Κεφάλαια:
+Τυπολόγιο, Επισκόπηση, and Εξάσκηση (Παραλλαγές ασκήσεων, Παραλλαγές θεωρίας). Linked from the home page.
+
+- **Τυπολόγιο** (`revision/formulas.md`): 13 formula boxes covering every formula in chapters 1 to 11
+  (flooding and Omniscient Multicast cost, LEACH threshold with era length, expected cluster heads and the
+  P1/P2 derivation with the slide-53 typo flagged, the EBP cost, mean energy, balance property and p_i
+  approximation, ETX and the link energy model, LoRa symbol time, the 1 ms latency budget), each with
+  symbols, traps and a status chip, plus a table of numbers worth memorising.
+- **Επισκόπηση** (`revision/overview.md`): a priority order led by the two 2026 exercises, then one section
+  per chapter with exam chips, the essentials as bullets with answer-terms pilled, and a note that chapter
+  12 is unwritten and unexamined.
+- **Παραλλαγές ασκήσεων** (`practice/exercises.md`): 10 exercises. LEACH: a 4-round era with a
+  random-number decision; the "12% with 8 rounds" rounding trap; a node outside G and the era rollover.
+  ETX: metric and path sum; route choice plus energy of both routes; a three-link topology with different
+  lengths where the shortest link is the most expensive. EBP: p_5 and p_7; E[ε] against always-hop and
+  always-direct. LoRa: SF and bandwidth ratios. Flooding: how cost grows from N = 100 to 400. All numbers
+  hand-computed; browser check with every solution opened: 20 traces, 150 math elements, zero untypeset
+  traces, zero MathJax errors.
+- **Παραλλαγές θεωρίας** (`practice/theory.md`): 27 questions across chapters 1 to 11, each labelled as a
+  variant of a named exam question or new, with an exam-length answer skeleton and a section link.
+
+Recorded the conventions as COOKBOOK §14, including the rule that these pages must be updated in the same
+commit as any chapter change they summarise.

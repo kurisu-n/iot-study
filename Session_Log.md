@@ -850,3 +850,26 @@ OASIS, SDO. Built strict clean on the first try.
 
 The 2026 and 2025 papers are now fully answered. Chapters done: 1 to 10. Remaining: chapter 11 (tier 3),
 chapter 12 (tier 4).
+
+## 2026-09-17 · Chapter 11 (802.11ah, addressing and security, WSN vs MANET, smart cities)
+
+**Chapter 11.** Last tier-3 chapter. Answers 2022 Θέμα 1, 2Β, 2Γ (all three parts), 2Δ, and part 2 of
+Θέμα 3. **All three exam papers are now fully answered.**
+
+Grounding: 802.11ah goals from Lecture 8b slide 26 (sub-1 GHz, extended range, power efficiency, many
+devices) and the decisive evidence in Lecture 8a slide 27, the rate-vs-range chart (802.11ac 3.5 Gbps at
+10 to 30 m, 802.11ah at 200 m to 4 km); 802.11ah is now part of IEEE 802.11-2020 (8b slide 25). Addressing
+and security appear only as named challenges (7b slide 50) plus scattered mechanisms: IPv6 and 6LoWPAN
+(6a), Wi-Fi association and authentication (8a slides 25-26), 802.11ai/bi/bn (8b), mobile sink reducing
+adversarial overhearing (Lecture 10 slide 6); standard measures (TLS, certificates, access control) sit in
+a flagged extra box. WSN vs MANET: WSN definition from Lecture 9 slide 12, MANET from 8a's taxonomy
+(slide 22), WSN challenges from Lecture 2 slide 7, MANET challenges from Lecture 3 slide 3 ("DD suitable
+for low dynamics", verified verbatim) and Lecture 10 slide 5; table cells the course is silent on carry
+extra-tags. Smart cities: services from Lecture 7a, 5G requirements (7b slide 8), eMBB/mMTC/URLLC (7a),
+ITU KPIs (7b slides 9-10), small cells (7b 43-45); the city "characteristics" are derived from 7b slide 24
+and the chapter says so. Two figures (rate-vs-range bars on a log scale; WSN vs MANET panels with a broken
+link). 38 answer-term pills after removing a redundant sentence. New terms: ITU, eMBB, mMTC, URLLC.
+
+**Correction found while grounding.** Lecture 7b slide 32 lists deafness, idle listening and overhearing
+as MAC energy waste. Chapter 1's exam box and the 2022 2Γ answer both claimed overhearing was not in the
+slides; both corrected.

@@ -60,6 +60,14 @@ terms:
     - Institute of Electrical and Electronics Engineers
   IETF:
     - Internet Engineering Task Force            # Lecture 6a (6LoWPAN, CoAP); Lecture 7b, slide 34
+  ITU:
+    - International Telecommunication Union      # Lecture 7b, slides 9 and 10 (5G key performance indicators)
+  eMBB:
+    - enhanced Mobile Broadband                  # Lecture 7a, 5G use cases
+  mMTC:
+    - massive Machine-Type Communications        # Lecture 7a, 5G use cases ("Massive machine type communications")
+  URLLC:
+    - Ultra-Reliable Low-Latency Communications  # Lecture 7a, 5G use cases ("Ultra reliable & low latency communications")
   IIoT:
     - Industrial Internet of Things              # Lecture 7b, slide 14; IoT applied to industry
   IPv6:

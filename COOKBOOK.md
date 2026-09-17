@@ -771,7 +771,7 @@ Mapped against the sources on the same day:
 | ✅ | Designing an IoT system, the IoT reference layers | none | 2025 Θέμα 1; 2022 Θέμα 3; 2022 2Ε | 7a, 7b, extra notes |
 | ✅ | Comparing access protocols (contention vs scheduled, the three criteria) | none | 2025 2α and 2022 2Α (asked twice) | 8a, 7b |
 | ✅ | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ; 2022 Θέμα 3.3 | 6a, 7a, 7b, 8b, extra notes |
-| 3 | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ | 7a, 8b |
+| ✅ | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ, Θέμα 3.2 | 2, 3, 6a, 7a, 7b, 8a, 8b, 9, 10 |
 | 4 | RPL, CoAP and MQTT, wireless power transfer, mobility | only as noted above | none | 6a, 7b, 9, 10 |
 
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.

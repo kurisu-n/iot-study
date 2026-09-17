@@ -895,8 +895,9 @@ variant exercises and variant theory questions as one section of two pages. Nav,
   always-direct. LoRa: SF and bandwidth ratios. Flooding: how cost grows from N = 100 to 400. All numbers
   hand-computed; browser check with every solution opened: 20 traces, 150 math elements, zero untypeset
   traces, zero MathJax errors.
-- **Παραλλαγές θεωρίας** (`practice/theory.md`): 27 questions across chapters 1 to 11, each labelled as a
-  variant of a named exam question or new, with an exam-length answer skeleton and a section link.
+- **Παραλλαγές θεωρίας** (`practice/theory.md`): 28 questions across chapters 1 to 11, each labelled as a
+  variant of a named exam question or new, with an exam-length answer skeleton and a section link. (The
+  commit message says 27; the live page has 28, counted after deploy.)
 
 Recorded the conventions as COOKBOOK §14, including the rule that these pages must be updated in the same
 commit as any chapter change they summarise.

@@ -381,6 +381,12 @@ re-run the contrast probe across all four schemes. A literal is invisible until 
 scheme, which is how the figures stayed theme-blind for as long as they did. The deploy workflow now
 fails the build if a literal hex appears in a chapter, which catches the SVG case automatically.
 
+⛔ **That guard is a plain `grep '#[0-9a-fA-F]{6}'` over `site/chapters/`, so it also fires on a heading
+anchor that starts with six hex characters.** `{#80211ah}` failed the 2026-09-17 deploy: `#80211a` reads
+as a colour. `mkdocs build --strict` says nothing, so the failure only shows in CI. Start such anchors
+with a letter (`{#wifi-80211ah}`), and run the guard locally before pushing:
+`grep -rEn '#[0-9a-fA-F]{6}' site/chapters/`.
+
 ---
 
 ## 8. The Site and the Repository

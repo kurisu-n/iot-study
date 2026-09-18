@@ -1,0 +1,1589 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/revision/formulas/">
+      
+      
+        <link rel="prev" href="../../chapters/12-rpl-app-protocols/">
+      
+      
+        <link rel="next" href="../overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Τυπολόγιο - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Τυπολόγιο
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/02-leach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/03-energy-balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/07-lpwan-lorawan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/10-cloud-edge-industry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/12-rpl-app-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ch1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 1 · Διάδοση δεδομένων
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 2 · Εκλογή αρχηγού συστάδας
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 3 · Εξισορρόπηση ενέργειας
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 4 · Ενέργεια με τη μετρική των αναμενόμενων μεταδόσεων
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 7 · Χρόνος συμβόλου στο LoRa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 10 · Προϋπολογισμός καθυστέρησης
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 12 · Δρομολόγηση, ασύρματη ισχύς και κινητικότητα
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Αριθμοί που αξίζει να θυμάστε
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ch1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 1 · Διάδοση δεδομένων
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 2 · Εκλογή αρχηγού συστάδας
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 3 · Εξισορρόπηση ενέργειας
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 4 · Ενέργεια με τη μετρική των αναμενόμενων μεταδόσεων
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 7 · Χρόνος συμβόλου στο LoRa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 10 · Προϋπολογισμός καθυστέρησης
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κεφάλαιο 12 · Δρομολόγηση, ασύρματη ισχύς και κινητικότητα
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Αριθμοί που αξίζει να θυμάστε
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">Τυπολόγιο<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p>Όλοι οι τύποι του σώματος μελέτης σε μία σελίδα, με τη σειρά των κεφαλαίων. Για τον καθένα: τι σημαίνει κάθε σύμβολο, πότε χρησιμοποιείται, και αν έχει ήδη εξεταστεί. Τα λυμένα παραδείγματα βρίσκονται στο κεφάλαιο κάθε τύπου· παραλλαγές για εξάσκηση στις <a href="../../practice/exercises/">Παραλλαγές ασκήσεων</a>.</p>
+<p><strong>Πώς να το διαβάσετε.</strong> Τρία επίπεδα προτεραιότητας, από τα θέματα των εξετάσεων:</p>
+<ul>
+<li><strong>Εξετάστηκε ως άσκηση.</strong> Το κατώφλι του Low Energy Adaptive Clustering Hierarchy (<dfn class="abbr-def" id="abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</dfn>) και η ενέργεια με τη μετρική Expected Transmission Count (<dfn class="abbr-def" id="abbr-etx" title="Expected Transmission Count">ETX</dfn>) έπεσαν το 2026, 2.5 μονάδες ο καθένας. Αυτοί πρέπει να βγαίνουν χωρίς σκέψη.</li>
+<li><strong>Πιθανή άσκηση.</strong> Τύποι που έχουν το σχήμα άσκησης (δίνεται τύπος, βάζετε αριθμούς) αλλά δεν έχουν πέσει ακόμη.</li>
+<li><strong>Μόνο ως επιχείρημα.</strong> Τάξεις μεγέθους και αριθμοί που στηρίζουν μια θεωρητική απάντηση.</li>
+</ul>
+<p>Ένας γενικός κανόνας διατρέχει τα κεφάλαια 2 έως 4: το κόστος μιας ασύρματης μετάδοσης <strong>μεγαλώνει με το τετράγωνο της απόστασης</strong>. Διπλάσια απόσταση, τετραπλάσια ενέργεια στον ενισχυτή.</p>
+<h2 id="ch1">Κεφάλαιο 1 · Διάδοση δεδομένων<a class="headerlink" href="#ch1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Πλαίσιο της ανάλυσης: τετραγωνικό πλέγμα <span class="arithmatex">\(\sqrt{N} \times \sqrt{N}\)</span> με <span class="arithmatex">\(N\)</span> κόμβους, <span class="arithmatex">\(n\)</span> πηγές και <span class="arithmatex">\(m\)</span> sinks. Το κόστος μετρά τις μεταδόσεις και τις λήψεις για ένα γεγονός από κάθε πηγή προς όλους τους sinks.</p>
+<div class="formula">
+<div class="arithmatex">\[C_f = nN + 4n(\sqrt{N} - 1)(2\sqrt{N} - 1) \;=\; \mathcal{O}(nN)\]</div>
+<p><span class="label">Κόστος του flooding (Διάλεξη 2, διαφάνεια 25)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(nN\)</span>: οι μεταδόσεις, αφού κάθε κόμβος αναμεταδίδει κάθε γεγονός μία φορά. Ο δεύτερος όρος: οι λήψεις, αφού σε κάθε σύνδεση το μήνυμα περνά μία φορά προς κάθε κατεύθυνση.</li>
+<li><strong>Τι να θυμάστε.</strong> Γραμμικό στο <span class="arithmatex">\(N\)</span>: διπλάσιο δίκτυο, περίπου διπλάσιο κόστος.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[C_o = \mathcal{O}(n\sqrt{N}) \qquad C_d = \mathcal{O}(n\sqrt{N}) \qquad \text{για } m \ll \sqrt{N}\]</div>
+<p><span class="label">Κόστος του Omniscient Multicast και του Directed Diffusion (<dfn class="abbr-def" id="abbr-dd" title="Directed Diffusion">DD</dfn>) (Διάλεξη 2, διαφάνειες 26 και 27)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(m \ll \sqrt{N}\)</span>: οι sinks είναι πολύ λιγότεροι από την τετραγωνική ρίζα των κόμβων.</li>
+<li><strong>Τι να θυμάστε.</strong> Τετραπλάσιοι κόμβοι, περίπου διπλάσιο κόστος. Στην προσομοίωση το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> είναι ακόμη καλύτερο, <span class="arithmatex">\(C_d &lt; C_o\)</span>, χάρη στο aggregation (διαφάνεια 29).</li>
+</ul>
+<div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>Μόνο ως επιχείρημα</strong> σε συγκρίσεις, όπως το 2026 Α.2</a></div>
+
+<p>Ανάλυση: <a href="../../chapters/01-data-propagation/#flooding-cost">ενότητες 1.2 και 1.4</a>.</p>
+<h2 id="ch2">Κεφάλαιο 2 · Εκλογή αρχηγού συστάδας<a class="headerlink" href="#ch2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<div class="formula">
+<div class="arithmatex">\[T(n) = \begin{cases} \dfrac{P}{1 - P \cdot \left(r \bmod \frac{1}{P}\right)} &amp; \text{αν } n \in G \\[1.2em] 0 &amp; \text{αλλιώς} \end{cases}\]</div>
+<p><span class="label">Το κατώφλι εκλογής αρχηγού στο <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> (Διάλεξη 2, διαφάνεια 45)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(P\)</span>: το επιθυμητό ποσοστό αρχηγών ανά γύρο. <span class="arithmatex">\(r\)</span>: ο τρέχων γύρος. <span class="arithmatex">\(G\)</span>: οι κόμβοι που <strong>δεν</strong> έχουν γίνει αρχηγοί στους τελευταίους <span class="arithmatex">\(1/P\)</span> γύρους.</li>
+<li><strong>Κανόνας απόφασης.</strong> Κάθε κόμβος του <span class="arithmatex">\(G\)</span> τραβά τυχαίο αριθμό στο <span class="arithmatex">\([0, 1]\)</span>· αν είναι <strong>μικρότερος</strong> από το <span class="arithmatex">\(T(n)\)</span>, γίνεται αρχηγός.</li>
+<li><strong>Παγίδα.</strong> Αν η εκφώνηση δίνει ποσοστό και μήκος περιόδου που δεν ταιριάζουν ακριβώς (14% και 7 γύροι), δουλέψτε με <span class="arithmatex">\(P = 1/\text{(γύροι περιόδου)}\)</span>, εδώ <span class="arithmatex">\(P = 1/7\)</span>.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[\text{Περίοδος} = \frac{1}{P} \text{ γύροι} \qquad N_{\text{CH}} = T(n) \cdot |G| = N \cdot P\]</div>
+<p><span class="label">Μήκος περιόδου και αναμενόμενοι αρχηγοί ανά γύρο (Διάλεξη 2, διαφάνειες 45 και 53)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(N\)</span>: όλοι οι κόμβοι. <span class="arithmatex">\(|G|\)</span>: οι υποψήφιοι στον τρέχοντα γύρο, που μειώνονται κατά <span class="arithmatex">\(N \cdot P\)</span> σε κάθε γύρο.</li>
+<li><strong>Έλεγχος.</strong> Κάθε γύρος πρέπει να δίνει τον ίδιο αριθμό αρχηγών, <span class="arithmatex">\(N \cdot P\)</span>. Στον τελευταίο γύρο της περιόδου το κατώφλι βγαίνει ακριβώς 1. Στον γύρο <span class="arithmatex">\(r = 1/P\)</span> το <code>mod</code> μηδενίζει και ξεκινά νέα περίοδος.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[P_1 = \frac{P}{1 - P} \qquad P_2 = \frac{P}{1 - 2P}\]</div>
+<p><span class="label">Τα κατώφλια του δεύτερου και του τρίτου γύρου, η απόδειξη του τύπου (Διάλεξη 2, διαφάνεια 53)</span></p>
+</div>
+<ul>
+<li><strong>Παγίδα.</strong> Η διαφάνεια 53 τυπώνει λάθος <span class="arithmatex">\(P_2 = 1/(1-2P)\)</span>. Το σωστό έχει <span class="arithmatex">\(P\)</span> στον αριθμητή.</li>
+</ul>
+<div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>Εξετάστηκε ως άσκηση</strong> 2026 Β.1, 2.5 μονάδες</a></div>
+
+<p>Ανάλυση και λυμένη άσκηση: <a href="../../chapters/02-leach/#election">ενότητες 2.3 και 2.4</a>.</p>
+<h2 id="ch3">Κεφάλαιο 3 · Εξισορρόπηση ενέργειας<a class="headerlink" href="#ch3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το δίκτυο χωρίζεται σε δακτυλίους πλάτους <span class="arithmatex">\(R\)</span> γύρω από τον σταθμό βάσης. Ένας κόμβος στον δακτύλιο <span class="arithmatex">\(i\)</span> στέλνει με πιθανότητα <span class="arithmatex">\(p_i\)</span> ένα βήμα πιο μέσα, αλλιώς απευθείας.</p>
+<div class="formula">
+<div class="arithmatex">\[\varepsilon = \begin{cases} cR^2 &amp; \text{με πιθανότητα } p_i \\[1em] c(iR)^2 &amp; \text{με πιθανότητα } 1 - p_i \end{cases}\]</div>
+<p><span class="label">Το κόστος ενός μηνύματος στον δακτύλιο i στο Energy Balance Protocol (<dfn class="abbr-def" id="abbr-ebp" title="Energy Balance Protocol">EBP</dfn>) (Διάλεξη 3, διαφάνεια 11)</span></p>
+</div>
+<div class="formula">
+<div class="arithmatex">\[E[\varepsilon] = \big[\, i^2 - p_i\,(i^2 - 1) \,\big]\, cR^2\]</div>
+<p><span class="label">Η μέση ενέργεια ανά μήνυμα (Διάλεξη 3, διαφάνεια 11)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(c\)</span>: σταθερά. <span class="arithmatex">\(R\)</span>: πλάτος δακτυλίου, ίσο με την εμβέλεια ενός βήματος. <span class="arithmatex">\(i\)</span>: ο δείκτης του δακτυλίου, 1 ο πιο κοντινός.</li>
+<li><strong>Έλεγχος.</strong> Με <span class="arithmatex">\(p_i = 1\)</span> (πάντα βήμα) βγαίνει <span class="arithmatex">\(cR^2\)</span>· με <span class="arithmatex">\(p_i = 0\)</span> (πάντα απευθείας) βγαίνει <span class="arithmatex">\(i^2 cR^2\)</span>.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[\frac{E[E_i]}{S_i} = \frac{E[E_j]}{S_j} \quad \text{για κάθε ζεύγος δακτυλίων } i, j\]</div>
+<p><span class="label">Η ιδιότητα εξισορρόπησης (Διάλεξη 3, διαφάνεια 10)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(S_i\)</span>: το εμβαδόν του δακτυλίου <span class="arithmatex">\(i\)</span>. <span class="arithmatex">\(E_i\)</span>: η συνολική ενέργεια που ξοδεύει. Ίδια ενέργεια ανά μονάδα επιφάνειας παντού.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[p_i = 1 - \frac{3x}{(i+1)(i-1)} \quad \text{για } 3 \le i \le n, \qquad p_2 = x = \tfrac{1}{2}\]</div>
+<p><span class="label">Προσεγγιστική κλειστή μορφή για το p<sub>i</sub> (Διάλεξη 3, διαφάνεια 17)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(x\)</span>: η πιθανότητα του δεύτερου δακτυλίου. <span class="arithmatex">\(n\)</span>: ο πιο μακρινός δακτύλιος. Ο παρονομαστής είναι πάντα <span class="arithmatex">\(i^2 - 1\)</span>.</li>
+<li><strong>Έλεγχος.</strong> Οι τιμές ανεβαίνουν προς το 1 όσο απομακρυνόμαστε: μακριά ο κόμβος προτιμά βήματα.</li>
+</ul>
+<div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>Πιθανή άσκηση</strong>, μόνο στις διαφάνειες, όχι στις σημειώσεις</a></div>
+
+<p>Ανάλυση: <a href="../../chapters/03-energy-balance/#energy-model">ενότητες 3.4 έως 3.6</a>.</p>
+<h2 id="ch4">Κεφάλαιο 4 · Ενέργεια με τη μετρική των αναμενόμενων μεταδόσεων<a class="headerlink" href="#ch4" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<div class="formula">
+<div class="arithmatex">\[\text{ETX} = \frac{1}{d_f \cdot d_r} \qquad \text{ETX}_{\text{διαδρομής}} = \sum_{\text{ζεύξεις}} \text{ETX}\]</div>
+<p><span class="label">Η μετρική για μία ζεύξη και για μια ολόκληρη διαδρομή (Διάλεξη 4, διαφάνεια 8· χειρόγραφες σημειώσεις, σελίδα 15)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(d_f\)</span>: η πιθανότητα να φτάσει το πακέτο. <span class="arithmatex">\(d_r\)</span>: η πιθανότητα να γυρίσει η επιβεβαίωση.</li>
+<li><strong>Κανόνας δρομολόγησης.</strong> Διαλέγουμε τη διαδρομή με το <strong>μικρότερο άθροισμα</strong>.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[E_{tx}(d) = k \cdot d^2 \qquad E_{\text{ζεύξης}} = \text{ETX} \cdot \big(\, E_c \cdot b + E_{tx}(d) \cdot b + E_c \cdot b \,\big)\]</div>
+<p><span class="label">Η ενέργεια για την παράδοση ενός πακέτου σε μία ζεύξη (Διάλεξη 4, διαφάνειες 11 και 12)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(E_c\)</span>: η ενέργεια του ραδιοφώνου ανά bit, που πληρώνεται <strong>και</strong> από τον πομπό <strong>και</strong> από τον δέκτη. <span class="arithmatex">\(E_{tx}(d)\)</span>: η ενέργεια του ενισχυτή ανά bit για απόσταση <span class="arithmatex">\(d\)</span>, μόνο στον πομπό. <span class="arithmatex">\(b\)</span>: τα bits του πακέτου. <span class="arithmatex">\(k\)</span>: σταθερά.</li>
+<li><strong>Για πολλά βήματα.</strong> Η συνολική ενέργεια είναι το <strong>άθροισμα</strong> των ζεύξεων, η καθεμία με το δικό της <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a> και τη δική της απόσταση.</li>
+<li><strong>Παγίδες.</strong> Τρεις όροι ανά προσπάθεια, όχι δύο: το πιο συχνό λάθος είναι να ξεχαστεί το <span class="arithmatex">\(E_c\)</span> της λήψης. Και <span class="arithmatex">\(1000\)</span> nJ <span class="arithmatex">\(= 1\)</span> μJ.</li>
+</ul>
+<div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>Εξετάστηκε ως άσκηση</strong> 2026 Δ.1, 2.5 μονάδες</a></div>
+
+<p>Ανάλυση και λυμένη άσκηση: <a href="../../chapters/04-routing-metrics/#energy-model">ενότητες 4.2, 4.5 και 4.6</a>.</p>
+<h2 id="ch7">Κεφάλαιο 7 · Χρόνος συμβόλου στο LoRa<a class="headerlink" href="#ch7" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<div class="formula">
+<div class="arithmatex">\[T_s = \frac{2^{\text{SF}}}{BW}\]</div>
+<p><span class="label">Χρόνος συμβόλου συναρτήσει του Spreading Factor (<dfn class="abbr-def" id="abbr-sf" title="Spreading Factor">SF</dfn>) και του εύρους ζώνης (Διάλεξη 6a)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(\text{SF}\)</span>: από 7 ως 12. <span class="arithmatex">\(BW\)</span>: εύρος ζώνης σε Hz (125 kHz <span class="arithmatex">\(= 125\,000\)</span> Hz).</li>
+<li><strong>Τι να θυμάστε.</strong> Κάθε μονάδα παραπάνω στον <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> <strong>διπλασιάζει</strong> τον χρόνο στον αέρα, άρα και την ενέργεια ανά σύμβολο. Διπλάσιο εύρος ζώνης, μισός χρόνος. Για <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> = 12 και 125 kHz: <span class="arithmatex">\(T_s \approx 32.8\)</span> ms.</li>
+</ul>
+<div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>Πιθανή άσκηση</strong>· το 2026 Γ.3 ζήτησε τη σχέση θεωρητικά</a></div>
+
+<p>Ανάλυση: <a href="../../chapters/07-lpwan-lorawan/#spreading-factor">ενότητα 7.3</a>.</p>
+<h2 id="ch10">Κεφάλαιο 10 · Προϋπολογισμός καθυστέρησης<a class="headerlink" href="#ch10" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<div class="formula">
+<div class="arithmatex">\[t = 0.3 + 0.2 + 0.5 = 1 \text{ ms}\]</div>
+<p><span class="label">Τερματικό + αέρας + σταθμός βάσης μαζί με τον υπολογισμό, για το Tactile Internet (Διάλεξη 7a)</span></p>
+</div>
+<ul>
+<li><strong>Τι να θυμάστε.</strong> Ο υπολογισμός χωρά στο ίδιο μισό millisecond με τον σταθμό βάσης, άρα γίνεται στο <strong>άκρο</strong>. Είναι το συγκεκριμένο επιχείρημα για το γιατί οι αποφάσεις πραγματικού χρόνου δεν πάνε στο νέφος.</li>
+</ul>
+<div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>Μόνο ως επιχείρημα</strong> για το 2025 2β</a></div>
+
+<p>Ανάλυση: <a href="../../chapters/10-cloud-edge-industry/#latency-budget">ενότητα 10.2</a>.</p>
+<h2 id="ch12">Κεφάλαιο 12 · Δρομολόγηση, ασύρματη ισχύς και κινητικότητα<a class="headerlink" href="#ch12" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Κανένας από τους τύπους αυτού του κεφαλαίου δεν έχει εξεταστεί. Είναι εδώ για πληρότητα.</p>
+<div class="formula">
+<div class="arithmatex">\[\text{EE} = \frac{P_{\text{now}}}{P_{\text{max}}} \cdot 100 \qquad \text{ETX} = \frac{1}{\text{PRR}_{\text{down}} \cdot \text{PRR}_{\text{up}}}\]</div>
+<p><span class="label">Οι μετρικές του Routing Protocol for Low-power and Lossy Networks (<dfn class="abbr-def" id="abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</dfn>): υπολειπόμενη ενέργεια και Expected Transmission Count (<a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a>) με το Packet Reception Ratio (<dfn class="abbr-def" id="abbr-prr" title="Packet Reception Ratio">PRR</dfn>) (Διάλεξη 6a)</span></p>
+</div>
+<ul>
+<li><strong>Τι να θυμάστε.</strong> Το ίδιο <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a> με το Κεφάλαιο 4: το <a class="abbr-link" href="#abbr-prr" title="Packet Reception Ratio">PRR</a>, πακέτα που λήφθηκαν προς πακέτα που στάλθηκαν, παίζει τον ρόλο των <span class="arithmatex">\(d_f\)</span> και <span class="arithmatex">\(d_r\)</span>.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[P_r = P_t\, G_t\, G_r \left(\frac{\lambda}{4\pi R}\right)^2\]</div>
+<p><span class="label">Ο τύπος του Friis (Διάλεξη 9, διαφάνεια 43)</span></p>
+</div>
+<ul>
+<li><strong>Τι να θυμάστε.</strong> Η λαμβανόμενη ισχύς πέφτει με το τετράγωνο της απόστασης: διπλάσια απόσταση, τέσσερις φορές λιγότερη ισχύς.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[P_{v,u} = \frac{\alpha\, r_u^2}{(\beta + \text{dist}(v,u))^2} \quad \text{αν } \text{dist}(v,u) \le r_u, \text{ αλλιώς } 0\]</div>
+<p><span class="label">Ο ρυθμός φόρτισης στο βαθμωτό μοντέλο (Διάλεξη 9, διαφάνεια 39)</span></p>
+</div>
+<ul>
+<li><strong>Τι να θυμάστε.</strong> Στο βαθμωτό μοντέλο οι ισχύες από πολλούς φορτιστές <strong>προστίθενται</strong>.</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[\mathbf{E}_{\text{ολικό}} = \sum_{C} \beta\, \frac{1}{d_C} \begin{bmatrix} \cos\!\big(\tfrac{2\pi}{\lambda} d_C\big) \\[0.3em] \sin\!\big(\tfrac{2\pi}{\lambda} d_C\big) \end{bmatrix} \qquad P = \gamma\, \big\lVert \mathbf{E}_{\text{ολικό}} \big\rVert^2\]</div>
+<p><span class="label">Το διανυσματικό μοντέλο: υπέρθεση πεδίων, μετά τετράγωνο (Διάλεξη 9, διαφάνειες 45 και 46)</span></p>
+</div>
+<ul>
+<li><strong>Τι να θυμάστε.</strong> Προστίθενται τα <strong>πεδία</strong>, όχι οι ισχύες. Ίδια κατεύθυνση: <span class="arithmatex">\((1+1)^2 = 4\)</span> αντί για 2 (ενίσχυση). Αντίθετη: σχεδόν μηδέν (αλληλοαναίρεση).</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[R = \frac{d_{\text{local}}^2}{\Delta P \cdot \Delta T} \qquad p_c^{t+1} = p_c^t \pm \delta, \quad p_r^{t+1} = p_r^t \mp \frac{\delta}{3}\]</div>
+<p><span class="label">Η κατάταξη των εγγραφών όταν κινούνται και οι αισθητήρες, και ο περίπατος με αδράνεια (Διάλεξη 10, διαφάνειες 32 και 48)</span></p>
+</div>
+<ul>
+<li><strong>Σύμβολα.</strong> <span class="arithmatex">\(d_{\text{local}}\)</span>: γείτονες. <span class="arithmatex">\(\Delta P\)</span>, <span class="arithmatex">\(\Delta T\)</span>: πόσο μακριά και πόσο παλιά είναι η μέτρηση. Στον περίπατο το πάνω πρόσημο ισχύει όταν βρέθηκαν νέοι αισθητήρες.</li>
+</ul>
+<div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>Δεν εξετάστηκε</strong> σε κανένα γνωστό θέμα</a></div>
+
+<p>Ανάλυση: <a href="../../chapters/12-rpl-app-protocols/">Κεφάλαιο 12</a>.</p>
+<h2 id="numbers">Αριθμοί που αξίζει να θυμάστε<a class="headerlink" href="#numbers" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Δεν είναι τύποι, αλλά κάνουν μια θεωρητική απάντηση συγκεκριμένη.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Τι</th>
+<th style="text-align: left;">Τιμή</th>
+<th style="text-align: left;">Πηγή</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Ρυθμοί του Long Range Wide Area Network (<dfn class="abbr-def" id="abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</dfn>)</td>
+<td style="text-align: left;">0.3 έως 50 kbps</td>
+<td style="text-align: left;"><a href="../../chapters/07-lpwan-lorawan/">Κεφάλαιο 7</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Όριο εκπομπής στην Ευρώπη (868 και 433 MHz)</td>
+<td style="text-align: left;">1% του χρόνου</td>
+<td style="text-align: left;"><a href="../../chapters/07-lpwan-lorawan/">Κεφάλαιο 7</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">802.11ac</td>
+<td style="text-align: left;">3.5 Gbps, εσωτερικός χώρος 10 έως 30 m</td>
+<td style="text-align: left;"><a href="../../chapters/11-security-smart-cities/#wifi-80211ah">Κεφάλαιο 11</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">802.11ah</td>
+<td style="text-align: left;">κάτω από 1 GHz, 200 m έως 4 km</td>
+<td style="text-align: left;"><a href="../../chapters/11-security-smart-cities/#wifi-80211ah">Κεφάλαιο 11</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">802.15.4</td>
+<td style="text-align: left;">20 έως 250 kbps</td>
+<td style="text-align: left;"><a href="../../chapters/10-cloud-edge-industry/#standardisation">Κεφάλαιο 10</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">ZigBee</td>
+<td style="text-align: left;">250 kbps, 10 έως 100 m</td>
+<td style="text-align: left;"><a href="../../chapters/10-cloud-edge-industry/#standardisation">Κεφάλαιο 10</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Απαιτήσεις 5G</td>
+<td style="text-align: left;">10 έως 100 φορές περισσότερες συσκευές, κάτω από 1 ms, 10 χρόνια μπαταρία, πάνω από 10 Gbit/s</td>
+<td style="text-align: left;"><a href="../../chapters/11-security-smart-cities/#5g">Κεφάλαιο 11</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Ψηφοφορία προτύπου στο Institute of Electrical and Electronics Engineers (<dfn class="abbr-def" id="abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</dfn>)</td>
+<td style="text-align: left;">τουλάχιστον 75% συμμετοχή και 75% θετικές ψήφοι</td>
+<td style="text-align: left;"><a href="../../chapters/10-cloud-edge-industry/#standardisation">Κεφάλαιο 10</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Μετρικές διάρκειας ζωής</td>
+<td style="text-align: left;">First Node Dies (<dfn class="abbr-def" id="abbr-fnd" title="First Node Dies">FND</dfn>), Half of Nodes Die (<dfn class="abbr-def" id="abbr-hnd" title="Half of Nodes Die">HND</dfn>), Last Node Dies (<dfn class="abbr-def" id="abbr-lnd" title="Last Node Dies">LND</dfn>)</td>
+<td style="text-align: left;"><a href="../../chapters/03-energy-balance/#lifetime">Κεφάλαιο 3</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Ασύρματη φόρτιση</td>
+<td style="text-align: left;">ραδιοσυχνότητες: περίπου 0.13%, λίγα μέτρα· μαγνητική σύζευξη: 91 έως 93%, έως 1 m</td>
+<td style="text-align: left;"><a href="../../chapters/12-rpl-app-protocols/#wpt-technologies">Κεφάλαιο 12</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Κινητός sink</td>
+<td style="text-align: left;">ως και 500% μεγαλύτερη διάρκεια ζωής· καθυστέρηση ως και 8 φορές καλύτερη όταν κινούνται και οι αισθητήρες</td>
+<td style="text-align: left;"><a href="../../chapters/12-rpl-app-protocols/#mobility">Κεφάλαιο 12</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

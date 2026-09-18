@@ -1,0 +1,55 @@
+/* The FaceCue theme tokens, copied into this project.
+ *
+ * PROVENANCE. These values are lifted verbatim from the FaceCue site's
+ * src/static/assets/fc-tokens.css, which is itself lifted from the FaceCue
+ * Unity editor theme. The chain runs: editor theme -> fc-tokens.css ->
+ * facecue.net and its documentation -> here.
+ *
+ * ⚠ This is a COPY, not a link, and it will drift. That is deliberate: this is
+ * a separate project on a separate domain, and FaceCue's "one source, two
+ * builds" rule is scoped to facecue.net's own two builds. If the FaceCue
+ * palette changes and you want the change here, re-copy this file; nothing
+ * breaks if you never do.
+ *
+ * The values below are the DARK scheme. Dark is FaceCue's default, so its
+ * tokens sit on :root; the light scheme re-declares only what it changes, and
+ * lives in corpus.css with the other three schemes.
+ *
+ * The font stack is NOT copied. FaceCue serves its own woff2 files from its own
+ * domain, and those URLs are absolute to facecue.net. This corpus uses a serif
+ * body face for long Greek prose instead, set in corpus.css.
+ *
+ * Only the tokens this corpus actually uses are kept. The FaceCue original
+ * carries roughly seventy, most of them picturing Unity inspector chrome that
+ * has no counterpart here.
+ */
+
+:root {
+  /* Surfaces, darkest to lightest. */
+  --fc-panel:            #141414;   /* PanelSurface */
+  --fc-section:          #282726;   /* SectionBackground */
+  --fc-section-header:   #1E1D1C;   /* SectionHeaderBackground, FieldBackground */
+  --fc-section-border:   #3A3836;   /* SectionBorder */
+  --fc-headless:         #2E2D2C;   /* HeadlessBoxBackground */
+  --fc-hub-group:        #2A2620;   /* HubGroupBackground */
+  --fc-hairline:         #7A6A40;   /* TitleHairlineColor, CardBorder */
+  --fc-callout-border:   #6B5E38;   /* CalloutBoxBorder */
+
+  /* Type. */
+  --fc-text:             #CCCCCC;   /* BodyText */
+  --fc-text-bright:      #E6E6E6;   /* FieldLabelColor */
+  --fc-text-muted:       #8A857F;   /* SubtitleText */
+
+  /* The warm accents. Tan heads a section, gold rules and links it. */
+  --fc-tan:              #D0C090;   /* TitleText, HeaderText */
+  --fc-gold:             #C09A5C;   /* FoldoutArrowColor, SliderHandleFill */
+  --fc-olive:            #6A5A4A;   /* PopupSelectionBackground */
+
+  /* Signal colours. Shared across every scheme on purpose in FaceCue: a
+     warning means the same thing whatever the page is wearing. */
+  --fc-red:              #F27373;   /* WindowHeaderErrorText */
+  --fc-yellow:           #F2C766;   /* WindowHeaderWarningText */
+  --fc-green:            #5CB85C;
+  --fc-blue:             #73A2E6;   /* SelectedLabel */
+  --fc-warning-bg:       #2C2721;
+}

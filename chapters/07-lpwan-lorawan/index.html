@@ -1,0 +1,1426 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/chapters/07-lpwan-lorawan/">
+      
+      
+        <link rel="prev" href="../06-scalar-vector/">
+      
+      
+        <link rel="next" href="../08-iot-system-design/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>7. LPWAN & LoRaWAN - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7. LPWAN & LoRaWAN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-leach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-energy-balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lpwan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Τι Είναι Αυτά τα Δίκτυα
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Η Αρχιτεκτονική του Δικτύου
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spreading-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Ο Spreading Factor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wifi-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Σύγκριση με το Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-cloud-edge-industry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-rpl-app-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lpwan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Τι Είναι Αυτά τα Δίκτυα
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Η Αρχιτεκτονική του Δικτύου
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spreading-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Ο Spreading Factor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wifi-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Σύγκριση με το Wi-Fi
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span class="chapter-num">Κεφάλαιο 7</span></p>
+<h1 id="_1">Δίκτυα Χαμηλής Ισχύος Ευρείας Περιοχής<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p><em>Καλύπτει: τι είναι τα δίκτυα Low Power Wide Area Network (<dfn class="abbr-def" id="abbr-lpwan" title="Low Power Wide Area Network">LPWAN</dfn>), την αρχιτεκτονική και τους ρυθμούς μετάδοσης του Long Range Wide Area Network (<dfn class="abbr-def" id="abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</dfn>), τον ρόλο του Spreading Factor στη σχέση εμβέλειας, ρυθμού και ενέργειας, και τη σύγκριση με το Wi-Fi. Πηγές: Διαλέξεις 6a, 8a, 8b, θέμα εξετάσεων 2026.</em></p>
+<p>Τα προηγούμενα κεφάλαια αφορούσαν το <em>πώς</em> ταξιδεύουν τα δεδομένα μέσα σε ένα δίκτυο αισθητήρων. Αυτό το κεφάλαιο αλλάζει κλίμακα: μιλάμε για μια ολόκληρη <strong>τεχνολογία δικτύωσης</strong> φτιαγμένη ειδικά για το Διαδίκτυο των Πραγμάτων (Internet of Things, <dfn class="abbr-def" id="abbr-iot" title="Internet of Things">IoT</dfn>), όπου χιλιάδες μικρές συσκευές με μπαταρία πρέπει να στέλνουν λίγα δεδομένα από <strong>πολύ μακριά</strong>, για χρόνια, χωρίς αλλαγή μπαταρίας.</p>
+<h2 id="lpwan">7.1 Τι Είναι Αυτά τα Δίκτυα<a class="headerlink" href="#lpwan" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Οι κλασικές ασύρματες τεχνολογίες κάνουν έναν συμβιβασμό: όσο μεγαλύτερη εμβέλεια και ρυθμό θέλεις, τόσο περισσότερη ενέργεια ξοδεύεις. Το Wi-Fi δίνει μεγάλο ρυθμό αλλά σε μικρή απόσταση και με υψηλή κατανάλωση. Για πολλές εφαρμογές του <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> όμως, όπως ένας αισθητήρας υγρασίας σε ένα χωράφι, το ζητούμενο είναι το αντίθετο: <strong>ελάχιστα δεδομένα</strong>, αλλά σε <strong>τεράστια απόσταση</strong> και με <strong>ελάχιστη ενέργεια</strong>.</p>
+<p>Αυτό το κενό καλύπτουν τα δίκτυα Low Power Wide Area Network (<a class="abbr-link" href="#abbr-lpwan" title="Low Power Wide Area Network">LPWAN</a>): οικογένεια τεχνολογιών σχεδιασμένων για μεγάλη εμβέλεια και χαμηλή κατανάλωση, με κόστος τον χαμηλό ρυθμό δεδομένων (Διάλεξη 6a). Χωρίζονται σε δύο κατηγορίες ανάλογα με το φάσμα συχνοτήτων που χρησιμοποιούν: αυτές που θέλουν <strong>άδεια</strong> φάσματος (όπως το NB-IoT) και αυτές που δουλεύουν σε <strong>ελεύθερο</strong> φάσμα (όπως το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a> και το Sigfox).</p>
+<p>Τα κοινά χαρακτηριστικά όλων εξηγούν το «γιατί»: λειτουργούν σε <strong>χαμηλές συχνότητες</strong> (κάτω από 1 GHz), που δίνουν μεγάλη εμβέλεια· έχουν χαμηλό ρυθμό και εκπέμπουν σπάνια, που δίνει χαμηλή κατανάλωση· και συνήθως <strong>δεν</strong> χρησιμοποιούν το πρωτόκολλο του Internet (είναι μη-IP δίκτυα) (Διάλεξη 6a).</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: τα άλλα μέλη της οικογένειας</p>
+<p>Πέρα από το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>, που εξετάζουμε αναλυτικά παρακάτω, η διάλεξη αναφέρει δύο ακόμη τεχνολογίες, καμία από τις οποίες δεν έχει ζητηθεί στις εξετάσεις (Διάλεξη 6a). Το <strong>Sigfox</strong> είναι μια τεχνολογία εξαιρετικά στενής ζώνης, με ελάχιστα μηνύματα την ημέρα (περίπου 140 προς τα πάνω και 4 προς τα κάτω) και τοπολογία αστέρα ενός βήματος. Το <strong>NB-IoT</strong> είναι πρότυπο του οργανισμού 3GPP, βασισμένο σε τεχνολογία κινητής τηλεφωνίας, με έμφαση στην εσωτερική κάλυψη, το χαμηλό κόστος και τις πολλές ταυτόχρονες συνδέσεις. Το εξεταζόμενο μέλος παραμένει το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>.</p>
+</div>
+<h2 id="architecture">7.2 Η Αρχιτεκτονική του Δικτύου<a class="headerlink" href="#architecture" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a> είναι το πιο γνωστό <a class="abbr-link" href="#abbr-lpwan" title="Low Power Wide Area Network">LPWAN</a> ελεύθερου φάσματος, ένα πρότυπο της συμμαχίας LoRa Alliance για μεγάλα, δημόσια δίκτυα <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> (Διάλεξη 6a). Η αρχιτεκτονική του έχει <strong>τέσσερα</strong> βασικά δομικά στοιχεία, σε μια αλυσίδα από την άκρη προς το κέντρο:</p>
+<figure class="steps" id="fig-7-1">
+<svg viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" role="img">
+  <!-- end devices -->
+  <circle cx="26" cy="45" r="7" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/>
+  <circle cx="26" cy="85" r="7" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/>
+  <circle cx="26" cy="125" r="7" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/>
+  <!-- wireless links to gateway -->
+  <line x1="34" y1="47" x2="118" y2="78" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="34" y1="85" x2="116" y2="85" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="34" y1="123" x2="118" y2="92" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <!-- gateway (tower) -->
+  <polygon points="128,100 116,100 122,66" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/>
+  <line x1="122" y1="66" x2="122" y2="52" stroke="var(--fig-accent-deep)" stroke-width="1.6"/>
+  <circle cx="122" cy="50" r="3" fill="var(--fig-accent-deep)"/>
+  <!-- backhaul to network server -->
+  <line x1="132" y1="85" x2="196" y2="85" stroke="var(--fig-line)" stroke-width="2"/>
+  <polygon points="196,85 189,82 189,88" fill="var(--fig-line)"/>
+  <!-- network server -->
+  <rect x="198" y="66" width="44" height="38" rx="3" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.6"/>
+  <!-- to application server -->
+  <line x1="244" y1="85" x2="282" y2="85" stroke="var(--fig-line)" stroke-width="2"/>
+  <polygon points="282,85 275,82 275,88" fill="var(--fig-line)"/>
+  <!-- application server -->
+  <rect x="284" y="66" width="44" height="38" rx="3" fill="var(--fig-ok)" stroke="var(--fig-line)" stroke-width="1.6"/>
+</svg>
+<div class="legend">
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>συσκευή-άκρο (end device)</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><polygon points="13,12 5,12 9,2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.2"/></svg>πύλη (gateway)</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="2" width="12" height="10" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.2"/></svg>διακομιστής δικτύου</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="2" width="12" height="10" rx="1.5" fill="var(--fig-ok)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>διακομιστής εφαρμογής</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/></svg>ασύρματη ζεύξη LoRa</span>
+</div>
+<figcaption>Σχήμα 7.1 · Η αρχιτεκτονική του <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>: από αριστερά προς τα δεξιά, συσκευές-άκρα, πύλες, διακομιστής δικτύου, διακομιστής εφαρμογής (Διάλεξη 6a).</figcaption>
+</figure>
+
+<p>Από αριστερά προς τα δεξιά:</p>
+<ol>
+<li><span class="key-term">Συσκευές-άκρα</span> (end devices): οι αισθητήρες, με μπαταρία, που στέλνουν ασύρματα τις μετρήσεις τους.</li>
+<li><span class="key-term">Πύλες</span> (gateways): σταθμοί που ακούν τις εκπομπές. Το ίδιο μήνυμα μιας συσκευής μπορεί να το λάβουν <strong>πολλές</strong> πύλες ταυτόχρονα (η επικοινωνία είναι multicast), κάτι που αυξάνει την αξιοπιστία.</li>
+<li><span class="key-term">Διακομιστής δικτύου</span> (network server): μαζεύει ό,τι έλαβαν οι πύλες, πετά τα διπλά αντίγραφα, και διαχειρίζεται το δίκτυο.</li>
+<li><span class="key-term">Διακομιστής εφαρμογής</span> (application server): εκεί φτάνουν τελικά τα καθαρά δεδομένα, για να τα χρησιμοποιήσει η εφαρμογή.</li>
+</ol>
+<p><strong>Ρυθμοί μετάδοσης.</strong> Το τυπικό εύρος είναι <strong>0.3 Kbps έως 50 Kbps</strong>, με εμβέλεια που φτάνει μερικά χιλιόμετρα (Διάλεξη 6a). Πολύ χαμηλός ρυθμός, αλλά αρκετός για τα λίγα bytes ενός αισθητήρα.</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: οι κλάσεις συσκευών</p>
+<p>Το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a> ορίζει τρεις κλάσεις συσκευών, ανάλογα με τον συμβιβασμό κατανάλωσης και καθυστέρησης (Διάλεξη 6a): <strong>Κλάση A</strong> (η βασική, με μπαταρία, χαμηλή κατανάλωση αλλά υψηλή καθυστέρηση), <strong>Κλάση B</strong> (με επιπλέον παράθυρα λήψης, χαμηλότερη καθυστέρηση αλλά μεγαλύτερη κατανάλωση), και <strong>Κλάση C</strong> (συνεχής ακρόαση, μηδενική καθυστέρηση, αλλά για συσκευές στο ρεύμα). Δεν έχει ζητηθεί στις εξετάσεις.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Γ.2, 1 μονάδα</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Το Θέμα Γ.2 του 2026 ζητά τα <strong>δομικά στοιχεία</strong> της αρχιτεκτονικής και το <strong>εύρος των ρυθμών μετάδοσης</strong>. Μια πλήρης απάντηση ονομάζει τα τέσσερα στοιχεία (συσκευές-άκρα, πύλες, διακομιστής δικτύου, διακομιστής εφαρμογής), αναφέρει ότι η επικοινωνία είναι multicast (πολλές πύλες λαμβάνουν το ίδιο μήνυμα), και δίνει το εύρος 0.3 έως 50 Kbps.</p>
+</div>
+<h2 id="spreading-factor">7.3 Ο Spreading Factor<a class="headerlink" href="#spreading-factor" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a> στηρίζεται σε μια τεχνική διαμόρφωσης σήματος που λέγεται <strong>chirp</strong>: το σήμα «σαρώνει» ένα εύρος συχνοτήτων αντί να μένει σε μία. Το πόσο «απλωμένο» είναι αυτό το σήμα το ρυθμίζει μια παράμετρος, ο <span class="key-term">Spreading Factor</span> (<dfn class="abbr-def" id="abbr-sf" title="Spreading Factor">SF</dfn>) (Διάλεξη 6a).</p>
+<p>Ο <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> ελέγχει τον <strong>χρόνο που μένει το σήμα στον αέρα</strong> (time on air). Ο χρόνος ενός συμβόλου δίνεται από:</p>
+<div class="formula">
+<div class="arithmatex">\[T_s = \frac{2^{\text{SF}}}{BW}\]</div>
+<p><span class="label">Χρόνος συμβόλου συναρτήσει του Spreading Factor και του εύρους ζώνης <span class="arithmatex">\(BW\)</span> (Διάλεξη 6a)</span></p>
+</div>
+<p>Το κλειδί είναι το <span class="arithmatex">\(2^{\text{SF}}\)</span>: ο χρόνος μεγαλώνει <strong>εκθετικά</strong> με τον <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a>. Ας το δούμε για <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> = 12 και εύρος ζώνης <span class="arithmatex">\(BW\)</span> = 125 kHz:</p>
+<div class="trace-label">Χρόνος συμβόλου για <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> = 12 και εύρος ζώνης 125 kHz</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+T_s &amp;= \frac{2^{\text{SF}}}{BW} &amp;&amp; \\[0.7em]
+    &amp;= \frac{2^{12}}{125\,000} &amp;&amp; (\text{SF} = 12,\ BW = 125\text{ kHz} = 125\,000\text{ Hz}) \\[0.7em]
+    &amp;= \frac{4096}{125\,000} &amp;&amp; (2^{12} = 4096) \\[0.7em]
+    &amp;= 0.0328\text{ s} &amp;&amp; (\text{διαίρεση}) \\[0.7em]
+    &amp;\approx 32.8\text{ ms} &amp;&amp; (\times 1000)
+\end{aligned}
+\]</div>
+</div>
+<p>Ένα σύμβολο των 33 χιλιοστών του δευτερολέπτου είναι <strong>πάρα πολύ αργό</strong> για ραδιοεπικοινωνία. Και αυτή είναι ακριβώς η ανταλλαγή. Καθώς ανεβάζουμε τον <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Spreading Factor</th>
+<th style="text-align: center;">Χρόνος στον αέρα</th>
+<th style="text-align: center;">Εμβέλεια</th>
+<th style="text-align: center;">Ρυθμός δεδομένων</th>
+<th style="text-align: center;">Ενέργεια συσκευής</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Μικρός (για παράδειγμα 7)</td>
+<td style="text-align: center;">Μικρός</td>
+<td style="text-align: center;">Μικρή</td>
+<td style="text-align: center;">Υψηλός</td>
+<td style="text-align: center;">Λίγη</td>
+</tr>
+<tr>
+<td style="text-align: center;">Μεγάλος (για παράδειγμα 12)</td>
+<td style="text-align: center;">Μεγάλος</td>
+<td style="text-align: center;">Μεγάλη</td>
+<td style="text-align: center;">Χαμηλός</td>
+<td style="text-align: center;">Πολλή</td>
+</tr>
+</tbody>
+</table>
+<p>Ο μεγάλος <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> απλώνει το σήμα, ώστε να ταξιδεύει <strong>πιο μακριά</strong> και να είναι πιο <strong>ανθεκτικό</strong> στον θόρυβο. Το τίμημα είναι διπλό: ο <strong>ρυθμός δεδομένων πέφτει</strong> (το σήμα κρατά περισσότερο για τα ίδια bits), και η <strong>ενέργεια ανεβαίνει</strong>. Το τελευταίο είναι το κρίσιμο σημείο: αφού ο πομπός μένει αναμμένος περισσότερη ώρα για κάθε σύμβολο, ξοδεύει <strong>περισσότερη ενέργεια</strong> ανά μήνυμα. Έτσι, ένας μεγάλος <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> αγοράζει εμβέλεια και αξιοπιστία με κόστος ρυθμό και μπαταρία.</p>
+<p>Υπάρχει και ένας κανονιστικός περιορισμός που σπρώχνει προς τη χαμηλή χρήση του καναλιού: στην Ευρώπη, κάθε συσκευή επιτρέπεται να εκπέμπει το πολύ το <strong>1% του χρόνου</strong> (όριο εκπομπής, duty cycle) στις ζώνες των 868 και 433 MHz (Διάλεξη 6a). Ο χαμηλός ρυθμός, δηλαδή, δεν είναι μόνο τεχνική επιλογή αλλά και υποχρέωση.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Γ.3, 1 μονάδα</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Το Θέμα Γ.3 του 2026 ζητά τη σχέση του Spreading Factor με την εμβέλεια και τον ρυθμό, και τι γίνεται στην ενέργεια όταν αυξάνεται ο <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a>. Η απάντηση σε μία γραμμή: μεγαλύτερος <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> σημαίνει <strong>μεγαλύτερη εμβέλεια και ανθεκτικότητα, αλλά μικρότερο ρυθμό δεδομένων και περισσότερη ενέργεια</strong>, γιατί το σήμα μένει περισσότερη ώρα στον αέρα.</p>
+</div>
+<h2 id="wifi-comparison">7.4 Σύγκριση με το Wi-Fi<a class="headerlink" href="#wifi-comparison" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το Θέμα Γ.1 ζητά να συγκρίνουμε το Wi-Fi, δηλαδή τα πρότυπα Institute of Electrical and Electronics Engineers (<dfn class="abbr-def" id="abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</dfn>) 802.11, με το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>. Το κλειδί είναι ότι <strong>λύνουν διαφορετικά προβλήματα</strong> (Διάλεξη 7b, και Διαλέξεις 8a, 8b για το Wi-Fi):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Χαρακτηριστικό</th>
+<th style="text-align: left;">Wi-Fi (πρότυπα <a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> 802.11)</th>
+<th style="text-align: left;"><a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Ρυθμός δεδομένων</td>
+<td style="text-align: left;">Πολύ υψηλός (Mbps έως Gbps)</td>
+<td style="text-align: left;">Πολύ χαμηλός (0.3 έως 50 Kbps)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Εμβέλεια</td>
+<td style="text-align: left;">Μικρή (δεκάδες μέτρα)</td>
+<td style="text-align: left;">Πολύ μεγάλη (χιλιόμετρα)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Κατανάλωση</td>
+<td style="text-align: left;">Υψηλή</td>
+<td style="text-align: left;">Πολύ χαμηλή (μπαταρία για χρόνια)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Τοπολογία</td>
+<td style="text-align: left;">Υποδομή με σημεία πρόσβασης</td>
+<td style="text-align: left;">Αστέρας μέσω πυλών</td>
+</tr>
+<tr>
+<td style="text-align: left;">Τυπική χρήση</td>
+<td style="text-align: left;">Πολλά δεδομένα τοπικά (βίντεο, web, αρχεία)</td>
+<td style="text-align: left;">Λίγα δεδομένα από πολλούς αισθητήρες σε μεγάλη έκταση</td>
+</tr>
+</tbody>
+</table>
+<p>Με μια φράση: το Wi-Fi είναι φτιαγμένο για <strong>μεγάλο όγκο δεδομένων σε μικρή απόσταση</strong>, το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a> για <strong>ελάχιστα δεδομένα σε τεράστια απόσταση με ελάχιστη ενέργεια</strong>. Δεν αντικαθιστά το ένα το άλλο· καλύπτουν αντίθετες ανάγκες. Ένα σπίτι με βίντεο και υπολογιστές θέλει Wi-Fi· χιλιάδες αισθητήρες σε μια πόλη θέλουν <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Γ.1, 0,5 μονάδες</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Το Θέμα Γ.1 μετρά μισή μονάδα, οπότε αρκεί μια σύντομη σύγκριση. Το ουσιώδες: αντίθετοι σχεδιαστικοί στόχοι. Wi-Fi = υψηλός ρυθμός, μικρή εμβέλεια, υψηλή κατανάλωση. <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a> = χαμηλός ρυθμός, τεράστια εμβέλεια, ελάχιστη κατανάλωση. Κλείστε με το ότι δεν ανταγωνίζονται, αλλά καλύπτουν διαφορετικές εφαρμογές.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

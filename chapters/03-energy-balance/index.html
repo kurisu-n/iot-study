@@ -1,0 +1,1587 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/chapters/03-energy-balance/">
+      
+      
+        <link rel="prev" href="../02-leach/">
+      
+      
+        <link rel="next" href="../04-routing-metrics/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>3. Εξισορρόπηση Ενέργειας ★ - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Εξισορρόπηση Ενέργειας ★
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-leach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#efficiency-vs-balance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Αποδοτικότητα ή Εξισορρόπηση;
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Κάθε Σχήμα Στραγγίζει Κάποιους Κόμβους
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Η Ιδέα: Κάθε Κόμβος Ρίχνει ένα Ζάρι
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Το Ενεργειακό Μοντέλο
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Πώς Συμπεριφέρεται το pi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Πώς Υπολογίζεται το pi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Ενεργειακές Τρύπες και Διάρκεια Ζωής
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Σύγκριση με το Directed Diffusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-lpwan-lorawan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-cloud-edge-industry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-rpl-app-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#efficiency-vs-balance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Αποδοτικότητα ή Εξισορρόπηση;
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Κάθε Σχήμα Στραγγίζει Κάποιους Κόμβους
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Η Ιδέα: Κάθε Κόμβος Ρίχνει ένα Ζάρι
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Το Ενεργειακό Μοντέλο
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Πώς Συμπεριφέρεται το pi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Πώς Υπολογίζεται το pi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Ενεργειακές Τρύπες και Διάρκεια Ζωής
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Σύγκριση με το Directed Diffusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span class="chapter-num">Κεφάλαιο 3</span></p>
+<h1 id="_1">Πρωτόκολλο Εξισορρόπησης Ενέργειας<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p><em>Καλύπτει: τη διαφορά ανάμεσα στην ενεργειακή αποδοτικότητα και την ενεργειακή εξισορρόπηση, το πρόβλημα των κόμβων που «στραγγίζουν» πρώτοι, την πιθανοτική λύση του Energy Balance Protocol (<dfn class="abbr-def" id="abbr-ebp" title="Energy Balance Protocol">EBP</dfn>), το ενεργειακό του μοντέλο, τις μετρικές διάρκειας ζωής, και τη σύγκριση με το Directed Diffusion. Πηγές: Διάλεξη 3, χειρόγραφες σημειώσεις (σελίδες 12 έως 16), θέμα εξετάσεων 2026.</em></p>
+<p>Στο <a href="../02-leach/">Κεφάλαιο 2</a> το Low Energy Adaptive Clustering Hierarchy (<dfn class="abbr-def" id="abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</dfn>) έλυσε το πρόβλημα της άνισης κατανάλωσης εναλλάσσοντας τον ρόλο του αρχηγού. Το κεφάλαιο αυτό εξετάζει ένα πρωτόκολλο που επιδιώκει το ίδιο πράγμα, την <strong>ισότιμη κατανάλωση ενέργειας</strong>, αλλά με εντελώς διαφορετικό τρόπο: αφήνοντας κάθε κόμβο να ρίχνει ένα «ζάρι» για το πώς θα στείλει κάθε μήνυμα. Είναι το Energy Balance Protocol (<a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>).</p>
+<h2 id="efficiency-vs-balance">3.1 Αποδοτικότητα ή Εξισορρόπηση;<a class="headerlink" href="#efficiency-vs-balance" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Δύο έννοιες που ακούγονται παρόμοιες, αλλά δεν είναι το ίδιο πράγμα (χειρόγραφες σημειώσεις, σελίδα 12):</p>
+<ul>
+<li><span class="key-term">Ενεργειακή αποδοτικότητα</span> (energy efficiency) σημαίνει να ξοδεύει το δίκτυο <strong>όσο το δυνατόν λιγότερη συνολική ενέργεια</strong>. Μετράει το άθροισμα σε όλους τους κόμβους.</li>
+<li><span class="key-term">Ενεργειακή εξισορρόπηση</span> (energy balance) σημαίνει να ξοδεύεται η ενέργεια <strong>ομοιόμορφα</strong>, ώστε κανένας κόμβος να μην αδειάζει πολύ πιο γρήγορα από τους άλλους. Μετράει τις διαφορές ανάμεσα στους κόμβους.</li>
+</ul>
+<p>Το κρίσιμο σημείο είναι ότι ένα δίκτυο μπορεί να είναι πολύ αποδοτικό και ταυτόχρονα κακά εξισορροπημένο. Φανταστείτε ένα σχήμα που ξοδεύει ελάχιστη συνολική ενέργεια, αλλά φορτώνει όλη τη δουλειά σε λίγους κόμβους. Αυτοί οι κόμβοι αδειάζουν, το δίκτυο κόβεται στα δύο, και η μπαταρία όλων των υπολοίπων μένει <strong>αχρησιμοποίητη</strong>. Το δίκτυο σταμάτησε να λειτουργεί όχι επειδή τελείωσε η ενέργεια, αλλά επειδή τελείωσε σε λάθος σημείο.</p>
+<p>Γι' αυτό η εξισορρόπηση συνδέεται άμεσα με τη <strong>διάρκεια ζωής</strong>: ένα καλά εξισορροπημένο δίκτυο αξιοποιεί σχεδόν όλη τη διαθέσιμη ενέργεια πριν σταματήσει, αντί να αφήνει μεγάλα αποθέματα κλειδωμένα σε κόμβους που δεν προλαβαίνουν να τα χρησιμοποιήσουν.</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης</p>
+<p>Οι σημειώσεις απαριθμούν και άλλες στρατηγικές εξισορρόπησης, πέρα από αυτή του <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> (σελίδα 12): την εναλλαγή του αρχηγού συστάδας (cluster head, <dfn class="abbr-def" id="abbr-ch" title="cluster head">CH</dfn>), όπως στο <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>· τη συνάθροιση δεδομένων· τον έλεγχο ισχύος, δηλαδή τη ρύθμιση της ισχύος μετάδοσης ανάλογα με την απόσταση του παραλήπτη· και την επεξεργασία δεδομένων μέσα στο δίκτυο, ώστε να αποφεύγονται περιττές αποστολές. Το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> είναι μία συγκεκριμένη προσέγγιση, όχι η μόνη.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> βάση του Θέματος Α.2</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Η διάκριση αποδοτικότητας και εξισορρόπησης είναι η πρώτη πρόταση κάθε καλής απάντησης για το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>. Το <a href="../../exams/2026/#a2">Θέμα Α.2 του 2026</a> ζητά ακριβώς πώς εξελίσσεται η ενέργεια «σε κάθε κόμβο» (εξισορρόπηση) «αλλά και συνολικά ως δίκτυο» (αποδοτικότητα): η ίδια η εκφώνηση ζητά να ξεχωρίσετε τις δύο έννοιες.</p>
+</div>
+<h2 id="strain">3.2 Κάθε Σχήμα Στραγγίζει Κάποιους Κόμβους<a class="headerlink" href="#strain" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Οι διαφάνειες ξεκινούν με μια παρατήρηση: όποιον τρόπο μετάδοσης κι αν διαλέξουμε, κάποιοι κόμβοι θα φορτωθούν περισσότερο από τους άλλους (Διάλεξη 3, διαφάνεια 4).</p>
+<!-- ebp_figures:strain -->
+<figure class="steps" id="fig-3-1">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="98" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="136" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="174" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="212" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="13" y="84" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="169.6" y1="136.3" x2="154.4" y2="136.3" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="149.6,136.3 155.6,133.1 155.6,139.5" fill="var(--fig-warn)"/><line x1="131.6" y1="136.3" x2="116.4" y2="136.3" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="111.6,136.3 117.6,133.1 117.6,139.5" fill="var(--fig-warn)"/><line x1="93.6" y1="136.3" x2="78.4" y2="136.3" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="73.6,136.3 79.6,133.1 79.6,139.5" fill="var(--fig-warn)"/><line x1="58.3" y1="129.8" x2="37.2" y2="108.4" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="33.8,105.0 40.3,107.0 35.8,111.5" fill="var(--fig-warn)"/><line x1="86.0" y1="38.1" x2="37.9" y2="82.3" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="34.3,85.5 36.6,79.1 40.9,83.8" fill="var(--fig-warn)"/><line x1="207.9" y1="124.8" x2="192.7" y2="124.8" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="187.9,124.8 193.9,121.6 193.9,128.0" fill="var(--fig-warn)"/><line x1="169.9" y1="124.8" x2="154.7" y2="124.8" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="149.9,124.8 155.9,121.6 155.9,128.0" fill="var(--fig-warn)"/><line x1="131.9" y1="124.8" x2="116.7" y2="124.8" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="111.9,124.8 117.9,121.6 117.9,128.0" fill="var(--fig-warn)"/><line x1="93.9" y1="124.8" x2="78.7" y2="124.8" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="73.9,124.8 79.9,121.6 79.9,128.0" fill="var(--fig-warn)"/><line x1="57.6" y1="119.5" x2="39.2" y2="106.1" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="35.3,103.3 42.0,104.2 38.3,109.4" fill="var(--fig-warn)"/><line x1="68.8" y1="111.3" x2="41.7" y2="101.4" stroke="var(--fig-warn)" stroke-width="1.4" stroke-linecap="round"/><polygon points="37.2,99.8 43.9,98.8 41.7,104.8" fill="var(--fig-warn)"/><circle cx="146.3" cy="105.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="232.2" cy="92.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="97.6" cy="98.6" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="178.6" cy="136.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="81.1" cy="70.7" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="80.5" cy="138.5" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="190.2" cy="35.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="242.8" cy="159.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="183.0" cy="112.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="92.7" cy="32.0" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="160.2" cy="38.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.6" cy="62.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="69.5" cy="92.2" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="144.2" cy="142.9" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="147.2" cy="67.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="216.9" cy="124.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="121.4" cy="60.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="116.6" cy="39.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="203.5" cy="83.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="64.1" cy="58.1" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="77.3" cy="114.3" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="205.7" cy="66.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="239.5" cy="131.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="165.8" cy="90.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.7" cy="128.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="119.4" cy="148.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 178.6 136.3 L 140.6 136.3 L 102.6 136.3 L 64.6 136.3 L 24.0 95.0'); offset-rotate: 0deg;"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 92.7 32.0 L 24.0 95.0'); offset-rotate: 0deg; animation-delay: 0.60s;"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 216.9 124.8 L 178.9 124.8 L 140.9 124.8 L 102.9 124.8 L 64.9 124.8 L 24.0 95.0'); offset-rotate: 0deg; animation-delay: 1.20s;"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 77.3 114.3 L 24.0 95.0'); offset-rotate: 0deg; animation-delay: 1.80s;"/></svg><p class="step__text"><span class="step__num">1</span><strong>Βήμα προς βήμα.</strong> Όλα τα μηνύματα περνούν από τους κόμβους κοντά στη Base Station, οπότε αυτοί αδειάζουν πρώτοι, ακόμη κι αν κάθε βήμα είναι φθηνό.</p></div><div class="step"><svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="98" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="136" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="174" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="212" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="13" y="84" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="181.7" y1="38.6" x2="41.7" y2="88.7" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="37.2,90.3 41.8,85.3 43.9,91.3" fill="var(--fig-warn)"/><line x1="60.5" y1="92.7" x2="42.8" y2="93.8" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="38.0,94.1 43.8,90.6 44.2,97.0" fill="var(--fig-warn)"/><line x1="194.5" y1="84.2" x2="42.8" y2="93.8" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="38.0,94.1 43.8,90.5 44.2,96.9" fill="var(--fig-warn)"/><line x1="156.8" y1="90.3" x2="42.8" y2="94.3" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="38.0,94.5 43.9,91.1 44.1,97.5" fill="var(--fig-warn)"/><circle cx="146.3" cy="105.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="232.2" cy="92.4" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="97.6" cy="98.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="178.6" cy="136.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="81.1" cy="70.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="80.5" cy="138.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="190.2" cy="35.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="242.8" cy="159.3" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="183.0" cy="112.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="92.7" cy="32.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="160.2" cy="38.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.6" cy="62.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="69.5" cy="92.2" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="144.2" cy="142.9" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="147.2" cy="67.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="216.9" cy="124.8" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="121.4" cy="60.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="116.6" cy="39.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="203.5" cy="83.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="64.1" cy="58.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="77.3" cy="114.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="205.7" cy="66.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="239.5" cy="131.6" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6" class="fig-strain"/><circle cx="165.8" cy="90.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.7" cy="128.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="119.4" cy="148.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 190.2 35.6 L 24.0 95.0'); offset-rotate: 0deg;"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 69.5 92.2 L 24.0 95.0'); offset-rotate: 0deg; animation-delay: 0.60s;"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 203.5 83.7 L 24.0 95.0'); offset-rotate: 0deg; animation-delay: 1.20s;"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 165.8 90.0 L 24.0 95.0'); offset-rotate: 0deg; animation-delay: 1.80s;"/></svg><p class="step__text"><span class="step__num">2</span><strong>Απευθείας.</strong> Κάθε κόμβος στέλνει μόνος του ως τη Base Station. Οι μακρινοί κόμβοι πληρώνουν το ακριβό κόστος της απόστασης και αδειάζουν πρώτοι.</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="1" width="12" height="12" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/></svg>σταθμός βάσης (Base Station)</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>ζωντανός κόμβος</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.5"/></svg>κόμβος που αδειάζει γρήγορα</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="1.6"/></svg>μία μετάδοση (ένα βήμα)</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="3"/></svg>απευθείας μετάδοση στη Base Station</span></div>
+<figcaption>Σχήμα 3.1 · Κάθε απλό σχήμα στραγγίζει κάποιους κόμβους. Σχηματική απεικόνιση της Διάλεξης 3, διαφάνεια 4.</figcaption>
+</figure>
+<!-- /ebp_figures:strain -->
+
+<ul>
+<li>Στη μετάδοση <span class="key-term">βήμα προς βήμα</span> (hop-by-hop), κάθε μήνυμα περνά από γείτονα σε γείτονα μέχρι τη Base Station. Κάθε βήμα είναι φθηνό, αλλά <strong>όλα</strong> τα μηνύματα του δικτύου περνούν τελικά από τους λίγους κόμβους που βρίσκονται κοντά στη Base Station. Αυτοί σηκώνουν δυσανάλογο φόρτο και αδειάζουν πρώτοι (Διάλεξη 3, διαφάνεια 4).</li>
+<li>Στην <span class="key-term">απευθείας</span> μετάδοση (direct transmission), κάθε κόμβος στέλνει μόνος του ως τη Base Station. Τώρα οι κοντινοί κόμβοι ανακουφίζονται, αλλά οι <strong>μακρινοί</strong> πληρώνουν το ακριβό κόστος της μεγάλης απόστασης και αδειάζουν πρώτοι.</li>
+</ul>
+<p>Είναι δύο όψεις του ίδιου προβλήματος: η μία στραγγίζει το κέντρο, η άλλη την περιφέρεια. Το ερώτημα που θέτει η Διάλεξη 3 (διαφάνεια 5) είναι:</p>
+<blockquote>
+<p>«How can we achieve equal energy dissipation per node in order to prolong the network lifetime by avoiding early network disconnection?»</p>
+</blockquote>
+<p>Δηλαδή: πώς να πετύχουμε ίση κατανάλωση ανά κόμβο, ώστε να καθυστερήσουμε την πρόωρη αποσύνδεση του δικτύου.</p>
+<p>Το ερώτημα αυτό δεν το συναντάμε πρώτη φορά. Στο <a href="../02-leach/">Κεφάλαιο 2</a> το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> έδωσε ήδη μια απάντηση: με την τυχαία εναλλαγή του αρχηγού, κανένας κόμβος δεν σήκωνε μόνιμα το ακριβό βάρος της απευθείας μετάδοσης στη Base Station, και γι' αυτό στα πειράματα οι κόμβοι του πέθαιναν ομοιόμορφα (<a href="../02-leach/#where-nodes-die">ενότητα 2.5</a>). Το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> κυνηγά τον ίδιο στόχο, την ίση κατανάλωση, αλλά από άλλη γωνία: χωρίς συστάδες και χωρίς ξεχωριστούς ρόλους, αφήνοντας την τυχαιότητα να δράσει σε κάθε μήνυμα χωριστά, όπως θα δούμε αμέσως.</p>
+<h2 id="idea">3.3 Η Ιδέα: Κάθε Κόμβος Ρίχνει ένα Ζάρι<a class="headerlink" href="#idea" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Η λύση του <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> είναι κομψή. Αφού η μετάδοση βήμα προς βήμα και η απευθείας μετάδοση στραγγίζουν αντίθετες περιοχές, το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> <strong>συνδυάζει τις δύο</strong> με τυχαίο τρόπο, ώστε το φορτίο να μοιράζεται (Διάλεξη 3, διαφάνεια 6).</p>
+<p>Πρώτα, το δίκτυο χωρίζεται σε <span class="key-term">δακτυλίους</span> (slices): ζώνες πλάτους R γύρω από τη Base Station, όπου R είναι η εμβέλεια μιας μετάδοσης ενός βήματος. Ο δακτύλιος 1 είναι ο πιο κοντινός στη Base Station, ο δακτύλιος n ο πιο μακρινός (Διάλεξη 3, διαφάνεια 7).</p>
+<p>Μετά, κάθε κόμβος σε έναν δακτύλιο i, όταν έχει ένα μήνυμα να προωθήσει, ρίχνει ένα ζάρι (Διάλεξη 3, διαφάνεια 8):</p>
+<!-- ebp_figures:choice -->
+<figure class="steps" id="fig-3-2">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="98" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="136" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="174" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="212" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="13" y="84" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="157.5" y1="86.5" x2="111.4" y2="67.7" stroke="var(--fig-warn)" stroke-width="1.8" stroke-linecap="round"/><polygon points="106.9,65.8 113.7,65.1 111.3,71.1" fill="var(--fig-warn)"/><circle cx="146.3" cy="105.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="232.2" cy="92.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="97.6" cy="98.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="178.6" cy="136.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="81.1" cy="70.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="80.5" cy="138.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="190.2" cy="35.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="242.8" cy="159.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="183.0" cy="112.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="92.7" cy="32.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="160.2" cy="38.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.6" cy="62.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="69.5" cy="92.2" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="144.2" cy="142.9" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="147.2" cy="67.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="216.9" cy="124.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="121.4" cy="60.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="116.6" cy="39.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="203.5" cy="83.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="64.1" cy="58.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="77.3" cy="114.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="205.7" cy="66.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="239.5" cy="131.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="165.8" cy="90.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.7" cy="128.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="119.4" cy="148.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="165.8" cy="90.0" r="11" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/><circle cx="98.6" cy="62.4" r="11" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 165.8 90.0 L 98.6 62.4'); offset-rotate: 0deg;"/></svg><p class="step__text"><span class="step__num">1</span><strong>Με πιθανότητα p<sub>i</sub>:</strong> ο κόμβος περνά το μήνυμα έναν δακτύλιο πιο κοντά στη Base Station. Ένα φθηνό βήμα μήκους R.</p></div><div class="step"><svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="98" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="136" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="174" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="212" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="13" y="84" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="156.8" y1="90.3" x2="42.8" y2="94.3" stroke="var(--fig-warn)" stroke-width="3.0" stroke-linecap="round"/><polygon points="38.0,94.5 43.9,91.1 44.1,97.5" fill="var(--fig-warn)"/><circle cx="146.3" cy="105.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="232.2" cy="92.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="97.6" cy="98.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="178.6" cy="136.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="81.1" cy="70.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="80.5" cy="138.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="190.2" cy="35.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="242.8" cy="159.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="183.0" cy="112.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="92.7" cy="32.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="160.2" cy="38.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.6" cy="62.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="69.5" cy="92.2" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="144.2" cy="142.9" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="147.2" cy="67.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="216.9" cy="124.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="121.4" cy="60.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="116.6" cy="39.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="203.5" cy="83.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="64.1" cy="58.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="77.3" cy="114.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="205.7" cy="66.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="239.5" cy="131.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="165.8" cy="90.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.7" cy="128.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="119.4" cy="148.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="165.8" cy="90.0" r="11" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/><circle r="3.4" fill="var(--fig-warn)" stroke="var(--fig-node)" stroke-width="1" class="fig-packet" style="offset-path: path('M 165.8 90.0 L 24.0 95.0'); offset-rotate: 0deg;"/></svg><p class="step__text"><span class="step__num">2</span><strong>Με πιθανότητα 1 − p<sub>i</sub>:</strong> ο κόμβος στέλνει το μήνυμα απευθείας στη Base Station, πληρώνοντας το ακριβό κόστος της απόστασης, αλλά ξεφορτώνοντας τους κόμβους μπροστά του.</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="1" width="12" height="12" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/></svg>σταθμός βάσης (Base Station)</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="2" y="1" width="14" height="12" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/></svg>δακτύλιος πλάτους R</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5.5" fill="none" stroke="var(--fig-line)" stroke-width="1.8" stroke-dasharray="2 1.6"/></svg>ο κόμβος που αποφασίζει</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>ζωντανός κόμβος</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="1.6"/></svg>μία μετάδοση (ένα βήμα)</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="3"/></svg>απευθείας μετάδοση στη Base Station</span></div>
+<figcaption>Σχήμα 3.2 · Η επιλογή κάθε κόμβου στο Energy Balance Protocol (Διάλεξη 3, διαφάνειες 7 έως 9).</figcaption>
+</figure>
+<!-- /ebp_figures:choice -->
+
+<p>Το «ζάρι» έχει μια συγκεκριμένη πιθανότητα p<sub>i</sub>, διαφορετική για κάθε δακτύλιο. Η μαγεία είναι στην επιλογή αυτής της πιθανότητας: το p<sub>i</sub> ρυθμίζεται έτσι ώστε, κατά μέσο όρο, <strong>κάθε αισθητήρας να ξοδεύει την ίδια ενέργεια</strong> (Διάλεξη 3, διαφάνεια 8). Αν το πετύχουμε αυτό, κανένας δακτύλιος δεν αδειάζει πριν τους άλλους, και το δίκτυο ζει όσο περισσότερο γίνεται.</p>
+<h2 id="energy-model">3.4 Το Ενεργειακό Μοντέλο<a class="headerlink" href="#energy-model" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Για να δούμε πώς επιλέγεται το p<sub>i</sub>, χρειαζόμαστε το κόστος κάθε επιλογής. Το κόστος μιας μετάδοσης μεγαλώνει με το <strong>τετράγωνο</strong> της απόστασης, όπως και στα προηγούμενα κεφάλαια (Διάλεξη 3, διαφάνεια 11):</p>
+<ul>
+<li>Ένα βήμα καλύπτει απόσταση R, άρα κοστίζει <span class="arithmatex">\(cR^2\)</span> (όπου c μια σταθερά).</li>
+<li>Μια απευθείας μετάδοση από τον δακτύλιο i καλύπτει απόσταση <span class="arithmatex">\(iR\)</span>, άρα κοστίζει <span class="arithmatex">\(c(iR)^2\)</span>.</li>
+</ul>
+<p>Ας ονομάσουμε ε την ενέργεια που ξοδεύει ο δακτύλιος i για να χειριστεί ένα μήνυμα. Είναι μια <strong>τυχαία</strong> ποσότητα, και αξίζει να δούμε από πού έρχεται η τυχαιότητα, γιατί δεν είναι εκεί που ίσως περιμένει κανείς. Τα i και R είναι σταθερά: ο δείκτης του δακτυλίου και το πλάτος του δεν αλλάζουν. Αυτό που αλλάζει είναι η <strong>επιλογή του κόμβου</strong>. Το ίδιο μήνυμα, στον ίδιο δακτύλιο, άλλοτε προωθείται ένα βήμα και καλύπτει απόσταση R (κόστος <span class="arithmatex">\(cR^2\)</span>), και άλλοτε στέλνεται απευθείας και καλύπτει απόσταση <span class="arithmatex">\(iR\)</span> (κόστος <span class="arithmatex">\(c(iR)^2\)</span>), ανάλογα με το πώς έπεσε το ζάρι. Έτσι το ε παίρνει μία από <strong>δύο σταθερές</strong> τιμές, αλλά ποια από τις δύο αποφασίζεται τυχαία:</p>
+<div class="formula">
+<div class="arithmatex">\[\varepsilon = \begin{cases} cR^2 &amp; \text{με πιθανότητα } p_i \\[1em] c(iR)^2 &amp; \text{με πιθανότητα } 1 - p_i \end{cases}\]</div>
+<p><span class="label">Το κόστος ενός μηνύματος στον δακτύλιο i (Διάλεξη 3, διαφάνεια 11)</span></p>
+</div>
+<p>Η <strong>μέση</strong> (αναμενόμενη) τιμή αυτού του κόστους βρίσκεται πολλαπλασιάζοντας κάθε αποτέλεσμα με την πιθανότητά του και προσθέτοντας. Ας το κάνουμε με τα μικρότερα δυνατά βήματα (γράφουμε p αντί p<sub>i</sub> για συντομία):</p>
+<div class="trace-label">Η μέση ενέργεια ανά μήνυμα</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+E[\varepsilon] &amp;= p \cdot cR^2 + (1 - p)\, c(iR)^2 &amp;&amp; \\[0.7em]
+               &amp;= p \cdot cR^2 + (1 - p)\, c\,i^2 R^2 &amp;&amp; ((iR)^2 = i^2 R^2) \\[0.7em]
+               &amp;= cR^2\,\big[\,p + (1 - p)\,i^2\,\big] &amp;&amp; (\text{βγάζουμε κοινό } cR^2) \\[0.7em]
+               &amp;= cR^2\,\big[\,p + i^2 - p\,i^2\,\big] &amp;&amp; ((1-p)\,i^2 = i^2 - p\,i^2) \\[0.7em]
+               &amp;= cR^2\,\big[\,i^2 - p\,(i^2 - 1)\,\big] &amp;&amp; (\text{ομαδοποιούμε τους όρους με } p)
+\end{aligned}
+\]</div>
+</div>
+<p>Καταλήγουμε στον τύπο των διαφανειών, <span class="arithmatex">\(E[\varepsilon] = [\,i^2 - p_i(i^2 - 1)\,]\,cR^2\)</span> (Διάλεξη 3, διαφάνεια 11). Το χρήσιμο σε αυτόν είναι ότι δείχνει καθαρά πώς το p<sub>i</sub> ελέγχει το κόστος: όσο μεγαλώνει το p<sub>i</sub> (περισσότερα βήματα, λιγότερες απευθείας μεταδόσεις), τόσο μικραίνει η μέση ενέργεια, αφού το p<sub>i</sub> πολλαπλασιάζει το αρνητικό <span class="arithmatex">\(-(i^2 - 1)\)</span>.</p>
+<p><strong>Η ιδιότητα της εξισορρόπησης.</strong> Το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> διαλέγει τα p<sub>i</sub> ώστε η μέση ενέργεια ανά μονάδα επιφάνειας να είναι <strong>ίδια</strong> σε κάθε δακτύλιο (Διάλεξη 3, διαφάνεια 10). Αν S<sub>i</sub> είναι το εμβαδόν του δακτυλίου i και E<sub>i</sub> η συνολική του ενέργεια, η συνθήκη είναι:</p>
+<div class="formula">
+<div class="arithmatex">\[\frac{E[E_i]}{S_i} = \frac{E[E_j]}{S_j} \quad \text{για κάθε ζεύγος δακτυλίων } i, j\]</div>
+<p><span class="label">Η ιδιότητα ισορροπίας: ίδια ενέργεια ανά επιφάνεια παντού (Διάλεξη 3, διαφάνεια 10)</span></p>
+</div>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός βασικής ύλης: πώς βρίσκονται ακριβώς τα p<sub>i</sub></p>
+<p>Η <strong>εξαγωγή</strong> των p<sub>i</sub> από την παραπάνω συνθήκη οδηγεί σε μια <strong>αναδρομική σχέση</strong> ανάμεσα σε διαδοχικούς δακτυλίους, την οποία η Διάλεξη 3 (διαφάνειες 12 έως 16) λύνει με αρκετή άλγεβρα, ώσπου να καταλήξει σε μια περίπλοκη ακριβή έκφραση. Αυτή η εξαγωγή είναι που μένει εκτός βασικής ύλης. Ευτυχώς, οι διαφάνειες δίνουν και μια <strong>προσεγγιστική κλειστή μορφή</strong> (διαφάνεια 17), απλή στη χρήση: από αυτήν μπορεί κανείς να <strong>υπολογίσει</strong> τιμές του p<sub>i</sub> με απλή αριθμητική, όπως δείχνει η <a href="#pi-formula">ενότητα 3.6</a>. Πρώτα όμως, η <a href="#pi-behaviour">επόμενη ενότητα</a> εξηγεί πώς <strong>συμπεριφέρονται</strong> τα p<sub>i</sub>, που είναι και η ουσία.</p>
+</div>
+<h2 id="pi-behaviour">3.5 Πώς Συμπεριφέρεται το p<sub>i</sub><a class="headerlink" href="#pi-behaviour" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Δεν χρειάζεται να λύσουμε την αναδρομή για να καταλάβουμε τι κάνει το πρωτόκολλο. Οι διαφάνειες δίνουν τη διαίσθηση (Διάλεξη 3, διαφάνεια 18):</p>
+<ul>
+<li><strong>Μακριά από τη Base Station</strong> (μεγάλο i): το p<sub>i</sub> είναι <strong>μεγάλο</strong>, δηλαδή ο κόμβος προτιμά να πάει βήμα προς βήμα. Λογικό: μια απευθείας μετάδοση από μακριά θα κόστιζε τεράστια ενέργεια, <span class="arithmatex">\(c(iR)^2\)</span>, οπότε είναι καλύτερα να προωθεί σε μικρά βήματα.</li>
+<li><strong>Κοντά στη Base Station</strong> (μικρό i): το p<sub>i</sub> είναι <strong>μικρό</strong>, δηλαδή ο κόμβος προτιμά να στείλει απευθείας. Και αυτό λογικό: εδώ η απόσταση είναι μικρή, άρα η απευθείας μετάδοση είναι φθηνή, και έτσι το μήνυμα <strong>παρακάμπτει</strong> την κρίσιμη περιοχή γύρω από τη Base Station αντί να επιβαρύνει τους ήδη φορτωμένους κοντινούς κόμβους.</li>
+</ul>
+<p>Με άλλα λόγια, το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> στέλνει τα μακρινά μηνύματα με μικρά βήματα ώσπου να πλησιάσουν, και μετά τα «εκτοξεύει» απευθείας πάνω από τη συμφορημένη ζώνη. Έτσι κανένας δακτύλιος δεν σηκώνει όλο το βάρος.</p>
+<p>Η διαφορά με το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> φαίνεται εδώ (χειρόγραφες σημειώσεις, σελίδα 14). Στο <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> όλοι οι κόμβοι έχουν την <strong>ίδια</strong> πιθανότητα να γίνουν αρχηγοί: μια σταθερή πιθανότητα για όλο το δίκτυο. Στο <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> κάθε δακτύλιος έχει τη <strong>δική του</strong> πιθανότητα p<sub>i</sub>, υπολογισμένη ειδικά ώστε να εξισορροπεί τον φόρτο προώθησης. Η συνολική ενέργεια δεν αλλάζει· απλώς διανέμεται πιο έξυπνα.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> υπόβαθρο</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Η <strong>εξαγωγή</strong> του τύπου του p<sub>i</sub> δεν ζητείται (ο υπολογισμός από τον έτοιμο τύπο μπορεί, δείτε την <a href="#pi-formula">ενότητα 3.6</a>). Η <strong>συμπεριφορά</strong> του είναι η ουσία του πρωτοκόλλου: μακριά προτιμά βήματα, κοντά προτιμά απευθείας μετάδοση για να παρακάμψει την κρίσιμη ζώνη. Δύο προτάσεις με αυτή τη διαίσθηση δείχνουν ότι καταλάβατε γιατί το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> εξισορροπεί.</p>
+</div>
+<h2 id="pi-formula">3.6 Πώς Υπολογίζεται το p<sub>i</sub><a class="headerlink" href="#pi-formula" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Η προηγούμενη ενότητα είπε <em>πώς συμπεριφέρεται</em> το p<sub>i</sub>. Εδώ βλέπουμε τον τύπο που δίνει αυτές τις τιμές, ώστε να μπορείτε να τις <strong>υπολογίσετε</strong> αν χρειαστεί. Η πλήρης εξαγωγή του από την ιδιότητα ισορροπίας είναι δύσκολη (είναι η αναδρομική σχέση που σημειώθηκε ως εκτός ύλης στην <a href="#energy-model">ενότητα 3.4</a>), αλλά οι διαφάνειες δίνουν και μια <strong>προσεγγιστική κλειστή μορφή</strong>, απλή στη χρήση (Διάλεξη 3, διαφάνεια 17):</p>
+<div class="formula">
+<div class="arithmatex">\[p_i = 1 - \frac{3x}{(i+1)(i-1)} \quad \text{για } 3 \le i \le n, \qquad p_2 = x = \tfrac{1}{2}\]</div>
+<p><span class="label">Προσεγγιστική κλειστή μορφή για το p<sub>i</sub> (Διάλεξη 3, διαφάνεια 17)</span></p>
+</div>
+<p>Το x είναι η πιθανότητα του δεύτερου δακτυλίου, το p<sub>2</sub>, που ορίζεται στο 1/2. Η μορφή λέγεται «προσεγγιστική» γιατί στηρίζεται στην παραδοχή ότι διαδοχικοί δακτύλιοι μοιάζουν μεταξύ τους (σχεδόν ίδιο εμβαδόν, σχεδόν ίδια πιθανότητα). Ας υπολογίσουμε το p<sub>3</sub> με τα μικρότερα δυνατά βήματα, βάζοντας i = 3 και x = 1/2:</p>
+<div class="trace-label">Το p<sub>i</sub> στον δακτύλιο i = 3</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+p_3 &amp;= 1 - \frac{3x}{(i+1)(i-1)} &amp;&amp; \\[0.7em]
+    &amp;= 1 - \frac{3 \cdot (1/2)}{(3+1)(3-1)} &amp;&amp; (i = 3,\ x = 1/2) \\[0.7em]
+    &amp;= 1 - \frac{1.5}{(3+1)(3-1)}          &amp;&amp; (3 \cdot 1/2 = 1.5) \\[0.7em]
+    &amp;= 1 - \frac{1.5}{4 \cdot 2}           &amp;&amp; (3+1 = 4,\ 3-1 = 2) \\[0.7em]
+    &amp;= 1 - \frac{1.5}{8}                   &amp;&amp; (4 \cdot 2 = 8) \\[0.7em]
+    &amp;= 1 - 0.1875                          &amp;&amp; (1.5 \div 8 = 0.1875) \\[0.7em]
+    &amp;= 0.8125                              &amp;&amp; (1 - 0.1875 = 0.8125)
+\end{aligned}
+\]</div>
+</div>
+<p>Με τον ίδιο τρόπο για τους υπόλοιπους δακτυλίους (ο παρονομαστής είναι πάντα <span class="arithmatex">\((i+1)(i-1) = i^2 - 1\)</span>):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Δακτύλιος i</th>
+<th style="text-align: left;">Υπολογισμός</th>
+<th style="text-align: center;">p<sub>i</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">δίνεται</td>
+<td style="text-align: center;">0.500</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">1 − 1.5/8</td>
+<td style="text-align: center;">0.813</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">1 − 1.5/15</td>
+<td style="text-align: center;">0.900</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">1 − 1.5/24</td>
+<td style="text-align: center;">0.938</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">1 − 1.5/35</td>
+<td style="text-align: center;">0.957</td>
+</tr>
+</tbody>
+</table>
+<p>Τα νούμερα <strong>ανεβαίνουν προς το 1</strong> όσο απομακρυνόμαστε από τη Base Station. Αυτό ακριβώς προέβλεψε η διαίσθηση της προηγούμενης ενότητας: στους μακρινούς δακτυλίους το p<sub>i</sub> είναι μεγάλο, άρα ο κόμβος σχεδόν πάντα προωθεί ένα βήμα αντί να στείλει απευθείας. Κοντά στη Base Station το p<sub>i</sub> είναι το μικρότερο (0.5 στον δακτύλιο 2), άρα οι μισές περίπου μεταδόσεις πάνε απευθείας, παρακάμπτοντας την κρίσιμη ζώνη.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι, μικρή πιθανότητα</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Ο υπολογισμός αυτός έχει <strong>το σχήμα</strong> της άσκησης του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>: σας δίνεται ένας τύπος, και βάζετε τον δείκτη του δακτυλίου για να βγάλετε τιμές. Αν η εξέταση προσθέσει άσκηση για το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>, αυτή είναι η πιο πιθανή μορφή της.</p>
+<p>⚠ <strong>Να το ζυγίσετε όμως σωστά.</strong> Σε αντίθεση με τις ασκήσεις του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> και του Expected Transmission Count (<dfn class="abbr-def" id="abbr-etx" title="Expected Transmission Count">ETX</dfn>), που τις <strong>δουλεύουν με νούμερα και οι ίδιες οι χειρόγραφες σημειώσεις</strong>, αυτός ο τύπος υπάρχει μόνο στις διαφάνειες (η 17)· οι σημειώσεις αναφέρουν μόνο την <em>ιδέα</em> ενός υπολογισμένου p<sub>i</sub>, όχι τον τύπο. Αφού οι δύο ασκήσεις που όντως έπεσαν βγήκαν από θέματα που καλύπτουν οι σημειώσεις, αυτός ο υπολογισμός είναι σαφώς <strong>λιγότερο πιθανός</strong> από εκείνους. Τον δίνουμε ως ασφάλεια, όχι ως πρόβλεψη.</p>
+</div>
+<h2 id="lifetime">3.7 Ενεργειακές Τρύπες και Διάρκεια Ζωής<a class="headerlink" href="#lifetime" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Γιατί αξίζει όλη αυτή η προσπάθεια; Επειδή στα παραδοσιακά σχήματα δημιουργείται μια <span class="key-term">ενεργειακή τρύπα</span> (energy hole) κοντά στη Base Station: οι κόμβοι εκεί εξαντλούνται πρώτοι, το δίκτυο αποκόπτεται, και η ενέργεια των μακρινών κόμβων μένει αναξιοποίητη. Το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>, αντίθετα, φροντίζει ώστε το δίκτυο να αξιοποιεί σχεδόν το <strong>100%</strong> της διαθέσιμης ενέργειας όλων των αισθητήρων πριν καταρρεύσει (χειρόγραφες σημειώσεις, σελίδες 15 έως 16).</p>
+<!-- ebp_figures:energy -->
+<figure class="steps" id="fig-3-3">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="98" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="136" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="174" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="212" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="13" y="84" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="146.3" cy="105.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="232.2" cy="92.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="97.6" cy="98.6" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="178.6" cy="136.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="81.1" cy="70.7" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="80.5" cy="138.5" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="190.2" cy="35.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="242.8" cy="159.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="183.0" cy="112.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="92.7" cy="32.0" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="160.2" cy="38.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.6" cy="62.4" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.70s"/><circle cx="69.5" cy="92.2" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="144.2" cy="142.9" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="147.2" cy="67.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="216.9" cy="124.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="121.4" cy="60.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="116.6" cy="39.4" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.70s"/><circle cx="203.5" cy="83.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="64.1" cy="58.1" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="77.3" cy="114.3" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.00s"/><circle cx="205.7" cy="66.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="239.5" cy="131.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="165.8" cy="90.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.7" cy="128.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="119.4" cy="148.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/></svg><p class="step__text"><span class="step__num">1</span><strong>Παραδοσιακό σχήμα.</strong> Οι κόμβοι κοντά στη Base Station εξαντλούνται πρώτοι και ανοίγει μια «ενεργειακή τρύπα»: το δίκτυο αποκόπτεται ενώ οι μακρινοί κόμβοι έχουν ακόμη μπαταρία (χειρόγραφες σημειώσεις, σελίδες 15 έως 16).</p></div><div class="step"><svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="98" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="136" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="174" y="24" width="38" height="146" fill="none" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="212" y="24" width="38" height="146" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/><rect x="13" y="84" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="146.3" cy="105.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="232.2" cy="92.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="97.6" cy="98.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="178.6" cy="136.3" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.36s"/><circle cx="81.1" cy="70.7" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.30s"/><circle cx="80.5" cy="138.5" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.06s"/><circle cx="190.2" cy="35.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="242.8" cy="159.3" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.16s"/><circle cx="183.0" cy="112.5" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="92.7" cy="32.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="160.2" cy="38.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.6" cy="62.4" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="69.5" cy="92.2" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.08s"/><circle cx="144.2" cy="142.9" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="147.2" cy="67.3" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.41s"/><circle cx="216.9" cy="124.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="121.4" cy="60.8" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="116.6" cy="39.4" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.14s"/><circle cx="203.5" cy="83.7" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="64.1" cy="58.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="77.3" cy="114.3" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="205.7" cy="66.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="239.5" cy="131.6" r="6" fill="var(--fig-node)" fill-opacity="0.05" stroke="var(--fig-line)" stroke-width="1.6" class="fig-die" style="animation-delay:0.40s"/><circle cx="165.8" cy="90.0" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="98.7" cy="128.1" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/><circle cx="119.4" cy="148.6" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/></svg><p class="step__text"><span class="step__num">2</span><strong>Energy Balance Protocol.</strong> Η ενέργεια πέφτει ομοιόμορφα σε όλο το πεδίο, ώστε το δίκτυο να αξιοποιεί σχεδόν όλη τη διαθέσιμη ενέργεια πριν σταματήσει να λειτουργεί.</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="1" width="12" height="12" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/></svg>σταθμός βάσης (Base Station)</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>ζωντανός κόμβος</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="none" stroke="var(--fig-line)" stroke-width="1.6"/></svg>κόμβος που εξαντλήθηκε</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="2" y="1" width="14" height="12" fill="var(--fig-surface-accent)" stroke="var(--fig-line)" stroke-width="0.8" stroke-dasharray="2 2"/></svg>δακτύλιος πλάτους R</span></div>
+<figcaption>Σχήμα 3.3 · Πού τελειώνει πρώτα η ενέργεια. Σχηματική σύγκριση, όχι πραγματικά δεδομένα μέτρησης.</figcaption>
+</figure>
+<!-- /ebp_figures:energy -->
+
+<p>Για να μετρήσουμε πόσο ζει ένα δίκτυο, οι σημειώσεις ορίζουν τρεις χρονικές στιγμές (χειρόγραφες σημειώσεις, σελίδα 12):</p>
+<ul>
+<li><span class="key-term">Θάνατος του πρώτου κόμβου</span> (First Node Dies, <dfn class="abbr-def" id="abbr-fnd" title="First Node Dies">FND</dfn>): πότε αδειάζει η μπαταρία του πρώτου κόμβου. Είναι η στιγμή που το δίκτυο αρχίζει να χάνει κάλυψη.</li>
+<li><span class="key-term">Θάνατος των μισών κόμβων</span> (Half of Nodes Die, <dfn class="abbr-def" id="abbr-hnd" title="Half of Nodes Die">HND</dfn>): πότε έχει πεθάνει το 50% των κόμβων.</li>
+<li><span class="key-term">Θάνατος του τελευταίου κόμβου</span> (Last Node Dies, <dfn class="abbr-def" id="abbr-lnd" title="Last Node Dies">LND</dfn>): η στιγμή που το δίκτυο παύει ουσιαστικά να υπάρχει.</li>
+</ul>
+<p>Η δύναμη της εξισορρόπησης φαίνεται στο <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a>. Σε ένα κακά εξισορροπημένο δίκτυο, ο πρώτος κόμβος πεθαίνει νωρίς, γιατί κάποιοι κόμβοι δουλεύουν πολύ περισσότερο από τους άλλους. Σε ένα καλά εξισορροπημένο δίκτυο, όλοι οι κόμβοι αδειάζουν σχεδόν μαζί, οπότε το <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a> έρχεται πολύ αργότερα και πλησιάζει το <a class="abbr-link" href="#abbr-lnd" title="Last Node Dies">LND</a>. Το να καθυστερήσει το <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a> είναι ακριβώς ο στόχος του <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι αυτοτελώς</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Οι τρεις μετρικές (<a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a>, <a class="abbr-link" href="#abbr-hnd" title="Half of Nodes Die">HND</a>, <a class="abbr-link" href="#abbr-lnd" title="Last Node Dies">LND</a>) δεν ζητήθηκαν ονομαστικά, αλλά είναι το λεξιλόγιο με το οποίο μιλάμε για διάρκεια ζωής. Χρήσιμες για το Θέμα Α.2: η φράση «το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> καθυστερεί τον θάνατο του πρώτου κόμβου» είναι πιο ακριβής από ένα αόριστο «ζει περισσότερο».</p>
+</div>
+<h2 id="comparison-dd">3.8 Σύγκριση με το Directed Diffusion<a class="headerlink" href="#comparison-dd" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το Θέμα Α.2 του 2026 ζητά ρητά μια συγκριτική αξιολόγηση του Directed Diffusion (<dfn class="abbr-def" id="abbr-dd" title="Directed Diffusion">DD</dfn>) με το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>, και το πώς εξελίσσεται η ενέργεια στον χρόνο. Τα δύο πρωτόκολλα λύνουν διαφορετικά προβλήματα, και αυτή ακριβώς η διαφορά είναι η απάντηση.</p>
+<p>Το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> (Κεφάλαιο 1) είναι πρωτόκολλο <strong>αποδοτικότητας</strong>: ο sink ενισχύει τα καλύτερα μονοπάτια, και η συνάθροιση δεδομένων μειώνει τον συνολικό όγκο. Στόχος του είναι να ξοδεύει λίγη συνολική ενέργεια. Το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> είναι πρωτόκολλο <strong>εξισορρόπησης</strong>: στόχος του είναι να ξοδεύουν όλοι οι κόμβοι το ίδιο, ακόμη κι αν η συνολική ενέργεια βγει μεγαλύτερη.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Χαρακτηριστικό</th>
+<th style="text-align: left;">Directed Diffusion (<a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a>)</th>
+<th style="text-align: left;">Energy Balance Protocol (<a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Τι βελτιστοποιεί</strong></td>
+<td style="text-align: left;">Συνολική ενέργεια (αποδοτικότητα)</td>
+<td style="text-align: left;">Ισότιμη ενέργεια ανά κόμβο (εξισορρόπηση)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Πώς</strong></td>
+<td style="text-align: left;">Ενίσχυση καλών μονοπατιών, συνάθροιση</td>
+<td style="text-align: left;">Τυχαία επιλογή βήματος ή απευθείας μετάδοσης, με πιθανότητα p<sub>i</sub> ανά δακτύλιο</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ποιοι κόμβοι φορτώνονται</strong></td>
+<td style="text-align: left;">Οι κόμβοι στα ενισχυμένα μονοπάτια και κοντά στον sink</td>
+<td style="text-align: left;">Κανένας δυσανάλογα· ο φόρτος μοιράζεται σκόπιμα</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Συνολική ενέργεια</strong></td>
+<td style="text-align: left;">Χαμηλή</td>
+<td style="text-align: left;">Ενδεχομένως υψηλότερη (οι απευθείας μεταδόσεις κοστίζουν)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Διάρκεια ζωής</strong></td>
+<td style="text-align: left;">Το δίκτυο μπορεί να κοπεί νωρίς, όταν πεθάνουν οι κόμβοι των ενισχυμένων μονοπατιών</td>
+<td style="text-align: left;">Μεγάλη· το <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a> έρχεται αργά, αξιοποιείται σχεδόν όλη η ενέργεια</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Πώς εξελίσσεται η ενέργεια στον χρόνο</strong>, που είναι το ζητούμενο του Α.2:</p>
+<ul>
+<li><strong>Στο <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a></strong>, η κατανάλωση είναι <strong>άνιση</strong>. Οι κόμβοι πάνω στα ενισχυμένα μονοπάτια και κοντά στον sink αδειάζουν πρώτοι, ενώ άλλοι κόμβοι μένουν σχεδόν γεμάτοι. Συνολικά το δίκτυο ξοδεύει λίγη ενέργεια, αλλά κάποια στιγμή σπάει σε αυτά τα φορτωμένα σημεία και αποσυνδέεται, αφήνοντας πίσω αναξιοποίητη ενέργεια. Το <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a> έρχεται σχετικά νωρίς.</li>
+<li><strong>Στο <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a></strong>, η κατανάλωση είναι <strong>ομοιόμορφη</strong>. Όλοι οι κόμβοι κατεβαίνουν μαζί, σαν στάθμη που πέφτει παντού ταυτόχρονα. Η συνολική ενέργεια ίσως είναι μεγαλύτερη, αλλά το δίκτυο κρατά ώσπου να αδειάσουν σχεδόν όλοι μαζί. Το <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a> έρχεται αργά και κοντά στο <a class="abbr-link" href="#abbr-lnd" title="Last Node Dies">LND</a>.</li>
+</ul>
+<p>Με μια φράση: το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> ελαχιστοποιεί <strong>πόση</strong> ενέργεια ξοδεύεται, το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> φροντίζει <strong>από ποιον</strong>. Ένα δίκτυο που χρειάζεται να ζήσει όσο γίνεται περισσότερο, ακόμη και με λίγη παραπάνω συνολική δαπάνη, ωφελείται από την εξισορρόπηση του <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Α.2, 1,5 μονάδες</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Αυτή η ενότητα είναι το <a href="../../exams/2026/#a2">Θέμα Α.2 του 2026</a>. Η δομή μιας πλήρους απάντησης: (1) το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> βελτιστοποιεί τη συνολική ενέργεια, το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> την εξισορρόπηση· (2) στο <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> η ενέργεια πέφτει άνισα, οι κόμβοι στα μονοπάτια και κοντά στον sink πρώτοι· (3) στο <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> πέφτει ομοιόμορφα· (4) άρα το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> καθυστερεί τον θάνατο του πρώτου κόμβου και ζει περισσότερο, ίσως με λίγη παραπάνω συνολική ενέργεια. Η σύγκριση από την πλευρά του <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> βρίσκεται στην <a href="../01-data-propagation/#comparison">ενότητα 1.5</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

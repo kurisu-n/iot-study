@@ -1,0 +1,1959 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/chapters/02-leach/">
+      
+      
+        <link rel="prev" href="../01-data-propagation/">
+      
+      
+        <link rel="next" href="../03-energy-balance/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2. LEACH ★ - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. LEACH ★
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Η Ιδέα: Συστάδες και Αρχηγοί
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rounds-and-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Γύροι και Φάσεις
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#election" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Ο Μηχανισμός Εκλογής Αρχηγού
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Ο Μηχανισμός Εκλογής Αρχηγού">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η απόφαση κάθε κόμβου
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί ο τύπος έχει αυτή τη μορφή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slide-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Το παράδειγμα των διαφανειών
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Λυμένη Άσκηση: το Θέμα Β.1 του 2026
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Πειραματική Αξιολόγηση
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Πειραματική Αξιολόγηση">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-nodes-die" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πού πεθαίνουν οι κόμβοι
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy-and-lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ενέργεια και διάρκεια ζωής
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strengths-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Πλεονεκτήματα, Όρια και Επεκτάσεις
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Πλεονεκτήματα, Όρια και Επεκτάσεις">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τι κερδίζει το πρωτόκολλο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πού αδυνατεί
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Επεκτάσεις
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-energy-balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-lpwan-lorawan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-cloud-edge-industry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-rpl-app-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Η Ιδέα: Συστάδες και Αρχηγοί
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rounds-and-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Γύροι και Φάσεις
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#election" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Ο Μηχανισμός Εκλογής Αρχηγού
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Ο Μηχανισμός Εκλογής Αρχηγού">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η απόφαση κάθε κόμβου
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί ο τύπος έχει αυτή τη μορφή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slide-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Το παράδειγμα των διαφανειών
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Λυμένη Άσκηση: το Θέμα Β.1 του 2026
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Πειραματική Αξιολόγηση
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Πειραματική Αξιολόγηση">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-nodes-die" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πού πεθαίνουν οι κόμβοι
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy-and-lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ενέργεια και διάρκεια ζωής
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strengths-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Πλεονεκτήματα, Όρια και Επεκτάσεις
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Πλεονεκτήματα, Όρια και Επεκτάσεις">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τι κερδίζει το πρωτόκολλο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πού αδυνατεί
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Επεκτάσεις
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span class="chapter-num">Κεφάλαιο 2</span></p>
+<h1 id="_1">Ιεραρχική Δρομολόγηση με Συστάδες<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p><em>Καλύπτει: την ιδέα των συστάδων, τους γύρους και τις φάσεις του Low Energy Adaptive Clustering Hierarchy (<dfn class="abbr-def" id="abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</dfn>), τον μηχανισμό εκλογής αρχηγού με το κατώφλι T(n), τη λυμένη άσκηση του 2026, και την πειραματική αξιολόγηση. Πηγές: Διάλεξη 2 (διαφάνειες 40 έως 68), χειρόγραφες σημειώσεις (σελίδες 7 έως 11), θέμα εξετάσεων 2026.</em></p>
+<p>Στο <a href="../01-data-propagation/#flat-vs-hierarchical">προηγούμενο κεφάλαιο</a> είδαμε τη διάκριση ανάμεσα σε <strong>επίπεδη</strong> και <strong>ιεραρχική</strong> δρομολόγηση. Στην επίπεδη, την οποία αντιπροσωπεύει το Directed Diffusion (<dfn class="abbr-def" id="abbr-dd" title="Directed Diffusion">DD</dfn>), όλοι οι κόμβοι έχουν τον ίδιο ρόλο. Το κεφάλαιο αυτό εξετάζει το βασικό παράδειγμα της ιεραρχικής δρομολόγησης: το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>, όπου κάποιοι κόμβοι αναλαμβάνουν προσωρινά έναν ξεχωριστό, βαρύτερο ρόλο.</p>
+<h2 id="idea">2.1 Η Ιδέα: Συστάδες και Αρχηγοί<a class="headerlink" href="#idea" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Θυμηθείτε το θεμελιώδες πρόβλημα ενός ασύρματου δικτύου αισθητήρων (Wireless Sensor Network, <dfn class="abbr-def" id="abbr-wsn" title="Wireless Sensor Network">WSN</dfn>): οι μετρήσεις πρέπει να φτάσουν σε ένα κέντρο ελέγχου, τον σταθμό βάσης (Base Station, <dfn class="abbr-def" id="abbr-bs" title="Base Station">BS</dfn>), και η ενέργεια των κόμβων είναι πεπερασμένη. Αν κάθε κόμβος έστελνε τα δεδομένα του <strong>απευθείας</strong> στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>, οι μακρινοί κόμβοι θα εξαντλούνταν γρήγορα, γιατί το κόστος μιας απευθείας μετάδοσης μεγαλώνει γρήγορα με την απόσταση.</p>
+<p>Το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> προτάθηκε από τους Heinzelman, Chandrakasan και Balakrishnan το 2000 (Διάλεξη 2, διαφάνεια 40) και λύνει το πρόβλημα με μια απλή ιδέα: <strong>ομάδες</strong>. Το δίκτυο χωρίζεται σε <span class="key-term">συστάδες</span> (clusters). Κάθε συστάδα έχει έναν <span class="key-term">κόμβο-αρχηγό</span>, τον cluster head (<dfn class="abbr-def" id="abbr-ch" title="cluster head">CH</dfn>). Ο ρόλος του αρχηγού είναι διπλός (Διάλεξη 2, διαφάνεια 42):</p>
+<ol>
+<li>Τα απλά μέλη της συστάδας στέλνουν τα δεδομένα τους στον δικό τους αρχηγό, όχι στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>. Η απόσταση αυτή είναι μικρή, άρα φθηνή.</li>
+<li>Ο αρχηγός μαζεύει τα δεδομένα όλων των μελών του, τα <strong>συμπιέζει</strong> σε ένα μικρότερο πακέτο, και το στέλνει απευθείας στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>.</li>
+</ol>
+<p>Έτσι μόνο λίγοι κόμβοι, οι αρχηγοί, πληρώνουν το ακριβό κόστος της απευθείας μετάδοσης προς το <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>, και το πληρώνουν για λογαριασμό όλης της συστάδας τους αντί να το πληρώνει ο καθένας χωριστά.</p>
+<p>Οι διαφάνειες συνοψίζουν το πρωτόκολλο σε τρία βασικά χαρακτηριστικά (Διάλεξη 2, διαφάνεια 41):</p>
+<ul>
+<li><span class="key-term">Τοπικός συντονισμός</span>. Οι κόμβοι στήνουν και οργανώνουν τις συστάδες μόνοι τους, τοπικά, χωρίς κεντρικό σχεδιασμό.</li>
+<li><span class="key-term">Τυχαία εναλλαγή του ρόλου του αρχηγού</span>. Ο ρόλος του αρχηγού είναι ενεργοβόρος. Αν έμενε μόνιμα στον ίδιο κόμβο, η μπαταρία του θα άδειαζε πολύ γρήγορα (χειρόγραφες σημειώσεις, σελίδα 10). Γι' αυτό ο ρόλος αλλάζει κόμβο συνεχώς, ώστε το βάρος να μοιράζεται.</li>
+<li><span class="key-term">Τοπική συμπίεση</span>. Η συμπίεση στους αρχηγούς μειώνει τον συνολικό όγκο των δεδομένων που ταξιδεύουν στο δίκτυο.</li>
+</ul>
+<p>Το κρίσιμο σημείο, και αυτό που εξετάζεται, είναι η <strong>εναλλαγή</strong>: ποιοι κόμβοι γίνονται αρχηγοί, και πώς αλλάζει αυτό από γύρο σε γύρο.</p>
+<!-- leach_figures:clusters -->
+<figure class="steps" id="fig-2-1">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="127.0" y1="51.8" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="164.3" y1="85.8" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="80.2" y1="108.2" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="82.3" y1="42.3" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="144.7" y1="158.6" x2="217.8" y2="177.3" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="180.4" y1="177.7" x2="217.8" y2="177.3" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="241.8" y1="35.4" x2="221.1" y2="73.8" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="101.8" y1="119.9" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="189.8" y1="95.6" x2="221.1" y2="73.8" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="209.8" y1="138.4" x2="237.7" y2="137.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="76.9" y1="133.6" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="192.4" y1="121.9" x2="237.7" y2="137.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="153.4" y1="132.9" x2="217.8" y2="177.3" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="92.8" y1="67.1" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="119.0" y1="93.6" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="135.0" y1="117.5" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="74.5" y1="166.1" x2="217.8" y2="177.3" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="163.0" y1="51.2" x2="184.6" y2="39.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="173.6" y1="38.5" x2="45.7" y2="27.7" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="40.9,27.3 47.2,24.6 46.7,31.0" fill="var(--fig-warn)"/><line x1="210.4" y1="71.1" x2="45.2" y2="30.7" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="40.6,29.6 47.2,27.9 45.6,34.1" fill="var(--fig-warn)"/><line x1="209.2" y1="170.4" x2="41.5" y2="38.3" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="37.8,35.3 44.5,36.5 40.5,41.5" fill="var(--fig-warn)"/><line x1="228.0" y1="132.0" x2="43.5" y2="35.2" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="39.3,33.0 46.1,32.9 43.1,38.6" fill="var(--fig-warn)"/><circle cx="127.0" cy="51.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="164.3" cy="85.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="80.2" cy="108.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="82.3" cy="42.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="144.7" cy="158.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="180.4" cy="177.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.8" cy="35.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="221.1" cy="73.8" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="101.8" cy="119.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="189.8" cy="95.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="209.8" cy="138.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.9" cy="133.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="192.4" cy="121.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.8" cy="177.3" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="153.4" cy="132.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="92.8" cy="67.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="119.0" cy="93.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="135.0" cy="117.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="237.7" cy="137.1" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="74.5" cy="166.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="163.0" cy="51.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/></svg><p class="step__text"><span class="step__num">1</span><strong>Ένας γύρος.</strong> Τέσσερις κόμβοι είναι cluster heads. Κάθε άλλος κόμβος ανήκει στη συστάδα ενός από αυτούς, και οι κεφαλές στέλνουν απευθείας στη Base Station.</p></div><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="127.0" y1="51.8" x2="163.0" y2="51.2" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="184.6" y1="39.4" x2="163.0" y2="51.2" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="164.3" y1="85.8" x2="163.0" y2="51.2" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="80.2" y1="108.2" x2="92.8" y2="67.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="144.7" y1="158.6" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="180.4" y1="177.7" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="241.8" y1="35.4" x2="163.0" y2="51.2" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="221.1" y1="73.8" x2="163.0" y2="51.2" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="101.8" y1="119.9" x2="92.8" y2="67.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="189.8" y1="95.6" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="76.9" y1="133.6" x2="92.8" y2="67.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="192.4" y1="121.9" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="217.8" y1="177.3" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="153.4" y1="132.9" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="119.0" y1="93.6" x2="92.8" y2="67.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="135.0" y1="117.5" x2="92.8" y2="67.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="237.7" y1="137.1" x2="209.8" y2="138.4" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="74.5" y1="166.1" x2="92.8" y2="67.1" stroke="var(--fig-node)" stroke-width="1.1"/><line x1="71.7" y1="39.3" x2="45.0" y2="31.5" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="40.4,30.2 47.1,28.8 45.3,34.9" fill="var(--fig-warn)"/><line x1="200.4" y1="132.7" x2="42.9" y2="36.3" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="38.8,33.8 45.6,34.2 42.2,39.7" fill="var(--fig-warn)"/><line x1="83.4" y1="61.4" x2="42.9" y2="36.4" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="38.8,33.9 45.6,34.3 42.2,39.7" fill="var(--fig-warn)"/><line x1="152.2" y1="49.2" x2="45.5" y2="29.6" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="40.8,28.7 47.2,26.6 46.1,32.9" fill="var(--fig-warn)"/><circle cx="127.0" cy="51.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="164.3" cy="85.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="80.2" cy="108.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="82.3" cy="42.3" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="144.7" cy="158.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="180.4" cy="177.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.8" cy="35.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="221.1" cy="73.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="101.8" cy="119.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="189.8" cy="95.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="209.8" cy="138.4" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="76.9" cy="133.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="192.4" cy="121.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.8" cy="177.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="153.4" cy="132.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="92.8" cy="67.1" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="119.0" cy="93.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="135.0" cy="117.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="237.7" cy="137.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="74.5" cy="166.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="163.0" cy="51.2" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/></svg><p class="step__text"><span class="step__num">2</span><strong>Ο επόμενος γύρος.</strong> Τον ρόλο παίρνουν άλλοι τέσσερις κόμβοι, και οι συστάδες σχηματίζονται ξανά γύρω τους (Διάλεξη 2, διαφάνεια 43).</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="1" width="12" height="12" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/></svg>Base Station</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.5"/></svg>cluster head</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="4.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>μέλος συστάδας</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-node)" stroke-width="1.2"/></svg>ανήκει στη συστάδα</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="2.8"/></svg>συμπιεσμένα δεδομένα προς τη Base Station</span></div>
+<figcaption>Σχήμα 2.1 · Οι ίδιοι κόμβοι σε δύο διαδοχικούς γύρους. Οι συστάδες αλλάζουν επειδή αλλάζουν οι cluster heads.</figcaption>
+</figure>
+<!-- /leach_figures:clusters -->
+
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> υπόβαθρο του Θέματος Β.1</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Η ιδέα των συστάδων δεν εξετάστηκε ως αυτοτελές θέμα, αλλά είναι το απαραίτητο υπόβαθρο για το Θέμα Β.1 του 2026. Δύο προτάσεις που εξηγούν τι κάνει ένας αρχηγός συστάδας (μαζεύει, συμπιέζει, στέλνει στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>) και γιατί ο ρόλος εναλλάσσεται (για να μη μένει το βάρος στον ίδιο κόμβο) είναι μια καλή εισαγωγή σε οποιαδήποτε απάντηση για το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>.</p>
+</div>
+<h2 id="rounds-and-phases">2.2 Γύροι και Φάσεις<a class="headerlink" href="#rounds-and-phases" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> λειτουργεί σε <span class="key-term">γύρους</span> (rounds). Κάθε γύρος έχει δύο μέρη (χειρόγραφες σημειώσεις, σελίδα 7): μια <span class="key-term">φάση εγκατάστασης</span> (set-up phase), όπου το δίκτυο διαλέγει τους νέους αρχηγούς και σχηματίζει τις συστάδες, και μια <span class="key-term">σταθερή φάση</span> (steady-state phase), όπου γίνεται η πραγματική δουλειά, η μετάδοση των μετρήσεων.</p>
+<p>Οι διαφάνειες αναλύουν τη φάση εγκατάστασης σε δύο επιμέρους βήματα, δίνοντας συνολικά τρεις φάσεις (Διάλεξη 2, διαφάνεια 44): τη φάση ανακοίνωσης (advertisement phase), τη φάση σχηματισμού συστάδων (cluster set-up phase) και τη σταθερή φάση. Πρόκειται για την ίδια διαδικασία, απλώς πιο λεπτομερώς περιγραμμένη: η «φάση εγκατάστασης» των σημειώσεων περιλαμβάνει την ανακοίνωση και τον σχηματισμό των συστάδων.</p>
+<p>Ο πλήρης κύκλος ενός γύρου έχει τα εξής βήματα:</p>
+<!-- leach_figures:round -->
+<figure class="steps" id="fig-2-2">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="127.0" cy="51.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="164.3" cy="85.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="80.2" cy="108.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="82.3" cy="42.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="144.7" cy="158.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="180.4" cy="177.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.8" cy="35.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="221.1" cy="73.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="101.8" cy="119.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="189.8" cy="95.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="209.8" cy="138.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.9" cy="133.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="192.4" cy="121.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.8" cy="177.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="153.4" cy="132.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="92.8" cy="67.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="119.0" cy="93.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="135.0" cy="117.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="237.7" cy="137.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="74.5" cy="166.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="163.0" cy="51.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="11.5" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/><circle cx="221.1" cy="73.8" r="11.5" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/><circle cx="217.8" cy="177.3" r="11.5" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/><circle cx="237.7" cy="137.1" r="11.5" fill="none" stroke="var(--fig-line)" stroke-width="2" stroke-dasharray="2.5 2"/></svg><p class="step__text"><span class="step__num">1</span><strong>Εκλογή.</strong> Κάθε κόμβος που μπορεί να γίνει κεφαλή τραβά έναν τυχαίο αριθμό. Όσοι τραβήξουν αριθμό μικρότερο από το κατώφλι γίνονται cluster heads (Διάλεξη 2, διαφάνεια 45).</p></div><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="184.6" cy="39.4" r="34" fill="none" stroke="var(--fig-accent)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="221.1" cy="73.8" r="34" fill="none" stroke="var(--fig-accent)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="217.8" cy="177.3" r="34" fill="none" stroke="var(--fig-accent)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="237.7" cy="137.1" r="34" fill="none" stroke="var(--fig-accent)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="127.0" cy="51.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="164.3" cy="85.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="80.2" cy="108.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="82.3" cy="42.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="144.7" cy="158.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="180.4" cy="177.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.8" cy="35.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="221.1" cy="73.8" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="101.8" cy="119.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="189.8" cy="95.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="209.8" cy="138.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.9" cy="133.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="192.4" cy="121.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.8" cy="177.3" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="153.4" cy="132.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="92.8" cy="67.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="119.0" cy="93.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="135.0" cy="117.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="237.7" cy="137.1" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="74.5" cy="166.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="163.0" cy="51.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/></svg><p class="step__text"><span class="step__num">2</span><strong>Ανακοίνωση.</strong> Κάθε νέα κεφαλή εκπέμπει ένα advertisement σε όλους τους κόμβους (Διάλεξη 2, διαφάνεια 54).</p></div><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="135.3" y1="50.0" x2="169.1" y2="42.8" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="173.8,41.8 168.6,46.1 167.3,39.9" fill="var(--fig-accent)"/><line x1="167.7" y1="78.0" x2="178.2" y2="53.9" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="180.2,49.5 180.7,56.3 174.8,53.7" fill="var(--fig-accent)"/><line x1="87.3" y1="103.5" x2="171.4" y2="48.1" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="175.4,45.5 172.1,51.5 168.6,46.1" fill="var(--fig-accent)"/><line x1="90.8" y1="42.1" x2="168.8" y2="39.9" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="173.6,39.8 167.7,43.1 167.5,36.7" fill="var(--fig-accent)"/><line x1="153.0" y1="160.7" x2="202.5" y2="173.4" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="207.2,174.5 200.6,176.2 202.1,170.0" fill="var(--fig-accent)"/><line x1="188.9" y1="177.6" x2="202.0" y2="177.5" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="206.8,177.4 200.9,180.7 200.8,174.3" fill="var(--fig-accent)"/><line x1="237.8" y1="42.8" x2="228.6" y2="59.9" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="226.3,64.1 226.4,57.3 232.0,60.3" fill="var(--fig-accent)"/><line x1="107.9" y1="114.0" x2="173.2" y2="50.5" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="176.7,47.1 174.6,53.6 170.1,49.0" fill="var(--fig-accent)"/><line x1="196.7" y1="90.7" x2="208.1" y2="82.8" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="212.1,80.0 209.0,86.1 205.3,80.8" fill="var(--fig-accent)"/><line x1="218.3" y1="138.0" x2="222.0" y2="137.9" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="226.8,137.6 220.9,141.1 220.6,134.7" fill="var(--fig-accent)"/><line x1="83.3" y1="128.0" x2="172.7" y2="49.8" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="176.3,46.7 173.9,53.0 169.7,48.2" fill="var(--fig-accent)"/><line x1="200.4" y1="124.6" x2="222.8" y2="132.1" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="227.3,133.6 220.6,134.7 222.6,128.7" fill="var(--fig-accent)"/><line x1="160.4" y1="137.8" x2="204.8" y2="168.3" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="208.8,171.0 202.0,170.3 205.6,165.0" fill="var(--fig-accent)"/><line x1="100.9" y1="64.7" x2="169.4" y2="44.0" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="174.0,42.6 169.2,47.4 167.4,41.3" fill="var(--fig-accent)"/><line x1="125.6" y1="88.2" x2="172.4" y2="49.5" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="176.1,46.5 173.5,52.7 169.4,47.8" fill="var(--fig-accent)"/><line x1="139.5" y1="110.3" x2="176.1" y2="52.8" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="178.7,48.7 178.1,55.5 172.7,52.1" fill="var(--fig-accent)"/><line x1="83.0" y1="166.8" x2="202.1" y2="176.0" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="206.9,176.4 200.6,179.1 201.1,172.8" fill="var(--fig-accent)"/><line x1="170.4" y1="47.1" x2="170.7" y2="47.0" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2" stroke-linecap="round"/><polygon points="174.9,44.7 171.1,50.4 168.1,44.7" fill="var(--fig-accent)"/><circle cx="127.0" cy="51.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="164.3" cy="85.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="80.2" cy="108.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="82.3" cy="42.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="144.7" cy="158.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="180.4" cy="177.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.8" cy="35.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="221.1" cy="73.8" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="101.8" cy="119.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="189.8" cy="95.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="209.8" cy="138.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.9" cy="133.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="192.4" cy="121.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.8" cy="177.3" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="153.4" cy="132.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="92.8" cy="67.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="119.0" cy="93.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="135.0" cy="117.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="237.7" cy="137.1" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="74.5" cy="166.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="163.0" cy="51.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/></svg><p class="step__text"><span class="step__num">3</span><strong>Σχηματισμός συστάδων.</strong> Κάθε κόμβος διαλέγει την κεφαλή με το ισχυρότερο σήμα και της ζητά να ενταχθεί. Η κεφαλή φτιάχνει ένα πρόγραμμα με τη σειρά που θα μιλά κάθε μέλος και το στέλνει πίσω (Διάλεξη 2, διαφάνειες 54 έως 55).</p></div><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><line x1="135.3" y1="50.0" x2="169.1" y2="42.8" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="173.8,41.8 168.6,46.1 167.3,39.9" fill="var(--fig-warn)"/><line x1="167.7" y1="78.0" x2="178.2" y2="53.9" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="180.2,49.5 180.7,56.3 174.8,53.7" fill="var(--fig-warn)"/><line x1="87.3" y1="103.5" x2="171.4" y2="48.1" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="175.4,45.5 172.1,51.5 168.6,46.1" fill="var(--fig-warn)"/><line x1="90.8" y1="42.1" x2="168.8" y2="39.9" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="173.6,39.8 167.7,43.1 167.5,36.7" fill="var(--fig-warn)"/><line x1="153.0" y1="160.7" x2="202.5" y2="173.4" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="207.2,174.5 200.6,176.2 202.1,170.0" fill="var(--fig-warn)"/><line x1="188.9" y1="177.6" x2="202.0" y2="177.5" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="206.8,177.4 200.9,180.7 200.8,174.3" fill="var(--fig-warn)"/><line x1="237.8" y1="42.8" x2="228.6" y2="59.9" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="226.3,64.1 226.4,57.3 232.0,60.3" fill="var(--fig-warn)"/><line x1="107.9" y1="114.0" x2="173.2" y2="50.5" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="176.7,47.1 174.6,53.6 170.1,49.0" fill="var(--fig-warn)"/><line x1="196.7" y1="90.7" x2="208.1" y2="82.8" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="212.1,80.0 209.0,86.1 205.3,80.8" fill="var(--fig-warn)"/><line x1="218.3" y1="138.0" x2="222.0" y2="137.9" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="226.8,137.6 220.9,141.1 220.6,134.7" fill="var(--fig-warn)"/><line x1="83.3" y1="128.0" x2="172.7" y2="49.8" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="176.3,46.7 173.9,53.0 169.7,48.2" fill="var(--fig-warn)"/><line x1="200.4" y1="124.6" x2="222.8" y2="132.1" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="227.3,133.6 220.6,134.7 222.6,128.7" fill="var(--fig-warn)"/><line x1="160.4" y1="137.8" x2="204.8" y2="168.3" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="208.8,171.0 202.0,170.3 205.6,165.0" fill="var(--fig-warn)"/><line x1="100.9" y1="64.7" x2="169.4" y2="44.0" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="174.0,42.6 169.2,47.4 167.4,41.3" fill="var(--fig-warn)"/><line x1="125.6" y1="88.2" x2="172.4" y2="49.5" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="176.1,46.5 173.5,52.7 169.4,47.8" fill="var(--fig-warn)"/><line x1="139.5" y1="110.3" x2="176.1" y2="52.8" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="178.7,48.7 178.1,55.5 172.7,52.1" fill="var(--fig-warn)"/><line x1="83.0" y1="166.8" x2="202.1" y2="176.0" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="206.9,176.4 200.6,179.1 201.1,172.8" fill="var(--fig-warn)"/><line x1="170.4" y1="47.1" x2="170.7" y2="47.0" stroke="var(--fig-warn)" stroke-width="1.6" stroke-linecap="round"/><polygon points="174.9,44.7 171.1,50.4 168.1,44.7" fill="var(--fig-warn)"/><line x1="173.6" y1="38.5" x2="45.7" y2="27.7" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="40.9,27.3 47.2,24.6 46.7,31.0" fill="var(--fig-warn)"/><line x1="210.4" y1="71.1" x2="45.2" y2="30.7" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="40.6,29.6 47.2,27.9 45.6,34.1" fill="var(--fig-warn)"/><line x1="209.2" y1="170.4" x2="41.5" y2="38.3" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="37.8,35.3 44.5,36.5 40.5,41.5" fill="var(--fig-warn)"/><line x1="228.0" y1="132.0" x2="43.5" y2="35.2" stroke="var(--fig-warn)" stroke-width="2.6" stroke-linecap="round"/><polygon points="39.3,33.0 46.1,32.9 43.1,38.6" fill="var(--fig-warn)"/><circle cx="127.0" cy="51.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="184.6" cy="39.4" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="164.3" cy="85.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="80.2" cy="108.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="82.3" cy="42.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="144.7" cy="158.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="180.4" cy="177.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.8" cy="35.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="221.1" cy="73.8" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="101.8" cy="119.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="189.8" cy="95.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="209.8" cy="138.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.9" cy="133.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="192.4" cy="121.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.8" cy="177.3" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="153.4" cy="132.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="92.8" cy="67.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="119.0" cy="93.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="135.0" cy="117.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="237.7" cy="137.1" r="9" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.8"/><circle cx="74.5" cy="166.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="163.0" cy="51.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/></svg><p class="step__text"><span class="step__num">4</span><strong>Μετάδοση.</strong> Κάθε μέλος στέλνει τα δεδομένα του στην κεφαλή, μόνο στη δική του σειρά. Η κεφαλή τα συμπιέζει και τα στέλνει απευθείας στη Base Station (Διάλεξη 2, διαφάνεια 56).</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="1" width="12" height="12" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/></svg>Base Station</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5.5" fill="none" stroke="var(--fig-line)" stroke-width="1.8" stroke-dasharray="2 1.6"/></svg>κόμβος που εκλέγει τον εαυτό του</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.5"/></svg>cluster head</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-accent)" stroke-width="1.5" stroke-dasharray="4 3"/></svg>advertisement</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-accent)" stroke-width="1.4" stroke-dasharray="3 2"/></svg>αίτηση ένταξης</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="1.8"/></svg>δεδομένα</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-warn)" stroke-width="2.8"/></svg>συμπιεσμένα δεδομένα προς τη Base Station</span></div>
+<figcaption>Σχήμα 2.2 · Ένας γύρος του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> βήμα προς βήμα.</figcaption>
+</figure>
+<!-- /leach_figures:round -->
+
+<p>Ας δούμε κάθε βήμα από κοντά:</p>
+<ul>
+<li><strong>Εκλογή.</strong> Κάθε κόμβος αποφασίζει <strong>μόνος του και τοπικά</strong> αν θα γίνει αρχηγός σε αυτόν τον γύρο. Η απόφαση είναι πιθανοτική και στηρίζεται στο κατώφλι T(n), που εξετάζουμε αναλυτικά στην <a href="#election">επόμενη ενότητα</a>. Κανένας δεν του λέει τι να κάνει: αυτό είναι το νόημα του «τοπικού συντονισμού» (Διάλεξη 2, διαφάνεια 45).</li>
+<li><strong>Ανακοίνωση.</strong> Κάθε νέος αρχηγός εκπέμπει ένα μήνυμα ανακοίνωσης (advertisement) σε όλο το δίκτυο, δηλώνοντας τον ρόλο του. Η εκπομπή γίνεται με το πρωτόκολλο πρόσβασης στο μέσο Carrier Sense Multiple Access (<dfn class="abbr-def" id="abbr-csma" title="Carrier Sense Multiple Access">CSMA</dfn>), δηλαδή ο κόμβος ακούει πρώτα αν το κανάλι είναι ελεύθερο πριν μιλήσει (Διάλεξη 2, διαφάνεια 54).</li>
+<li><strong>Σχηματισμός συστάδων.</strong> Κάθε απλός κόμβος ακούει τις ανακοινώσεις όλων των αρχηγών και διαλέγει σε ποιον θα ενταχθεί. Το κριτήριο στις διαφάνειες είναι το <strong>ισχυρότερο σήμα</strong> (Διάλεξη 2, διαφάνεια 54), που πρακτικά σημαίνει τον πλησιέστερο αρχηγό. Στέλνει στον αρχηγό ένα μήνυμα ένταξης, και ο αρχηγός φτιάχνει ένα χρονοπρόγραμμα Time Division Multiple Access (<dfn class="abbr-def" id="abbr-tdma" title="Time Division Multiple Access">TDMA</dfn>): ορίζει δηλαδή σε ποια χρονική σχισμή θα μιλά κάθε μέλος, ώστε να μη συγκρούονται οι μεταδόσεις (Διάλεξη 2, διαφάνεια 55).</li>
+<li><strong>Μετάδοση (σταθερή φάση).</strong> Κάθε μέλος στέλνει τα δεδομένα του στον αρχηγό, μόνο μέσα στη δική του σχισμή. Ο αρχηγός τα λαμβάνει, τα συμπιέζει, και στέλνει το αποτέλεσμα απευθείας στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>. Αυτή η φάση κρατά περισσότερο από τη φάση εγκατάστασης, ώστε το κόστος της οργάνωσης να αποσβένεται σε πολλές μεταδόσεις. Η διάρκειά της είναι προκαθορισμένη (Διάλεξη 2, διαφάνεια 56).</li>
+</ul>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης</p>
+<p>Το κριτήριο ένταξης διαφέρει ανάμεσα στις πηγές. Οι διαφάνειες λένε «ισχυρότερο σήμα» (Διάλεξη 2, διαφάνεια 54), ενώ οι χειρόγραφες σημειώσεις γράφουν «συνήθως στο πλησιέστερο» (σελίδα 7). Στην πράξη τα δύο σχεδόν ταυτίζονται, γιατί ο πλησιέστερος αρχηγός δίνει τυπικά και το ισχυρότερο σήμα. Σε γραπτό, το «ισχυρότερο σήμα» των διαφανειών είναι η ασφαλής διατύπωση.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> μέρος του Θέματος Β.1</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Το Θέμα Β.1 του 2026 ζητά να <strong>περιγράψετε πώς λειτουργεί ο αλγόριθμος</strong> για μια περίοδο. Η περιγραφή των φάσεων είναι το πλαίσιο μέσα στο οποίο μπαίνει ο υπολογισμός: μια απάντηση που ονομάζει τις φάσεις (ανακοίνωση, σχηματισμός συστάδων, σταθερή φάση) και μετά υπολογίζει την εκλογή δείχνει ότι καταλαβαίνετε πού κολλάει το κατώφλι μέσα στη λειτουργία.</p>
+</div>
+<h2 id="election">2.3 Ο Μηχανισμός Εκλογής Αρχηγού<a class="headerlink" href="#election" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Εδώ βρίσκεται η καρδιά του πρωτοκόλλου, και το σημείο που εξετάζεται ως άσκηση. Το ερώτημα είναι απλό: πώς αποφασίζει ένας κόμβος, μόνος του, αν θα γίνει αρχηγός σε έναν συγκεκριμένο γύρο, με τέτοιο τρόπο ώστε να γίνονται αρχηγοί περίπου οι σωστοί σε αριθμό, και να εναλλάσσεται ο ρόλος δίκαια;</p>
+<h3 id="the-decision">Η απόφαση κάθε κόμβου<a class="headerlink" href="#the-decision" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Σε κάθε γύρο, κάθε κόμβος τραβά έναν <strong>τυχαίο αριθμό</strong> ανάμεσα στο 0 και το 1. Αν ο αριθμός αυτός είναι <strong>μικρότερος</strong> από ένα κατώφλι T(n), τότε ο κόμβος γίνεται αρχηγός για αυτόν τον γύρο (Διάλεξη 2, διαφάνεια 45). Αλλιώς μένει απλό μέλος. Όλη η ευφυΐα του πρωτοκόλλου κρύβεται στο πώς ορίζεται αυτό το κατώφλι.</p>
+<div class="formula">
+<div class="arithmatex">\[T(n) = \begin{cases} \dfrac{P}{1 - P \cdot \left(r \bmod \frac{1}{P}\right)} &amp; \text{αν } n \in G \\[1.2em] 0 &amp; \text{αλλιώς} \end{cases}\]</div>
+<p><span class="label">Το κατώφλι εκλογής αρχηγού (Διάλεξη 2, διαφάνεια 45)</span></p>
+</div>
+<p>Τα σύμβολα (Διάλεξη 2, διαφάνεια 45):</p>
+<ul>
+<li><strong>P</strong> είναι το επιθυμητό ποσοστό αρχηγών στο δίκτυο. Για παράδειγμα P = 0.05 σημαίνει ότι θέλουμε, κατά μέσο όρο, το 5% των κόμβων να είναι αρχηγοί σε κάθε γύρο.</li>
+<li><strong>r</strong> είναι ο τρέχων γύρος, μετρημένος από την αρχή.</li>
+<li><strong>G</strong> είναι το σύνολο των κόμβων που <strong>δεν</strong> έχουν γίνει αρχηγοί στους τελευταίους 1/P γύρους. Ένας κόμβος εκτός του G έχει κατώφλι μηδέν, άρα δεν μπορεί να ξαναγίνει αρχηγός αμέσως.</li>
+</ul>
+<p>Ο αριθμός 1/P είναι το μήκος μιας <strong>περιόδου</strong> (era): τόσοι γύροι χρειάζονται ώστε να προλάβει να γίνει αρχηγός κάθε κόμβος ακριβώς μία φορά, πριν αρχίσει ο κύκλος από την αρχή. Αν P = 0.2, μια περίοδος έχει 1/0.2 = 5 γύρους.</p>
+<h3 id="why-this-shape">Γιατί ο τύπος έχει αυτή τη μορφή<a class="headerlink" href="#why-this-shape" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ο τύπος φαίνεται περίπλοκος, αλλά κάνει κάτι διαισθητικό. Καθώς περνούν οι γύροι μέσα σε μια περίοδο, όλο και περισσότεροι κόμβοι έχουν ήδη υπηρετήσει ως αρχηγοί και βγαίνουν από το G. Μένουν λοιπόν λιγότεροι υποψήφιοι. Για να παραμείνει σταθερός ο αριθμός των αρχηγών ανά γύρο, το κατώφλι των εναπομεινάντων πρέπει να <strong>ανεβαίνει</strong> (χειρόγραφες σημειώσεις, σελίδα 11). Στον τελευταίο γύρο της περιόδου το κατώφλι φτάνει το 1, δηλαδή όσοι απομένουν γίνονται σίγουρα αρχηγοί.</p>
+<p>Μπορούμε να δείξουμε ότι ο τύπος δίνει πράγματι σταθερό αριθμό αρχηγών. Θέλουμε σε κάθε γύρο να έχουμε κατά μέσο όρο N·P αρχηγούς, όπου N ο αριθμός των κόμβων (Διάλεξη 2, διαφάνεια 53).</p>
+<ul>
+<li><strong>Πρώτος γύρος (r = 0).</strong> Και οι N κόμβοι είναι υποψήφιοι. Με κατώφλι <span class="arithmatex">\(P_0\)</span> έχουμε <span class="arithmatex">\(N \cdot P_0\)</span> αρχηγούς. Θέλουμε <span class="arithmatex">\(N \cdot P_0 = N \cdot P\)</span>, άρα <span class="arithmatex">\(P_0 = P\)</span>. Πράγματι, ο τύπος με r = 0 δίνει T(n) = P.</li>
+<li><strong>Δεύτερος γύρος (r = 1).</strong> Έχουν ήδη γίνει αρχηγοί οι <span class="arithmatex">\(N \cdot P\)</span>, άρα μένουν <span class="arithmatex">\(N(1 - P)\)</span> υποψήφιοι. Θέλουμε <span class="arithmatex">\(N(1 - P) \cdot P_1 = N \cdot P\)</span>, οπότε:</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[P_1 = \frac{P}{1 - P}\]</div>
+<p><span class="label">Το κατώφλι στον δεύτερο γύρο· ίδιο με τον τύπο για r = 1 (Διάλεξη 2, διαφάνεια 53)</span></p>
+</div>
+<ul>
+<li><strong>Τρίτος γύρος (r = 2).</strong> Μένουν <span class="arithmatex">\(N(1 - P)(1 - P_1)\)</span> υποψήφιοι. Θέλουμε το γινόμενό τους με το νέο κατώφλι να ισούται πάλι με <span class="arithmatex">\(N \cdot P\)</span>. Το γινόμενο <span class="arithmatex">\((1 - P)(1 - P_1)\)</span> απλοποιείται: αφού <span class="arithmatex">\(P_1 = P/(1 - P)\)</span>, είναι <span class="arithmatex">\((1 - P) - P = 1 - 2P\)</span>. Άρα:</li>
+</ul>
+<div class="formula">
+<div class="arithmatex">\[P_2 = \frac{P}{1 - 2P}\]</div>
+<p><span class="label">Το κατώφλι στον τρίτο γύρο· ίδιο με τον τύπο για r = 2</span></p>
+</div>
+<pre><code>Συνεχίζοντας με επαγωγή, φτάνουμε στον γενικό τύπο του T(n).
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Προσοχή: τυπογραφικό λάθος στη διαφάνεια</p>
+<p>Η διαφάνεια 53 τυπώνει το αποτέλεσμα του τρίτου γύρου ως <span class="arithmatex">\(P_2 = 1/(1 - 2P)\)</span>. Αυτό είναι <strong>λάθος</strong>: λείπει το P από τον αριθμητή. Το σωστό είναι <span class="arithmatex">\(P_2 = P/(1 - 2P)\)</span>, όπως επιβεβαιώνεται και από τον γενικό τύπο για r = 2, που δίνει <span class="arithmatex">\(P/(1 - 2P)\)</span>. Με το λανθασμένο <span class="arithmatex">\(1/(1-2P)\)</span> το κατώφλι θα ξεπερνούσε το 1 για μικρά P, κάτι αδύνατο για πιθανότητα. Χρησιμοποιήστε τον σωστό τύπο.</p>
+</div>
+<h3 id="slide-example">Το παράδειγμα των διαφανειών<a class="headerlink" href="#slide-example" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Οι διαφάνειες λύνουν ένα παράδειγμα με N = 100 κόμβους και P = 20% = 0.2, άρα 1/P = 5 γύρους ανά περίοδο, και περιμένουν 20 αρχηγούς σε κάθε γύρο (Διάλεξη 2, διαφάνειες 46 έως 52).</p>
+<p>Ας λύσουμε αναλυτικά έναν γύρο, τον <strong>r = 2</strong>, με τα μικρότερα δυνατά βήματα. Κάθε γραμμή αλλάζει ένα μόνο πράγμα από την προηγούμενη, και η σημείωση δεξιά λέει τι:</p>
+<div class="trace-label">Το κατώφλι στον γύρο r = 2 (P = 0.2)</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+T(n) &amp;= \frac{P}{1 - P\,(r \bmod 1/P)} &amp;&amp; \\[0.7em]
+     &amp;= \frac{0.2}{1 - 0.2\,(2 \bmod 5)}  &amp;&amp; (P = 0.2,\ r = 2) \\[0.7em]
+     &amp;= \frac{0.2}{1 - 0.2 \cdot 2}        &amp;&amp; (2 \bmod 5 = 2) \\[0.7em]
+     &amp;= \frac{0.2}{1 - 0.4}                &amp;&amp; (0.2 \cdot 2 = 0.4) \\[0.7em]
+     &amp;= \frac{0.2}{0.6}                    &amp;&amp; (1 - 0.4 = 0.6) \\[0.7em]
+     &amp;= \frac{1}{3}                        &amp;&amp; (0.2 \div 0.6 = 1/3)
+\end{aligned}
+\]</div>
+</div>
+<p>Ο αριθμός των αρχηγών σε αυτόν τον γύρο (cluster heads, το συμβολίζουμε <span class="arithmatex">\(N_{\text{CH}}\)</span>) είναι το κατώφλι επί το πλήθος των υποψηφίων:</p>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+N_{\text{CH}} &amp;= T(n) \times |G|       &amp;&amp; \\[0.7em]
+              &amp;= (1/3) \times 60        &amp;&amp; (T(n) = 1/3,\ |G| = 60) \\[0.7em]
+              &amp;= \frac{60}{3}           &amp;&amp; \\[0.7em]
+              &amp;= 20                     &amp;&amp;
+\end{aligned}
+\]</div>
+</div>
+<p>Οι υπόλοιποι γύροι λύνονται με τα ίδια ακριβώς βήματα. Συνοπτικά:</p>
+<div class="exam-record" style="display:block"></div>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Γύρος r</th>
+<th style="text-align: center;">Κόμβοι στο G</th>
+<th style="text-align: center;">Κατώφλι T(n)</th>
+<th style="text-align: center;">Αναμενόμενοι αρχηγοί</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">0.2 / (1 − 0.2·0) = 0.20</td>
+<td style="text-align: center;">0.20 × 100 = 20</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">80</td>
+<td style="text-align: center;">0.2 / (1 − 0.2·1) = 0.25</td>
+<td style="text-align: center;">0.25 × 80 = 20</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">0.2 / (1 − 0.2·2) = 1/3</td>
+<td style="text-align: center;">1/3 × 60 = 20</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">0.2 / (1 − 0.2·3) = 0.50</td>
+<td style="text-align: center;">0.50 × 40 = 20</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">0.2 / (1 − 0.2·4) = 1.00</td>
+<td style="text-align: center;">1.00 × 20 = 20</td>
+</tr>
+</tbody>
+</table>
+<p>Σε κάθε γύρο γίνονται ακριβώς 20 αρχηγοί, όπως θέλαμε. Στον τελευταίο γύρο της περιόδου (r = 4) το κατώφλι είναι 1, άρα και οι 20 εναπομείναντες γίνονται σίγουρα αρχηγοί: κανένας κόμβος δεν μένει χωρίς να έχει υπηρετήσει.</p>
+<p>Η διαφάνεια 52 κλείνει με μια ερώτηση: <strong>τι γίνεται στον γύρο r = 5;</strong> Η απάντηση κρύβεται στο <code>r mod (1/P)</code>. Για r = 5 και 1/P = 5, είναι 5 mod 5 = 0. Το κατώφλι επιστρέφει στην αρχική του τιμή, T(n) = P = 0.2, και το G ξαναγεμίζει με όλους τους κόμβους. Ξεκινά δηλαδή μια <strong>νέα περίοδος</strong>, πανομοιότυπη με την πρώτη. Το <code>mod</code> είναι ακριβώς ο μηχανισμός που κάνει τον κύκλο να επαναλαμβάνεται (χειρόγραφες σημειώσεις, σελίδα 11).</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Β.1, 2.5 μονάδες</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Αυτή η ενότητα είναι <strong>κατευθείαν</strong> το Θέμα Β.1 του 2026, που μετρά 2.5 μονάδες, το ένα τέταρτο της εξέτασης. Πρέπει να ξέρετε: (1) τον κανόνα απόφασης, τυχαίος αριθμός μικρότερος του κατωφλιού, (2) τον τύπο του T(n) και τι σημαίνει κάθε σύμβολο, (3) γιατί το κατώφλι ανεβαίνει μέσα στην περίοδο, και (4) τι κάνει το <code>mod</code> στο τέλος της περιόδου. Η <a href="#worked-2026">επόμενη ενότητα</a> λύνει το θέμα με τα ακριβή του νούμερα.</p>
+</div>
+<h2 id="worked-2026">2.4 Λυμένη Άσκηση: το Θέμα Β.1 του 2026<a class="headerlink" href="#worked-2026" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Η εκφώνηση (6 Φεβρουαρίου 2026, Θέμα Β.1, 2.5 μονάδες)</p>
+<p>Εξετάστε ένα ασύρματο δίκτυο αισθητήρων που χρησιμοποιεί το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>, ρυθμισμένο να λειτουργεί σε <strong>περιόδους (eras) των 7 γύρων (rounds)</strong>, με το <strong>14% των κόμβων</strong> να λειτουργούν ως αρχηγοί συστάδων σε κάθε γύρο. Να περιγράψετε και να παρουσιάσετε πώς λειτουργεί ο αλγόριθμος εκλογής των αρχηγών συστάδων για μία περίοδο.</p>
+</div>
+<p><strong>Βήμα 1: Βρείτε το P.</strong> Η εκφώνηση δίνει δύο στοιχεία που συνδέονται. Μια περίοδος έχει 1/P γύρους, και εδώ μας λένε ότι έχει 7. Άρα:</p>
+<div class="formula">
+<div class="arithmatex">\[\frac{1}{P} = 7 \quad\Rightarrow\quad P = \frac{1}{7} \approx 0.1429 = 14{,}29\%\]</div>
+<p><span class="label">Το επιθυμητό ποσοστό αρχηγών</span></p>
+</div>
+<p>Το «14%» της εκφώνησης είναι η στρογγυλοποίηση του 1/7. Δουλεύουμε με το ακριβές P = 1/7, γιατί μόνο αυτό δίνει περίοδο ακριβώς 7 γύρων (δείτε τη σημείωση στο τέλος).</p>
+<p><strong>Βήμα 2: Γράψτε τον κανόνα.</strong> Σε κάθε γύρο, κάθε κόμβος που ανήκει στο G τραβά έναν τυχαίο αριθμό στο [0, 1]. Αν είναι μικρότερος από το T(n), ο κόμβος γίνεται αρχηγός. Το κατώφλι είναι:</p>
+<div class="formula">
+<div class="arithmatex">\[T(n) = \frac{1/7}{1 - \frac{1}{7}\left(r \bmod 7\right)} \quad \text{για } n \in G\]</div>
+<p><span class="label">Το κατώφλι με P = 1/7</span></p>
+</div>
+<p><strong>Βήμα 3: Υπολογίστε το κατώφλι σε κάθε γύρο της περιόδου.</strong> Ας πάρουμε N = 70 κόμβους, ώστε τα νούμερα να βγαίνουν στρογγυλά. Λύνουμε αναλυτικά δύο γύρους με τα μικρότερα δυνατά βήματα, έναν από τη μέση και τον τελευταίο, και οι υπόλοιποι βγαίνουν με τον ίδιο τρόπο.</p>
+<div class="trace-label">Γύρος r = 2 (P = 1/7)</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+T(n) &amp;= \frac{P}{1 - P\,(r \bmod 1/P)} &amp;&amp; \\[0.7em]
+     &amp;= \frac{1/7}{1 - (1/7)\,(2 \bmod 7)} &amp;&amp; (P = 1/7,\ r = 2) \\[0.7em]
+     &amp;= \frac{1/7}{1 - (1/7) \cdot 2}       &amp;&amp; (2 \bmod 7 = 2) \\[0.7em]
+     &amp;= \frac{1/7}{1 - 2/7}                 &amp;&amp; ((1/7) \cdot 2 = 2/7) \\[0.7em]
+     &amp;= \frac{1/7}{5/7}                     &amp;&amp; (1 - 2/7 = 5/7) \\[0.7em]
+     &amp;= \frac{1}{5}                         &amp;&amp; ((1/7) \div (5/7) = 1/5)
+\end{aligned}
+\]</div>
+</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+N_{\text{CH}} &amp;= T(n) \times |G|        &amp;&amp; \\[0.7em]
+              &amp;= (1/5) \times 50         &amp;&amp; (T(n) = 1/5,\ |G| = 50) \\[0.7em]
+              &amp;= \frac{50}{5}            &amp;&amp; \\[0.7em]
+              &amp;= 10                      &amp;&amp;
+\end{aligned}
+\]</div>
+</div>
+<p>Στον τελευταίο γύρο της περιόδου το κατώφλι φτάνει το 1, δηλαδή όσοι απομένουν γίνονται σίγουρα αρχηγοί:</p>
+<div class="trace-label">Γύρος r = 6 (ο τελευταίος)</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+T(n) &amp;= \frac{1/7}{1 - (1/7)\,(6 \bmod 7)} &amp;&amp; (P = 1/7,\ r = 6) \\[0.7em]
+     &amp;= \frac{1/7}{1 - (1/7) \cdot 6}       &amp;&amp; (6 \bmod 7 = 6) \\[0.7em]
+     &amp;= \frac{1/7}{1 - 6/7}                 &amp;&amp; ((1/7) \cdot 6 = 6/7) \\[0.7em]
+     &amp;= \frac{1/7}{1/7}                     &amp;&amp; (1 - 6/7 = 1/7) \\[0.7em]
+     &amp;= 1                                   &amp;&amp; ((1/7) \div (1/7) = 1)
+\end{aligned}
+\]</div>
+</div>
+<p>Το G αδειάζει κατά 10 κόμβους σε κάθε γύρο. Ολόκληρη η περίοδος, συνοπτικά:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Γύρος r</th>
+<th style="text-align: center;">Κόμβοι στο G</th>
+<th style="text-align: center;">Κατώφλι T(n)</th>
+<th style="text-align: center;">Αναμενόμενοι αρχηγοί</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">(1/7)/(1 − 0) = 1/7</td>
+<td style="text-align: center;">70 × 1/7 = 10</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">(1/7)/(1 − 1/7) = 1/6</td>
+<td style="text-align: center;">60 × 1/6 = 10</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">(1/7)/(1 − 2/7) = 1/5</td>
+<td style="text-align: center;">50 × 1/5 = 10</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">(1/7)/(1 − 3/7) = 1/4</td>
+<td style="text-align: center;">40 × 1/4 = 10</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">(1/7)/(1 − 4/7) = 1/3</td>
+<td style="text-align: center;">30 × 1/3 = 10</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">(1/7)/(1 − 5/7) = 1/2</td>
+<td style="text-align: center;">20 × 1/2 = 10</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">(1/7)/(1 − 6/7) = 1</td>
+<td style="text-align: center;">10 × 1 = 10</td>
+</tr>
+</tbody>
+</table>
+<p>Σε κάθε έναν από τους 7 γύρους γίνονται 10 αρχηγοί, δηλαδή σταθερά το 1/7 του δικτύου. Στον έβδομο γύρο (r = 6) το κατώφλι είναι 1: οι 10 κόμβοι που δεν είχαν υπηρετήσει ακόμη γίνονται όλοι αρχηγοί. Έτσι, στο τέλος της περιόδου, έχει υπηρετήσει ως αρχηγός <strong>κάθε</strong> κόμβος ακριβώς μία φορά.</p>
+<p><strong>Βήμα 4: Η νέα περίοδος.</strong> Στον γύρο r = 7 έχουμε 7 mod 7 = 0, άρα το κατώφλι επιστρέφει στο 1/7 και το G ξαναγεμίζει με τους 70 κόμβους. Αρχίζει μια νέα περίοδος, ίδια με την πρώτη, και ο κύκλος επαναλαμβάνεται.</p>
+<p>Το σχήμα δείχνει ολόκληρη την περίοδο. Κάθε γύρος «καίει» δέκα κόμβους ως αρχηγούς, ώσπου στον έβδομο γύρο να τελειώσουν, και ο όγδοος να ξεκινά τον κύκλο από την αρχή:</p>
+<!-- leach_figures:era -->
+<figure class="steps steps--four" id="fig-2-3">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg><p class="step__text"><span class="step__num">1</span><strong>Γύρος 0.</strong> Στο G μένουν 70 κόμβοι, <span class="arithmatex">\(T(n) = \tfrac{1}{7}\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 70 × 1/7 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg><p class="step__text"><span class="step__num">2</span><strong>Γύρος 1.</strong> Στο G μένουν 60 κόμβοι, <span class="arithmatex">\(T(n) = \tfrac{1}{6}\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 60 × 1/6 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg><p class="step__text"><span class="step__num">3</span><strong>Γύρος 2.</strong> Στο G μένουν 50 κόμβοι, <span class="arithmatex">\(T(n) = \tfrac{1}{5}\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 50 × 1/5 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/></svg><p class="step__text"><span class="step__num">4</span><strong>Γύρος 3.</strong> Στο G μένουν 40 κόμβοι, <span class="arithmatex">\(T(n) = \tfrac{1}{4}\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 40 × 1/4 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/></svg><p class="step__text"><span class="step__num">5</span><strong>Γύρος 4.</strong> Στο G μένουν 30 κόμβοι, <span class="arithmatex">\(T(n) = \tfrac{1}{3}\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 30 × 1/3 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/></svg><p class="step__text"><span class="step__num">6</span><strong>Γύρος 5.</strong> Στο G μένουν 20 κόμβοι, <span class="arithmatex">\(T(n) = \tfrac{1}{2}\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 20 × 1/2 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="20" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="40" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="60" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="80" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="80" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="160" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="80" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="60" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="100" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="40" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="100" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="140" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="200" cy="120" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="20" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="80" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="100" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="120" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="160" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/><circle cx="180" cy="140" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="140" r="5" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/></svg><p class="step__text"><span class="step__num">7</span><strong>Γύρος 6.</strong> Στο G μένουν 10 κόμβοι, <span class="arithmatex">\(T(n) = 1\)</span>, άρα κατά μέσο όρο γίνονται cluster heads 10 × 1 = 10.</p></div><div class="step"><svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="20" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="20" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="40" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="200" cy="40" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="20" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="60" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="180" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="60" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="80" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="100" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="60" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="100" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="40" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="120" cy="120" r="6.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/><circle cx="140" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="120" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="20" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="40" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="60" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="80" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="100" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="120" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="140" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="160" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="180" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/><circle cx="200" cy="140" r="5.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg><p class="step__text"><span class="step__num">8</span><strong>Γύρος 7: νέα περίοδος.</strong> Επειδή 7 mod 7 = 0, όλοι οι κόμβοι ξαναμπαίνουν στο σύνολο G και ο κύκλος αρχίζει από την αρχή, με <span class="arithmatex">\(T(n) = \tfrac{1}{7}\)</span>.</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.5"/></svg>cluster head</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="4.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>κόμβος στο G</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="4.2" fill="none" stroke="var(--fig-node)" stroke-width="1.6"/></svg>έγινε ήδη cluster head σε αυτή την περίοδο</span></div>
+<figcaption>Σχήμα 2.3 · Μια ολόκληρη περίοδος με 70 κόμβους και <span class="arithmatex">\(P = \tfrac{1}{7}\)</span>. Δείχνει τη μέση περίπτωση: στην πράξη ο αριθμός των κεφαλών κάθε γύρου αλλάζει λίγο, επειδή η εκλογή είναι τυχαία.</figcaption>
+</figure>
+<!-- /leach_figures:era -->
+
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: γιατί όχι το κυριολεκτικό 0,14;</p>
+<p>Αν κάποιος έπαιρνε P = 0,14 ακριβώς αντί για 1/7, τα νούμερα δεν κλείνουν. Τότε 1/P = 7,14..., που δεν είναι ακέραιος, άρα η περίοδος δεν κλείνει σε 7 γύρους. Υπολογίζοντας τα κατώφλια με 0,14, στον έβδομο γύρο (r = 6) βγαίνει T(n) = 0,14/(1 − 0,84) = 0,875, μικρότερο του 1, οπότε δεν είναι σίγουρο ότι θα υπηρετήσουν όλοι· και στον γύρο r = 7 ο τύπος δίνει 0,14/(1 − 0,98) = 7, τιμή αδύνατη για πιθανότητα. Η εκφώνηση ορίζει ρητά 7 γύρους ανά περίοδο, και αυτό ισχύει μόνο για P = 1/7. Το «14%» είναι απλώς η βολική στρογγυλοποίηση.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip is-hit" href="../../#exam-papers"><strong>6/2/2026</strong> Θέμα Β.1, 2.5 μονάδες</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Αυτή είναι η ίδια η άσκηση. Το κλειδί που εξετάζεται είναι η σύνδεση «7 γύροι ανά περίοδο ⇒ P = 1/7». Δείξτε τον πίνακα με τα κατώφλια, εξηγήστε ότι ο αριθμός των αρχηγών μένει σταθερός επειδή το κατώφλι ανεβαίνει καθώς αδειάζει το G, και κλείστε με το τι γίνεται στη νέα περίοδο. Ο πίνακας με τα 1/7, 1/6, ..., 1 αξίζει τις περισσότερες μονάδες.</p>
+</div>
+<h2 id="evaluation">2.5 Πειραματική Αξιολόγηση<a class="headerlink" href="#evaluation" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Οι διαφάνειες συγκρίνουν πειραματικά το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> με δύο απλούστερα σχήματα (Διάλεξη 2, διαφάνειες 59 έως 67), σε δίκτυο 100 κόμβων με τον σταθμό βάσης στη θέση (0, 100):</p>
+<ul>
+<li><strong>Direct Transmission (<dfn class="abbr-def" id="abbr-dt" title="Direct Transmission">DT</dfn>):</strong> κάθε κόμβος στέλνει τα δεδομένα του απευθείας στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>.</li>
+<li><strong>Minimum-Energy-Transmission (<dfn class="abbr-def" id="abbr-mte" title="Minimum-Energy-Transmission">MTE</dfn>):</strong> κάθε κόμβος στέλνει βήμα προς βήμα, μέσω γειτόνων, ακολουθώντας τη διαδρομή ελάχιστης ενέργειας.</li>
+</ul>
+<h3 id="where-nodes-die">Πού πεθαίνουν οι κόμβοι<a class="headerlink" href="#where-nodes-die" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Το πρώτο μέτρο είναι το <strong>πού</strong> εξαντλούνται πρώτα οι κόμβοι (Διάλεξη 2, διαφάνειες 61 έως 63). Το αποτέλεσμα αποκαλύπτει τη φύση κάθε σχήματος:</p>
+<!-- leach_figures:dead -->
+<figure class="steps steps--three" id="fig-2-4">
+<div class="steps__grid"><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="95.1" cy="123.3" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="121.3" cy="131.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="171.9" cy="55.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="50.6" cy="164.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="99.4" cy="79.3" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="245.1" cy="112.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="213.6" cy="113.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="173.7" cy="169.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="151.6" cy="151.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="107.7" cy="50.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="126.2" cy="159.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="222.0" cy="59.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="172.1" cy="88.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="148.4" cy="100.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.6" cy="186.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="129.3" cy="67.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="148.1" cy="187.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="110.1" cy="182.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="175.5" cy="130.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="52.0" cy="133.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="52.4" cy="54.6" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="73.7" cy="87.5" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="205.2" cy="84.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="116.6" cy="105.2" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="226.9" cy="144.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="81.9" cy="158.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.0" cy="167.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.4" cy="186.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="200.9" cy="153.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="232.7" cy="88.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="81.4" cy="48.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="49.3" cy="106.3" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="196.6" cy="46.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="146.7" cy="46.5" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/></svg><p class="step__text"><span class="step__num">1</span><strong>Minimum-Energy-Transmission</strong>, μετά από 180 γύρους: πεθαίνουν πρώτοι οι κόμβοι <em>κοντά</em> στη Base Station.</p></div><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="95.1" cy="123.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="121.3" cy="131.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="171.9" cy="55.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="50.6" cy="164.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="99.4" cy="79.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="245.1" cy="112.8" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="213.6" cy="113.6" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="173.7" cy="169.3" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="151.6" cy="151.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="107.7" cy="50.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="126.2" cy="159.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="222.0" cy="59.8" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="172.1" cy="88.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="148.4" cy="100.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="217.6" cy="186.7" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="129.3" cy="67.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="148.1" cy="187.8" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="110.1" cy="182.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="175.5" cy="130.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="52.0" cy="133.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="52.4" cy="54.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="73.7" cy="87.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="205.2" cy="84.5" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="116.6" cy="105.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="226.9" cy="144.5" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="81.9" cy="158.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.0" cy="167.3" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="76.4" cy="186.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="200.9" cy="153.5" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="232.7" cy="88.7" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="81.4" cy="48.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="49.3" cy="106.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="196.6" cy="46.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="146.7" cy="46.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/></svg><p class="step__text"><span class="step__num">2</span><strong>Direct Transmission</strong>, μετά από 180 γύρους: πεθαίνουν πρώτοι οι κόμβοι <em>μακριά</em> από τη Base Station.</p></div><div class="step"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="15" y="15" width="22" height="22" rx="2" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.8"/><circle cx="95.1" cy="123.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="121.3" cy="131.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="171.9" cy="55.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="50.6" cy="164.9" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="99.4" cy="79.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="245.1" cy="112.8" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="213.6" cy="113.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="173.7" cy="169.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="151.6" cy="151.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="107.7" cy="50.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="126.2" cy="159.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="222.0" cy="59.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="172.1" cy="88.7" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="148.4" cy="100.8" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="217.6" cy="186.7" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="129.3" cy="67.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="148.1" cy="187.8" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="110.1" cy="182.1" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="175.5" cy="130.6" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="52.0" cy="133.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="52.4" cy="54.6" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="73.7" cy="87.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="205.2" cy="84.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="116.6" cy="105.2" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="226.9" cy="144.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="81.9" cy="158.4" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="241.0" cy="167.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="76.4" cy="186.8" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="200.9" cy="153.5" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="232.7" cy="88.7" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="81.4" cy="48.4" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="49.3" cy="106.3" r="6.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/><circle cx="196.6" cy="46.3" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/><circle cx="146.7" cy="46.5" r="6" fill="none" stroke="var(--fig-line)" stroke-width="1.8"/></svg><p class="step__text"><span class="step__num">3</span><strong><a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a></strong>, μετά από 1200 γύρους: οι κόμβοι πεθαίνουν ομοιόμορφα σε όλο το πεδίο.</p></div></div>
+<div class="legend"><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="1" width="12" height="12" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.5"/></svg>Base Station</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="4.5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>ζωντανός κόμβος</span><span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="4.5" fill="none" stroke="var(--fig-line)" stroke-width="1.6"/></svg>κόμβος που εξαντλήθηκε</span></div>
+<figcaption>Σχήμα 2.4 · Πού πεθαίνουν οι κόμβοι. Σχηματική απεικόνιση όσων δείχνουν οι διαφάνειες 61 έως 63 της Διάλεξης 2, όχι τα πραγματικά δεδομένα της μέτρησης.</figcaption>
+</figure>
+<!-- /leach_figures:dead -->
+
+<p>Στο <a class="abbr-link" href="#abbr-dt" title="Direct Transmission">DT</a> πεθαίνουν πρώτοι οι <strong>μακρινοί</strong> κόμβοι, γιατί η απευθείας μετάδοση σε μεγάλη απόσταση κοστίζει πολύ. Στο <a class="abbr-link" href="#abbr-mte" title="Minimum-Energy-Transmission">MTE</a> πεθαίνουν πρώτοι οι <strong>κοντινοί</strong> στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>, γιατί από αυτούς περνούν όλα τα μηνύματα των υπολοίπων. Το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>, χάρη στην τυχαία εναλλαγή του ρόλου του αρχηγού, εξαντλεί τους κόμβους <strong>ομοιόμορφα</strong> σε όλο το πεδίο, και μετά από πολύ περισσότερους γύρους (1200 έναντι 180).</p>
+<h3 id="energy-and-lifetime">Ενέργεια και διάρκεια ζωής<a class="headerlink" href="#energy-and-lifetime" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ως προς τη συνολική ενέργεια, το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> καταναλώνει 7 έως 8 φορές λιγότερη από το <a class="abbr-link" href="#abbr-dt" title="Direct Transmission">DT</a> και 4 έως 8 φορές λιγότερη από το <a class="abbr-link" href="#abbr-mte" title="Minimum-Energy-Transmission">MTE</a> (Διάλεξη 2, διαφάνεια 64). Ως προς τη διάρκεια ζωής, ο πρώτος κόμβος πεθαίνει πάνω από 8 φορές αργότερα, και ο τελευταίος πάνω από 3 φορές αργότερα, σε σχέση με τα <a class="abbr-link" href="#abbr-dt" title="Direct Transmission">DT</a> και <a class="abbr-link" href="#abbr-mte" title="Minimum-Energy-Transmission">MTE</a> (Διάλεξη 2, διαφάνεια 67).</p>
+<p>Ο πίνακας των διαφανειών δείχνει τους γύρους στους οποίους πεθαίνει ο πρώτος και ο τελευταίος κόμβος, για τρεις αρχικές ενέργειες μπαταρίας (Διάλεξη 2, διαφάνεια 66). Το «Static Clustering» είναι ένα σχήμα με <strong>σταθερές</strong> συστάδες, χωρίς εναλλαγή αρχηγού, που δείχνει πόσο μετράει η εναλλαγή:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Ενέργεια (J/κόμβο)</th>
+<th style="text-align: left;">Πρωτόκολλο</th>
+<th style="text-align: center;">Πρώτος κόμβος πεθαίνει (γύρος)</th>
+<th style="text-align: center;">Τελευταίος κόμβος πεθαίνει (γύρος)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0.25</td>
+<td style="text-align: left;">Direct Transmission</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">117</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.25</td>
+<td style="text-align: left;">Minimum-Energy-Transmission</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">221</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.25</td>
+<td style="text-align: left;">Static Clustering</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">67</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.25</td>
+<td style="text-align: left;"><strong><a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a></strong></td>
+<td style="text-align: center;"><strong>394</strong></td>
+<td style="text-align: center;"><strong>665</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: left;">Direct Transmission</td>
+<td style="text-align: center;">109</td>
+<td style="text-align: center;">234</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: left;">Minimum-Energy-Transmission</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">429</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: left;">Static Clustering</td>
+<td style="text-align: center;">80</td>
+<td style="text-align: center;">110</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: left;"><strong><a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a></strong></td>
+<td style="text-align: center;"><strong>932</strong></td>
+<td style="text-align: center;"><strong>1312</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Direct Transmission</td>
+<td style="text-align: center;">217</td>
+<td style="text-align: center;">468</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Minimum-Energy-Transmission</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">843</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Static Clustering</td>
+<td style="text-align: center;">106</td>
+<td style="text-align: center;">240</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong><a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a></strong></td>
+<td style="text-align: center;"><strong>1848</strong></td>
+<td style="text-align: center;"><strong>2608</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Δύο πράγματα ξεχωρίζουν. Πρώτον, το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> κρατά το δίκτυο ζωντανό πολλαπλάσια περισσότερο από κάθε άλλο σχήμα, σε κάθε επίπεδο ενέργειας. Δεύτερον, το <a class="abbr-link" href="#abbr-mte" title="Minimum-Energy-Transmission">MTE</a> έχει τον πρώτο θάνατο <strong>πολύ</strong> νωρίς (μόλις στον γύρο 5 ή 8), ακριβώς επειδή σκοτώνει γρήγορα τους κοντινούς στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a> κόμβους, παρόλο που κρατά κάποιους μακρινούς ζωντανούς για πολύ.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Τα πειραματικά νούμερα δεν έχουν ζητηθεί ως τέτοια. Χρήσιμη όμως για κάθε ερώτηση σύγκρισης πρωτοκόλλων είναι η <strong>ποιοτική</strong> εικόνα: γιατί το <a class="abbr-link" href="#abbr-dt" title="Direct Transmission">DT</a> σκοτώνει τους μακρινούς, γιατί το <a class="abbr-link" href="#abbr-mte" title="Minimum-Energy-Transmission">MTE</a> τους κοντινούς, και γιατί η εναλλαγή του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> δίνει ομοιόμορφη φθορά. Αυτό το επιχείρημα, χωρίς αριθμούς, αρκεί.</p>
+</div>
+<h2 id="strengths-limits">2.6 Πλεονεκτήματα, Όρια και Επεκτάσεις<a class="headerlink" href="#strengths-limits" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="strengths">Τι κερδίζει το πρωτόκολλο<a class="headerlink" href="#strengths" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<ul>
+<li><strong>Εξισορρόπηση ενέργειας.</strong> Η τυχαία εναλλαγή του αρχηγού μοιράζει το ακριβό κόστος της μετάδοσης προς το <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a> σε όλους τους κόμβους με τη σειρά, αντί να το φορτώνει μόνιμα σε λίγους (Διάλεξη 2, διαφάνεια 67).</li>
+<li><strong>Μείωση δεδομένων.</strong> Η συμπίεση στους αρχηγούς μειώνει τον όγκο που φτάνει στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a> (χειρόγραφες σημειώσεις, σελίδα 8).</li>
+<li><strong>Αυτο-οργάνωση.</strong> Οι κόμβοι στήνουν τις συστάδες τοπικά, χωρίς κεντρικό έλεγχο (Διάλεξη 2, διαφάνεια 41).</li>
+</ul>
+<h3 id="limits">Πού αδυνατεί<a class="headerlink" href="#limits" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Οι διαφάνειες είναι ασυνήθιστα αυτοκριτικές (Διάλεξη 2, διαφάνεια 68):</p>
+<ul>
+<li><strong>Μη ρεαλιστική υπόθεση για το ραδιόφωνο.</strong> Το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> υποθέτει ότι κάθε αρχηγός μπορεί να φτάσει το <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a> με μία απευθείας μετάδοση. Αν το <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a> είναι πολύ μακριά, αυτό απαιτεί πολύ μεγάλη ισχύ και το πλεονέκτημα χάνεται (χειρόγραφες σημειώσεις, σελίδα 8).</li>
+<li><strong>Δεν ταιριάζει σε αντιδραστικές εφαρμογές.</strong> Το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> είναι προδραστικό (proactive): μετρά και στέλνει συνεχώς, σε τακτά διαστήματα. Δεν ταιριάζει σε εφαρμογές που πρέπει να αντιδρούν άμεσα σε ένα κατώφλι, όπως έναν συναγερμό.</li>
+<li><strong>Καμία υλοποίηση σε πραγματικό δίκτυο.</strong> Η αξιολόγηση ήταν αποκλειστικά προσομοίωση.</li>
+</ul>
+<p>Η Διάλεξη 3 προσθέτει μια συνοπτική κρίση: το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> είναι μια προσέγγιση με συστάδες και πιθανότητες, <strong>κατάλληλη για δίκτυα μικρής έκτασης</strong> (Διάλεξη 3, διαφάνεια 3). Αυτό συνδέεται άμεσα με το προηγούμενο όριο: όσο μεγαλώνει η έκταση, τόσο πιο ακριβή γίνεται η απευθείας μετάδοση των αρχηγών στο <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a>.</p>
+<h3 id="extensions">Επεκτάσεις<a class="headerlink" href="#extensions" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Για μεγαλύτερα δίκτυα, η ιδέα των συστάδων μπορεί να γίνει <strong>πολυεπίπεδη</strong>: οι αρχηγοί επικοινωνούν με υπερ-αρχηγούς, και ούτω καθεξής. Αυτό εξοικονομεί ενέργεια σε μεγάλα δίκτυα, με κόστος πιο περίπλοκη υλοποίηση και μεγαλύτερη καθυστέρηση (Διάλεξη 2, διαφάνεια 58).</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: δύο βελτιωμένες παραλλαγές</p>
+<p>Οι διαφάνειες αναφέρουν ονομαστικά δύο βελτιωμένες παραλλαγές του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> (Διάλεξη 2, διαφάνεια 68): το Threshold sensitive Energy Efficient sensor Network (<dfn class="abbr-def" id="abbr-teen" title="Threshold sensitive Energy Efficient sensor Network">TEEN</dfn>), που βελτιώνει τη συμπεριφορά σε αντιδραστικές εφαρμογές, και το Power-Efficient GAthering in Sensor Information Systems (<dfn class="abbr-def" id="abbr-pegasis" title="Power-Efficient GAthering in Sensor Information Systems">PEGASIS</dfn>), που αντικαθιστά τις συστάδες με μια αλυσίδα κόμβων. Οι διαφάνειες δεν αναλύουν καμία από τις δύο· απλώς τις ονομάζουν ως παραδείγματα εξέλιξης.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> έμμεσα</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Τα πλεονεκτήματα και τα όρια του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> δεν εξετάστηκαν αυτοτελώς, αλλά τροφοδοτούν κάθε ερώτηση σύγκρισης. Αν ζητηθεί σύγκριση επίπεδης και ιεραρχικής δρομολόγησης, ή του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> με το Directed Diffusion (<a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a>), το κρίσιμο σημείο είναι το εξής: το <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a> εξισορροπεί την ενέργεια με εναλλαγή ρόλων, αλλά προϋποθέτει ότι οι αρχηγοί φτάνουν το <a class="abbr-link" href="#abbr-bs" title="Base Station">BS</a> απευθείας, κάτι που το κάνει κατάλληλο μόνο για δίκτυα μικρής έκτασης. Η αντίστοιχη σύγκριση από την πλευρά του <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> βρίσκεται στην <a href="../01-data-propagation/#comparison">ενότητα 1.5</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

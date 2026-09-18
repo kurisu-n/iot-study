@@ -1,0 +1,1900 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/chapters/12-rpl-app-protocols/">
+      
+      
+        <link rel="prev" href="../11-security-smart-cities/">
+      
+      
+        <link rel="next" href="../../revision/formulas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>12. RPL & Πρωτόκολλα Εφαρμογής - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12. RPL & Πρωτόκολλα Εφαρμογής
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-leach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-energy-balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-lpwan-lorawan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-cloud-edge-industry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rpl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Δρομολόγηση σε δίκτυα χαμηλής ισχύος με απώλειες
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.1 Δρομολόγηση σε δίκτυα χαμηλής ισχύος με απώλειες">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lossy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί «με απώλειες»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η δομή: ένας γράφος χωρίς κύκλους
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα μηνύματα ελέγχου
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dag-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πώς χτίζεται ο γράφος
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Πρωτόκολλα εφαρμογής
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Ασύρματη μεταφορά ενέργειας
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.3 Ασύρματη μεταφορά ενέργειας">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wpt-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δύο τεχνολογίες
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rechargeable-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δίκτυα αισθητήρων που ξαναφορτίζονται
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charging-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Μοντέλα φόρτισης: βαθμωτό και διανυσματικό
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mobility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Κινητικότητα
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.4 Κινητικότητα">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-mobile-sink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί να κινηθεί ο sink
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#early-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα πρώτα αποτελέσματα
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-walks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τυχαίοι περίπατοι του sink
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-mobility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Όταν κινούνται και οι αισθητήρες
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rpl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Δρομολόγηση σε δίκτυα χαμηλής ισχύος με απώλειες
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.1 Δρομολόγηση σε δίκτυα χαμηλής ισχύος με απώλειες">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lossy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί «με απώλειες»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η δομή: ένας γράφος χωρίς κύκλους
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα μηνύματα ελέγχου
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dag-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πώς χτίζεται ο γράφος
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Πρωτόκολλα εφαρμογής
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Ασύρματη μεταφορά ενέργειας
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.3 Ασύρματη μεταφορά ενέργειας">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wpt-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δύο τεχνολογίες
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rechargeable-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δίκτυα αισθητήρων που ξαναφορτίζονται
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charging-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Μοντέλα φόρτισης: βαθμωτό και διανυσματικό
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mobility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Κινητικότητα
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.4 Κινητικότητα">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-mobile-sink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί να κινηθεί ο sink
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#early-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα πρώτα αποτελέσματα
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-walks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τυχαίοι περίπατοι του sink
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-mobility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Όταν κινούνται και οι αισθητήρες
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span class="chapter-num">Κεφάλαιο 12</span></p>
+<h1 id="_1">Δρομολόγηση, Πρωτόκολλα Εφαρμογής και Ασύρματη Ισχύς<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p><em>Καλύπτει: το πρωτόκολλο δρομολόγησης για δίκτυα χαμηλής ισχύος με απώλειες, τα δύο πρωτόκολλα εφαρμογής του Internet of Things (<dfn class="abbr-def" id="abbr-iot" title="Internet of Things">IoT</dfn>), την ασύρματη μεταφορά ενέργειας με τα δύο μοντέλα φόρτισης, και την κινητικότητα του sink. Πηγές: Διαλέξεις 6a, 7b, 9, 10.</em></p>
+<p>Το τελευταίο κεφάλαιο έχει τη χαμηλότερη προτεραιότητα: <strong>κανένα από τα τρία γνωστά γραπτά δεν το άγγιξε</strong>. Δεν είναι όμως ασύνδετο με τα προηγούμενα. Κάθε ενότητά του απαντά σε ένα πρόβλημα που έμεινε ανοιχτό: πώς στήνεται μια διαδρομή όταν οι ζεύξεις χάνουν πακέτα (<a href="../04-routing-metrics/">Κεφάλαιο 4</a>), πώς μιλά η εφαρμογή με τον αισθητήρα (<a href="../08-iot-system-design/">Κεφάλαιο 8</a>), και τι γίνεται με την ενέργεια αν, αντί να την εξοικονομούμε, μπορούμε να την <strong>ξαναγεμίσουμε</strong> ή να μετακινήσουμε τον sink κοντά στους κόμβους (<a href="../03-energy-balance/">Κεφάλαια 2 και 3</a>).</p>
+<h2 id="rpl">12.1 Δρομολόγηση σε δίκτυα χαμηλής ισχύος με απώλειες<a class="headerlink" href="#rpl" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="lossy">Γιατί «με απώλειες»<a class="headerlink" href="#lossy" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ένα δίκτυο αισθητήρων σε βιομηχανικό χώρο είναι τυπικό δίκτυο <strong>χαμηλής ισχύος με απώλειες</strong>: οι κόμβοι έχουν λίγη ενέργεια και οι ζεύξεις χάνουν πακέτα. Η Διάλεξη 7b (διαφάνεια 31) δίνει τρεις αιτίες για τις απώλειες: <strong>παρεμβολές</strong> (η ζώνη ελεύθερων συχνοτήτων είναι γεμάτη, και δίπλα λειτουργούν άλλα δίκτυα, όπως το Wi-Fi), <strong>διαλείψεις πολλαπλών διαδρομών</strong> (το σήμα ανακλάται σε μεταλλικές επιφάνειες και φτάνει σε πολλά αντίγραφα που αλληλοεπηρεάζονται), και το <strong>σκληρό βιομηχανικό περιβάλλον</strong>. Αποτέλεσμα: αναξιόπιστη μετάδοση και απρόβλεπτη καθυστέρηση.</p>
+<p>Για τέτοια δίκτυα το Internet Engineering Task Force (<dfn class="abbr-def" id="abbr-ietf" title="Internet Engineering Task Force">IETF</dfn>) όρισε το Routing Protocol for Low-power and Lossy Networks (<dfn class="abbr-def" id="abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</dfn>), ένα σύνολο λύσεων βασισμένων στο Internet Protocol version 6 (<dfn class="abbr-def" id="abbr-ipv6" title="Internet Protocol version 6">IPv6</dfn>) (Διάλεξη 6a).</p>
+<h3 id="dag">Η δομή: ένας γράφος χωρίς κύκλους<a class="headerlink" href="#dag" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Το <a class="abbr-link" href="#abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</a> οργανώνει το δίκτυο ως <span class="key-term">Directed Acyclic Graph</span> (<dfn class="abbr-def" id="abbr-dag" title="Directed Acyclic Graph">DAG</dfn>): έναν κατευθυνόμενο γράφο όπου όλες οι ακμές έχουν τέτοιο προσανατολισμό ώστε <strong>να μην υπάρχει κανένας κύκλος</strong> (Διάλεξη 6a). Η ορολογία του (Διάλεξη 6a):</p>
+<ul>
+<li><span class="key-term">Ρίζα</span> (<a class="abbr-link" href="#abbr-dag" title="Directed Acyclic Graph">DAG</a> root): ο κόμβος που δεν έχει εξερχόμενη ακμή. Όλα τα δεδομένα ρέουν τελικά προς αυτόν, ο ρόλος του sink.</li>
+<li><span class="key-term">Rank</span>: ένας αριθμός που δείχνει το «βάθος» ενός κόμβου μέσα στον γράφο, πόσο μακριά βρίσκεται από τη ρίζα.</li>
+<li><span class="key-term">Objective Function</span> (<dfn class="abbr-def" id="abbr-of" title="Objective Function">OF</dfn>): ο κανόνας που ορίζει πώς οι μετρικές δρομολόγησης και οι στόχοι βελτιστοποίησης μετατρέπονται σε rank.</li>
+<li><code>RPLInstanceID</code>: ένα μοναδικό αναγνωριστικό μέσα στο δίκτυο.</li>
+</ul>
+<p>Οι μετρικές που αναφέρει η διάλεξη είναι δύο γνώριμες: η <strong>υπολειπόμενη ενέργεια</strong> του κόμβου, ως ποσοστό της μέγιστης, και το Expected Transmission Count (<dfn class="abbr-def" id="abbr-etx" title="Expected Transmission Count">ETX</dfn>) του <a href="../04-routing-metrics/#etx-metric">Κεφαλαίου 4</a>, γραμμένο με το Packet Reception Ratio (<dfn class="abbr-def" id="abbr-prr" title="Packet Reception Ratio">PRR</dfn>), δηλαδή το ποσοστό των πακέτων που φτάνουν:</p>
+<div class="formula">
+<div class="arithmatex">\[\text{EE} = \frac{P_{\text{now}}}{P_{\text{max}}} \cdot 100 \qquad \text{PRR} = \frac{\text{πακέτα που λήφθηκαν}}{\text{πακέτα που στάλθηκαν}} \qquad \text{ETX} = \frac{1}{\text{PRR}_{\text{down}} \cdot \text{PRR}_{\text{up}}}\]</div>
+<p><span class="label">Οι μετρικές του <a class="abbr-link" href="#abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</a> (Διάλεξη 6a)</span></p>
+</div>
+<p>Είναι ο ίδιος τύπος με το <span class="arithmatex">\(1/(d_f \cdot d_r)\)</span> του Κεφαλαίου 4: το <a class="abbr-link" href="#abbr-prr" title="Packet Reception Ratio">PRR</a> προς τα κάτω και προς τα πάνω παίζει τον ρόλο των δύο πιθανοτήτων.</p>
+<h3 id="control-messages">Τα μηνύματα ελέγχου<a class="headerlink" href="#control-messages" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ο γράφος που χτίζει το <a class="abbr-link" href="#abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</a> έχει έναν προορισμό, τη ρίζα, γι' αυτό λέγεται Destination-Oriented Directed Acyclic Graph (<dfn class="abbr-def" id="abbr-dodag" title="Destination-Oriented Directed Acyclic Graph">DODAG</dfn>). Τρία μηνύματα τον συντηρούν (Διάλεξη 6a):</p>
+<ul>
+<li><span class="key-term"><a class="abbr-link" href="#abbr-dodag" title="Destination-Oriented Directed Acyclic Graph">DODAG</a> Information Object</span> (<dfn class="abbr-def" id="abbr-dio" title="DODAG Information Object">DIO</dfn>): η ρίζα και κάθε μέλος του γράφου ανακοινώνουν τον γράφο και το rank τους, ώστε να μπορούν να ενταχθούν οι γείτονες.</li>
+<li><span class="key-term">Destination Advertisement Object</span> (<dfn class="abbr-def" id="abbr-dao" title="Destination Advertisement Object">DAO</dfn>): ένας κόμβος δηλώνει προς τα πάνω ότι είναι προσβάσιμος, ώστε να δημιουργούνται διαδρομές και από τη ρίζα προς αυτόν.</li>
+<li><span class="key-term"><a class="abbr-link" href="#abbr-dodag" title="Destination-Oriented Directed Acyclic Graph">DODAG</a> Information Solicitation</span> (<dfn class="abbr-def" id="abbr-dis" title="DODAG Information Solicitation">DIS</dfn>): ένας κόμβος που δεν έχει ακούσει ακόμη <a class="abbr-link" href="#abbr-dio" title="DODAG Information Object">DIO</a> ζητά από τους γείτονες να του στείλουν.</li>
+</ul>
+<p>Η διαφάνεια δίνει μόνο τα ονόματα· ο ρόλος του καθενός, όπως τον περιγράφουμε, είναι ο ρόλος που τους ορίζει το πρότυπο.</p>
+<h3 id="dag-construction">Πώς χτίζεται ο γράφος<a class="headerlink" href="#dag-construction" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Τέσσερα βήματα, από τη ρίζα προς τα έξω (Διάλεξη 6a):</p>
+<ol>
+<li>Η ρίζα εκπέμπει ένα <a class="abbr-link" href="#abbr-dio" title="DODAG Information Object">DIO</a> προς όλους τους γείτονές της (multicast).</li>
+<li>Οι κόμβοι που το λαμβάνουν το επεξεργάζονται, λαμβάνοντας υπόψη τις μετρικές των ζεύξεων (για παράδειγμα το <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a>) και τους στόχους βελτιστοποίησης, και αποφασίζουν αν θα ενταχθούν.</li>
+<li>Όσοι εντάσσονται ορίζουν τη ρίζα ως <strong>γονέα</strong> τους μέσα στον γράφο και υπολογίζουν το δικό τους rank.</li>
+<li>Η διαδικασία συνεχίζεται: κάθε νέο μέλος εκπέμπει το δικό του <a class="abbr-link" href="#abbr-dio" title="DODAG Information Object">DIO</a>, ώστε να ενταχθούν οι πιο μακρινοί κόμβοι και να βελτιστοποιήσουν τις διαδρομές τους.</li>
+</ol>
+<p>Η διαφάνεια σημειώνει επίσης μηχανισμούς για κίνηση <strong>από πολλά σημεία προς ένα</strong> (οι αισθητήρες προς τη ρίζα), <strong>από ένα σημείο προς πολλά</strong> (η ρίζα προς τους κόμβους), και για την <strong>αφαίρεση βρόχων</strong>.</p>
+<figure class="steps" id="fig-12-1">
+<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>
+    <marker id="rplParent" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 7 3, 0 6" fill="var(--fig-ok-deep)"/>
+    </marker>
+    <marker id="rplAlt" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 7 3, 0 6" fill="var(--fig-node)"/>
+    </marker>
+  </defs>
+  <!-- rank bands -->
+  <line x1="10" y1="46" x2="290" y2="46" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="10" y1="95" x2="290" y2="95" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="10" y1="145" x2="290" y2="145" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="2 3"/>
+  <!-- preferred parents -->
+  <line x1="95.4" y1="65.6" x2="139.2" y2="29.8" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <line x1="204.6" y1="65.6" x2="160.8" y2="29.8" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <line x1="54.4" y1="114.5" x2="84.4" y2="77.0" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <line x1="144.6" y1="115.5" x2="96.9" y2="75.8" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <line x1="245.6" y1="114.5" x2="215.6" y2="77.0" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <line x1="104.9" y1="165.1" x2="143.6" y2="126.4" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <line x1="204.9" y1="165.1" x2="243.6" y2="126.4" stroke="var(--fig-ok-deep)" stroke-width="1.6" marker-end="url(#rplParent)"/>
+  <!-- alternative parents: a DAG allows more than one -->
+  <line x1="155.4" y1="115.5" x2="203.1" y2="75.8" stroke="var(--fig-node)" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#rplAlt)"/>
+  <line x1="195.1" y1="165.1" x2="156.4" y2="126.4" stroke="var(--fig-node)" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#rplAlt)"/>
+  <!-- root -->
+  <rect x="135" y="10" width="30" height="22" rx="3" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.6"/>
+  <!-- nodes -->
+  <circle cx="90" cy="70" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+  <circle cx="210" cy="70" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+  <circle cx="50" cy="120" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+  <circle cx="150" cy="120" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+  <circle cx="250" cy="120" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+  <circle cx="100" cy="170" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+  <circle cx="200" cy="170" r="6" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.3"/>
+</svg>
+<div class="legend">
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="2" width="12" height="10" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.2"/></svg>ρίζα</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>κόμβος</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7" stroke="var(--fig-ok-deep)" stroke-width="1.6"/><polygon points="17,7 12,4 12,10" fill="var(--fig-ok-deep)"/></svg>ο γονέας που προτιμά ο κόμβος</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7" stroke="var(--fig-node)" stroke-width="1.3" stroke-dasharray="3 2"/><polygon points="17,7 12,4 12,10" fill="var(--fig-node)"/></svg>εναλλακτικός γονέας</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-node-soft)" stroke-width="1.2" stroke-dasharray="2 2"/></svg>όριο ανάμεσα σε δύο τιμές του rank</span>
+</div>
+<figcaption>Σχήμα 12.1 · Ένας γράφος του <a class="abbr-link" href="#abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</a>. Κάθε ακμή δείχνει προς τα πάνω, προς κόμβο μικρότερου rank, γι' αυτό δεν μπορεί να σχηματιστεί κύκλος. Ένας κόμβος μπορεί να έχει περισσότερους από έναν γονείς: αν χαλάσει η ζεύξη προς τον προτιμώμενο, υπάρχει εναλλακτική διαδρομή. Σχηματική απεικόνιση της Διάλεξης 6a.</figcaption>
+</figure>
+
+<p>Η σύνδεση με τα προηγούμενα κεφάλαια είναι άμεση. Όπως το Directed Diffusion (<dfn class="abbr-def" id="abbr-dd" title="Directed Diffusion">DD</dfn>) στήνει μια δομή διαδρομών προς τον sink, έτσι και το <a class="abbr-link" href="#abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</a> στήνει μια δομή προς τη ρίζα, αλλά με <strong>ρητές μετρικές ποιότητας</strong> για κάθε ζεύξη αντί για την ενίσχυση του πρώτου που έφερε το γεγονός.</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: γιατί το rank κόβει τους κύκλους</p>
+<p>Η διαφάνεια δεν λέει <em>γιατί</em> ο γράφος μένει χωρίς κύκλους. Ο κανόνας του προτύπου είναι απλός: ένας κόμβος διαλέγει γονείς μόνο ανάμεσα σε κόμβους με <strong>μικρότερο</strong> rank από το δικό του. Αφού κάθε βήμα προς τα πάνω μειώνει το rank, ένα μονοπάτι δεν μπορεί ποτέ να επιστρέψει σε κόμβο από τον οποίο πέρασε, όπως ένα νερό που κυλά μόνο προς τα κάτω δεν γυρίζει στην πηγή του.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Δεν εξετάστηκε. Αν ζητηθεί, η απάντηση έχει τρία κομμάτια: το δίκτυο οργανώνεται ως γράφος χωρίς κύκλους με ρίζα· το rank δείχνει το βάθος και η Objective Function το υπολογίζει από μετρικές όπως το <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a> και η υπολειπόμενη ενέργεια· και ο γράφος χτίζεται με <a class="abbr-link" href="#abbr-dio" title="DODAG Information Object">DIO</a> που ξεκινούν από τη ρίζα και απλώνονται προς τα έξω.</p>
+</div>
+<h2 id="app-protocols">12.2 Πρωτόκολλα εφαρμογής<a class="headerlink" href="#app-protocols" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το <a href="../08-iot-system-design/#tech-selection">Κεφάλαιο 8</a> χρησιμοποίησε δύο πρωτόκολλα για τα μηνύματα της εφαρμογής χωρίς να τα αναλύσει. Η Διάλεξη 6a τα περιγράφει με μία γραμμή το καθένα, και η διαφορά τους είναι διαφορά φιλοσοφίας:</p>
+<ul>
+<li>Το Constrained Application Protocol (<dfn class="abbr-def" id="abbr-coap" title="Constrained Application Protocol">CoAP</dfn>) είναι φτιαγμένο για <strong>συσκευές με περιορισμένους πόρους</strong> και φέρνει στο <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> την αρχιτεκτονική του Web: ο πελάτης στέλνει <strong>αίτημα</strong> σε έναν πόρο και παίρνει <strong>απάντηση</strong>, με τις γνώριμες εντολές <code>GET</code>, <code>POST</code>, <code>PUT</code>. Η διάλεξη το αποκαλεί «το Hypertext Transfer Protocol (<dfn class="abbr-def" id="abbr-http" title="Hypertext Transfer Protocol">HTTP</dfn>) του <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>». Προτυποποιήθηκε από το <a class="abbr-link" href="#abbr-ietf" title="Internet Engineering Task Force">IETF</a>.</li>
+<li>Το Message Queuing Telemetry Transport (<dfn class="abbr-def" id="abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</dfn>) είναι ελαφρύ πρωτόκολλο <strong>δημοσίευσης-εγγραφής</strong>, πάνω από το Transmission Control Protocol (<dfn class="abbr-def" id="abbr-tcp" title="Transmission Control Protocol">TCP</dfn>) και το Internet Protocol (<dfn class="abbr-def" id="abbr-ip" title="Internet Protocol">IP</dfn>). Ο εκδότης (publisher) στέλνει μηνύματα σε <strong>θέματα</strong> (topics), και ένας <strong>μεσολαβητής</strong> (broker) τα διανέμει σε όσους έχουν εγγραφεί (subscribers). Το προτυποποίησε ο οργανισμός Organization for the Advancement of Structured Information Standards (<dfn class="abbr-def" id="abbr-oasis" title="Organization for the Advancement of Structured Information Standards">OASIS</dfn>).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a></th>
+<th style="text-align: left;"><a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Μοντέλο</strong></td>
+<td style="text-align: left;"><span class="key-term">Αίτημα-απάντηση</span>, όπως το Web</td>
+<td style="text-align: left;"><span class="key-term">Δημοσίευση-εγγραφή</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ποιος μιλά με ποιον</strong></td>
+<td style="text-align: left;">Ο πελάτης απευθείας με τη συσκευή</td>
+<td style="text-align: left;">Κανείς απευθείας: όλα περνούν από τον <span class="key-term">μεσολαβητή</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ο παραλήπτης ξέρει τον αποστολέα;</strong></td>
+<td style="text-align: left;">Ναι, ρωτά συγκεκριμένο πόρο</td>
+<td style="text-align: left;">Όχι, ξέρει μόνο το θέμα</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Μεταφορά</strong></td>
+<td style="text-align: left;">Δεν την αναφέρει η διάλεξη</td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-tcp" title="Transmission Control Protocol">TCP</a>/<a class="abbr-link" href="#abbr-ip" title="Internet Protocol">IP</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Φορέας</strong></td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ietf" title="Internet Engineering Task Force">IETF</a></td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-oasis" title="Organization for the Advancement of Structured Information Standards">OASIS</a></td>
+</tr>
+</tbody>
+</table>
+<p>Πότε ποιο; Όταν πολλές συσκευές στέλνουν μετρήσεις σε πολλούς ενδιαφερόμενους, όπως στο σύστημα άρδευσης, το <a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a> αποσυνδέει τον αισθητήρα από όσους τον ακούν: ο αισθητήρας δημοσιεύει μία φορά, και ο μεσολαβητής φροντίζει τα υπόλοιπα. Όταν μια εφαρμογή θέλει να ρωτήσει ή να ρυθμίσει μια συγκεκριμένη συσκευή («ποια είναι η θερμοκρασία σου;», «άνοιξε τη βάνα»), το μοντέλο αιτήματος-απάντησης του <a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a> είναι πιο φυσικό.</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: τα επίπεδα μεταφοράς</p>
+<p>Η διάλεξη λέει ότι το <a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a> τρέχει πάνω από <a class="abbr-link" href="#abbr-tcp" title="Transmission Control Protocol">TCP</a>, αλλά δεν λέει τι χρησιμοποιεί το <a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a>. Το <a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a> τρέχει συνήθως πάνω από το User Datagram Protocol (<dfn class="abbr-def" id="abbr-udp" title="User Datagram Protocol">UDP</dfn>), ένα ελαφρύτερο πρωτόκολλο μεταφοράς χωρίς σύνδεση, που ταιριάζει σε συσκευές με ελάχιστους πόρους αλλά δεν εγγυάται παράδοση· γι' αυτό το <a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a> έχει δικό του μηχανισμό επιβεβαίωσης για τα μηνύματα που πρέπει να φτάσουν. Το <a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a>, αντίστροφα, ορίζει επίπεδα εγγύησης παράδοσης πάνω από το <a class="abbr-link" href="#abbr-tcp" title="Transmission Control Protocol">TCP</a>.</p>
+</div>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι ονομαστικά</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι ονομαστικά</a></div></p>
+<p>Δεν ζητήθηκαν ως θέμα, αλλά εμφανίζονται στις απαντήσεις σχεδίασης συστήματος (2025 Θέμα 1β) και στο επίπεδο Connectivity (2022 Θέμα 3), όπου μια τεκμηριωμένη επιλογή ανάμεσά τους μετράει. Η διάκριση σε μία γραμμή: αίτημα-απάντηση έναντι δημοσίευσης-εγγραφής μέσω μεσολαβητή.</p>
+</div>
+<h2 id="wpt">12.3 Ασύρματη μεταφορά ενέργειας<a class="headerlink" href="#wpt" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Τα Κεφάλαια 2 έως 4 πολέμησαν με την ίδια σταθερά: η μπαταρία είναι πεπερασμένη. Η ασύρματη μεταφορά ενέργειας αλλάζει τους όρους. Ένα τέτοιο σύστημα έχει <strong>φορτιστές</strong> που εκπέμπουν ισχύ ασύρματα και <strong>δέκτες</strong> που τη συλλέγουν, και είναι πιο αξιόπιστο και ελέγξιμο από τη συλλογή ενέργειας από το περιβάλλον, όπως ο ήλιος ή ο αέρας (Διάλεξη 9, διαφάνεια 2).</p>
+<h3 id="wpt-technologies">Δύο τεχνολογίες<a class="headerlink" href="#wpt-technologies" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Η Διάλεξη 9 (διαφάνεια 3) δίνει δύο, με αντίθετα χαρακτηριστικά:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><span class="key-term">Ραδιοσυχνότητες</span></th>
+<th style="text-align: left;"><span class="key-term">Συντονισμένη μαγνητική σύζευξη</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Απόδοση</strong></td>
+<td style="text-align: left;">Πολύ χαμηλή, περίπου 0.13%</td>
+<td style="text-align: left;">Πολύ υψηλή, 91 έως 93%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Απόσταση</strong></td>
+<td style="text-align: left;">Έως μερικά μέτρα</td>
+<td style="text-align: left;">Έως 1 μέτρο</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Συσκευές</strong></td>
+<td style="text-align: left;">Μόνο χαμηλής κατανάλωσης, όπως αισθητήρες</td>
+<td style="text-align: left;">Υψηλής ισχύος, ως και ηλεκτρικά οχήματα</td>
+</tr>
+</tbody>
+</table>
+<p>Η πρώτη είναι η φόρτιση με Radio Frequency (<dfn class="abbr-def" id="abbr-rf" title="Radio Frequency">RF</dfn>). Και εδώ, ο ίδιος συμβιβασμός με όλο το σώμα μελέτης: μεγαλύτερη απόσταση πληρώνεται με απόδοση. Για την τυποποίηση υπάρχουν ήδη δύο ανταγωνιστικοί φορείς, το Wireless Power Consortium με το πρότυπο Qi και η Alliance for Wireless Power με το πρότυπο Rezence (Διάλεξη 9, διαφάνεια 4).</p>
+<h3 id="rechargeable-networks">Δίκτυα αισθητήρων που ξαναφορτίζονται<a class="headerlink" href="#rechargeable-networks" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ένα επαναφορτιζόμενο δίκτυο αισθητήρων έχει τρία μέρη (Διάλεξη 9, διαφάνεια 18): τους <strong>αισθητήρες</strong>, τον <strong>sink</strong>, και έναν <span class="key-term">κινητό φορτιστή</span> (Mobile Charger), μια κινητή οντότητα με μεγάλα αποθέματα ενέργειας που ξαναφορτίζει τους αισθητήρες ασύρματα. Κερδίζει τρία πράγματα (διαφάνεια 19): η ενέργεια διαχειρίζεται με πολύ μεγαλύτερη λεπτομέρεια, η διαχείριση γίνεται <strong>παθητικά</strong> από τους αισθητήρες χωρίς επιβάρυνση σε υπολογισμό ή επικοινωνία, και σχεδιάζεται <strong>ανεξάρτητα</strong> από το πρωτόκολλο δρομολόγησης.</p>
+<p>Τρία ερωτήματα σχεδίασης μένουν ανοιχτά (διαφάνεια 21): πώς να μοιραστεί η συνολική ενέργεια ανάμεσα στους αισθητήρες και τον φορτιστή· αν κάθε αισθητήρας πρέπει να φορτίζεται πλήρως ή μερικώς, αφού η ενέργεια του φορτιστή είναι πεπερασμένη· και ποια διαδρομή να ακολουθεί ο φορτιστής.</p>
+<p>Το τελευταίο είναι <strong>υπολογιστικά δύσκολο</strong>. Το να κρίνουμε αν υπάρχει πρόγραμμα επισκέψεων ώστε κανένα μήνυμα να μη χαθεί από έλλειψη ενέργειας είναι NP-complete, με αναγωγή από το γεωμετρικό πρόβλημα του περιπλανώμενου πωλητή (διαφάνεια 22). Στην πράξη λοιπόν χρησιμοποιούνται <strong>ευρετικές</strong> στρατηγικές (διαφάνειες 23 και 24):</p>
+<ul>
+<li><strong>Καθολική γνώση</strong>: ο φορτιστής ιεραρχεί τους αισθητήρες με βάση την απόσταση και την υπολειπόμενη ενέργεια.</li>
+<li><strong>Τυχαίος περίπατος</strong>: επόμενος στόχος ένας τυχαίος γείτονας του τρέχοντος αισθητήρα.</li>
+<li><strong>Σπείρα</strong>: καλύπτει όλη την περιοχή χωρίς επικαλύψεις.</li>
+<li><strong>Κατά μήκος της διαμέτρου</strong>: αλλάζει γρήγορα υποπεριοχή.</li>
+<li><strong>Προσαρμοστική</strong>: ο φορτιστής κινείται σε ομόκεντρους κύκλους, και η ακτίνα προσαρμόζεται στο πού αδειάζει γρηγορότερα η ενέργεια, με βάση μόνο τοπική πληροφορία. Η κρισιμότητα ενός κόμβου είναι το γινόμενο <span class="arithmatex">\(c_i(t) = f_i(t) \cdot p_i(t)\)</span> της κανονικοποιημένης κίνησης δεδομένων που περνά από αυτόν επί την κανονικοποιημένη κατανάλωσή του.</li>
+</ul>
+<p>Το αποτέλεσμα (διαφάνεια 25): ο φορτιστής δίνει σημαντικά κέρδη, και η προσαρμοστική στρατηγική, με μόνο τοπική πληροφορία, φτάνει σχεδόν την απόδοση της στρατηγικής καθολικής γνώσης. Σε δίκτυα όπου κινούνται και οι ίδιοι οι κόμβοι (Διάλεξη 9, διαφάνειες 27 έως 37), η εικόνα είναι παρόμοια: όταν οι κόμβοι είναι ομοιόμορφα κατανεμημένοι, ένας φτηνός τυχαίος περίπατος αρκεί· όταν συγκεντρώνονται σε σημεία, λίγη τοπική πληροφορία βελτιώνει δραστικά την απόδοση.</p>
+<h3 id="charging-models">Μοντέλα φόρτισης: βαθμωτό και διανυσματικό<a class="headerlink" href="#charging-models" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Αυτά είναι τα δύο «μοντέλα» που το <a href="../06-scalar-vector/#not-charging">Κεφάλαιο 6</a> ξεχώρισε από τα βαθμωτά και διανυσματικά δεδομένα. Εδώ αφορούν τη <strong>φυσική</strong> της φόρτισης: πόση ισχύ λαμβάνει ένας κόμβος από έναν ή περισσότερους φορτιστές.</p>
+<p>Η αφετηρία είναι ο <strong>τύπος του Friis</strong> (Διάλεξη 9, διαφάνεια 43):</p>
+<div class="formula">
+<div class="arithmatex">\[P_r = P_t\, G_t\, G_r \left(\frac{\lambda}{4\pi R}\right)^2\]</div>
+<p><span class="label">Η ισχύς που λαμβάνει ένας δέκτης σε απόσταση R (Διάλεξη 9, διαφάνεια 43)</span></p>
+</div>
+<p>όπου <span class="arithmatex">\(P_t\)</span> η ισχύς εκπομπής, <span class="arithmatex">\(G_t\)</span> και <span class="arithmatex">\(G_r\)</span> τα κέρδη των κεραιών, και <span class="arithmatex">\(\lambda\)</span> το μήκος κύματος. Η ισχύς πέφτει με το <strong>τετράγωνο</strong> της απόστασης, η ίδια σχέση με το <span class="arithmatex">\(d^2\)</span> των ενεργειακών μοντέλων των Κεφαλαίων 2 έως 4, ιδωμένη από την πλευρά του δέκτη.</p>
+<p><strong>Το <span class="key-term">βαθμωτό μοντέλο φόρτισης</span></strong> (Διάλεξη 9, διαφάνειες 39 και 40). Ένας κόμβος <span class="arithmatex">\(v\)</span> λαμβάνει από έναν φορτιστή <span class="arithmatex">\(u\)</span> με ακτίνα <span class="arithmatex">\(r_u\)</span> ισχύ:</p>
+<div class="formula">
+<div class="arithmatex">\[P_{v,u} = \begin{cases} \dfrac{\alpha\, r_u^2}{(\beta + \text{dist}(v,u))^2} &amp; \text{αν ο φορτιστής έχει ενέργεια, ο κόμβος χωρητικότητα, και } \text{dist}(v,u) \le r_u \\[1.2em] 0 &amp; \text{αλλιώς} \end{cases}\]</div>
+<p><span class="label">Ο ρυθμός φόρτισης στο βαθμωτό μοντέλο (Διάλεξη 9, διαφάνεια 39)</span></p>
+</div>
+<p>με <span class="arithmatex">\(\alpha\)</span> και <span class="arithmatex">\(\beta\)</span> σταθερές του περιβάλλοντος και του υλικού. Το κρίσιμο είναι ότι η ενέργεια από πολλούς φορτιστές <strong>απλώς προστίθεται</strong>, και ότι η ηλεκτρομαγνητική ακτινοβολία σε ένα σημείο είναι ανάλογη αυτής της αθροιστικής ισχύος. Έτσι εμφανίζεται ένα πρόβλημα βελτιστοποίησης: να επιλεγούν οι ακτίνες των φορτιστών ώστε να μεγιστοποιηθεί η χρήσιμη ενέργεια που φτάνει στους κόμβους, χωρίς η ακτινοβολία να ξεπερνά ένα όριο σε κανένα σημείο. Είναι NP-hard (διαφάνεια 41). Μεγαλύτερη ακτίνα φορτίζει περισσότερους κόμβους, αλλά αδειάζει γρηγορότερα τον φορτιστή και ανεβάζει την ακτινοβολία.</p>
+<p><strong>Γιατί το βαθμωτό δεν αρκεί</strong> (διαφάνειες 43 και 44). Η πρόσθεση ισχύων είναι ακριβής για έναν φορτιστή ή για λίγους μακρινούς. Όταν όμως υπάρχουν <strong>πολλοί φορτιστές κοντά</strong>, τα κύματά τους <strong>συμβάλλουν</strong>: σε κάποια σημεία ενισχύονται και σε άλλα αλληλοαναιρούνται. Αυτό το βαθμωτό μοντέλο δεν μπορεί να το περιγράψει.</p>
+<p><strong>Το <span class="key-term">διανυσματικό μοντέλο</span></strong> (διαφάνειες 45 και 46). Το ηλεκτρικό πεδίο κάθε φορτιστή σε έναν δέκτη σε απόσταση <span class="arithmatex">\(d\)</span> γράφεται ως <strong>διάνυσμα δύο διαστάσεων</strong>, με μήκος που πέφτει ως <span class="arithmatex">\(1/d\)</span> και γωνία που εξαρτάται από το πόσα μήκη κύματος χωρούν στην απόσταση:</p>
+<div class="formula">
+<div class="arithmatex">\[\mathbf{E}(C,R) = \beta\, \frac{1}{d} \begin{bmatrix} \cos\!\big(\tfrac{2\pi}{\lambda} d\big) \\[0.3em] \sin\!\big(\tfrac{2\pi}{\lambda} d\big) \end{bmatrix} \qquad \mathbf{E}_{\text{ολικό}} = \sum_{C} \mathbf{E}(C,R) \qquad P = \gamma\, \big\lVert \mathbf{E}_{\text{ολικό}} \big\rVert^2\]</div>
+<p><span class="label">Το πεδίο κάθε φορτιστή, η υπέρθεση, και η ισχύς στον δέκτη (Διάλεξη 9, διαφάνειες 45 και 46)</span></p>
+</div>
+<p>Η διαφορά από το βαθμωτό είναι η σειρά των πράξεων: εκεί προσθέτουμε <strong>ισχύες</strong>· εδώ προσθέτουμε πρώτα <strong>διανύσματα πεδίου</strong> και μετά υψώνουμε στο τετράγωνο. Αν τα διανύσματα κοιτάνε προς την ίδια κατεύθυνση, το αποτέλεσμα είναι μεγαλύτερο από το άθροισμα των ισχύων· αν κοιτάνε αντίθετα, μπορεί να είναι σχεδόν μηδέν.</p>
+<figure class="steps" id="fig-12-2">
+<div class="steps__grid">
+  <div class="step">
+    <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" role="img">
+      <defs>
+        <marker id="vecA" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 7 3, 0 6" fill="var(--fig-accent)"/></marker>
+        <marker id="vecB" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 7 3, 0 6" fill="var(--fig-warn)"/></marker>
+        <marker id="vecSum" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 7 3, 0 6" fill="var(--fig-ok-deep)"/></marker>
+      </defs>
+      <line x1="30" y1="40" x2="104" y2="40" stroke="var(--fig-accent)" stroke-width="2.4" marker-end="url(#vecA)"/>
+      <line x1="110" y1="40" x2="184" y2="40" stroke="var(--fig-warn)" stroke-width="2.4" marker-end="url(#vecB)"/>
+      <line x1="30" y1="75" x2="184" y2="75" stroke="var(--fig-ok-deep)" stroke-width="3.2" marker-end="url(#vecSum)"/>
+      <circle cx="30" cy="40" r="3" fill="var(--fig-line)"/>
+      <circle cx="30" cy="75" r="3" fill="var(--fig-line)"/>
+    </svg>
+    <p class="step__text"><span class="step__num">1</span><strong>Ενίσχυση.</strong> Στο σημείο που απέχει εξίσου από τους δύο φορτιστές τα δύο πεδία κοιτάνε προς την ίδια κατεύθυνση. Το άθροισμα έχει διπλάσιο μήκος, άρα τετραπλάσια ισχύ: <span class="arithmatex">\((1+1)^2 = 4\)</span>, ενώ το βαθμωτό μοντέλο θα έδινε <span class="arithmatex">\(1 + 1 = 2\)</span>.</p>
+  </div>
+  <div class="step">
+    <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" role="img">
+      <defs>
+        <marker id="vecA2" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 7 3, 0 6" fill="var(--fig-accent)"/></marker>
+        <marker id="vecB2" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 7 3, 0 6" fill="var(--fig-warn)"/></marker>
+        <marker id="vecSum2" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 7 3, 0 6" fill="var(--fig-ok-deep)"/></marker>
+      </defs>
+      <line x1="30" y1="60" x2="124" y2="60" stroke="var(--fig-accent)" stroke-width="2.4" marker-end="url(#vecA2)"/>
+      <line x1="130" y1="60" x2="68" y2="38" stroke="var(--fig-warn)" stroke-width="2.4" marker-end="url(#vecB2)"/>
+      <line x1="30" y1="88" x2="58" y2="78" stroke="var(--fig-ok-deep)" stroke-width="3.2" marker-end="url(#vecSum2)"/>
+      <circle cx="30" cy="60" r="3" fill="var(--fig-line)"/>
+      <circle cx="30" cy="88" r="3" fill="var(--fig-line)"/>
+    </svg>
+    <p class="step__text"><span class="step__num">2</span><strong>Αλληλοαναίρεση.</strong> Σε ένα κοντινό σημείο τα δύο πεδία κοιτάνε σχεδόν αντίθετα και το άθροισμα είναι πολύ μικρό. Η διαφάνεια δίνει συνολική ισχύ περίπου 0.28, λιγότερη ακόμη κι από τον ασθενέστερο φορτιστή μόνο του, 0.64.</p>
+  </div>
+</div>
+<div class="legend">
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7" stroke="var(--fig-accent)" stroke-width="2"/><polygon points="17,7 12,4 12,10" fill="var(--fig-accent)"/></svg>πεδίο του φορτιστή 1</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7" stroke="var(--fig-warn)" stroke-width="2"/><polygon points="17,7 12,4 12,10" fill="var(--fig-warn)"/></svg>πεδίο του φορτιστή 2, ξεκινά από την άκρη του πρώτου</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="13" y2="7" stroke="var(--fig-ok-deep)" stroke-width="2.6"/><polygon points="17,7 12,4 12,10" fill="var(--fig-ok-deep)"/></svg>ολικό πεδίο: η ισχύς είναι το τετράγωνο του μήκους του</span>
+</div>
+<figcaption>Σχήμα 12.2 · Δύο κοντινοί φορτιστές στο διανυσματικό μοντέλο: τα πεδία προστίθενται ως διανύσματα, με το ένα στην άκρη του άλλου. Οι τιμές είναι του παραδείγματος της Διάλεξης 9 (διαφάνεια 47)· τα βέλη είναι σχηματικά.</figcaption>
+</figure>
+
+<p>Ας επαληθεύσουμε το πρώτο αποτέλεσμα. Με έναν φορτιστή, ο δέκτης στο μέσο λαμβάνει ισχύ 1, άρα το πεδίο κάθε φορτιστή έχει εκεί μήκος 1. Όταν λειτουργούν και οι δύο, τα διανύσματα έχουν την ίδια κατεύθυνση:</p>
+<div class="trace-label">Ισχύς στο μέσο, με τους δύο φορτιστές</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+P_{\text{διάνυσμα}} &amp;= \big\lVert \mathbf{E}_1 + \mathbf{E}_2 \big\rVert^2 &amp;&amp; \\[0.7em]
+                    &amp;= (1 + 1)^2 &amp;&amp; (\text{ίδια κατεύθυνση: τα μήκη προστίθενται}) \\[0.7em]
+                    &amp;= 4 &amp;&amp; \\[0.7em]
+P_{\text{βαθμωτό}} &amp;= 1^2 + 1^2 = 2 &amp;&amp; (\text{προστίθενται οι ισχύες})
+\end{aligned}
+\]</div>
+</div>
+<p>Το διανυσματικό μοντέλο δίνει <strong>διπλάσια</strong> ισχύ από όση προβλέπει το βαθμωτό: η ισχύς είναι <strong>υπερ-αθροιστική</strong>. Και επειδή τα σημεία ενίσχυσης και αλληλοαναίρεσης δεν δίνονται από κλειστό τύπο, η τοποθέτηση των φορτιστών μελετάται εξετάζοντας πολλές διατάξεις (διαφάνεια 48), με δύο στόχους: τη μέγιστη συνολική ισχύ στους δέκτες, ή την καλύτερη εγγυημένη ισχύ για τους πιο αδύναμους (διαφάνεια 49).</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Δεν εξετάστηκε. Αν ζητηθεί, οι πιο πιθανές μορφές είναι η σύγκριση των δύο τεχνολογιών (απόδοση, απόσταση, συσκευές) και η διαφορά βαθμωτού και διανυσματικού μοντέλου: στο πρώτο προστίθενται οι ισχύες, στο δεύτερο τα πεδία, και γι' αυτό μόνο το δεύτερο εξηγεί την ενίσχυση και την αλληλοαναίρεση κοντινών φορτιστών. Μια άσκηση θα έμοιαζε με το παράδειγμα των δύο φορτιστών· δείτε τις <a href="../../practice/exercises/#wpt">παραλλαγές ασκήσεων</a>.</p>
+</div>
+<h2 id="mobility">12.4 Κινητικότητα<a class="headerlink" href="#mobility" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="why-mobile-sink">Γιατί να κινηθεί ο sink<a class="headerlink" href="#why-mobile-sink" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ένας <strong>στατικός</strong> sink έχει πέντε μειονεκτήματα (Διάλεξη 10, διαφάνεια 3): επιβαρύνει τους αισθητήρες με υπολογισμό και επικοινωνία, κλιμακώνεται άσχημα, μοιράζει το φορτίο άνισα, κοστίζει πολύ για να παρακαμφθούν εμπόδια, και σε δυναμικά δίκτυα θέλει ακριβή αναδιοργάνωση. Η «άνιση κατανομή» είναι η ενεργειακή τρύπα του <a href="../03-energy-balance/#lifetime">Κεφαλαίου 3</a>: οι κόμβοι γύρω από τον sink προωθούν την κίνηση όλων των άλλων.</p>
+<p>Η ιδέα της κινητικότητας (διαφάνεια 4) είναι να <strong>μεταφερθεί το βάρος</strong> από τους αισθητήρες στον sink. Ο sink έχει μεγάλα αποθέματα ενέργειας που αναπληρώνονται εύκολα, κινείται μέσα στο δίκτυο κοντά στους αισθητήρες, και διασχίζοντας όλη την περιοχή μαζεύει όλα τα δεδομένα.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><span class="key-term">Πλεονεκτήματα</span> (διαφάνεια 6)</th>
+<th style="text-align: left;"><span class="key-term">Νέες προκλήσεις</span> (διαφάνεια 5)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Αραιά, αποκομμένα ή ακανόνιστα δίκτυα αντιμετωπίζονται καλύτερα</td>
+<td style="text-align: left;">Ο sink πρέπει να καλύψει όλο το δίκτυο</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ο sink παρακάμπτει τα εμπόδια</td>
+<td style="text-align: left;">Μεγαλύτερες καθυστερήσεις παράδοσης</td>
+</tr>
+<tr>
+<td style="text-align: left;">Καλύτερη κατανομή του φορτίου</td>
+<td style="text-align: left;">Κακή κλιμάκωση όσο μεγαλώνει η περιοχή</td>
+</tr>
+<tr>
+<td style="text-align: left;">Κλιμακώνεται καλά με τον αριθμό των αισθητήρων</td>
+<td style="text-align: left;">Η δρομολόγηση και ο εντοπισμός θέσης δυσκολεύουν</td>
+</tr>
+<tr>
+<td style="text-align: left;">Μικρότερες αποστάσεις μετάδοσης, άρα λιγότερη ενέργεια και μεγαλύτερη διάρκεια ζωής</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Λιγότερη υποκλοπή, άρα καλύτερη ασφάλεια</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Ο βασικός συμβιβασμός διατρέχει όλη τη διάλεξη: <strong>ενέργεια έναντι καθυστέρησης</strong>. Ο κινητός sink σώζει ενέργεια, αλλά τα δεδομένα περιμένουν ώσπου να περάσει.</p>
+<h3 id="early-results">Τα πρώτα αποτελέσματα<a class="headerlink" href="#early-results" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Τρεις πρώτες προσεγγίσεις (Διάλεξη 10, διαφάνειες 8 έως 13):</p>
+<ul>
+<li><strong>Βέλτιστη κίνηση</strong> (Luo και Hubaux): σε κυκλικό δίκτυο, η βέλτιστη διαδρομή του sink είναι ένας <strong>κύκλος στην περιφέρεια</strong> του δικτύου. Οποιαδήποτε κίνηση μειώνει το μέγιστο φορτίο ως και τρεις φορές, και ο συνδυασμός κίνησης και δρομολόγησης αυξάνει τη διάρκεια ζωής ως και 500%.</li>
+<li><strong>Πολλοί κινητοί sinks</strong> («data mules»): κινούνται ντετερμινιστικά σε παράλληλες ευθείες, ώστε κάθε κόμβος να απέχει ένα βήμα από τουλάχιστον έναν sink και όλα τα δεδομένα να στέλνονται απευθείας.</li>
+<li><strong>Κινητοί κόμβοι</strong>: όταν κινούνται οι ίδιοι οι αισθητήρες, η βέλτιστη διάταξη είναι σε <strong>ευθεία γραμμή με ίσες αποστάσεις</strong>. Η κίνηση κοστίζει ενέργεια στην αρχή, αλλά οι βελτιστοποιημένες διαδρομές την κερδίζουν πίσω μακροπρόθεσμα.</li>
+</ul>
+<h3 id="random-walks">Τυχαίοι περίπατοι του sink<a class="headerlink" href="#random-walks" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Οι <strong>τυχαίοι περίπατοι</strong> (random walks) είναι εντελώς τοπικές, πολύ απλές στρατηγικές κίνησης: μειώνουν πολύ την κατανάλωση ενέργειας, αλλά αυξάνουν την καθυστέρηση. Για καλύτερη ισορροπία, ο περίπατος γίνεται <strong>προσαρμοστικός</strong>, με βάση την πυκνότητα των κόμβων ή το ιστορικό των επισκέψεων (Διάλεξη 10, διαφάνεια 24). Η περιοχή χωρίζεται σε τετράγωνα κελιά, και από το κέντρο ενός κελιού ο sink ακούει όλους τους αισθητήρες του (διαφάνεια 26). Οι παραλλαγές:</p>
+<ul>
+<li><span class="key-term">Τυφλός τυχαίος περίπατος</span> (διαφάνειες 27 και 28): κάθε βήμα ανεξάρτητο, ίδια πιθανότητα για καθεμία από τις τέσσερις κατευθύνσεις. Πολύ ανθεκτικός και εγγυάται ότι κάποτε θα επισκεφθεί όλα τα κελιά, αλλά μπορεί να είναι αργός.</li>
+<li><span class="key-term">Περίπατος με μνήμη</span> (διαφάνειες 29 και 30): ο sink θυμάται τα τελευταία <span class="arithmatex">\(K\)</span> κελιά και δεν ξαναπηγαίνει σε αυτά. Η μνήμη κόβει τους βρόχους, αλλά μπορεί να οδηγήσει σε αδιέξοδο.</li>
+<li><span class="key-term">Περίπατος με αδράνεια</span> (διαφάνειες 31 και 32): ενισχύεται η κατεύθυνση όπου βρέθηκαν νέοι αισθητήρες και αποδυναμώνονται οι άλλες.</li>
+<li><span class="key-term">Εξερεύνηση και προχώρα</span> (Explore-and-Go, διαφάνεια 34): συνεχίζει ευθεία με πιθανότητα <span class="arithmatex">\(\beta\)</span>, αλλιώς αλλάζει κατεύθυνση, με <span class="arithmatex">\(\beta = 0.9\)</span> όταν δεν βρίσκει νέους κόμβους και <span class="arithmatex">\(\beta = 0.1\)</span> όταν βρίσκει. Όπου βρίσκει νέους μένει να εξερευνήσει, όπου δεν βρίσκει φεύγει γρήγορα ευθεία.</li>
+<li><span class="key-term">Σπειροειδής περίπατος</span> (Curly, διαφάνειες 37 και 38): στην αρχή κάνει συχνές, στενές αριστερές στροφές, που σταδιακά ανοίγουν, ώσπου να καλύψει όλη την περιοχή.</li>
+</ul>
+<p>Ο περίπατος με αδράνεια έχει έναν απλό κανόνα ενημέρωσης. Αν σε ένα βήμα βρεθούν νέοι αισθητήρες, η πιθανότητα της τρέχουσας κατεύθυνσης αυξάνεται κατά <span class="arithmatex">\(\delta\)</span> και καθεμία από τις άλλες τρεις μειώνεται κατά <span class="arithmatex">\(\delta/3\)</span>· αλλιώς το αντίστροφο (διαφάνεια 32). Ας το δούμε με <span class="arithmatex">\(\delta = 0.06\)</span>, ξεκινώντας από ίσες πιθανότητες:</p>
+<div class="trace-label">Ένα βήμα του περιπάτου με αδράνεια, όταν βρέθηκαν νέοι αισθητήρες</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+p_c^{t+1} &amp;= p_c^{t} + \delta = 0.25 + 0.06 = 0.31 &amp;&amp; (\text{τρέχουσα κατεύθυνση}) \\[0.7em]
+p_r^{t+1} &amp;= p_r^{t} - \delta/3 = 0.25 - 0.02 = 0.23 &amp;&amp; (\text{καθεμία από τις άλλες τρεις}) \\[0.7em]
+\text{άθροισμα} &amp;= 0.31 + 3 \cdot 0.23 = 0.31 + 0.69 = 1 &amp;&amp; (\text{παραμένει κατανομή πιθανότητας})
+\end{aligned}
+\]</div>
+</div>
+<p>Το <span class="arithmatex">\(\delta/3\)</span> δεν είναι τυχαίο: ό,τι κερδίζει η μία κατεύθυνση το χάνουν εξίσου οι άλλες τρεις, ώστε οι πιθανότητες να αθροίζουν πάντα 1.</p>
+<p>Για τη σύγκριση των περιπάτων η διάλεξη χρησιμοποιεί τον <strong>χρόνο κάλυψης</strong> (πόσα βήματα χρειάζονται για να επισκεφθεί όλα τα κελιά) και μια νέα μετρική, την <strong>Proximity Variation</strong>: τη μέση τιμή, πάνω σε όλα τα κελιά, της μικρότερης απόστασης στην οποία πλησίασε ο sink (διαφάνειες 40 και 41).</p>
+<h3 id="full-mobility">Όταν κινούνται και οι αισθητήρες<a class="headerlink" href="#full-mobility" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Στο πιο δύσκολο σενάριο κινούνται και ο sink και οι αισθητήρες (Διάλεξη 10, διαφάνειες 43 έως 52). Κάθε αισθητήρας μετρά περιοδικά πόσους γείτονες έχει, και κρατά στη μνήμη <strong>μία</strong> εγγραφή: αριθμό γειτόνων, χρονική στιγμή, θέση. Όταν πλησιάσει τον sink, του στέλνει μαζί με τα δεδομένα και αυτή την εγγραφή, και ο sink κινείται προς την κατεύθυνση της εγγραφής με τη μεγαλύτερη αξία. Η αξία δίνεται από τη <strong>συνάρτηση κατάταξης</strong>:</p>
+<div class="formula">
+<div class="arithmatex">\[R = \frac{d_{\text{local}}^2}{\Delta P \cdot \Delta T}\]</div>
+<p><span class="label">Η αξία μιας εγγραφής (Διάλεξη 10, διαφάνεια 48)</span></p>
+</div>
+<p>όπου <span class="arithmatex">\(d_{\text{local}}\)</span> ο αριθμός των γειτόνων, <span class="arithmatex">\(\Delta P\)</span> η απόσταση από τη θέση όπου μετρήθηκε ως την τρέχουσα θέση του αισθητήρα, και <span class="arithmatex">\(\Delta T\)</span> ο χρόνος που πέρασε από τη μέτρηση. Μια νέα εγγραφή αντικαθιστά την παλιά μόνο αν έχει μεγαλύτερη αξία. Η λογική: αξίζει να πάει ο sink εκεί όπου υπάρχουν <strong>πολλοί</strong> κόμβοι (το <span class="arithmatex">\(d^2\)</span> στον αριθμητή), με πληροφορία <strong>πρόσφατη</strong> και από <strong>κοντινή</strong> θέση (τα <span class="arithmatex">\(\Delta T\)</span> και <span class="arithmatex">\(\Delta P\)</span> στον παρονομαστή). Ένα παράδειγμα με αριθμούς που διαλέξαμε εμείς:</p>
+<div class="trace-label">Ποια από δύο εγγραφές κρατά ο αισθητήρας</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+R_A &amp;= \frac{6^2}{10 \cdot 5} = \frac{36}{50} = 0.72 &amp;&amp; (6 \text{ γείτονες, πριν από 10 m και 5 s}) \\[0.7em]
+R_B &amp;= \frac{4^2}{2 \cdot 2} = \frac{16}{4} = 4 &amp;&amp; (4 \text{ γείτονες, πριν από 2 m και 2 s})
+\end{aligned}
+\]</div>
+</div>
+<p>Κρατιέται η εγγραφή B, παρότι αναφέρει λιγότερους γείτονες: είναι πολύ πιο πρόσφατη και από πολύ πιο κοντινό σημείο, άρα πιο αξιόπιστη για το πού βρίσκεται <strong>τώρα</strong> η συγκέντρωση των κόμβων.</p>
+<p>Αποτελέσματα (διαφάνεια 52): η καθυστέρηση βελτιώνεται ως και <strong>8 φορές</strong>, το ποσοστό επιτυχίας ανεβαίνει από 93% σε 98%, με κόστος περίπου <strong>10%</strong> περισσότερη ενέργεια.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Δεν εξετάστηκε. Η πιο πιθανή μορφή θα ήταν «πλεονεκτήματα και προκλήσεις του κινητού sink»: ο πίνακας της ενότητας, με τον συμβιβασμό ενέργειας και καθυστέρησης ως συμπέρασμα. Η κινητικότητα εμφανίζεται ήδη και σε δύο απαντήσεις του 2022: ο κινητός sink μειώνει την υποκλοπή (<a href="../11-security-smart-cities/#security">ενότητα 11.2</a>), και στα δίκτυα αισθητήρων η κινητικότητα προστίθεται σκόπιμα, σε αντίθεση με τα κινητά αυτο-οργανούμενα δίκτυα (<a href="../11-security-smart-cities/#wsn-manet">ενότητα 11.3</a>).</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1751 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/chapters/10-cloud-edge-industry/">
+      
+      
+        <link rel="prev" href="../09-access-protocols/">
+      
+      
+        <link rel="next" href="../11-security-smart-cities/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>10. Νέφος & Βιομηχανία 4.0 - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#40" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              10. Νέφος & Βιομηχανία 4.0
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-leach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-energy-balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-lpwan-lorawan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Πού γίνεται η επεξεργασία
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Τρεις διαφορές και μία ομοιότητα
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2 Τρεις διαφορές και μία ομοιότητα">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latency-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πόσο γρήγορα είναι το «γρήγορα»
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#industry-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Βιομηχανία 4.0 και το Βιομηχανικό Διαδίκτυο των Πραγμάτων
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#four-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Τα τέσσερα χαρακτηριστικά
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standardisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 Προτυποποίηση
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.5 Προτυποποίηση">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τι είναι ένα πρότυπο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί τη χρειαζόμαστε
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ποιος φτιάχνει τα πρότυπα
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πώς γίνεται: η διαδικασία βήμα προς βήμα
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πρότυπα του Διαδικτύου των Πραγμάτων
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-rpl-app-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practice/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Πού γίνεται η επεξεργασία
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Τρεις διαφορές και μία ομοιότητα
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2 Τρεις διαφορές και μία ομοιότητα">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latency-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πόσο γρήγορα είναι το «γρήγορα»
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#industry-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Βιομηχανία 4.0 και το Βιομηχανικό Διαδίκτυο των Πραγμάτων
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#four-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Τα τέσσερα χαρακτηριστικά
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standardisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 Προτυποποίηση
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.5 Προτυποποίηση">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τι είναι ένα πρότυπο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί τη χρειαζόμαστε
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ποιος φτιάχνει τα πρότυπα
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πώς γίνεται: η διαδικασία βήμα προς βήμα
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πρότυπα του Διαδικτύου των Πραγμάτων
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span class="chapter-num">Κεφάλαιο 10</span></p>
+<h1 id="40">Νέφος, Άκρο και Βιομηχανία 4.0<a class="headerlink" href="#40" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p><em>Καλύπτει: την υπολογιστική νέφους και άκρου και τις διαφορές τους, τα τέσσερα χαρακτηριστικά της Βιομηχανίας 4.0, και την προτυποποίηση: τι είναι, γιατί χρειάζεται, πώς γίνεται, και ποια πρότυπα ανήκουν στον κόσμο του Internet of Things (<dfn class="abbr-def" id="abbr-iot" title="Internet of Things">IoT</dfn>). Πηγές: Διαλέξεις 6a, 7a, 7b, 8b, επιπλέον σημειώσεις, θέμα εξετάσεων 2025.</em></p>
+<p>Το <a href="../../exams/2025/#t2b">Θέμα 2 του 2025</a> έβαλε τρία θεωρητικά ερωτήματα που ανήκουν όλα εδώ: τις διαφορές νέφους και άκρου, τα χαρακτηριστικά της Βιομηχανίας 4.0, και την προτυποποίηση. Το κεφάλαιο κλείνει επίσης δύο εκκρεμότητες του <a href="../08-iot-system-design/">Κεφαλαίου 8</a>: εκεί το σύστημα κυκλοφορίας έβαλε τις <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> Services στο άκρο «επί της αρχής», και η τέταρτη πρόκληση, η διαλειτουργικότητα, έδειχνε προς τα πρότυπα. Εδώ δίνουμε και στα δύο τη συστηματική τους βάση.</p>
+<h2 id="cloud-edge">10.1 Πού γίνεται η επεξεργασία<a class="headerlink" href="#cloud-edge" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Ένα σύστημα <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> παράγει τα δεδομένα του στο άκρο, στους αισθητήρες. Κάπου πρέπει αυτά να αποθηκευτούν, να αναλυθούν και να γίνουν αποφάσεις. Στο «πού» υπάρχουν δύο απαντήσεις (επιπλέον σημειώσεις, σελίδα 1):</p>
+<ul>
+<li>Η <span class="key-term">υπολογιστική άκρου</span> (Edge Computing) επεξεργάζεται τα δεδομένα <strong>τοπικά</strong>, πάνω στον ίδιο τον αισθητήρα ή στην πύλη δίπλα του, για να μειώσει την καθυστέρηση.</li>
+<li>Η <span class="key-term">υπολογιστική νέφους</span> (Cloud Computing) στέλνει τα δεδομένα σε <strong>απομακρυσμένους διακομιστές</strong>, όπου αποθηκεύονται και αναλύονται σε μεγάλη κλίμακα.</li>
+</ul>
+<p>Είναι η ίδια διάκριση με τις δύο πρώτες πλευρές της αρχιτεκτονικής που είδαμε στην <a href="../08-iot-system-design/#three-sides">ενότητα 8.1</a> (Διάλεξη 7b, διαφάνεια 3): το Edge-side, όπου ζουν οι συσκευές και οι πύλες, και το Cloud-side, όπου τα δεδομένα συλλέγονται, αποθηκεύονται και αναλύονται.</p>
+<figure class="steps" id="fig-10-1">
+<svg viewBox="0 0 360 172" xmlns="http://www.w3.org/2000/svg" role="img">
+  <!-- sensors -->
+  <circle cx="24" cy="46" r="7" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/>
+  <circle cx="24" cy="76" r="7" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/>
+  <circle cx="24" cy="106" r="7" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.4"/>
+  <!-- wireless links to the edge node -->
+  <line x1="32" y1="48" x2="94" y2="72" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="32" y1="76" x2="94" y2="76" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="32" y1="104" x2="94" y2="80" stroke="var(--fig-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <!-- edge node, next to the data -->
+  <rect x="96" y="59" width="32" height="34" rx="3" fill="var(--fig-ok)" stroke="var(--fig-ok-deep)" stroke-width="1.6"/>
+  <!-- the long way to the cloud -->
+  <line x1="128" y1="76" x2="282" y2="76" stroke="var(--fig-line)" stroke-width="2"/>
+  <polygon points="286,76 279,73 279,79" fill="var(--fig-line)"/>
+  <!-- cloud data centre, far away -->
+  <rect x="288" y="52" width="56" height="48" rx="4" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.6"/>
+  <!-- actuator next to the sensors -->
+  <rect x="16" y="139" width="16" height="16" rx="2" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.4"/>
+  <!-- decision returned by the edge: short -->
+  <path d="M 112 93 L 112 143 L 40 143" fill="none" stroke="var(--fig-ok-deep)" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <polygon points="36,143 43,140 43,146" fill="var(--fig-ok-deep)"/>
+  <!-- decision returned by the cloud: long -->
+  <path d="M 316 100 L 316 153 L 40 153" fill="none" stroke="var(--fig-accent-deep)" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <polygon points="36,153 43,150 43,156" fill="var(--fig-accent-deep)"/>
+</svg>
+<div class="legend">
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-node)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>αισθητήρας</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="4" y="3" width="10" height="8" rx="1.5" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.2"/></svg>ενεργοποιητής</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="2" width="12" height="10" rx="1.5" fill="var(--fig-ok)" stroke="var(--fig-ok-deep)" stroke-width="1.2"/></svg>κόμβος άκρου (πύλη ή σταθμός βάσης)</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="2" width="12" height="10" rx="1.5" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.2"/></svg>κέντρο δεδομένων στο νέφος</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-ok-deep)" stroke-width="1.6" stroke-dasharray="5 3"/></svg>απόφαση από το άκρο: σύντομη διαδρομή</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><line x1="1" y1="7" x2="17" y2="7" stroke="var(--fig-accent-deep)" stroke-width="1.6" stroke-dasharray="5 3"/></svg>απόφαση από το νέφος: μακριά διαδρομή</span>
+</div>
+<figcaption>Σχήμα 10.1 · Το ίδιο δεδομένο, δύο τόποι επεξεργασίας. Όταν αποφασίζει ο κόμβος του άκρου, η απάντηση γυρίζει στον ενεργοποιητή από πολύ κοντά. Όταν αποφασίζει το νέφος, τα δεδομένα ταξιδεύουν ως το κέντρο δεδομένων και η απόφαση κάνει όλη τη διαδρομή πίσω.</figcaption>
+</figure>
+
+<p>Τα δύο δεν είναι αντίπαλοι. Η Διάλεξη 7b (διαφάνεια 24) περιγράφει ένα ολοκληρωμένο σύστημα <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> που <strong>απλώνεται και στα δύο</strong>: από τη μία πλευρά το «Edge/Fog Computing», γραμμένο μαζί σαν ένας όρος, και από την άλλη το «Cloud Computing».</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip is-hit" href="../../#exam-papers"><strong>15/2/2025</strong> βάση του Θέματος 2β</a><a class="exam-chip is-hit" href="../../#exam-papers"><strong>2/2022</strong> βάση του Θέματος 3, ερώτημα 3</a></div></p>
+<p>Οι δύο ορισμοί είναι η πρώτη πρόταση κάθε απάντησης για νέφος και άκρο. Αρκεί μία πρόταση για τον καθένα, με τη λέξη-κλειδί του: <strong>τοπικά</strong> για το άκρο, <strong>απομακρυσμένα και σε μεγάλη κλίμακα</strong> για το νέφος.</p>
+</div>
+<h2 id="differences">10.2 Τρεις διαφορές και μία ομοιότητα<a class="headerlink" href="#differences" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Το <a href="../../exams/2025/#t2b">Θέμα 2β του 2025</a> ζητά ακριβώς τρεις διαφορές και μία ομοιότητα. Καμία διαφάνεια δεν δίνει έτοιμη αυτή τη σύγκριση, οπότε οι τρεις διαφορές εδώ είναι εκείνες που στηρίζονται απευθείας σε όσα λέει το μάθημα:</p>
+<ol>
+<li><span class="key-term">Θέση της επεξεργασίας</span>. Το άκρο δουλεύει δίπλα στα δεδομένα: στον αισθητήρα, στην πύλη, στον σταθμό βάσης. Το νέφος δουλεύει σε κέντρα δεδομένων μακριά από αυτά (επιπλέον σημειώσεις, σελίδα 1· Διάλεξη 7b, διαφάνεια 3).</li>
+<li><span class="key-term">Καθυστέρηση</span>. Επειδή τα δεδομένα δεν ταξιδεύουν μακριά, το άκρο απαντά γρήγορα. Το νέφος προσθέτει τη διαδρομή ως τον διακομιστή και πίσω. Γι' αυτό οι αποφάσεις πραγματικού χρόνου μένουν στο άκρο (επιπλέον σημειώσεις, σελίδα 1).</li>
+<li><span class="key-term">Χωρητικότητα και κλίμακα</span>. Οι συσκευές στο άκρο είναι εξαιρετικά περιορισμένες σε υπολογιστική ισχύ και ενέργεια (Διάλεξη 6a). Το νέφος έχει πολύ περισσότερο χώρο και ισχύ, και εκεί γίνεται η ανάλυση μεγάλης κλίμακας και η φύλαξη των ιστορικών δεδομένων (επιπλέον σημειώσεις, σελίδα 1· Διάλεξη 7b, διαφάνεια 24).</li>
+</ol>
+<p><strong>Η ομοιότητα.</strong> Είναι <span class="key-term">μέρη του ίδιου συστήματος</span>: και τα δύο επεξεργάζονται και αποθηκεύουν τα δεδομένα του <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>, και συνεργάζονται αντί να ανταγωνίζονται. Ένα ολοκληρωμένο σύστημα απλώνεται και στο άκρο και στο νέφος (Διάλεξη 7b, διαφάνεια 24).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Άκρο</th>
+<th style="text-align: left;">Νέφος</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Πού</strong></td>
+<td style="text-align: left;">Δίπλα στα δεδομένα (αισθητήρας, πύλη, σταθμός βάσης)</td>
+<td style="text-align: left;">Σε απομακρυσμένα κέντρα δεδομένων</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Καθυστέρηση</strong></td>
+<td style="text-align: left;">Μικρή</td>
+<td style="text-align: left;">Μεγαλύτερη, λόγω της διαδρομής</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Χωρητικότητα</strong></td>
+<td style="text-align: left;">Περιορισμένη</td>
+<td style="text-align: left;">Μεγάλη, για ανάλυση και φύλαξη</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Τυπική χρήση</strong></td>
+<td style="text-align: left;">Άμεσες αποφάσεις</td>
+<td style="text-align: left;">Ιστορικά δεδομένα, ανάλυση μεγάλης κλίμακας</td>
+</tr>
+</tbody>
+</table>
+<h3 id="latency-budget">Πόσο γρήγορα είναι το «γρήγορα»<a class="headerlink" href="#latency-budget" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Η διαφορά στην καθυστέρηση έχει ένα συγκεκριμένο νούμερο στο μάθημα. Για το Tactile Internet, τον απομακρυσμένο έλεγχο συσκευών σε πραγματικό χρόνο, ο στόχος είναι <strong>1 millisecond</strong> από άκρη σε άκρη, και η Διάλεξη 7a τον μοιράζει σε τρία κομμάτια: 0.3 ms στο τερματικό, 0.2 ms στον αέρα, και 0.5 ms στον σταθμό βάσης <strong>μαζί με τον υπολογισμό</strong>. Ας ελέγξουμε ότι αθροίζουν στο στόχο:</p>
+<div class="trace-label">Ο προϋπολογισμός καθυστέρησης του Tactile Internet</div>
+<div class="trace">
+<div class="arithmatex">\[
+\begin{aligned}
+t &amp;= t_{\text{τερματικό}} + t_{\text{αέρας}} + t_{\text{σταθμός και υπολογισμός}} &amp;&amp; \\[0.7em]
+  &amp;= 0.3 + 0.2 + 0.5 &amp;&amp; (\text{Διάλεξη 7a}) \\[0.7em]
+  &amp;= 0.5 + 0.5 &amp;&amp; (0.3 + 0.2 = 0.5) \\[0.7em]
+  &amp;= 1.0\ \text{ms} &amp;&amp; (0.5 + 0.5 = 1.0)
+\end{aligned}
+\]</div>
+</div>
+<p>Το σημαντικό δεν είναι το άθροισμα, αλλά <strong>πού</strong> μπαίνει ο υπολογισμός: στο ίδιο μισό millisecond με τον σταθμό βάσης. Ο υπολογισμός δηλαδή γίνεται <strong>στον σταθμό βάσης</strong>, στο άκρο του δικτύου, και όχι σε ένα μακρινό κέντρο δεδομένων. Αυτή είναι η ιδέα του Multi-access Edge Computing (<dfn class="abbr-def" id="abbr-mec" title="Multi-access Edge Computing">MEC</dfn>), που η Διάλεξη 6a τοποθετεί μέσα στην αρχιτεκτονική του 5G.</p>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: γιατί ένα μακρινό νέφος δεν χωράει στο μισό millisecond</p>
+<p>Το φως μέσα σε οπτική ίνα διανύει περίπου 200 000 χιλιόμετρα το δευτερόλεπτο, δηλαδή περίπου 200 χιλιόμετρα σε ένα millisecond. Στο μισό millisecond που αφήνει η διαφάνεια για σταθμό και υπολογισμό, ακόμη κι αν ο υπολογισμός δεν έπαιρνε καθόλου χρόνο, το σήμα προλαβαίνει περίπου 100 χιλιόμετρα διαδρομής. Αφού πρέπει να πάει και να γυρίσει, ο διακομιστής μπορεί να απέχει το πολύ περίπου 50 χιλιόμετρα. Ένα κέντρο δεδομένων σε άλλη πόλη απλώς δεν χωράει στον προϋπολογισμό. Το επιχείρημα αυτό δεν το δίνει το μάθημα· επαληθεύτηκε από εξωτερική βιβλιογραφία.</p>
+</div>
+<div class="admonition extra">
+<p class="admonition-title">Εκτός ύλης: άλλες διαφορές που συναντά κανείς</p>
+<p>Η βιβλιογραφία αναφέρει συχνά και άλλες διαφορές, που το μάθημα δεν διατυπώνει: το <strong>εύρος ζώνης</strong> (το άκρο στέλνει προς τα πάνω μόνο ό,τι χρειάζεται, αντί για όλα τα ακατέργαστα δεδομένα), την <strong>ιδιωτικότητα</strong> (τα δεδομένα μένουν τοπικά), και την <strong>εξάρτηση από τη σύνδεση</strong> (το άκρο συνεχίζει να δουλεύει αν κοπεί η σύνδεση με το νέφος). Είναι αποδεκτές σε μια απάντηση αν τις τεκμηριώσετε, αλλά οι τρεις παραπάνω είναι αυτές που στηρίζει η ύλη.</p>
+</div>
+<p><strong>Πίσω στο σύστημα κυκλοφορίας.</strong> Αυτό εξηγεί την απάντηση του <a href="../../exams/2022/#t3">Θέματος 3 του 2022</a> στο Κεφάλαιο 8: ο έλεγχος των φαναριών θέλει μικρή καθυστέρηση, άρα άκρο· η φύλαξη και η ανάλυση των δεδομένων μιας ολόκληρης πόλης θέλουν χωρητικότητα, άρα νέφος. Η συνήθης λύση είναι <strong>υβριδική</strong>, και η ομοιότητα, ότι είναι μέρη του ίδιου συστήματος, είναι ακριβώς αυτό που την κάνει δυνατή.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip is-hit" href="../../#exam-papers"><strong>15/2/2025</strong> Θέμα 2β, 1,5 μονάδα</a><a class="exam-chip is-hit" href="../../#exam-papers"><strong>2/2022</strong> Θέμα 3, ερώτημα 3, 1 μονάδα</a></div></p>
+<p>Το 2025 ζητήθηκαν ρητά τρεις διαφορές και μία ομοιότητα, σε περίπου δέκα γραμμές. Δώστε σε κάθε διαφορά ένα όνομα και μία πρόταση αιτιολόγησης, και κλείστε με την ομοιότητα. Επειδή το μάθημα δεν δίνει κλειστή λίστα, το ζητούμενο είναι η τεκμηρίωση: το νούμερο του 1 millisecond είναι ένα συγκεκριμένο επιχείρημα για την καθυστέρηση που ξεχωρίζει μια απάντηση. Το 2022 η ίδια λογική εφαρμόστηκε σε σενάριο: πού να τρέχουν τα μεσαία επίπεδα ενός συστήματος κυκλοφορίας.</p>
+</div>
+<h2 id="industry-4">10.3 Βιομηχανία 4.0 και το Βιομηχανικό Διαδίκτυο των Πραγμάτων<a class="headerlink" href="#industry-4" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Η <strong>Βιομηχανία 4.0</strong> είναι η τέταρτη βιομηχανική επανάσταση: το έξυπνο εργοστάσιο, με αυτόνομα συστήματα, <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> και μηχανική μάθηση (Διάλεξη 7a). Το τεχνολογικό της θεμέλιο είναι το Industrial Internet of Things (<dfn class="abbr-def" id="abbr-iiot" title="Industrial Internet of Things">IIoT</dfn>), δηλαδή το <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> εφαρμοσμένο σε βιομηχανικές χρήσεις όπως η παραγωγή και η εφοδιαστική αλυσίδα, σε κλάδους όπως το πετρέλαιο και το φυσικό αέριο, οι μεταφορές, τα ορυχεία και οι αερομεταφορές. Η Διάλεξη 7b το ονομάζει ρητά «βασικό παράγοντα» (key enabler) της Βιομηχανίας 4.0, με τυπικές εφαρμογές την προγνωστική συντήρηση και τις γραμμές παραγωγής που προσαρμόζονται σε εξατομικευμένα προϊόντα (Διάλεξη 7b, διαφάνειες 14 και 15).</p>
+<p>Η Διάλεξη 7b (διαφάνεια 17) απαριθμεί τις τεχνολογίες που τη στηρίζουν: αυτόνομα ρομπότ, προσομοίωση, ολοκλήρωση συστημάτων, Διαδίκτυο των Πραγμάτων, κυβερνοασφάλεια, <strong>υπολογιστική νέφους</strong>, προσθετική κατασκευή (additive manufacturing), επαυξημένη πραγματικότητα, και μεγάλα δεδομένα (Big Data). Το νέφος της <a href="#cloud-edge">ενότητας 10.1</a> είναι λοιπόν ένα από τα θεμέλιά της.</p>
+<p><strong>Τι ζητά η βιομηχανία από το δίκτυο.</strong> Οι βιομηχανικές επικοινωνίες θέλουν <strong>ντετερμινισμό</strong>: πολύ υψηλή αξιοπιστία, με σχεδόν μηδενική απώλεια πακέτων, και αυστηρές προθεσμίες πραγματικού χρόνου (Διάλεξη 7b, διαφάνεια 15). Τα ενσύρματα βιομηχανικά δίκτυα τα δίνουν, αλλά είναι ακριβά και δύσκαμπτα. Τα ασύρματα δίκτυα αισθητήρων είναι φθηνά και ευέλικτα, αλλά λειτουργούν «όσο καλύτερα μπορούν» (best effort), χωρίς εγγυημένη καθυστέρηση. Γι' αυτό η Διάλεξη 7b (διαφάνεια 32) κρίνει τα πρωτόκολλα πρόσβασης με διεκδίκηση, όπως το Carrier Sense Multiple Access (<dfn class="abbr-def" id="abbr-csma" title="Carrier Sense Multiple Access">CSMA</dfn>), <strong>ακατάλληλα</strong> για το <a class="abbr-link" href="#abbr-iiot" title="Industrial Internet of Things">IIoT</a>, και προτιμά τα πρωτόκολλα με προγραμματισμό, που δίνουν ντετερμινιστική συμπεριφορά. Είναι ακριβώς το τρίτο κριτήριο σύγκρισης του <a href="../09-access-protocols/#criteria">Κεφαλαίου 9</a>, η καθυστέρηση και η αξιοπιστία, σε πράξη.</p>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip" href="../../#exam-papers"><strong>15/2/2025</strong> υπόβαθρο του Θέματος 2γ</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Δεν ζητήθηκε αυτοτελώς. Μία πρόταση πλαισίου, ότι η Βιομηχανία 4.0 είναι το έξυπνο εργοστάσιο και ότι το <a class="abbr-link" href="#abbr-iiot" title="Industrial Internet of Things">IIoT</a> είναι ο βασικός της παράγοντας, είναι καλή αρχή για το Θέμα 2γ πριν από τα τέσσερα χαρακτηριστικά.</p>
+</div>
+<h2 id="four-characteristics">10.4 Τα τέσσερα χαρακτηριστικά<a class="headerlink" href="#four-characteristics" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Η Διάλεξη 7b (διαφάνεια 20) περιγράφει τα χαρακτηριστικά της Βιομηχανίας 4.0 μέσα από τα <strong>έξυπνα προϊόντα</strong> (Smart Products). Κάθε χαρακτηριστικό αντιστοιχεί σε <strong>έναν εξοπλισμό</strong> που φέρει το προϊόν, και σε <strong>μία δυνατότητα</strong> που του δίνει αυτός ο εξοπλισμός:</p>
+<ul>
+<li><span class="key-term">Επίγνωση</span> (Aware). Το προϊόν έχει <strong>αισθητήρες</strong>, που του δίνουν πρόσβαση σε πληροφορίες για την κατάστασή του και για το περιβάλλον του.</li>
+<li><span class="key-term">Συνδεδεμένο</span> (Connected). Το προϊόν έχει συσκευή επικοινωνίας Machine-to-Machine (<dfn class="abbr-def" id="abbr-m2m" title="Machine-to-Machine">M2M</dfn>), που του επιτρέπει να αλληλεπιδρά και να ανταλλάσσει δεδομένα με άλλα κυβερνοφυσικά συστήματα (cyber-physical systems).</li>
+<li><span class="key-term">Νοημοσύνη</span> (Intelligent). Το προϊόν έχει <strong>υπολογιστική ισχύ</strong>, που του επιτρέπει να παίρνει αυτόνομες αποφάσεις και να μαθαίνει μόνο του, με βάση καθορισμένους αλγόριθμους.</li>
+<li><span class="key-term">Ανταπόκριση</span> (Responsive). Το προϊόν έχει <strong>τεχνολογία ελέγχου</strong>, που του επιτρέπει να προσαρμόζεται αυτόνομα σε εσωτερικές ή εξωτερικές εντολές.</li>
+</ul>
+<p>Ένα βοήθημα για τη μνήμη: με τη σειρά που τα γράφει η διαφάνεια, τα τέσσερα χαρακτηριστικά σχηματίζουν έναν <strong>βρόχο</strong>. Το προϊόν αντιλαμβάνεται (αισθητήρες), επικοινωνεί (συσκευή επικοινωνίας), αποφασίζει (υπολογιστική ισχύς), και δρα (τεχνολογία ελέγχου), και η δράση του αλλάζει ό,τι θα αντιληφθεί στη συνέχεια. Είναι ο ίδιος βρόχος με το σύστημα άρδευσης της <a href="../08-iot-system-design/#irrigation">ενότητας 8.4</a>, μόνο που εδώ ολόκληρος χωράει μέσα σε ένα προϊόν. Τη διάταξη σε βρόχο δεν την κάνει η διαφάνεια· την προτείνουμε μόνο για να θυμάστε τη σειρά.</p>
+<figure class="steps" id="fig-10-2">
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" role="img">
+  <!-- spokes: all four sit on the one product -->
+  <line x1="70" y1="45" x2="130" y2="85" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="230" y1="45" x2="170" y2="85" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="230" y1="155" x2="170" y2="115" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="70" y1="155" x2="130" y2="115" stroke="var(--fig-node-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+  <!-- the smart product -->
+  <rect x="125" y="80" width="50" height="40" rx="5" fill="var(--fig-surface-soft)" stroke="var(--fig-line)" stroke-width="1.6"/>
+  <!-- the loop, clockwise -->
+  <line x1="84" y1="45" x2="207" y2="45" stroke="var(--fig-line)" stroke-width="1.8"/>
+  <polygon points="214,45 207,42 207,48" fill="var(--fig-line)"/>
+  <line x1="230" y1="59" x2="230" y2="132" stroke="var(--fig-line)" stroke-width="1.8"/>
+  <polygon points="230,139 227,132 233,132" fill="var(--fig-line)"/>
+  <line x1="216" y1="155" x2="93" y2="155" stroke="var(--fig-line)" stroke-width="1.8"/>
+  <polygon points="86,155 93,152 93,158" fill="var(--fig-line)"/>
+  <line x1="70" y1="141" x2="70" y2="68" stroke="var(--fig-line)" stroke-width="1.8"/>
+  <polygon points="70,61 67,68 73,68" fill="var(--fig-line)"/>
+  <!-- aware: a sensor with waves -->
+  <circle cx="70" cy="45" r="11" fill="var(--fig-warn)" stroke="var(--fig-warn-deep)" stroke-width="1.6"/>
+  <path d="M 52 33 Q 46 45 52 57" fill="none" stroke="var(--fig-warn-deep)" stroke-width="1.4"/>
+  <!-- connected: a link node -->
+  <polygon points="230,32 243,45 230,58 217,45" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.6"/>
+  <!-- intelligent: a processor -->
+  <rect x="218" y="143" width="24" height="24" rx="2" fill="var(--fig-ok)" stroke="var(--fig-ok-deep)" stroke-width="1.6"/>
+  <!-- responsive: an actuator -->
+  <polygon points="70,142 82,166 58,166" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.6"/>
+</svg>
+<div class="legend">
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="3" y="2" width="12" height="10" rx="2" fill="var(--fig-surface-soft)" stroke="var(--fig-line)" stroke-width="1.2"/></svg>το έξυπνο προϊόν</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><circle cx="9" cy="7" r="5" fill="var(--fig-warn)" stroke="var(--fig-warn-deep)" stroke-width="1.2"/></svg>Επίγνωση: αισθητήρες</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><polygon points="9,1 15,7 9,13 3,7" fill="var(--fig-accent)" stroke="var(--fig-accent-deep)" stroke-width="1.2"/></svg>Συνδεδεμένο: επικοινωνία μηχανής με μηχανή</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><rect x="4" y="2" width="10" height="10" rx="1" fill="var(--fig-ok)" stroke="var(--fig-ok-deep)" stroke-width="1.2"/></svg>Νοημοσύνη: υπολογιστική ισχύς</span>
+  <span class="legend__item"><svg class="legend__swatch" viewBox="0 0 18 14" aria-hidden="true"><polygon points="9,1 15,13 3,13" fill="var(--fig-event)" stroke="var(--fig-event-deep)" stroke-width="1.2"/></svg>Ανταπόκριση: τεχνολογία ελέγχου</span>
+</div>
+<figcaption>Σχήμα 10.2 · Τα τέσσερα χαρακτηριστικά ως βρόχος γύρω από ένα έξυπνο προϊόν: αντιλαμβάνεται, επικοινωνεί, αποφασίζει, δρα, και ξαναρχίζει. Η διαφάνεια απαριθμεί τα χαρακτηριστικά με αυτή τη σειρά· ο βρόχος είναι βοήθημα μνήμης (Διάλεξη 7b, διαφάνεια 20).</figcaption>
+</figure>
+
+<p><strong>Ένα παράδειγμα από τη διάλεξη: η προγνωστική συντήρηση.</strong> Η Διάλεξη 7b (διαφάνεια 22) δείχνει έναν αισθητήρα δονήσεων φτιαγμένο για το <a class="abbr-link" href="#abbr-iiot" title="Industrial Internet of Things">IIoT</a>, που τοποθετείται πάνω στο μοτέρ μιας μηχανής. Τρία από τα τέσσερα χαρακτηριστικά φαίνονται καθαρά:</p>
+<ul>
+<li><strong>Επίγνωση:</strong> μετρά πώς δονείται το μοτέρ.</li>
+<li><strong>Συνδεδεμένο:</strong> στέλνει ειδοποίηση όταν κάτι πάει στραβά.</li>
+<li><strong>Νοημοσύνη:</strong> εντοπίζει ανωμαλίες και, με μηχανική μάθηση, προτείνει πότε χρειάζεται συντήρηση.</li>
+</ul>
+<p>Η διαφάνεια σταματά στην πρόταση συντήρησης. Την <strong>ανταπόκριση</strong>, την προσαρμογή του ίδιου του προϊόντος στην εντολή, ο αισθητήρας αυτός δεν τη δείχνει. (Ο ίδιος αισθητήρας, παρεμπιπτόντως, τροφοδοτείται από την ενέργεια των ίδιων των δονήσεων ή της θερμότητας.)</p>
+<p>Πόσο αξίζει αυτή η νοημοσύνη το δείχνει η επόμενη διαφάνεια, που κατατάσσει τις στρατηγικές συντήρησης ανάλογα με το πόσο νωρίς προειδοποιούν (Διάλεξη 7b, διαφάνεια 23):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Στρατηγική</th>
+<th style="text-align: left;">Βασίζεται σε</th>
+<th style="text-align: left;">Πόσο νωρίς προειδοποιεί</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Αντιδραστική (reactive)</td>
+<td style="text-align: left;">Την ίδια τη βλάβη</td>
+<td style="text-align: left;">Καθόλου: δρα μετά τη βλάβη</td>
+</tr>
+<tr>
+<td style="text-align: left;">Προληπτική (preventive)</td>
+<td style="text-align: left;">Χρόνο ή κύκλους λειτουργίας</td>
+<td style="text-align: left;">Ημέρες</td>
+</tr>
+<tr>
+<td style="text-align: left;">Παρακολούθηση κατάστασης (condition-monitoring)</td>
+<td style="text-align: left;">Την τυπική λειτουργία του εξοπλισμού</td>
+<td style="text-align: left;">Εβδομάδες</td>
+</tr>
+<tr>
+<td style="text-align: left;">Προγνωστική (predictive)</td>
+<td style="text-align: left;">Τη χρήση και τη φθορά</td>
+<td style="text-align: left;">Μήνες</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip is-hit" href="../../#exam-papers"><strong>15/2/2025</strong> Θέμα 2γ, 1,5 μονάδα</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Το 2025 ζήτησε και τα τέσσερα με τα ονόματά τους, Awareness, Connected, Intelligence και Responsiveness, σε περίπου δέκα γραμμές. Για το καθένα αρκούν δύο πράγματα: <strong>ο εξοπλισμός</strong> (αισθητήρες, συσκευή επικοινωνίας, υπολογιστική ισχύς, τεχνολογία ελέγχου) και <strong>τι δυνατότητα δίνει</strong>. Ο βρόχος βοηθά να μη χαθεί κανένα, και το παράδειγμα του αισθητήρα δονήσεων δείχνει ότι καταλαβαίνετε τι σημαίνουν στην πράξη.</p>
+</div>
+<h2 id="standardisation">10.5 Προτυποποίηση<a class="headerlink" href="#standardisation" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="_1">Τι είναι ένα πρότυπο<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Ο πιο γενικός ορισμός είναι σχεδόν καθημερινός: ένα πρότυπο είναι <strong>«ένας ευρέως αποδεκτός τρόπος να κάνουμε κάτι»</strong>, όπου το «κάτι» μπορεί να είναι ο σχεδιασμός ενός προϊόντος, μια διαδικασία ή μια υπηρεσία (Διάλεξη 8b, διαφάνεια 49). Πιο τυπικά, είναι ένα έγγραφο που καταρτίζεται <strong>με συναίνεση</strong> και εγκρίνεται <strong>από αναγνωρισμένο φορέα</strong>, και δίνει κανόνες, οδηγίες ή χαρακτηριστικά για κοινή και επαναλαμβανόμενη χρήση (Διάλεξη 8b, διαφάνεια 50). Η <span class="key-term">προτυποποίηση</span> είναι η διαδικασία που παράγει τέτοια πρότυπα.</p>
+<p>Δύο παρανοήσεις που ξεκαθαρίζει η Διάλεξη 8b (διαφάνεια 54):</p>
+<ul>
+<li>Ένα πρότυπο <strong>δεν είναι νόμος</strong>. Η συμμόρφωση είναι εθελοντική, ενώ ένας κανονισμός είναι υποχρεωτικός.</li>
+<li>Ένα πρότυπο <strong>δεν είναι πλήρες εγχειρίδιο σχεδίασης</strong>. Ορίζει το ελάχιστο σύνολο απαιτήσεων ώστε κάτι να πετύχει συγκεκριμένους στόχους.</li>
+</ul>
+<h3 id="_2">Γιατί τη χρειαζόμαστε<a class="headerlink" href="#_2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Η Διάλεξη 8b (διαφάνεια 51) δίνει έξι λόγους:</p>
+<ul>
+<li><span class="key-term">Διαλειτουργικότητα</span>. Το <strong>σημαντικότερο</strong> όφελος: προϊόντα διαφορετικών κατασκευαστών συνεννοούνται και δουλεύουν μαζί, όπως κάθε συσκευή συνδέεται σε οποιοδήποτε δίκτυο Wi-Fi. Είναι ακριβώς η τέταρτη πρόκληση της <a href="../08-iot-system-design/#challenges">ενότητας 8.5</a>.</li>
+<li><span class="key-term">Αποδοτικότητα της αγοράς</span>. Λιγότερος κατακερματισμός, μεγαλύτερες και πιο προβλέψιμες αγορές, άρα περισσότερες επιλογές και χαμηλότερες τιμές.</li>
+<li><span class="key-term">Καταλύτης καινοτομίας</span>. Μια σταθερή κοινή βάση, πάνω στην οποία οι εταιρείες καινοτομούν σε ό,τι προσθέτει αξία.</li>
+<li><span class="key-term">Ποιότητα και αξιοπιστία</span>. Τα πρότυπα περιέχουν μετρικές απόδοσης, διαδικασίες ελέγχου και καλές πρακτικές.</li>
+<li><span class="key-term">Ασφάλεια και υγεία</span>. Πολλά πρότυπα θέτουν απαιτήσεις ασφάλειας και προστατεύουν χρήστες και περιβάλλον.</li>
+<li><span class="key-term">Διευκόλυνση του εμπορίου</span>. Τα διεθνή πρότυπα αίρουν τα τεχνικά εμπόδια στο παγκόσμιο εμπόριο.</li>
+</ul>
+<p>Για το <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> η ανάγκη είναι οξύτερη απ' ό,τι αλλού. Η Διάλεξη 6a σημειώνει ότι το <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> φέρνει νέες στοίβες πρωτοκόλλων, άρα <strong>ζητήματα διαλειτουργικότητας και προτυποποίησης</strong>, και η Διάλεξη 7a βάζει την προτυποποίηση στις ανοιχτές προκλήσεις του 5G και του <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>.</p>
+<h3 id="_3">Ποιος φτιάχνει τα πρότυπα<a class="headerlink" href="#_3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Τα πρότυπα γεννιούνται με δύο τρόπους (Διάλεξη 8b, διαφάνεια 52). Τα <strong>de facto</strong> πρότυπα επικρατούν στην πράξη, επειδή αρκετοί τα υιοθέτησαν. Τα <strong>de jure</strong> πρότυπα τα παράγουν ειδικοί οργανισμοί, οι Standards Development Organizations (<dfn class="abbr-def" id="abbr-sdo" title="Standards Development Organization">SDOs</dfn>), με τυπικές και καλά ορισμένες διαδικασίες που εξασφαλίζουν δίκαιη ανάπτυξη. Οι <a class="abbr-link" href="#abbr-sdo" title="Standards Development Organization">SDOs</a> φέρνουν γύρω από το ίδιο τραπέζι βιομηχανία, πανεπιστήμια, κυβερνήσεις και καταναλωτές, και χωρίζονται σε διεθνείς, περιφερειακούς και εθνικούς (Διάλεξη 8b, διαφάνειες 53 και 56).</p>
+<p>Όποια κι αν είναι η λεπτομέρεια, η διαδικασία ενός σοβαρού <a class="abbr-link" href="#abbr-sdo" title="Standards Development Organization">SDO</a> ακολουθεί κοινές αρχές (Διάλεξη 8b, διαφάνεια 58): <strong>συναίνεση</strong> (καμία ομάδα συμφερόντων δεν κυριαρχεί), <strong>ανοιχτότητα</strong> (μπορεί να συμμετέχει κάθε ενδιαφερόμενος), <strong>τυπική διαδικασία</strong> με δυνατότητα ένστασης, <strong>τεχνική αρτιότητα</strong>, <strong>παγκόσμια εμβέλεια</strong>, και δίκαιη πολιτική για τις πατέντες που χρειάζονται.</p>
+<h3 id="_4">Πώς γίνεται: η διαδικασία βήμα προς βήμα<a class="headerlink" href="#_4" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Η Διάλεξη 8b παρουσιάζει τη διαδικασία του Institute of Electrical and Electronics Engineers (<dfn class="abbr-def" id="abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</dfn>), του μεγαλύτερου τεχνικού επαγγελματικού οργανισμού στον κόσμο, που έχει δώσει πρότυπα από το Wi-Fi ως το Ethernet (Διάλεξη 8b, διαφάνειες 59 έως 66). Σε γενικές γραμμές, έξι στάδια:</p>
+<ol>
+<li><span class="key-term">Ιδέα και χορηγός</span>. Η ιδέα πρέπει να είναι σαφώς ορισμένη και αποδεκτή για προτυποποίηση, και αναπτύσσεται με την καθοδήγηση ενός χορηγού, για παράδειγμα της επιτροπής προτύπων της <a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> Communications Society.</li>
+<li><span class="key-term">Εξουσιοδότηση του έργου</span>. Μια ομάδα εργασίας ετοιμάζει αίτηση έναρξης (Project Authorization Request). Την εξετάζει η επιτροπή νέων προτύπων (New Standards Committee), και το συμβούλιο προτύπων του <a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> (Standards Board) εγκρίνει ή απορρίπτει το έργο.</li>
+<li><span class="key-term">Σύνταξη προσχεδίων</span>. Η ομάδα εργασίας γράφει τα προσχέδια του προτύπου, και το τελικό προσχέδιο περνά υποχρεωτικό συντακτικό έλεγχο ώστε να συμμορφώνεται με τις απαιτήσεις του <a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a>.</li>
+<li><span class="key-term">Ψηφοφορία</span>. Μια ομάδα ψηφοφορίας εξετάζει, σχολιάζει και ψηφίζει το προσχέδιο. Χρειάζεται να απαντήσει <strong>τουλάχιστον το 75%</strong> της ομάδας, και <strong>τουλάχιστον το 75%</strong> των ψήφων να είναι θετικές. Η ομάδα εργασίας οφείλει να προσπαθήσει να λύσει κάθε αρνητική ψήφο.</li>
+<li><span class="key-term">Έγκριση</span>. Η επιτροπή αναθεώρησης (Standards Review Committee) εξετάζει το τελικό προσχέδιο και κάνει εισήγηση, και το συμβούλιο προτύπων το εγκρίνει.</li>
+<li><span class="key-term">Δημοσίευση</span>. Το πρότυπο δημοσιεύεται.</li>
+</ol>
+<p>Η ίδια η διαφάνεια το λέει με μια φράση: «είναι μια πολύ μακριά και περίπλοκη διαδικασία» (Διάλεξη 8b, διαφάνεια 61).</p>
+<h3 id="_5">Πρότυπα του Διαδικτύου των Πραγμάτων<a class="headerlink" href="#_5" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p>Στο κατώτερο μέρος της στοίβας ενός δικτύου αισθητήρων, διαφορετικοί φορείς αναλαμβάνουν διαφορετικά επίπεδα (Διάλεξη 7b, διαφάνεια 34): το <a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> φροντίζει τα χαμηλά επίπεδα, με στόχο την εξοικονόμηση ενέργειας και την αξιοπιστία, ενώ το Internet Engineering Task Force (<dfn class="abbr-def" id="abbr-ietf" title="Internet Engineering Task Force">IETF</dfn>) φέρνει τη σύνδεση με το Internet Protocol version 6 (<dfn class="abbr-def" id="abbr-ipv6" title="Internet Protocol version 6">IPv6</dfn>), τη νεότερη έκδοση του πρωτοκόλλου του Διαδικτύου, με τεράστιο χώρο διευθύνσεων (Διάλεξη 6a). Τα πρότυπα που συναντήσαμε σε αυτό το σώμα μελέτης, με τον φορέα τους όπου τον δίνει το μάθημα:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Πρότυπο</th>
+<th style="text-align: left;">Φορέας ή βάση</th>
+<th style="text-align: left;">Τι ορίζει</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> 802.15.4</td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a></td>
+<td style="text-align: left;">Φυσικό επίπεδο και πρόσβαση στο μέσο για προσωπικά δίκτυα χαμηλού ρυθμού, 20 έως 250 kbps (Διάλεξη 6a)</td>
+</tr>
+<tr>
+<td style="text-align: left;">ZigBee</td>
+<td style="text-align: left;">Προδιαγραφή πάνω στο <a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> 802.15.4</td>
+<td style="text-align: left;">Πρωτόκολλα υψηλότερου επιπέδου για μικρά ραδιόφωνα χαμηλής ισχύος, 250 kbps σε 10 έως 100 μέτρα (Διάλεξη 6a)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ipv6" title="Internet Protocol version 6">IPv6</a> over Low power Wireless Personal Area Networks (<dfn class="abbr-def" id="abbr-6lowpan" title="IPv6 over Low power Wireless Personal Area Networks">6LoWPAN</dfn>)</td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ietf" title="Internet Engineering Task Force">IETF</a></td>
+<td style="text-align: left;">Επίπεδο προσαρμογής που επιτρέπει στο <a class="abbr-link" href="#abbr-ipv6" title="Internet Protocol version 6">IPv6</a> να τρέχει πάνω σε δίκτυα 802.15.4, με συμπίεση επικεφαλίδων (Διάλεξη 6a)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Constrained Application Protocol (<dfn class="abbr-def" id="abbr-coap" title="Constrained Application Protocol">CoAP</dfn>)</td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ietf" title="Internet Engineering Task Force">IETF</a></td>
+<td style="text-align: left;">Πρωτόκολλο εφαρμογής σε ύφος Web για συσκευές με ελάχιστους πόρους (Διάλεξη 6a)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Message Queuing Telemetry Transport (<dfn class="abbr-def" id="abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</dfn>)</td>
+<td style="text-align: left;">Organization for the Advancement of Structured Information Standards (<dfn class="abbr-def" id="abbr-oasis" title="Organization for the Advancement of Structured Information Standards">OASIS</dfn>)</td>
+<td style="text-align: left;">Ελαφρύ πρωτόκολλο δημοσίευσης-εγγραφής (Διάλεξη 6a)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Long Range Wide Area Network (<dfn class="abbr-def" id="abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</dfn>)</td>
+<td style="text-align: left;">LoRa Alliance</td>
+<td style="text-align: left;">Δίκτυο χαμηλής ισχύος ευρείας περιοχής (<a href="../07-lpwan-lorawan/">Κεφάλαιο 7</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">NB-IoT</td>
+<td style="text-align: left;">Υποσύνολο του προτύπου κινητής τηλεφωνίας 4G</td>
+<td style="text-align: left;">Κυψελωτό δίκτυο για συσκευές <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>: κάλυψη σε εσωτερικούς χώρους, χαμηλό κόστος, μεγάλη διάρκεια μπαταρίας (Διάλεξη 6a)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a> 802.11ah</td>
+<td style="text-align: left;"><a class="abbr-link" href="#abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</a></td>
+<td style="text-align: left;">Wi-Fi σε ελεύθερες ζώνες κάτω από 1 GHz, με το <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> στις εφαρμογές του (Διάλεξη 8b)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition exam">
+<p class="admonition-title">Τι να περιμένετε στην εξέταση</p>
+<p><div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>6/2/2026</strong> όχι</a><a class="exam-chip is-hit" href="../../#exam-papers"><strong>15/2/2025</strong> Θέμα 2δ, 1,5 μονάδα</a><a class="exam-chip" href="../../#exam-papers"><strong>2/2022</strong> όχι</a></div></p>
+<p>Το 2025 ζήτησε τέσσερα πράγματα σε περίπου δέκα γραμμές: τι είναι (μία πρόταση), γιατί χρειάζεται (η διαλειτουργικότητα πρώτη, μαζί με δύο ή τρεις ακόμη λόγους), τη διαδικασία σε γενικές γραμμές (τα στάδια, από την ιδέα ως τη δημοσίευση, με τη συναίνεση και την ψηφοφορία), και μερικά πρότυπα του <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> με τον φορέα τους. Με δέκα γραμμές για τέσσερα σκέλη, η συντομία μετράει: ονόματα και μία πρόταση, όχι ανάλυση.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

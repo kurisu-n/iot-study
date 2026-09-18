@@ -1,0 +1,2494 @@
+
+<!doctype html>
+<html lang="el" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Μελέτη και ασκήσεις για το μάθημα «Διαδίκτυο των Πραγμάτων», Διεθνές Πανεπιστήμιο της Ελλάδος.">
+      
+      
+      
+        <link rel="canonical" href="https://iot.chris-nasiou.com/practice/theory/">
+      
+      
+        <link rel="prev" href="../exercises/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Παραλλαγές θεωρίας - Διαδίκτυο των Πραγμάτων</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fc-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/corpus.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Μετάβαση στο περιεχόμενο
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Κεφαλίδα">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-header__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Διαδίκτυο των Πραγμάτων
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Παραλλαγές θεωρίας
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Ανοιχτό"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="FaceCue Ανοιχτό" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m3.55 19.09 1.41 1.41 1.8-1.79-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71 1.8 1.79 1.41-1.41-1.79-1.8M20.45 5l-1.41-1.4-1.8 1.79 1.42 1.42M13 1h-2v3h2M6.76 5.39 4.96 3.6 3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="warm-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="FaceCue Σκούρο"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="FaceCue Σκούρο" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a10 10 0 0 0 13 9.54 10 10 0 0 1 0-19.08A10 10 0 0 0 2 12"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="academic" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Ακαδημαϊκό"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Ακαδημαϊκό" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="navy" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Σκούρο Μπλε"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Σκούρο Μπλε" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Αναζήτηση" placeholder="Αναζήτηση" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Αναζήτηση">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Καθαρισμός" aria-label="Καθαρισμός" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Αρχικοποίηση αναζήτησης
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Πλοήγηση" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Διαδίκτυο των Πραγμάτων" class="md-nav__button md-logo" aria-label="Διαδίκτυο των Πραγμάτων" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Διαδίκτυο των Πραγμάτων
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Αρχική
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Θέματα Εξετάσεων
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Θέματα Εξετάσεων
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2022
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Κεφάλαια
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Κεφάλαια
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/01-data-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Διάδοση Δεδομένων ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/02-leach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. LEACH ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/03-energy-balance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Εξισορρόπηση Ενέργειας ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/04-routing-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Μετρικές Δρομολόγησης ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/05-energy-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Ενεργειακή Διαχείριση ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/06-scalar-vector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Βαθμωτά & Διανυσματικά ★
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/07-lpwan-lorawan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. LPWAN & LoRaWAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/08-iot-system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Σχεδίαση IoT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/09-access-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Πρωτόκολλα Πρόσβασης
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/10-cloud-edge-industry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Νέφος & Βιομηχανία 4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/11-security-smart-cities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ασφάλεια & Έξυπνες Πόλεις
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/12-rpl-app-protocols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. RPL & Πρωτόκολλα Εφαρμογής
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/formulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Τυπολόγιο
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Επισκόπηση
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Εξάσκηση
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Εξάσκηση
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές ασκήσεων
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Παραλλαγές θεωρίας
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ch1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Διάδοση δεδομένων
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Διάδοση δεδομένων">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Οι φάσεις και η ενίσχυση
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί όχι flooding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Επίπεδη και ιεραρχική δρομολόγηση
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ιεραρχική δρομολόγηση με συστάδες
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ιεραρχική δρομολόγηση με συστάδες">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ένας γύρος από την αρχή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η εναλλαγή του ρόλου
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί ανεβαίνει το κατώφλι
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Εξισορρόπηση ενέργειας
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Εξισορρόπηση ενέργειας">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η σύγκριση του 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Αποδοτικό αλλά σύντομο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κοντά και μακριά
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Μετρικές δρομολόγησης
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Μετρικές δρομολόγησης">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Λίγα βήματα, πολλές μεταδόσεις
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πλεονεκτήματα και όρια
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch5-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ενεργειακή διαχείριση και είδη δεδομένων
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ενεργειακή διαχείριση και είδη δεδομένων">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q5-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Από την εξοικονόμηση στην κατανομή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Βαθμωτά και διανυσματικά
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δίκτυα χαμηλής ισχύος ευρείας περιοχής
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Δίκτυα χαμηλής ισχύος ευρείας περιοχής">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q7-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η αρχιτεκτονική
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ο Spreading Factor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wi-Fi ή χαμηλής ισχύος
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Σχεδίαση συστήματος
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Σχεδίαση συστήματος">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q8-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Έξυπνη στάθμευση αντί για άρδευση
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα πέντε επίπεδα σε άλλο σύστημα
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πρωτόκολλα πρόσβασης
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Πρωτόκολλα πρόσβασης">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q9-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα τρία κριτήρια
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Διεκδίκηση ή προγραμματισμός στη βιομηχανία
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Νέφος, άκρο και Βιομηχανία 4.0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Νέφος, άκρο και Βιομηχανία 4.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q10-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Νέφος και άκρο σε σενάριο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα τέσσερα χαρακτηριστικά σε ένα προϊόν
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πώς γεννιέται ένα πρότυπο
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ασφάλεια, δίκτυα αισθητήρων και έξυπνες πόλεις
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ασφάλεια, δίκτυα αισθητήρων και έξυπνες πόλεις">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q11-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί κάτω από 1 GHz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Διευθύνσεις για δισεκατομμύρια
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δύο δίκτυα χωρίς υποδομή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πού πάει η ενέργεια
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Υπηρεσίες και οικογένειες του 5G
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δρομολόγηση, πρωτόκολλα εφαρμογής και ασύρματη ισχύς
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Δρομολόγηση, πρωτόκολλα εφαρμογής και ασύρματη ισχύς">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q12-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ο γράφος της δρομολόγησης
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Αίτημα ή δημοσίευση
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Βαθμωτό και διανυσματικό μοντέλο φόρτισης
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ο κινητός sink
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Πίνακας περιεχομένων">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Πίνακας περιεχομένων
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ch1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Διάδοση δεδομένων
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Διάδοση δεδομένων">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Οι φάσεις και η ενίσχυση
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί όχι flooding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Επίπεδη και ιεραρχική δρομολόγηση
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ιεραρχική δρομολόγηση με συστάδες
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ιεραρχική δρομολόγηση με συστάδες">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ένας γύρος από την αρχή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η εναλλαγή του ρόλου
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί ανεβαίνει το κατώφλι
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Εξισορρόπηση ενέργειας
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Εξισορρόπηση ενέργειας">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η σύγκριση του 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Αποδοτικό αλλά σύντομο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Κοντά και μακριά
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Μετρικές δρομολόγησης
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Μετρικές δρομολόγησης">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Λίγα βήματα, πολλές μεταδόσεις
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πλεονεκτήματα και όρια
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch5-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ενεργειακή διαχείριση και είδη δεδομένων
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ενεργειακή διαχείριση και είδη δεδομένων">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q5-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Από την εξοικονόμηση στην κατανομή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Βαθμωτά και διανυσματικά
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δίκτυα χαμηλής ισχύος ευρείας περιοχής
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Δίκτυα χαμηλής ισχύος ευρείας περιοχής">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q7-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Η αρχιτεκτονική
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ο Spreading Factor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wi-Fi ή χαμηλής ισχύος
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Σχεδίαση συστήματος
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Σχεδίαση συστήματος">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q8-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Έξυπνη στάθμευση αντί για άρδευση
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα πέντε επίπεδα σε άλλο σύστημα
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πρωτόκολλα πρόσβασης
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Πρωτόκολλα πρόσβασης">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q9-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα τρία κριτήρια
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q9-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Διεκδίκηση ή προγραμματισμός στη βιομηχανία
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Νέφος, άκρο και Βιομηχανία 4.0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Νέφος, άκρο και Βιομηχανία 4.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q10-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Νέφος και άκρο σε σενάριο
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Τα τέσσερα χαρακτηριστικά σε ένα προϊόν
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πώς γεννιέται ένα πρότυπο
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ασφάλεια, δίκτυα αισθητήρων και έξυπνες πόλεις
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ασφάλεια, δίκτυα αισθητήρων και έξυπνες πόλεις">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q11-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Γιατί κάτω από 1 GHz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Διευθύνσεις για δισεκατομμύρια
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δύο δίκτυα χωρίς υποδομή
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Πού πάει η ενέργεια
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q11-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Υπηρεσίες και οικογένειες του 5G
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ch12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Δρομολόγηση, πρωτόκολλα εφαρμογής και ασύρματη ισχύς
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Δρομολόγηση, πρωτόκολλα εφαρμογής και ασύρματη ισχύς">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q12-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ο γράφος της δρομολόγησης
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Αίτημα ή δημοσίευση
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Βαθμωτό και διανυσματικό μοντέλο φόρτισης
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ο κινητός sink
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">Παραλλαγές θεωρίας<a class="headerlink" href="#_1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h1>
+<p>Ερωτήσεις θεωρίας σε νέα διατύπωση. Κάθε ερώτηση γράφει από πού προέρχεται: <strong>παραλλαγή</strong> ενός θέματος που έχει πέσει (άλλη διατύπωση ή άλλο σενάριο), ή <strong>νέα</strong> ερώτηση από ύλη που δεν έχει εξεταστεί ακόμη αλλά έχει σχήμα θέματος.</p>
+<p><strong>Πώς να τις δουλέψετε.</strong> Γράψτε την απάντηση πριν ανοίξετε το πλαίσιο, στο μέγεθος που θα είχε στην εξέταση: λίγες γραμμές για μισή ή μία μονάδα. Οι απαντήσεις εδώ είναι σκελετοί με τους όρους που πρέπει να εμφανιστούν· η πλήρης ανάλυση είναι στο κεφάλαιο που δείχνει ο σύνδεσμος.</p>
+<h2 id="ch1">Διάδοση δεδομένων<a class="headerlink" href="#ch1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q1-1">Οι φάσεις και η ενίσχυση<a class="headerlink" href="#q1-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2026 Α.1.</em></p>
+<p><strong>Περιγράψτε τις φάσεις του Directed Diffusion (<dfn class="abbr-def" id="abbr-dd" title="Directed Diffusion">DD</dfn>). Ποιο πρόβλημα λύνει η ενίσχυση;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> είναι data-centric, application-aware και energy-efficient. Λειτουργεί σε τέσσερις φάσεις που επαναλαμβάνονται: (1) ο sink διαχέει ένα <strong>interest</strong> με χαμηλό ρυθμό (exploratory)· (2) κάθε κόμβος που το λαμβάνει στήνει ένα <strong>gradient</strong> προς τον γείτονα από τον οποίο ήρθε, με ρυθμό και κατεύθυνση· (3) η πηγή στέλνει τα <strong>δεδομένα</strong> ως unicast κατά μήκος των gradients, και το data cache πετά τα διπλότυπα· (4) ο sink κάνει <strong>ενίσχυση</strong>: ξαναστέλνει το ίδιο interest με υψηλότερο ρυθμό σε έναν γείτονα, και κάθε κόμβος το προωθεί προς τον δικό του γείτονα που έφερε πρώτος το γεγονός.</p>
+<p>Η ενίσχυση λύνει το πρόβλημα της <strong>επιλογής μονοπατιού χωρίς καθολική γνώση</strong>: κανένας κόμβος δεν ξέρει όλο το δίκτυο, αλλά με τοπικές αποφάσεις βήμα προς βήμα στήνεται ένα μονοπάτι μικρής καθυστέρησης, και τα υπόλοιπα μένουν σε χαμηλό ρυθμό. <a href="../../chapters/01-data-propagation/#directed-diffusion">Ενότητα 1.3</a></p>
+</details>
+<h3 id="q1-2">Γιατί όχι flooding<a class="headerlink" href="#q1-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Γιατί το flooding χρησιμοποιείται ως σημείο αναφοράς και όχι ως λύση; Συγκρίνετε το κόστος του με του <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a>.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Στο flooding κάθε κόμβος αναμεταδίδει κάθε γεγονός μία φορά, οπότε το μήνυμα φτάνει σε όλο το δίκτυο είτε το χρειάζεται κάποιος είτε όχι. Το κόστος είναι τάξης <span class="arithmatex">\(\mathcal{O}(nN)\)</span>, γραμμικό στο πλήθος των κόμβων. Επιπλέον οι ταυτόχρονες αναμεταδόσεις συγκρούονται, και το flooding γίνεται αργό. Το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> κοστίζει <span class="arithmatex">\(\mathcal{O}(n\sqrt{N})\)</span>, όπως το ιδεατό Omniscient Multicast, και στην προσομοίωση ακόμη λιγότερο χάρη στο aggregation. Το flooding είναι λοιπόν το «χειρότερο λογικό» σημείο: ένα πρωτόκολλο που δεν το ξεπερνά δεν αξίζει. <a href="../../chapters/01-data-propagation/#flooding">Ενότητες 1.2 και 1.5</a></p>
+</details>
+<h3 id="q1-3">Επίπεδη και ιεραρχική δρομολόγηση<a class="headerlink" href="#q1-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Ποια είναι η διαφορά επίπεδης και ιεραρχικής δρομολόγησης; Δώστε ένα πρωτόκολλο για την καθεμία.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Στην <strong>επίπεδη</strong> δρομολόγηση όλοι οι κόμβοι έχουν τον ίδιο ρόλο και κανένας δεν είναι ειδικός· παράδειγμα το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a>. Στην <strong>ιεραρχική</strong> κάποιοι κόμβοι αναλαμβάνουν μεγαλύτερη ευθύνη, ως αρχηγοί συστάδων που μαζεύουν και προωθούν τα δεδομένα των άλλων· παράδειγμα το Low Energy Adaptive Clustering Hierarchy (<dfn class="abbr-def" id="abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</dfn>). <a href="../../chapters/01-data-propagation/#flat-vs-hierarchical">Ενότητα 1.7</a></p>
+</details>
+<h2 id="ch2">Ιεραρχική δρομολόγηση με συστάδες<a class="headerlink" href="#ch2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q2-1">Ένας γύρος από την αρχή<a class="headerlink" href="#q2-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του θεωρητικού μέρους του 2026 Β.1.</em></p>
+<p><strong>Περιγράψτε τι γίνεται σε έναν γύρο του <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Κάθε γύρος έχει δύο φάσεις. Στη <strong>φάση εγκατάστασης</strong>: κάθε κόμβος αποφασίζει μόνος του αν θα γίνει αρχηγός (τυχαίος αριθμός μικρότερος από το κατώφλι <span class="arithmatex">\(T(n)\)</span>)· οι νέοι αρχηγοί ανακοινώνουν τον ρόλο τους με Carrier Sense Multiple Access (<dfn class="abbr-def" id="abbr-csma" title="Carrier Sense Multiple Access">CSMA</dfn>)· κάθε απλός κόμβος εντάσσεται στον αρχηγό με το ισχυρότερο σήμα· κάθε αρχηγός φτιάχνει χρονοπρόγραμμα Time Division Multiple Access (<dfn class="abbr-def" id="abbr-tdma" title="Time Division Multiple Access">TDMA</dfn>). Στη <strong>σταθερή φάση</strong>, που κρατά περισσότερο, κάθε μέλος στέλνει στη δική του χρονοθυρίδα, και ο αρχηγός συμπιέζει τα δεδομένα και τα στέλνει απευθείας στον σταθμό βάσης. <a href="../../chapters/02-leach/#rounds-and-phases">Ενότητα 2.2</a></p>
+</details>
+<h3 id="q2-2">Η εναλλαγή του ρόλου<a class="headerlink" href="#q2-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Γιατί ο ρόλος του αρχηγού αλλάζει κόμβο; Τι θα συνέβαινε αν έμενε σταθερός;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Ο αρχηγός πληρώνει το ακριβό κόστος της απευθείας μετάδοσης στον σταθμό βάσης για λογαριασμό όλης της συστάδας. Αν έμενε σταθερός, η μπαταρία του θα άδειαζε πολύ γρήγορα, η συστάδα θα έχανε τη σύνδεσή της, και οι σταθεροί αρχηγοί θα πέθαιναν πρώτοι. Με την τυχαία εναλλαγή το βάρος μοιράζεται σε όλους, και στα πειράματα οι κόμβοι πεθαίνουν ομοιόμορφα. <a href="../../chapters/02-leach/#idea">Ενότητες 2.1 και 2.5</a></p>
+</details>
+<h3 id="q2-3">Γιατί ανεβαίνει το κατώφλι<a class="headerlink" href="#q2-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα, με σχήμα θέματος.</em></p>
+<p><strong>Γιατί το κατώφλι <span class="arithmatex">\(T(n)\)</span> μεγαλώνει από γύρο σε γύρο μέσα σε μια περίοδο, και τι γίνεται στο τέλος της;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Όσοι γίνονται αρχηγοί βγαίνουν από το σύνολο <span class="arithmatex">\(G\)</span> των υποψηφίων για την υπόλοιπη περίοδο, οπότε οι υποψήφιοι λιγοστεύουν. Για να μένει σταθερός ο αριθμός των αρχηγών ανά γύρο (<span class="arithmatex">\(N \cdot P\)</span>), το κατώφλι των υπολοίπων πρέπει να ανεβαίνει. Στον τελευταίο γύρο γίνεται 1, οπότε όσοι απομένουν γίνονται σίγουρα αρχηγοί και κάθε κόμβος υπηρετεί ακριβώς μία φορά. Στον επόμενο γύρο το <span class="arithmatex">\(r \bmod (1/P)\)</span> μηδενίζει, το <span class="arithmatex">\(G\)</span> ξαναγεμίζει, και ξεκινά νέα περίοδος. <a href="../../chapters/02-leach/#why-this-shape">Ενότητα 2.3</a></p>
+</details>
+<h2 id="ch3">Εξισορρόπηση ενέργειας<a class="headerlink" href="#ch3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q3-1">Η σύγκριση του 2026<a class="headerlink" href="#q3-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2026 Α.2.</em></p>
+<p><strong>Πώς εξελίσσεται στον χρόνο η ενέργεια των κόμβων σε ένα δίκτυο με <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> και σε ένα με Energy Balance Protocol (<dfn class="abbr-def" id="abbr-ebp" title="Energy Balance Protocol">EBP</dfn>);</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Το <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> βελτιστοποιεί τη <strong>συνολική</strong> ενέργεια (αποδοτικότητα), το <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> την <strong>ισότιμη κατανάλωση</strong> ανά κόμβο (εξισορρόπηση). Στο <a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a> η ενέργεια πέφτει <strong>άνισα</strong>: οι κόμβοι στα ενισχυμένα μονοπάτια και κοντά στον sink αδειάζουν πρώτοι, το δίκτυο αποκόπτεται νωρίς και αφήνει αναξιοποίητη ενέργεια, άρα ο θάνατος του πρώτου κόμβου, First Node Dies (<dfn class="abbr-def" id="abbr-fnd" title="First Node Dies">FND</dfn>), έρχεται νωρίς. Στο <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> πέφτει <strong>ομοιόμορφα</strong>, σαν στάθμη που κατεβαίνει παντού μαζί: η συνολική κατανάλωση ίσως είναι λίγο μεγαλύτερη, αλλά το <a class="abbr-link" href="#abbr-fnd" title="First Node Dies">FND</a> έρχεται αργά και σχεδόν όλη η ενέργεια αξιοποιείται. <a href="../../chapters/03-energy-balance/#comparison-dd">Ενότητα 3.8</a></p>
+</details>
+<h3 id="q3-2">Αποδοτικό αλλά σύντομο<a class="headerlink" href="#q3-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Εξηγήστε πώς ένα δίκτυο μπορεί να είναι πολύ αποδοτικό ενεργειακά και παρ' όλα αυτά να ζει λίγο.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Η αποδοτικότητα μετρά το <strong>άθροισμα</strong> της ενέργειας, η εξισορρόπηση τις <strong>διαφορές</strong> ανάμεσα στους κόμβους. Ένα σχήμα μπορεί να ξοδεύει ελάχιστη συνολική ενέργεια φορτώνοντας όλη τη δουλειά σε λίγους κόμβους. Αυτοί αδειάζουν πρώτοι, σχηματίζεται ενεργειακή τρύπα, το δίκτυο κόβεται, και η μπαταρία όλων των άλλων μένει αχρησιμοποίητη. Το δίκτυο σταματά όχι επειδή τελείωσε η ενέργεια, αλλά επειδή τελείωσε σε λάθος σημείο. <a href="../../chapters/03-energy-balance/#efficiency-vs-balance">Ενότητα 3.1</a></p>
+</details>
+<h3 id="q3-3">Κοντά και μακριά<a class="headerlink" href="#q3-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα, με σχήμα θέματος.</em></p>
+<p><strong>Πώς διαλέγει ένας κόμβος του <a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a> ανάμεσα σε βήμα και απευθείας μετάδοση, και γιατί η επιλογή αλλάζει με την απόσταση από τον σταθμό βάσης;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Το δίκτυο χωρίζεται σε δακτυλίους. Ένας κόμβος στον δακτύλιο <span class="arithmatex">\(i\)</span> στέλνει ένα βήμα με πιθανότητα <span class="arithmatex">\(p_i\)</span> και απευθείας με πιθανότητα <span class="arithmatex">\(1 - p_i\)</span>, με τα <span class="arithmatex">\(p_i\)</span> επιλεγμένα ώστε η μέση ενέργεια ανά επιφάνεια να είναι ίδια σε όλους τους δακτυλίους. <strong>Μακριά</strong> το <span class="arithmatex">\(p_i\)</span> είναι μεγάλο: μια απευθείας μετάδοση θα κόστιζε <span class="arithmatex">\(c(iR)^2\)</span>, οπότε ο κόμβος προτιμά βήματα. <strong>Κοντά</strong> το <span class="arithmatex">\(p_i\)</span> είναι μικρό: η απευθείας μετάδοση είναι φθηνή, και έτσι το μήνυμα παρακάμπτει τους ήδη φορτωμένους κόμβους γύρω από τον σταθμό βάσης. <a href="../../chapters/03-energy-balance/#pi-behaviour">Ενότητα 3.5</a></p>
+</details>
+<h2 id="ch4">Μετρικές δρομολόγησης<a class="headerlink" href="#ch4" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q4-1">Λίγα βήματα, πολλές μεταδόσεις<a class="headerlink" href="#q4-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα, θεωρητικό υπόβαθρο του 2026 Δ.1.</em></p>
+<p><strong>Γιατί η διαδρομή με τα λιγότερα βήματα δεν είναι πάντα η φθηνότερη; Πώς το αντιμετωπίζει η μετρική Expected Transmission Count (<dfn class="abbr-def" id="abbr-etx" title="Expected Transmission Count">ETX</dfn>);</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Λίγα βήματα σημαίνουν μεγάλες αποστάσεις ανά βήμα, και οι μακριές ζεύξεις έχουν συνήθως χαμηλή ποιότητα: τα πακέτα χάνονται και ξαναστέλνονται. Έτσι μια «σύντομη» διαδρομή μπορεί να θέλει περισσότερες μεταδόσεις από μια μακρύτερη με αξιόπιστες ζεύξεις. Το <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a> μετρά τον <strong>αναμενόμενο αριθμό μεταδόσεων</strong> ανά ζεύξη, <span class="arithmatex">\(1/(d_f \cdot d_r)\)</span>, λαμβάνοντας υπόψη και την παράδοση και την επιβεβαίωση. Για διαδρομή αθροίζεται, και διαλέγεται το μικρότερο άθροισμα, που συνήθως είναι η μέση οδός. <a href="../../chapters/04-routing-metrics/#link-quality">Ενότητες 4.1 έως 4.3</a></p>
+</details>
+<h3 id="q4-2">Πλεονεκτήματα και όρια<a class="headerlink" href="#q4-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Ποια είναι τα πλεονεκτήματα της μετρικής <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a> και πού δεν ταιριάζει;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>Πλεονεκτήματα:</strong> λιγότερες μεταδόσεις άρα λιγότερη ενέργεια· πιάνει τις ασύμμετρες ζεύξεις, γιατί μετρά και τις δύο κατευθύνσεις· διαλέγει με βάση την πραγματική απόδοση και όχι μόνο την απόσταση. <strong>Όρια:</strong> χρειάζεται μετρήσεις των πιθανοτήτων, που είναι εφικτές σε <strong>στατικά</strong> δίκτυα· σε δυναμικά δίκτυα οι μετρήσεις παλιώνουν γρήγορα, και προτείνεται το Minimum Outage Route (<dfn class="abbr-def" id="abbr-mor" title="Minimum Outage Route">MOR</dfn>), που στηρίζεται σε μοντέλο του καναλιού. <a href="../../chapters/04-routing-metrics/#strengths-limits">Ενότητα 4.4</a></p>
+</details>
+<h2 id="ch5-6">Ενεργειακή διαχείριση και είδη δεδομένων<a class="headerlink" href="#ch5-6" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q5-1">Από την εξοικονόμηση στην κατανομή<a class="headerlink" href="#q5-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα, από τις χειρόγραφες σημειώσεις.</em></p>
+<p><strong>Πώς άλλαξε η αντίληψη για την ενέργεια στα δίκτυα αισθητήρων; Αναφέρετε μεθόδους που την εφαρμόζουν.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Δύο μετατοπίσεις. Από τα <strong>node-centric</strong> μοντέλα του Διαδικτύου στα <strong>data-centric</strong> και <strong>ιεραρχικά</strong>, που οργανώνουν το δίκτυο γύρω από τα δεδομένα και τους ρόλους. Και από το «λιγότερη ενέργεια» στο «<strong>έξυπνη κατανομή</strong>», αφού ένα οικονομικό δίκτυο πεθαίνει νωρίς αν λίγοι σηκώνουν όλο το βάρος. Μέθοδοι: συνάθροιση δεδομένων (<a class="abbr-link" href="#abbr-dd" title="Directed Diffusion">DD</a>, <a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>), ομαδοποίηση σε συστάδες και εναλλαγή ρόλου (<a class="abbr-link" href="#abbr-leach" title="Low Energy Adaptive Clustering Hierarchy">LEACH</a>), πιθανοτική εξισορρόπηση (<a class="abbr-link" href="#abbr-ebp" title="Energy Balance Protocol">EBP</a>), επιλογή μονοπατιού (<a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a>). <a href="../../chapters/05-energy-management/">Κεφάλαιο 5</a></p>
+</details>
+<h3 id="q6-1">Βαθμωτά και διανυσματικά<a class="headerlink" href="#q6-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα, από τις χειρόγραφες σημειώσεις.</em></p>
+<p><strong>Ποια η διαφορά βαθμωτών και διανυσματικών μετρήσεων, και τι αλλάζει στη συνάθροισή τους;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Μια βαθμωτή μέτρηση έχει μόνο <strong>μέγεθος</strong> (θερμοκρασία, υγρασία)· μια διανυσματική έχει <strong>μέγεθος και κατεύθυνση</strong> (ταχύτητα ανέμου). Η συνάθροιση των βαθμωτών είναι απλή: μέσος όρος, μέγιστο, ελάχιστο. Των διανυσματικών δεν είναι: ο «μέσος όρος» δύο ανέμων θέλει συνδυασμό των κατευθύνσεων, άρα περισσότερο υπολογισμό και περισσότερα bits. <a href="../../chapters/06-scalar-vector/">Κεφάλαιο 6</a></p>
+</details>
+<h2 id="ch7">Δίκτυα χαμηλής ισχύος ευρείας περιοχής<a class="headerlink" href="#ch7" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q7-1">Η αρχιτεκτονική<a class="headerlink" href="#q7-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2026 Γ.2.</em></p>
+<p><strong>Ποια είναι τα δομικά στοιχεία ενός δικτύου Long Range Wide Area Network (<dfn class="abbr-def" id="abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</dfn>) και ποιος ο ρόλος του καθενός;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Τέσσερα στοιχεία, από την άκρη προς το κέντρο. (1) <strong>Συσκευές-άκρα</strong>: αισθητήρες με μπαταρία. (2) <strong>Πύλες</strong>: ακούν τις εκπομπές, και πολλές μαζί μπορούν να λάβουν το ίδιο μήνυμα (multicast), κάτι που αυξάνει την αξιοπιστία. (3) <strong>Διακομιστής δικτύου</strong>: μαζεύει ό,τι έλαβαν οι πύλες, πετά τα διπλότυπα και διαχειρίζεται το δίκτυο. (4) <strong>Διακομιστής εφαρμογής</strong>: εκεί φτάνουν τα δεδομένα για την εφαρμογή. Ρυθμοί 0.3 έως 50 kbps. <a href="../../chapters/07-lpwan-lorawan/#architecture">Ενότητα 7.2</a></p>
+</details>
+<h3 id="q7-2">Ο Spreading Factor<a class="headerlink" href="#q7-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2026 Γ.3.</em></p>
+<p><strong>Μια συσκευή μετακινείται πιο μακριά από την πύλη και ανεβάζει τον Spreading Factor (<dfn class="abbr-def" id="abbr-sf" title="Spreading Factor">SF</dfn>) από 9 σε 12. Τι κερδίζει και τι χάνει;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Ο χρόνος συμβόλου είναι <span class="arithmatex">\(2^{\text{SF}}/BW\)</span>, οπότε από <a class="abbr-link" href="#abbr-sf" title="Spreading Factor">SF</a> 9 σε 12 γίνεται <span class="arithmatex">\(2^3 = 8\)</span> φορές μεγαλύτερος. <strong>Κερδίζει</strong> εμβέλεια και ανθεκτικότητα στον θόρυβο, γιατί το σήμα απλώνεται περισσότερο. <strong>Χάνει</strong> ρυθμό δεδομένων, και ξοδεύει <strong>περισσότερη ενέργεια</strong> ανά μήνυμα, αφού ο πομπός μένει αναμμένος οκτώ φορές περισσότερη ώρα ανά σύμβολο. <a href="../../chapters/07-lpwan-lorawan/#spreading-factor">Ενότητα 7.3</a></p>
+</details>
+<h3 id="q7-3">Wi-Fi ή χαμηλής ισχύος<a class="headerlink" href="#q7-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2026 Γ.1.</em></p>
+<p><strong>Ένα κτίριο θέλει κάμερες ασφαλείας και αισθητήρες θερμοκρασίας στο πάρκινγκ. Ποια τεχνολογία για το καθένα, και γιατί;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Οι <strong>κάμερες</strong> στέλνουν συνεχές βίντεο, άρα θέλουν υψηλό ρυθμό, και είναι συνήθως στο ρεύμα: Wi-Fi. Οι <strong>αισθητήρες</strong> στέλνουν λίγα bytes σπάνια, βρίσκονται σε δύσκολα σημεία (υπόγειο) και ζουν με μπαταρία: ένα Low Power Wide Area Network (<dfn class="abbr-def" id="abbr-lpwan" title="Low Power Wide Area Network">LPWAN</dfn>) όπως το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>, με μεγάλη εμβέλεια και μπαταρία που κρατά χρόνια. Οι δύο τεχνολογίες έχουν αντίθετους στόχους και δεν ανταγωνίζονται. <a href="../../chapters/07-lpwan-lorawan/#wifi-comparison">Ενότητα 7.4</a></p>
+</details>
+<h2 id="ch8">Σχεδίαση συστήματος<a class="headerlink" href="#ch8" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q8-1">Έξυπνη στάθμευση αντί για άρδευση<a class="headerlink" href="#q8-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2025 Θέμα 1, σε άλλο σενάριο.</em></p>
+<p><strong>Περιγράψτε ένα σύστημα του Internet of Things (<dfn class="abbr-def" id="abbr-iot" title="Internet of Things">IoT</dfn>) για έξυπνη στάθμευση σε μια πόλη: αρχιτεκτονική, τεχνολογίες με τεκμηρίωση, τρεις προκλήσεις, οφέλη.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>Αρχιτεκτονική</strong> (με σχήμα): αισθητήρες παρουσίας οχήματος σε κάθε θέση → πύλες στους δρόμους → νέφος που κρατά την κατάσταση κάθε θέσης και υπολογίζει τις ελεύθερες → εφαρμογή κινητού για τους οδηγούς και πινακίδες στους δρόμους. <strong>Τεχνολογίες:</strong> οι αισθητήρες είναι χιλιάδες, με μπαταρία, μέσα στο οδόστρωμα, και στέλνουν μόνο «ελεύθερη ή κατειλημμένη», άρα <a class="abbr-link" href="#abbr-lpwan" title="Low Power Wide Area Network">LPWAN</a> όπως το <a class="abbr-link" href="#abbr-lorawan" title="Long Range Wide Area Network">LoRaWAN</a>· τα μηνύματα με Message Queuing Telemetry Transport (<dfn class="abbr-def" id="abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</dfn>), ελαφρύ και φτιαγμένο για πολλές μικρές συσκευές. <strong>Προκλήσεις:</strong> μπαταρία που πρέπει να κρατήσει χρόνια μέσα στην άσφαλτο· κλίμακα χιλιάδων αισθητήρων· αξιοπιστία της μέτρησης (ένα όχημα που σταθμεύει λοξά). <strong>Οφέλη:</strong> οι οδηγοί βρίσκουν θέση χωρίς να κάνουν κύκλους, λιγότερη κίνηση και ρύπανση, και ιστορικά δεδομένα για τον σχεδιασμό της πόλης. <a href="../../chapters/08-iot-system-design/#irrigation">Ενότητα 8.4</a></p>
+</details>
+<h3 id="q8-2">Τα πέντε επίπεδα σε άλλο σύστημα<a class="headerlink" href="#q8-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2022 Θέμα 3.1.</em></p>
+<p><strong>Για ένα σύστημα απομακρυσμένης παρακολούθησης ασθενών στο σπίτι, περιγράψτε τι περιέχει καθένα από τα πέντε επίπεδα του μοντέλου που το 2022 ονόμασε, κατ' αναλογία με το Open Systems Interconnection (<dfn class="abbr-def" id="abbr-osi" title="Open Systems Interconnection">OSI</dfn>), «<a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> <a class="abbr-link" href="#abbr-osi" title="Open Systems Interconnection">OSI</a>».</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>End Points:</strong> φορετοί αισθητήρες καρδιακού ρυθμού και οξυγόνου, και ένας αισθητήρας πτώσης. <strong>Connectivity:</strong> μια πύλη στο σπίτι, με κρυπτογραφημένη σύνδεση προς τα πάνω. <strong>Middleware:</strong> αποθήκευση των μετρήσεων κάθε ασθενή, με έλεγχο πρόσβασης. <strong><a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a> Services:</strong> κανόνες που ειδοποιούν τον γιατρό όταν μια τιμή ξεφύγει ή ανιχνευθεί πτώση. <strong>Apps:</strong> εφαρμογή για τον γιατρό και τον ασθενή. Σε κάθε επίπεδο αναφέρετε την ασφάλεια, αφού τα δεδομένα υγείας είναι από τα πιο ευαίσθητα. <a href="../../chapters/08-iot-system-design/#five-layers">Ενότητα 8.2</a></p>
+</details>
+<h2 id="ch9">Πρωτόκολλα πρόσβασης<a class="headerlink" href="#ch9" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q9-1">Τα τρία κριτήρια<a class="headerlink" href="#q9-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Το ερώτημα του 2022 2Α και του 2025 2α, αυτούσιο.</em></p>
+<p><strong>Ποια είναι τα τρία σημαντικότερα κριτήρια για τη σύγκριση πρωτοκόλλων πρόσβασης στο <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>(1) <strong>Ενεργειακή αποδοτικότητα</strong>: οι συσκευές ζουν με μπαταρία, και οι συγκρούσεις ξοδεύουν ενέργεια δύο φορές. (2) <strong>Κλιμάκωση</strong>: στα πρωτόκολλα με διεκδίκηση οι συγκρούσεις πληθαίνουν με τους κόμβους, ενώ αυτά με προγραμματισμό κρατούν την τάξη. (3) <strong>Καθυστέρηση και αξιοπιστία</strong>: οι εφαρμογές πραγματικού χρόνου θέλουν προβλέψιμη καθυστέρηση. Κάθε κριτήριο με μία πρόταση αιτιολόγησης· η ασφάλεια είναι αποδεκτή εναλλακτική. <a href="../../chapters/09-access-protocols/#criteria">Ενότητα 9.3</a></p>
+</details>
+<h3 id="q9-2">Διεκδίκηση ή προγραμματισμός στη βιομηχανία<a class="headerlink" href="#q9-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Συγκρίνετε τα πρωτόκολλα πρόσβασης με διεκδίκηση και με προγραμματισμό. Ποια ταιριάζουν στο Industrial Internet of Things (<dfn class="abbr-def" id="abbr-iiot" title="Industrial Internet of Things">IIoT</dfn>) και γιατί;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>Με διεκδίκηση</strong> (όπως το <a class="abbr-link" href="#abbr-csma" title="Carrier Sense Multiple Access">CSMA</a>): οι κόμβοι ανταγωνίζονται όποτε έχουν κάτι να στείλουν· απλά, χωρίς συντονισμό, αλλά με συγκρούσεις και απρόβλεπτη καθυστέρηση. <strong>Με προγραμματισμό</strong> (όπως το <a class="abbr-link" href="#abbr-tdma" title="Time Division Multiple Access">TDMA</a>): κάθε κόμβος έχει τη χρονοθυρίδα του· χωρίς συγκρούσεις και με προβλέψιμη καθυστέρηση, αλλά με κόστος συντονισμού. Η βιομηχανία ζητά ντετερμινισμό, σχεδόν μηδενική απώλεια και αυστηρές προθεσμίες, γι' αυτό η Διάλεξη 7b κρίνει τα πρωτόκολλα με διεκδίκηση ακατάλληλα και προτιμά τον προγραμματισμό. <a href="../../chapters/09-access-protocols/#two-families">Ενότητα 9.2</a> και <a href="../../chapters/10-cloud-edge-industry/#industry-4">ενότητα 10.3</a></p>
+</details>
+<h2 id="ch10">Νέφος, άκρο και Βιομηχανία 4.0<a class="headerlink" href="#ch10" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q10-1">Νέφος και άκρο σε σενάριο<a class="headerlink" href="#q10-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2025 2β και του 2022 Θέμα 3.3.</em></p>
+<p><strong>Σε ένα σύστημα συνδεδεμένων οχημάτων, πού θα τρέχατε την ανίχνευση ενός εμποδίου και πού την ανάλυση της κίνησης μιας ολόκληρης πόλης; Τεκμηριώστε με τις διαφορές νέφους και άκρου.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Την <strong>ανίχνευση εμποδίου</strong> στο <strong>άκρο</strong>: είναι απόφαση πραγματικού χρόνου, και η καθυστέρηση είναι η κρίσιμη διαφορά. Ο προϋπολογισμός του 1 ms του Tactile Internet (0.3 + 0.2 + 0.5 ms) βάζει τον υπολογισμό στον σταθμό βάσης, όχι σε μακρινό κέντρο δεδομένων. Την <strong>ανάλυση της πόλης</strong> στο <strong>νέφος</strong>: θέλει χωρητικότητα για μεγάλα και ιστορικά δεδομένα, και δεν είναι επείγουσα. Οι τρεις διαφορές που δουλεύουν εδώ: θέση της επεξεργασίας, καθυστέρηση, χωρητικότητα. Η ομοιότητα, ότι είναι μέρη του ίδιου συστήματος, κάνει δυνατή την υβριδική λύση. <a href="../../chapters/10-cloud-edge-industry/#differences">Ενότητα 10.2</a></p>
+</details>
+<h3 id="q10-2">Τα τέσσερα χαρακτηριστικά σε ένα προϊόν<a class="headerlink" href="#q10-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2025 2γ.</em></p>
+<p><strong>Εξηγήστε τα τέσσερα χαρακτηριστικά της Βιομηχανίας 4.0 χρησιμοποιώντας ως παράδειγμα μια έξυπνη αντλία νερού σε εργοστάσιο.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>Επίγνωση:</strong> αισθητήρες πίεσης, ροής και δονήσεων δίνουν στην αντλία πληροφορίες για την κατάστασή της. <strong>Συνδεδεμένη:</strong> συσκευή επικοινωνίας Machine-to-Machine (<dfn class="abbr-def" id="abbr-m2m" title="Machine-to-Machine">M2M</dfn>) ανταλλάσσει δεδομένα με τα άλλα μηχανήματα της γραμμής. <strong>Νοημοσύνη:</strong> υπολογιστική ισχύς εντοπίζει ανωμαλίες και προβλέπει πότε χρειάζεται συντήρηση. <strong>Ανταπόκριση:</strong> τεχνολογία ελέγχου προσαρμόζει μόνη της την ισχύ, για παράδειγμα όταν η γραμμή ζητά λιγότερη ροή. Με αυτή τη σειρά σχηματίζουν βρόχο: αντιλαμβάνεται, επικοινωνεί, αποφασίζει, δρα. <a href="../../chapters/10-cloud-edge-industry/#four-characteristics">Ενότητα 10.4</a></p>
+</details>
+<h3 id="q10-3">Πώς γεννιέται ένα πρότυπο<a class="headerlink" href="#q10-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2025 2δ.</em></p>
+<p><strong>Ποια η διαφορά ανάμεσα σε de facto και de jure πρότυπο; Ποιες αρχές ακολουθεί ένας οργανισμός προτύπων;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Ένα <strong>de facto</strong> πρότυπο επικρατεί στην πράξη, επειδή το υιοθέτησαν αρκετοί. Ένα <strong>de jure</strong> πρότυπο το παράγει ένας οργανισμός προτύπων με τυπική, καλά ορισμένη διαδικασία. Οι αρχές ενός σοβαρού οργανισμού: <strong>συναίνεση</strong> (καμία ομάδα δεν κυριαρχεί), <strong>ανοιχτότητα</strong> (μπορεί να συμμετέχει κάθε ενδιαφερόμενος), <strong>τυπική διαδικασία</strong> με δυνατότητα ένστασης, <strong>τεχνική αρτιότητα</strong>, <strong>παγκόσμια εμβέλεια</strong>, και δίκαιη πολιτική για τις πατέντες. Στο Institute of Electrical and Electronics Engineers (<dfn class="abbr-def" id="abbr-ieee" title="Institute of Electrical and Electronics Engineers">IEEE</dfn>) η ψηφοφορία ζητά τουλάχιστον 75% συμμετοχή και 75% θετικές ψήφους. <a href="../../chapters/10-cloud-edge-industry/#standardisation">Ενότητα 10.5</a></p>
+</details>
+<h2 id="ch11">Ασφάλεια, δίκτυα αισθητήρων και έξυπνες πόλεις<a class="headerlink" href="#ch11" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<h3 id="q11-1">Γιατί κάτω από 1 GHz<a class="headerlink" href="#q11-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2022 Θέμα 1.</em></p>
+<p><strong>Γιατί ένα πρότυπο Wi-Fi για το <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>, όπως το 802.11ah, προτιμά μικρότερο ρυθμό από τα 802.11ac/ad;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Γιατί ο στόχος του δεν είναι ο ρυθμός. Το 802.11ah δουλεύει κάτω από 1 GHz για <strong>μεγάλη εμβέλεια</strong>, <strong>ενεργειακή αποδοτικότητα</strong> και <strong>πολλές συσκευές</strong>, και οι εφαρμογές του (<a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>, έξυπνο ηλεκτρικό δίκτυο, υγεία) στέλνουν λίγα δεδομένα. Το 802.11ac φτάνει τα 3.5 Gbps, αλλά μόνο σε 10 έως 30 m εσωτερικού χώρου, ενώ το 802.11ah καλύπτει 200 m έως 4 km. Ρυθμός και εμβέλεια είναι συμβιβασμός. <a href="../../chapters/11-security-smart-cities/#wifi-80211ah">Ενότητα 11.1</a></p>
+</details>
+<h3 id="q11-2">Διευθύνσεις για δισεκατομμύρια<a class="headerlink" href="#q11-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2022 2Β.</em></p>
+<p><strong>Γιατί η διευθυνσιοδότηση είναι πρόβλημα στο <a class="abbr-link" href="#abbr-iot" title="Internet of Things">IoT</a>, και τι λύσεις έχουν προταθεί;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Οι συνδεδεμένες συσκευές μετρώνται σε δισεκατομμύρια, και το 5G προβλέπει 10 έως 100 φορές περισσότερες. Κάθε συσκευή χρειάζεται διεύθυνση για να είναι προσβάσιμη και ταυτοποίηση ώστε κάθε μέτρηση να συνδέεται με την πηγή της. <strong>Λύσεις:</strong> το Internet Protocol version 6 (<dfn class="abbr-def" id="abbr-ipv6" title="Internet Protocol version 6">IPv6</dfn>), με τεράστιο χώρο διευθύνσεων, και το <a class="abbr-link" href="#abbr-ipv6" title="Internet Protocol version 6">IPv6</a> over Low power Wireless Personal Area Networks (<dfn class="abbr-def" id="abbr-6lowpan" title="IPv6 over Low power Wireless Personal Area Networks">6LoWPAN</dfn>), που συμπιέζει τις επικεφαλίδες του <a class="abbr-link" href="#abbr-ipv6" title="Internet Protocol version 6">IPv6</a> ώστε να τρέχει σε μικροσκοπικούς αισθητήρες 802.15.4. <a href="../../chapters/11-security-smart-cities/#addressing">Ενότητα 11.2</a></p>
+</details>
+<h3 id="q11-3">Δύο δίκτυα χωρίς υποδομή<a class="headerlink" href="#q11-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2022 2Γ.</em></p>
+<p><strong>Ένα Wireless Sensor Network (<dfn class="abbr-def" id="abbr-wsn" title="Wireless Sensor Network">WSN</dfn>) και ένα Mobile Ad-Hoc Network (<dfn class="abbr-def" id="abbr-manet" title="Mobile Ad-Hoc Network">MANET</dfn>) μοιάζουν δομικά. Τι τα κάνει διαφορετικά στην πράξη, και ποια είναι η βασική πρόκληση του καθενός;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>Κοινά:</strong> χωρίς υποδομή, πολλαπλά βήματα, αυτο-οργάνωση. <strong>Διαφορές:</strong> σκοπός (μια κοινή εργασία μέτρησης με δεδομένα προς τον sink, έναντι επικοινωνίας ανάμεσα σε οποιουσδήποτε κόμβους)· κινητικότητα (το <a class="abbr-link" href="#abbr-wsn" title="Wireless Sensor Network">WSN</a> είναι συνήθως στατικό, στο <a class="abbr-link" href="#abbr-manet" title="Mobile Ad-Hoc Network">MANET</a> η κίνηση είναι ο κανόνας)· πόροι (οι κόμβοι του <a class="abbr-link" href="#abbr-wsn" title="Wireless Sensor Network">WSN</a> είναι εξαιρετικά περιορισμένοι). <strong>Πρόκληση του <a class="abbr-link" href="#abbr-wsn" title="Wireless Sensor Network">WSN</a>:</strong> η ενέργεια, μαζί με κλιμάκωση και ανθεκτικότητα. <strong>Πρόκληση του <a class="abbr-link" href="#abbr-manet" title="Mobile Ad-Hoc Network">MANET</a>:</strong> η μεταβαλλόμενη τοπολογία, που χαλά τις διαδρομές και δυσκολεύει τη δρομολόγηση και τον εντοπισμό θέσης. <a href="../../chapters/11-security-smart-cities/#wsn-manet">Ενότητα 11.3</a></p>
+</details>
+<h3 id="q11-4">Πού πάει η ενέργεια<a class="headerlink" href="#q11-4" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του τρίτου σκέλους του 2022 2Γ.</em></p>
+<p><strong>Αναφέρετε τις αιτίες ενεργειακής σπατάλης που πρέπει να αντιμετωπίσει το πρωτόκολλο πρόσβασης σε ένα δίκτυο αισθητήρων.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p><strong>Συγκρούσεις</strong> (η μετάδοση καταστρέφεται και ξαναστέλνεται), <strong>αναμονή</strong> (idle listening, το ραδιόφωνο ανοιχτό χωρίς να έρχεται τίποτα), <strong>ακρόαση μηνυμάτων για άλλους</strong> (overhearing), και <strong>κώφωση</strong> (deafness, μετάδοση προς παραλήπτη που τη στιγμή εκείνη δεν ακούει). Πέρα από το επίπεδο πρόσβασης, και οι <strong>περιττές μεταδόσεις</strong> του flooding. <a href="../../chapters/11-security-smart-cities/#energy-waste">Ενότητα 11.3</a></p>
+</details>
+<h3 id="q11-5">Υπηρεσίες και οικογένειες του 5G<a class="headerlink" href="#q11-5" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Παραλλαγή του 2022 2Δ.</em></p>
+<p><strong>Αντιστοιχίστε τις υπηρεσίες μιας έξυπνης πόλης στις τρεις οικογένειες χρήσεων του 5G.</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<ul>
+<li><strong>enhanced Mobile Broadband (<dfn class="abbr-def" id="abbr-embb" title="enhanced Mobile Broadband">eMBB</dfn>)</strong>, πολύ υψηλοί ρυθμοί: βίντεο από κάμερες, γήπεδα με χιλιάδες χρήστες.</li>
+<li><strong>massive Machine-Type Communications (<dfn class="abbr-def" id="abbr-mmtc" title="massive Machine-Type Communications">mMTC</dfn>)</strong>, τεράστιος αριθμός φθηνών συσκευών με μακρόχρονη μπαταρία: έξυπνη στάθμευση, κάδοι απορριμμάτων, φωτισμός, δομική υγεία.</li>
+<li><strong>Ultra-Reliable Low-Latency Communications (<dfn class="abbr-def" id="abbr-urllc" title="Ultra-Reliable Low-Latency Communications">URLLC</dfn>)</strong>, εξαιρετική αξιοπιστία και καθυστέρηση κάτω από 1 ms: έξυπνοι δρόμοι, έλεγχος φαναριών, συνδεδεμένα οχήματα.</li>
+</ul>
+<p><a href="../../chapters/11-security-smart-cities/#5g">Ενότητα 11.4</a></p>
+</details>
+<h2 id="ch12">Δρομολόγηση, πρωτόκολλα εφαρμογής και ασύρματη ισχύς<a class="headerlink" href="#ch12" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h2>
+<p>Κανένα από αυτά δεν έχει εξεταστεί· είναι νέες ερωτήσεις με σχήμα θέματος.</p>
+<h3 id="q12-1">Ο γράφος της δρομολόγησης<a class="headerlink" href="#q12-1" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Πώς οργανώνει το δίκτυο το Routing Protocol for Low-power and Lossy Networks (<dfn class="abbr-def" id="abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</dfn>), και πώς χτίζεται η δομή του;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Το <a class="abbr-link" href="#abbr-rpl" title="Routing Protocol for Low-power and Lossy Networks">RPL</a>, του Internet Engineering Task Force (<dfn class="abbr-def" id="abbr-ietf" title="Internet Engineering Task Force">IETF</dfn>) και βασισμένο στο <a class="abbr-link" href="#abbr-ipv6" title="Internet Protocol version 6">IPv6</a>, οργανώνει το δίκτυο ως <strong>γράφο χωρίς κύκλους</strong> με μία ρίζα, προς την οποία ρέουν τα δεδομένα. Κάθε κόμβος έχει ένα <strong>rank</strong>, το βάθος του στον γράφο, που υπολογίζεται από την <strong>Objective Function</strong> με βάση μετρικές όπως το <a class="abbr-link" href="#abbr-etx" title="Expected Transmission Count">ETX</a> και η υπολειπόμενη ενέργεια. Ο γράφος χτίζεται από τη ρίζα προς τα έξω: η ρίζα εκπέμπει ένα μήνυμα ανακοίνωσης του γράφου, οι γείτονες το αξιολογούν με τις μετρικές των ζεύξεων, εντάσσονται ορίζοντας τη ρίζα ως γονέα, υπολογίζουν το rank τους, και ανακοινώνουν με τη σειρά τους τον γράφο στους επόμενους. <a href="../../chapters/12-rpl-app-protocols/#rpl">Ενότητα 12.1</a></p>
+</details>
+<h3 id="q12-2">Αίτημα ή δημοσίευση<a class="headerlink" href="#q12-2" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα, υπόβαθρο του 2025 Θέμα 1β.</em></p>
+<p><strong>Συγκρίνετε τα πρωτόκολλα Constrained Application Protocol (<dfn class="abbr-def" id="abbr-coap" title="Constrained Application Protocol">CoAP</dfn>) και <a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a>. Ποιο θα διαλέγατε για αισθητήρες που στέλνουν μετρήσεις σε πολλές εφαρμογές, και γιατί;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Το <strong><a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a></strong> ακολουθεί το μοντέλο <strong>αιτήματος-απάντησης</strong> του Web (<code>GET</code>, <code>POST</code>, <code>PUT</code>) για συσκευές με ελάχιστους πόρους: ο πελάτης ρωτά απευθείας συγκεκριμένη συσκευή. Το <strong><a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a></strong> ακολουθεί το μοντέλο <strong>δημοσίευσης-εγγραφής</strong> πάνω από το Transmission Control Protocol (<dfn class="abbr-def" id="abbr-tcp" title="Transmission Control Protocol">TCP</dfn>) και το Internet Protocol (<dfn class="abbr-def" id="abbr-ip" title="Internet Protocol">IP</dfn>): ο αισθητήρας δημοσιεύει σε ένα θέμα, και ένας <strong>μεσολαβητής</strong> μοιράζει το μήνυμα σε όσους έχουν εγγραφεί, χωρίς ο αισθητήρας να ξέρει ποιοι είναι. Για πολλούς αισθητήρες και πολλές εφαρμογές ταιριάζει το <a class="abbr-link" href="#abbr-mqtt" title="Message Queuing Telemetry Transport">MQTT</a>: ο αισθητήρας στέλνει μία φορά, και νέες εφαρμογές προστίθενται χωρίς να αλλάξει τίποτα σε αυτόν. Το <a class="abbr-link" href="#abbr-coap" title="Constrained Application Protocol">CoAP</a> ταιριάζει όταν μια εφαρμογή θέλει να ρωτήσει ή να ρυθμίσει μια συγκεκριμένη συσκευή. <a href="../../chapters/12-rpl-app-protocols/#app-protocols">Ενότητα 12.2</a></p>
+</details>
+<h3 id="q12-3">Βαθμωτό και διανυσματικό μοντέλο φόρτισης<a class="headerlink" href="#q12-3" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Ποια η διαφορά του βαθμωτού και του διανυσματικού μοντέλου ασύρματης φόρτισης; Πότε το βαθμωτό δεν αρκεί;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Στο <strong>βαθμωτό</strong> μοντέλο η ισχύς κάθε φορτιστή, που πέφτει με το τετράγωνο της απόστασης, <strong>προστίθεται</strong> στην ισχύ των άλλων. Στο <strong>διανυσματικό</strong> κάθε φορτιστής δημιουργεί ένα <strong>πεδίο</strong>, διάνυσμα με μήκος <span class="arithmatex">\(1/d\)</span> και κατεύθυνση που εξαρτάται από την απόσταση σε μήκη κύματος· τα πεδία προστίθενται ως διανύσματα και η ισχύς είναι το τετράγωνο του μήκους του αθροίσματος. Το βαθμωτό αρκεί για έναν φορτιστή ή λίγους μακρινούς. Όταν υπάρχουν <strong>πολλοί κοντινοί</strong> φορτιστές, τα κύματα συμβάλλουν: σε κάποια σημεία η ισχύς είναι μεγαλύτερη από το άθροισμα (ενίσχυση) και σε άλλα σχεδόν μηδέν (αλληλοαναίρεση), κάτι που μόνο το διανυσματικό μοντέλο εξηγεί. <a href="../../chapters/12-rpl-app-protocols/#charging-models">Ενότητα 12.3</a></p>
+</details>
+<h3 id="q12-4">Ο κινητός sink<a class="headerlink" href="#q12-4" title="Σύνδεσμος σε αυτή την ενότητα">&para;</a></h3>
+<p><em>Νέα.</em></p>
+<p><strong>Ποια είναι τα πλεονεκτήματα και οι προκλήσεις ενός κινητού sink σε ένα δίκτυο αισθητήρων;</strong></p>
+<details class="answer">
+<summary>Απάντηση</summary>
+<p>Η ιδέα είναι να μεταφερθεί το βάρος από τους αισθητήρες στον sink, που έχει αποθέματα ενέργειας τα οποία αναπληρώνονται εύκολα. <strong>Πλεονεκτήματα:</strong> μικρότερες αποστάσεις μετάδοσης, άρα λιγότερη ενέργεια και μεγαλύτερη διάρκεια ζωής· καλύτερη κατανομή του φορτίου, χωρίς την ενεργειακή τρύπα γύρω από τον στατικό sink· καλή κλιμάκωση με τον αριθμό των αισθητήρων· καλύτερος χειρισμός αραιών ή αποκομμένων δικτύων και εμποδίων· λιγότερη υποκλοπή. <strong>Προκλήσεις:</strong> ο sink πρέπει να καλύψει όλη την περιοχή, οι καθυστερήσεις μεγαλώνουν, η κλιμάκωση με το μέγεθος της περιοχής είναι κακή, και η δρομολόγηση και ο εντοπισμός θέσης δυσκολεύουν. Ο συμβιβασμός είναι ενέργεια έναντι καθυστέρησης. <a href="../../chapters/12-rpl-app-protocols/#why-mobile-sink">Ενότητα 12.4</a></p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Επιστροφή στην αρχή
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.tooltips", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03ac\u03c6\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "clipboard.copy": "\u0391\u03bd\u03c4\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03c7\u03b5\u03b9\u03c1\u03bf", "search.result.more.one": "1 \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.more.other": "# \u03b1\u03ba\u03cc\u03bc\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u03bd \u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1", "search.result.none": "\u03b4\u03b5\u03bd \u03b2\u03c1\u03ae\u03ba\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf", "search.result.one": "1 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03b5\u03b9", "search.result.other": "# \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1 \u03c0\u03bf\u03c5 \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd", "search.result.placeholder": "\u03a0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03bf\u03b3\u03ae\u03c3\u03c4\u03b5 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b1\u03c1\u03c7\u03af\u03c3\u03b5\u03b9 \u03b7 \u03b1\u03bd\u03b1\u03b6\u03ae\u03c4\u03b7\u03c3\u03b7", "search.result.term.missing": "\u039b\u03b5\u03af\u03c0\u03b5\u03b9", "select.version": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03ad\u03ba\u03b4\u03bf\u03c3\u03b7\u03c2"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/palette-menu.js"></script>
+      
+        <script src="../../javascripts/nav-sections.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

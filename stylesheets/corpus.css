@@ -1,0 +1,1784 @@
+/* The corpus theme: four colour schemes and the components they paint.
+ *
+ * Three layers, the way the FaceCue documentation arranges it:
+ *
+ *   --fc-*    the FaceCue asset colours. One set, in fc-tokens.css.
+ *   --c-*     this corpus's own roles: page, heading, formula box, exam tip.
+ *   --fig-*   the diagram palette. Declared per scheme so an inline SVG can
+ *             adapt to the page instead of carrying baked-in colours.
+ *
+ * Material's own --md-* variables are mapped onto --c-* at the end of the file,
+ * once, so the theme's chrome follows the corpus rather than the other way
+ * round.
+ *
+ * NEVER put a literal colour in a chapter, in prose or inside an SVG. It is
+ * invisible until someone switches scheme, which is exactly how the original
+ * single-file chapter ended up with 21 hard-coded colours in its figures.
+ */
+
+/* ========================================================================
+ * 1 - ACADEMIC (light), the original white-and-navy default.
+ *
+ * The figure values here are the literals the first draft of Chapter 1 used,
+ * so this scheme renders the diagrams as they were authored, with FOUR
+ * exceptions marked below. Those four were darkened on 2026-09-16 because the
+ * originals failed contrast: muted text and figure labels sat at about 4:1
+ * against their surfaces where text needs 4.5:1, the exam-tip heading at
+ * 3.14:1, and the sensor dots at 2.03:1 where a non-text graphic needs 3:1.
+ * The hues are unchanged; each value is the original walked toward black until
+ * it cleared its threshold with a little headroom.
+ * ==================================================================== */
+
+[data-md-color-scheme="academic"] {
+  --c-bg:          #ffffff;
+  --c-bg-alt:      #f7fafc;
+  --c-primary:     #1a365d;
+  --c-accent:      #2b6cb0;
+  --c-text:        #1a202c;
+  --c-muted:       #626f83;   /* was #718096: 4.02:1 on white */
+  --c-highlight:   #ebf4ff;
+  --c-formula-bg:  #f7fafc;
+  --c-code-bg:     #edf2f7;
+  --c-pre-text:    #2d3748;
+  --c-exam-bg:     #f0fff4;
+  --c-exam-border: #2b7d51;   /* was #38a169: 3.14:1 on the tip fill */
+  --c-warn:        #fef3c7;
+  --c-compare-h:   #92400e;
+  --c-border:      #e2e8f0;
+  --c-th-text:     #ffffff;
+
+  --fig-surface-accent: #ebf4ff;
+  --fig-surface-soft:   #e2e8f0;
+  --fig-surface-warn:   #fffaf0;
+  --fig-surface-event:  #fff5f5;
+  --fig-surface-ok:     #f0fff4;
+  --fig-node:           #7d8998;   /* was #a0aec0: 2.03:1 on the field */
+  --fig-node-soft:      #cbd5e0;
+  --fig-line:           #4a5568;
+  --fig-label:          #626f83;   /* was #718096: 3.62:1 on the field */
+  --fig-accent:         #2b6cb0;
+  --fig-accent-deep:    #1a365d;
+  --fig-on-accent:      #ffffff;
+  --fig-on-accent-soft: #bee3f8;
+  --fig-event:          #e53e3e;
+  --fig-event-deep:     #c53030;
+  --fig-event-soft:     #fc8181;
+  --fig-warn:           #dd6b20;
+  --fig-warn-deep:      #c05621;
+  --fig-ok:             #38a169;
+  --fig-ok-deep:        #276749;
+
+  color-scheme: light;
+}
+
+/* ========================================================================
+ * 2 - WARM LIGHT, the FaceCue documentation's light scheme.
+ * Source: facecue.css, the facecue-light block.
+ * ==================================================================== */
+
+[data-md-color-scheme="warm-light"] {
+  --fc-panel:          #FAF8F3;
+  --fc-section:        #F2EEE6;
+  --fc-section-header: #E8E2D4;
+  --fc-section-border: #CCC3AF;
+  --fc-headless:       #EFEADF;
+  --fc-hub-group:      #EAE4D5;
+  --fc-hairline:       #B39A5C;
+  --fc-callout-border: #B39A5C;
+  --fc-text:           #26231F;
+  --fc-text-bright:    #14120F;
+  --fc-text-muted:     #6B6457;
+  --fc-tan:            #6E5418;
+  --fc-tan-bright:     #533E0F;
+  --fc-gold:           #86642A;
+  --fc-olive:          #C4B389;
+  --fc-red:            #9E3535;
+  --fc-yellow:         #7A5A10;
+  --fc-green:          #3F8F4A;
+  --fc-blue:           #2F6BC2;
+  --fc-warning-bg:     #F7ECC9;
+
+  --c-bg:          var(--fc-panel);
+  --c-bg-alt:      var(--fc-section);
+  --c-primary:     var(--fc-tan);
+  --c-accent:      var(--fc-gold);
+  --c-text:        var(--fc-text);
+  --c-muted:       var(--fc-text-muted);
+  --c-highlight:   var(--fc-hub-group);
+  --c-formula-bg:  var(--fc-section);
+  --c-code-bg:     var(--fc-section-header);
+  --c-pre-text:    var(--fc-text-bright);
+  --c-exam-bg:     var(--fc-section);
+  --c-exam-border: var(--fc-tan);
+  --c-warn:        var(--fc-warning-bg);
+  --c-compare-h:   var(--fc-yellow);
+  --c-border:      var(--fc-section-border);
+  --c-th-text:     var(--fc-panel);
+
+  --fig-surface-accent: #EAE4D5;
+  --fig-surface-soft:   #F2EEE6;
+  --fig-surface-warn:   #F7ECC9;
+  --fig-surface-event:  #F8E3E3;
+  --fig-surface-ok:     #E8F0E4;
+  --fig-node:           #7D7668;
+  --fig-node-soft:      #B8AE96;
+  --fig-line:           #6B6457;
+  --fig-label:          #6B6457;
+  /* ⚠ The figure hues are NOT the page's tan and gold. The step panels tell an
+     interest, a data message and a reinforcement apart by hue alone, and in this
+     palette the accent (#86642A), the amber (#8F6B10) and the deep tan (#533E0F)
+     are one family of browns: each passed contrast against the page, and none
+     could be told from the others. Measured by eye on 2026-09-16, which no
+     contrast check can catch. So the panels take FaceCue's own SIGNAL colours,
+     which exist precisely to mean the same thing whatever the page wears: blue
+     for the sink and its interests, green for gradients, red for the source.
+     Orange is DERIVED, not lifted: FaceCue has no orange, and data messages need
+     a fourth hue distinct from all three. */
+  --fig-accent:         #2F6BC2;   /* --fc-blue, light */
+  --fig-accent-deep:    #1D4A8C;   /* derived: --fc-blue, deepened */
+  --fig-on-accent:      #FAF8F3;
+  --fig-on-accent-soft: #E8E2D4;
+  --fig-event:          #9E3535;
+  --fig-event-deep:     #7A2626;
+  --fig-event-soft:     #C98080;
+  --fig-warn:           #B8561A;   /* derived orange */
+  --fig-warn-deep:      #8A3F12;   /* derived orange, deepened */
+  --fig-ok:             #3F8F4A;
+  --fig-ok-deep:        #2E6B37;
+
+  color-scheme: light;
+}
+
+/* ========================================================================
+ * 3 - NAVY (dark), dark slate and pale blue, this corpus's own.
+ *
+ * The figure values invert the light logic: a "deep" token is BRIGHTER than
+ * its base here, because it draws the outline on top of the fill rather than
+ * under it. Same for --fig-event-soft, which is a fill, so it goes dark while
+ * --fig-event goes bright.
+ * ==================================================================== */
+
+[data-md-color-scheme="navy"] {
+  --c-bg:          #1a202c;
+  --c-bg-alt:      #2d3748;
+  --c-primary:     #a0cef8;
+  --c-accent:      #63b3ed;
+  --c-text:        #e2e8f0;
+  --c-muted:       #a0aec0;
+  --c-highlight:   #2a4365;
+  --c-formula-bg:  #2d3748;
+  --c-code-bg:     #2d3748;
+  --c-pre-text:    #e2e8f0;
+  --c-exam-bg:     #1c3a2a;
+  --c-exam-border: #68d391;
+  --c-warn:        #3d2e14;
+  --c-compare-h:   #f2c766;
+  --c-border:      #4a5568;
+  --c-th-text:     #1a202c;
+
+  --fig-surface-accent: #2a4365;
+  --fig-surface-soft:   #2d3748;
+  --fig-surface-warn:   #3d2e14;
+  --fig-surface-event:  #3b2626;
+  --fig-surface-ok:     #1c3a2a;
+  --fig-node:           #a0aec0;
+  --fig-node-soft:      #718096;
+  --fig-line:           #cbd5e0;
+  --fig-label:          #bccadb;
+  --fig-accent:         #63b3ed;
+  --fig-accent-deep:    #a0cef8;
+  --fig-on-accent:      #1a202c;
+  --fig-on-accent-soft: #2a4365;
+  --fig-event:          #fc8181;
+  --fig-event-deep:     #feb2b2;
+  --fig-event-soft:     #7b2d2d;
+  --fig-warn:           #f6ad55;
+  --fig-warn-deep:      #fbd38d;
+  --fig-ok:             #68d391;
+  --fig-ok-deep:        #9ae6b4;
+
+  color-scheme: dark;
+}
+
+/* ========================================================================
+ * 4 - WARM DARK, the FaceCue documentation's dark scheme.
+ *
+ * The --fc-* tokens ARE repeated here, although fc-tokens.css already puts the
+ * same dark values on :root. This block used to rely on inheriting them, and
+ * that only holds while warm-dark is the OUTERMOST scheme on the page. Nest a
+ * warm-dark element inside a warm-light one and inheritance finds warm-light's
+ * re-declared tokens first: the theme menu's warm-dark swatch did exactly that
+ * on 2026-09-16 and drew a light circle. Every scheme block now declares every
+ * token it reads, so each one is correct wherever it sits. Values mirror
+ * fc-tokens.css; change both together.
+ * ==================================================================== */
+
+[data-md-color-scheme="warm-dark"] {
+  --fc-panel:          #141414;
+  --fc-section:        #282726;
+  --fc-section-header: #1E1D1C;
+  --fc-section-border: #3A3836;
+  --fc-headless:       #2E2D2C;
+  --fc-hub-group:      #2A2620;
+  --fc-hairline:       #7A6A40;
+  --fc-callout-border: #6B5E38;
+  --fc-text:           #CCCCCC;
+  --fc-text-bright:    #E6E6E6;
+  --fc-text-muted:     #8A857F;
+  --fc-tan:            #D0C090;
+  --fc-gold:           #C09A5C;
+  --fc-olive:          #6A5A4A;
+  --fc-red:            #F27373;
+  --fc-yellow:         #F2C766;
+  --fc-green:          #5CB85C;
+  --fc-blue:           #73A2E6;
+  --fc-warning-bg:     #2C2721;
+
+  --c-bg:          var(--fc-panel);
+  --c-bg-alt:      var(--fc-section);
+  --c-primary:     var(--fc-tan);
+  --c-accent:      var(--fc-gold);
+  --c-text:        var(--fc-text);
+
+  /* NOT --fc-text-muted, and the deviation is ours rather than FaceCue's.
+     FaceCue uses that colour (#8A857F) for subtitle text on the panel, where it
+     measures 5.04:1 and is fine. This corpus also puts muted text on the
+     SECTION surface, inside the formula box and under figures, which FaceCue
+     never does, and there it drops to 4.08:1. Brightened just enough to clear
+     4.5:1 on the section while staying the same hue: 4.71:1 there, 5.81:1 on
+     the panel. */
+  --c-muted:       #95908B;
+
+  /* FaceCue's HubGroupBackground (#2A2620) is a warm brown, and on the neutral
+     #141414 panel it made the highlight boxes (key terms, quotes) the only warm
+     surface on the page. HeadlessBoxBackground (#2E2D2C) is neutral and a touch
+     lighter than the section, so highlights still lift off the page without
+     turning brown. The other schemes keep their own highlight, which is already
+     in key with each of them. */
+  --c-highlight:   var(--fc-headless);
+  --c-formula-bg:  var(--fc-section);
+  --c-code-bg:     var(--fc-section-header);
+  --c-pre-text:    var(--fc-text-bright);
+  --c-exam-bg:     var(--fc-section);
+  --c-exam-border: var(--fc-tan);
+  --c-warn:        var(--fc-warning-bg);
+  --c-compare-h:   var(--fc-yellow);
+  --c-border:      var(--fc-section-border);
+  --c-th-text:     var(--fc-section-header);
+
+  --fig-surface-accent: #2A2620;
+  --fig-surface-soft:   #282726;
+  --fig-surface-warn:   #2C2721;
+  --fig-surface-event:  #322525;
+  --fig-surface-ok:     #242A22;
+  --fig-node:           #8A857F;
+  --fig-node-soft:      #5A5650;
+  --fig-line:           #A8A29A;
+  --fig-label:          #9E9890;
+  /* Same reasoning as Warm Light: gold, tan and yellow are one family here, so
+     the figures take FaceCue's signal blue, and a derived orange for data. */
+  --fig-accent:         #73A2E6;   /* --fc-blue, dark */
+  --fig-accent-deep:    #A9C8F2;   /* derived: --fc-blue, brightened */
+  --fig-on-accent:      #141414;
+  --fig-on-accent-soft: #2A2620;
+  --fig-event:          #F27373;
+  --fig-event-deep:     #F7A0A0;
+  --fig-event-soft:     #5A2E2E;
+  --fig-warn:           #E8964A;   /* derived orange */
+  --fig-warn-deep:      #F4B77E;   /* derived orange, brightened */
+  --fig-ok:             #5CB85C;
+  --fig-ok-deep:        #8FD08F;
+
+  color-scheme: dark;
+}
+
+/* ========================================================================
+ * 5 - Material's variables, mapped onto the corpus roles.
+ *
+ * Written once against --c-*, not repeated per scheme, because --c-* is
+ * already resolved by the time these are read.
+ *
+ * ⛔⛔ MAP EVERY COLOUR VARIABLE MATERIAL USES, not just the obvious ones.
+ * Material declares its palette on :root with LIGHT-theme literals, and a
+ * custom scheme name like "warm-dark" matches none of Material's own scheme
+ * rules, so anything left unmapped here keeps its light default in every
+ * scheme. It is invisible on the light schemes and breaks the dark ones.
+ *
+ * Found the hard way, 2026-09-16: --md-admonition-fg-color stayed Material's
+ * #000000de, so the body text of every exam box was black at 87% on the dark
+ * box surface and unreadable in both dark schemes. A sweep for colour variables
+ * whose value is identical under a light and a dark scheme then found 57 of
+ * them. The ones this corpus can reach are mapped below; the Mermaid set is
+ * left alone because nothing here draws Mermaid diagrams.
+ *
+ * To re-run that sweep after a Material upgrade, read every --md-* property
+ * from the stylesheets, resolve each on a probe element carrying a light and
+ * then a dark data-md-color-scheme, and list the colours that come back equal.
+ * ==================================================================== */
+
+[data-md-color-scheme] {
+  /* Boxes (admonitions): the one that broke the exam boxes. */
+  --md-admonition-fg-color:        var(--c-text);
+  --md-admonition-bg-color:        var(--c-bg);
+
+  /* Material's translucent overlays, used for hover and focus states. Its
+     defaults are translucent WHITE, which glares on a dark page. The
+     percentages are Material's own alpha steps: b3, 4d, 1f and 1a in hex. */
+  --md-default-bg-color--light:    color-mix(in srgb, var(--c-bg) 70%, transparent);
+  --md-default-bg-color--lighter:  color-mix(in srgb, var(--c-bg) 30%, transparent);
+  --md-default-bg-color--lightest: color-mix(in srgb, var(--c-bg) 12%, transparent);
+  --md-accent-bg-color--light:     color-mix(in srgb, var(--c-bg) 70%, transparent);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--c-accent) 10%, transparent);
+
+  --md-code-bg-color--light:       color-mix(in srgb, var(--c-code-bg) 70%, transparent);
+  --md-code-bg-color--lighter:     color-mix(in srgb, var(--c-code-bg) 30%, transparent);
+  --md-code-hl-color:              var(--c-accent);
+  --md-code-hl-color--light:       color-mix(in srgb, var(--c-accent) 10%, transparent);
+
+  --md-typeset-mark-color:         color-mix(in srgb, var(--c-accent) 30%, transparent);
+  --md-typeset-kbd-color:          var(--c-bg-alt);
+  --md-typeset-kbd-accent-color:   var(--c-bg);
+  --md-typeset-kbd-border-color:   var(--c-border);
+  --md-typeset-table-color--light: color-mix(in srgb, var(--c-text) 4%, transparent);
+
+  --md-default-bg-color:           var(--c-bg);
+  --md-default-fg-color:           var(--c-text);
+  --md-default-fg-color--light:    var(--c-muted);
+  --md-default-fg-color--lighter:  var(--c-muted);
+  --md-default-fg-color--lightest: var(--c-border);
+
+  --md-primary-fg-color:           var(--c-bg-alt);
+  --md-primary-fg-color--light:    var(--c-highlight);
+  --md-primary-fg-color--dark:     var(--c-bg);
+  --md-primary-bg-color:           var(--c-text);
+  --md-primary-bg-color--light:    var(--c-muted);
+
+  --md-accent-fg-color:            var(--c-accent);
+  --md-accent-bg-color:            var(--c-bg);
+
+  --md-typeset-color:              var(--c-text);
+  --md-typeset-a-color:            var(--c-accent);
+  --md-typeset-table-color:        var(--c-border);
+
+  --md-code-bg-color:              var(--c-code-bg);
+  --md-code-fg-color:              var(--c-pre-text);
+
+  --md-footer-bg-color:            var(--c-bg-alt);
+  --md-footer-bg-color--dark:      var(--c-bg-alt);
+  --md-footer-fg-color:            var(--c-text);
+  --md-footer-fg-color--light:     var(--c-muted);
+  --md-footer-fg-color--lighter:   var(--c-muted);
+}
+
+/* Syntax highlighting, which needs a light and a dark set rather than one
+   mapping, because token colours are not derived from the page. FaceCue's
+   documentation settled this choice: VS Code's Light+ and Dark+, the schemes a
+   reader who writes code has seen every day. Values copied from facecue.css. */
+[data-md-color-scheme="warm-light"],
+[data-md-color-scheme="academic"] {
+  --md-code-hl-comment-color:      #008000;
+  --md-code-hl-keyword-color:      #0000FF;
+  --md-code-hl-string-color:       #A31515;
+  --md-code-hl-number-color:       #098658;
+  --md-code-hl-function-color:     #795E26;
+  --md-code-hl-constant-color:     #0070C1;
+  --md-code-hl-name-color:         #001080;
+  --md-code-hl-variable-color:     #001080;
+  --md-code-hl-generic-color:      #001080;
+  --md-code-hl-operator-color:     #333333;
+  --md-code-hl-punctuation-color:  #333333;
+  --md-code-hl-special-color:      #AF00DB;
+}
+
+[data-md-color-scheme="warm-dark"],
+[data-md-color-scheme="navy"] {
+  --md-code-hl-comment-color:      #6A9955;
+  --md-code-hl-keyword-color:      #569CD6;
+  --md-code-hl-string-color:       #CE9178;
+  --md-code-hl-number-color:       #B5CEA8;
+  --md-code-hl-function-color:     #DCDCAA;
+  --md-code-hl-constant-color:     #4FC1FF;
+  --md-code-hl-name-color:         #9CDCFE;
+  --md-code-hl-variable-color:     #9CDCFE;
+  --md-code-hl-generic-color:      #9CDCFE;
+  --md-code-hl-operator-color:     #D4D4D4;
+  --md-code-hl-punctuation-color:  #D4D4D4;
+  --md-code-hl-special-color:      #C586C0;
+}
+
+/* ========================================================================
+ * 6 - Type.
+ *
+ * A serif face for long Greek prose, which is what the original single-file
+ * chapter used and what a Greek textbook looks like. Material's font loading
+ * is off in mkdocs.yml, so these are system stacks and nothing is fetched.
+ * ==================================================================== */
+
+:root {
+  --md-text-font: "Georgia", "Times New Roman", serif;
+  --md-code-font: "Consolas", "SFMono-Regular", "Menlo", monospace;
+}
+
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.85;
+}
+
+.md-typeset p {
+  text-align: justify;
+}
+
+.md-typeset h1 {
+  color: var(--c-primary);
+  font-weight: 700;
+  border-bottom: 3px solid var(--c-accent);
+  padding-bottom: 0.4rem;
+}
+
+.md-typeset h2 {
+  color: var(--c-primary);
+  font-weight: 700;
+  border-left: 4px solid var(--c-accent);
+  padding-left: 0.6rem;
+}
+
+.md-typeset h3 {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* The line above the chapter title: "Κεφάλαιο 1", small and spaced out. */
+.md-typeset .chapter-num {
+  display: block;
+  font-size: 0.72em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--c-muted);
+  margin-bottom: 0.3rem;
+}
+
+/* ========================================================================
+ * 7 - Components.
+ *
+ * One radius scale for every secondary box, so the corpus reads as one system
+ * rather than a grab-bag of 0/2/3/4/6/8 px corners. Inline marks (key terms,
+ * tags, inline code) share one radius; content boxes (formulas, quotes,
+ * admonitions, figure legends) share another; chips stay fully round. UI chrome
+ * (the theme menu, the sidebar, circular markers) keeps its own radii.
+ * ==================================================================== */
+
+:root {
+  --r-inline: 4px;
+  --r-box:    6px;
+  --r-pill:   999px;
+}
+
+.md-typeset .key-term {
+  background: var(--c-highlight);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--r-inline);
+  font-weight: 700;
+}
+
+.md-typeset blockquote {
+  background: var(--c-highlight);
+  border-left: 3px solid var(--c-accent);
+  border-radius: var(--r-box);
+  color: var(--c-text);
+  padding: 0.6rem 0.9rem;
+  font-style: italic;
+}
+
+/* The boxed equation. Centred, on a raised surface, inside an accent rule. */
+.md-typeset .formula {
+  background: var(--c-formula-bg);
+  border: 2px solid var(--c-accent);
+  border-radius: var(--r-box);
+  padding: 0.8rem 1.2rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.md-typeset .formula .label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--c-muted);
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* Tables. --c-primary paints the header as a BACKGROUND, which is why
+   --c-th-text is a surface colour in the dark schemes rather than a text one. */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--c-border);
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--c-primary);
+  color: var(--c-th-text);
+  font-weight: 700;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background: var(--c-bg-alt);
+}
+
+/* Figures. The SVGs inside read the --fig-* tokens, so they follow the scheme
+   and need no per-figure styling of their own. */
+.md-typeset figure {
+  margin: 2rem 0;
+}
+
+.md-typeset figure svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.md-typeset figcaption {
+  font-size: 0.85em;
+  color: var(--c-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* Every admonition box (answer, note, exam, todo, extra, and the collapsible
+   details form) takes the shared box radius, so they match the formula box and
+   the figure legends instead of Material's own default corner. */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: var(--r-box);
+}
+
+/* ---- Custom admonitions -------------------------------------------------
+ *
+ * Two beyond Material's own set. Both are declared the way Material declares
+ * its own: an icon as a masked SVG, then the two colours.
+ */
+
+:root {
+  --md-admonition-icon--exam: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>');
+  --md-admonition-icon--compare: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-8 16H5V5h6v14Z"/></svg>');
+}
+
+/* The exam tip. Drawn as a FaceCue callout: the section surface for the fill,
+   the tan for both the left rule and the heading. */
+.md-typeset .admonition.exam,
+.md-typeset details.exam {
+  border-color: var(--c-exam-border);
+  border-left-width: 4px;
+  background: var(--c-exam-bg);
+}
+
+.md-typeset .exam > .admonition-title,
+.md-typeset .exam > summary {
+  background: transparent;
+  color: var(--c-exam-border);
+}
+
+.md-typeset .exam > .admonition-title::before,
+.md-typeset .exam > summary::before {
+  background-color: var(--c-exam-border);
+  -webkit-mask-image: var(--md-admonition-icon--exam);
+          mask-image: var(--md-admonition-icon--exam);
+}
+
+/* The protocol comparison box. */
+.md-typeset .admonition.compare,
+.md-typeset details.compare {
+  border-color: var(--c-compare-h);
+  background: var(--c-warn);
+}
+
+.md-typeset .compare > .admonition-title,
+.md-typeset .compare > summary {
+  background: transparent;
+  color: var(--c-compare-h);
+}
+
+.md-typeset .compare > .admonition-title::before,
+.md-typeset .compare > summary::before {
+  background-color: var(--c-compare-h);
+  -webkit-mask-image: var(--md-admonition-icon--compare);
+          mask-image: var(--md-admonition-icon--compare);
+}
+
+/* ========================================================================
+ * 8 - Figure animation.
+ *
+ * Carried over from the single-file chapter. Held still for a reader who has
+ * asked their system for reduced motion: a looping dash on every arrow in a
+ * revision document is the kind of thing that setting exists for.
+ * ==================================================================== */
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { r: 6; opacity: 1; } 50% { r: 9; opacity: 0.7; } }
+@keyframes flowRight { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+@keyframes flowLeft { from { stroke-dashoffset: -20; } to { stroke-dashoffset: 0; } }
+
+.anim-flow-right { stroke-dasharray: 8 4; animation: flowRight 1s linear infinite; }
+.anim-flow-left  { stroke-dasharray: 8 4; animation: flowLeft 1s linear infinite; }
+.anim-pulse      { animation: pulse 2s ease-in-out infinite; }
+.anim-fadein-1   { animation: fadeIn 0.8s ease-in 0.5s both; }
+.anim-fadein-2   { animation: fadeIn 0.8s ease-in 1.2s both; }
+.anim-fadein-3   { animation: fadeIn 0.8s ease-in 1.9s both; }
+.anim-fadein-4   { animation: fadeIn 0.8s ease-in 2.6s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-flow-right,
+  .anim-flow-left,
+  .anim-pulse,
+  .anim-fadein-1,
+  .anim-fadein-2,
+  .anim-fadein-3,
+  .anim-fadein-4 {
+    animation: none;
+  }
+  .anim-flow-right,
+  .anim-flow-left { stroke-dasharray: none; }
+}
+
+/* ========================================================================
+ * 9 - The theme dropdown.
+ *
+ * Material's palette is a cycler: one button, each click advancing to the next
+ * scheme. docs/javascripts/palette-menu.js replaces that button with a menu
+ * listing all four, and still drives Material's own radios underneath.
+ *
+ * The menu paints itself from the ACTIVE scheme's tokens, like the rest of the
+ * page. The one exception is each row's swatch, which carries its own
+ * data-md-color-scheme and so resolves that scheme's tokens instead. That is
+ * what lets a row preview the scheme it selects.
+ * ==================================================================== */
+
+.theme-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Material's own cycler labels. Hidden with CSS rather than the `hidden`
+   attribute, because Material toggles `hidden` on these every time the scheme
+   changes: set it once and the next pick shows the active scheme's label again,
+   leaving a second icon in the header beside the menu button. */
+form[data-md-component="palette"] > label {
+  display: none !important;
+}
+
+.theme-menu__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: currentcolor;
+  padding: 0;
+}
+
+.theme-menu__button-icon {
+  display: flex;
+}
+
+.theme-menu__button-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentcolor;
+}
+
+.theme-menu__list {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  z-index: 100;
+
+  display: none;
+  min-width: 11.5rem;
+  padding: 0.25rem;
+
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+
+  font-family: var(--md-text-font), sans-serif;
+}
+
+.theme-menu.is-open .theme-menu__list {
+  display: block;
+}
+
+.theme-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  color: var(--c-text);
+  font-size: 0.68rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.theme-menu__item:hover,
+.theme-menu__item:focus-visible {
+  background: var(--c-highlight);
+}
+
+.theme-menu__item.is-active {
+  color: var(--c-primary);
+  font-weight: 700;
+}
+
+.theme-menu__icon {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.theme-menu__icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: currentcolor;
+}
+
+.theme-menu__name {
+  flex: 1 1 auto;
+}
+
+/* The preview chip. Its background is the scheme's page colour and the dot
+   inside is that scheme's heading colour, so a row shows the two colours that
+   actually distinguish one scheme from another. */
+.theme-menu__swatch {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+}
+
+.theme-menu__swatch i {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
+/* The header is a flex row that can clip an absolutely positioned child on
+   narrow screens. Anchoring the menu to the header itself rather than to the
+   button keeps it on screen at phone width. */
+@media screen and (max-width: 44.98em) {
+  .theme-menu__list {
+    right: -0.4rem;
+  }
+}
+
+/* ========================================================================
+ * 10 - The table of contents, after the FaceCue documentation's.
+ *
+ * Ported from facecue.css, where every choice below was measured. The idea is
+ * subtraction: everything in the column rests well faded, and the reader's
+ * position is shown by taking the fade OFF rather than by adding a highlight.
+ * The column is a navigation aid beside the page, not a second copy of it, so
+ * the page's own shape is what should stand out.
+ *
+ * Each level borrows the mark its heading carries in the body: a section (h2)
+ * gets a hairline beneath it, a subsection (h3) a short bar at its start. The
+ * depth is capped at h3 in mkdocs.yml; a fourth level only crowds the column.
+ *
+ * Token mapping from FaceCue: --pg-heading is our --c-primary, --pg-heading-rule
+ * our --c-accent (the colour of the h2 bar and h1 rule), --sb-link our --c-text,
+ * --sb-link-rail our --c-border.
+ *
+ * ⛔⛔ Selector shape, inherited from FaceCue along with its reasons, and every
+ * part of it fails silently on its own:
+ *   - Reach the nav as a DESCENDANT of .md-sidebar--secondary. A direct child
+ *     selector matches nothing: Material nests .md-sidebar__scrollwrap and
+ *     .md-sidebar__inner in between.
+ *   - Never use .md-nav--secondary alone. Material renders the contents twice,
+ *     the second copy folded into the primary nav for the phone drawer.
+ *   - Count levels with an explicit > chain. .md-nav--secondary carries the
+ *     class .md-nav itself, so `.md-nav--secondary .md-nav .md-nav__item`
+ *     matches the SECOND level, one level shallower than it reads.
+ * ==================================================================== */
+
+.md-sidebar--secondary .md-nav__title {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0;
+}
+
+.md-sidebar--secondary .md-nav__link {
+  color: var(--c-muted);
+  font-size: 0.7rem;
+}
+
+/* The fade dials, one pair per level. The light schemes get their own numbers,
+   and not merely scaled: mixing toward transparent moves a colour toward what is
+   behind it, and on a light page a mid colour gives up contrast far faster than
+   on a dark one, so shared numbers invert the ladder. FaceCue's two sets, used
+   as is, then re-measured here. */
+[data-md-color-scheme="warm-dark"] .md-sidebar--secondary .md-nav--secondary,
+[data-md-color-scheme="navy"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-fade-head: 40%;
+  --toc-fade-head-on: 88%;
+  --toc-fade-rule: 44%;
+  --toc-fade-rule-on: 75%;
+  --toc-fade-h3: 60%;
+  --toc-fade-bar3: 85%;
+  --toc-strong: var(--c-primary);
+}
+
+/* The light dials are RAISED from FaceCue's own numbers (Chris, 2026-09-16: the
+   dark contents column is fine, the light one wants more contrast, especially
+   on the selected entry). FaceCue's light set rested a section at 2.35:1 and
+   selected at 6.72:1 in Warm Light. Solved, not guessed, against both light
+   schemes:
+
+     Warm Light      section resting 2.35 -> 3.53  subsection 4.39 -> 6.02
+                     selected        6.72 -> 9.59
+     Academic        section resting 2.99 -> 5.19  subsection 4.64 -> 6.46
+                     selected        stays 12.14
+     (measured after the change, not the targets it was solved for)
+
+   The resting section stays deliberately below the selected one, which is what
+   keeps the "fade comes off where you are" idea working.
+
+   --toc-strong is the colour of the reader's position. The dials alone could not
+   lift the selected entry in Warm Light, because its tan tops out at 6.72:1
+   even at full strength; FaceCue's own light palette has a deeper tan for
+   exactly that, --fc-tan-bright, which its stylesheet uses for an active
+   section heading. */
+[data-md-color-scheme="warm-light"] .md-sidebar--secondary .md-nav--secondary,
+[data-md-color-scheme="academic"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-fade-head: 72%;
+  --toc-fade-head-on: 100%;
+  --toc-fade-rule: 64%;
+  --toc-fade-rule-on: 90%;
+  --toc-fade-h3: 72%;
+  --toc-fade-bar3: 90%;
+}
+
+[data-md-color-scheme="warm-light"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-strong: var(--fc-tan-bright);
+}
+
+[data-md-color-scheme="academic"] .md-sidebar--secondary .md-nav--secondary {
+  --toc-strong: var(--c-primary);
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav__item .md-nav__list {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Second level: a section. Named in the heading colour and closed by a hairline,
+   which doubles as the divider between one section and the next. */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--c-primary) var(--toc-fade-head), transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-accent) var(--toc-fade-rule), transparent);
+  padding-bottom: 0.16em;
+  margin-top: 0.7em;
+  margin-bottom: 0.3em;
+}
+
+/* Third level: a subsection, one short bar per entry. The bar is a border on the
+   LINK, not on the group, so each line carries its own with a gap between them;
+   on the nested nav it would run as one long rule. */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav {
+  margin-left: 0.5rem;
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
+  > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-size: 0.66rem;
+  color: color-mix(in srgb, var(--c-text) var(--toc-fade-h3), transparent);
+  border-left: 2px solid color-mix(in srgb, var(--c-border) var(--toc-fade-bar3), transparent);
+  margin-left: 0;
+  margin-top: 0.34rem;
+  padding-left: 0.42rem;
+  padding-right: 0.4rem;
+}
+
+/* Where the reader is standing: the fade comes off the entry they are in and off
+   the section that owns it. :has is what lets the owner see its active child.
+
+   ⚠ Each rule repeats its level's whole selector. The short form
+   `.md-sidebar--secondary .md-nav__link--active` has too few classes to beat the
+   level rules above and loses silently: the current entry never changes. */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list
+  > .md-nav__item:has(.md-nav__link--active) > .md-nav__link {
+  color: color-mix(in srgb, var(--toc-strong) var(--toc-fade-head-on), transparent);
+  border-bottom-color: color-mix(in srgb, var(--c-accent) var(--toc-fade-rule-on), transparent);
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item
+  > .md-nav__link.md-nav__link--active,
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item
+  > .md-nav__link:hover {
+  color: var(--toc-strong);
+  border-bottom-color: color-mix(in srgb, var(--c-accent) var(--toc-fade-rule-on), transparent);
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
+  > .md-nav__list > .md-nav__item > .md-nav__link.md-nav__link--active,
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav
+  > .md-nav__list > .md-nav__item > .md-nav__link:hover {
+  color: var(--toc-strong);
+  border-left-color: var(--c-accent);
+}
+
+/* ========================================================================
+ * 11 - Step-by-step figures.
+ *
+ * A grid of small panels, each an SVG with its explanation underneath in HTML.
+ * Generated by tools/dd_panels.py, which draws every panel on the same network
+ * so the reader can follow one node through the whole protocol.
+ *
+ * ⛔ The explanation is HTML, never SVG text. HTML text reflows, wraps, and sits
+ * on the page background whose contrast is already measured; SVG text does none
+ * of that and is where every overlap defect in Chapter 1 came from.
+ * ==================================================================== */
+
+.md-typeset figure.steps {
+  margin: 1.6rem 0 2rem;
+  text-align: left;
+}
+
+.steps__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.4rem;
+}
+
+.steps--three .steps__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Four across, for a sequence of small panels such as the rounds of one LEACH
+   period. Two across on a tablet, where four would shrink each panel too far. */
+.steps--four .steps__grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media screen and (max-width: 76.24em) {
+  .steps--four .steps__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.md-typeset .step svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  background: var(--c-bg);
+}
+
+.md-typeset .step__text {
+  margin: 0.5rem 0 0;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.md-typeset .step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: var(--c-th-text);
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-style: normal;
+  vertical-align: 0.08em;
+}
+
+/* One column on a phone. Two panels side by side at 400px would make each
+   network about 180px wide, too small to read the arrows. */
+@media screen and (max-width: 44.98em) {
+  .steps__grid,
+  .steps--three .steps__grid,
+  .steps--four .steps__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* The key under a figure. Only the marks that figure actually uses are listed,
+   so a reader never decodes a symbol that is not there. */
+.md-typeset .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0.9rem 0 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-box);
+  background: var(--c-bg-alt);
+  font-size: 0.68rem;
+  color: var(--c-text);
+}
+
+.md-typeset .legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.md-typeset .legend__swatch {
+  width: 1.1rem;
+  height: 0.86rem;
+  flex: 0 0 auto;
+}
+
+/* ========================================================================
+ * 12 - "Εκτός ύλης": material that is not from the course.
+ *
+ * The chapters cite their source as (Δ2, διαφ. 16), Lecture 2 slide 16, or the
+ * handwritten class notes. Anything that comes from neither is marked, so a
+ * reader always knows what they could be examined on and what is only there to
+ * help it make sense.
+ *
+ * Two forms: an admonition for a paragraph or more, and an inline tag for a
+ * single claim. Both are drawn as QUIETER than the text around them, with a
+ * dashed rule, because the point is "optional", not "important".
+ * ==================================================================== */
+
+:root {
+  --md-admonition-icon--extra: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2z"/></svg>');
+}
+
+.md-typeset .admonition.extra,
+.md-typeset details.extra {
+  border: 1px dashed var(--c-border);
+  border-left: 3px dashed var(--c-muted);
+  background: transparent;
+  box-shadow: none;
+}
+
+.md-typeset .extra > .admonition-title,
+.md-typeset .extra > summary {
+  background: transparent;
+  color: var(--c-muted);
+  font-weight: 700;
+}
+
+.md-typeset .extra > .admonition-title::before,
+.md-typeset .extra > summary::before {
+  background-color: var(--c-muted);
+  -webkit-mask-image: var(--md-admonition-icon--extra);
+          mask-image: var(--md-admonition-icon--extra);
+}
+
+.md-typeset .extra-tag {
+  display: inline-block;
+  padding: 0 0.35rem;
+  border: 1px dashed var(--c-muted);
+  border-radius: var(--r-inline);
+  color: var(--c-muted);
+  font-size: 0.72em;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: 0.08em;
+}
+
+/* ========================================================================
+ * 13 - "Τι να περιμένετε στην εξέταση".
+ *
+ * Every section closes with one. Its first line is a record of the three known
+ * exam papers, each as a chip, so an absence reads as information: a topic that
+ * appeared in none of them is worth knowing about as much as one that did.
+ * ==================================================================== */
+
+.md-typeset .exam-record {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.2rem 0 0.7rem;
+}
+
+.md-typeset .exam-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  background: var(--c-bg);
+  color: var(--c-muted);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.md-typeset .exam-chip strong {
+  color: var(--c-text);
+}
+
+/* A paper that DID examine this section. The rule, not the fill, carries the
+   emphasis, so the chip's text keeps the page contrast it already has. */
+.md-typeset .exam-chip.is-hit {
+  border: 1.5px solid var(--c-exam-border);
+  color: var(--c-text);
+  font-weight: 700;
+}
+
+/* ========================================================================
+ * 14 - The left sidebar, after the FaceCue documentation's.
+ *
+ * Ported from facecue.css, the structure that site actually ships: variant C,
+ * "inspector rows" (overrides/main.html forces data-fc-sidebar="c"). A chapter
+ * is a boxed header row, its pages hang off a thin rail beneath it, and the
+ * page the reader is on takes a coloured stripe and a tinted row.
+ *
+ * What was ported, and what was not:
+ *   - Ported: the header rows, the rail, the active row, the hover colours, the
+ *     split between a chapter's name (opens its first page, see
+ *     javascripts/nav-sections.js) and the rest of its row (folds), the wider
+ *     nav so chapter names do not wrap, and a closed chapter taking no room.
+ *   - Not ported: the separators between FaceCue's conceptual groups. FaceCue
+ *     draws them by nav POSITION, hard-wired to its own page order, so they would
+ *     land on arbitrary entries here.
+ *   - Deliberately different: FaceCue hides the sidebar's title row at every
+ *     width. Here it is hidden on desktop only, because on a phone Material's
+ *     drawer uses that row as the "back" control inside a chapter, and hiding it
+ *     there could strand a reader in the chapter list.
+ *
+ * The --sb-* tokens: the two warm schemes carry the exact values the FaceCue
+ * documentation resolved to on 2026-09-16, measured on the live site in its dark
+ * and light schemes. Academic and Navy have no FaceCue counterpart, so theirs
+ * are derived from their own --c-* roles.
+ * ==================================================================== */
+
+[data-md-color-scheme="warm-dark"] {
+  --sb-head-bg:       #1E1D1C;
+  --sb-head-fg:       #DBDBE0;
+  --sb-head-border:   #3A3836;
+  --sb-head-rule:     #615345;
+  --sb-link:          #CCCCCC;
+  --sb-link-rail:     #3A3836;
+  --sb-active-bg:     #2E2D2C;
+  --sb-active-fg:     #D0C090;
+  --sb-active-stripe: #D0C090;
+  --sb-arrow:         #C09A5C;
+  --sb-head-hover:    #E6D8A8;
+  --sb-link-hover:    #D0C090;
+  --sb-arrow-hover:   #E6D8A8;
+}
+
+[data-md-color-scheme="warm-light"] {
+  --sb-head-bg:       #DBD0B9;
+  --sb-head-fg:       #35322B;
+  --sb-head-border:   #CCC3AF;
+  --sb-head-rule:     #C9BFA6;
+  --sb-link:          #26231F;
+  --sb-link-rail:     #CCC3AF;
+  --sb-active-bg:     #EFEADF;
+  --sb-active-fg:     #6E5418;
+  --sb-active-stripe: #6E5418;
+  --sb-arrow:         #86642A;
+  --sb-head-hover:    #533E0F;
+  --sb-link-hover:    #6E5418;
+  --sb-arrow-hover:   #533E0F;
+}
+
+[data-md-color-scheme="academic"] {
+  --sb-head-bg:       var(--c-code-bg);
+  --sb-head-fg:       var(--c-primary);
+  --sb-head-border:   var(--c-border);
+  --sb-head-rule:     var(--c-border);
+  --sb-link:          var(--c-text);
+  --sb-link-rail:     var(--c-border);
+  --sb-active-bg:     var(--c-highlight);
+  --sb-active-fg:     var(--c-primary);
+  --sb-active-stripe: var(--c-accent);
+  --sb-arrow:         var(--c-accent);
+  --sb-head-hover:    var(--c-accent);
+  --sb-link-hover:    var(--c-accent);
+  --sb-arrow-hover:   var(--c-primary);
+}
+
+[data-md-color-scheme="navy"] {
+  --sb-head-bg:       var(--c-bg-alt);
+  --sb-head-fg:       var(--c-primary);
+  --sb-head-border:   var(--c-border);
+  --sb-head-rule:     var(--c-border);
+  --sb-link:          var(--c-text);
+  --sb-link-rail:     var(--c-border);
+  --sb-active-bg:     var(--c-highlight);
+  --sb-active-fg:     var(--c-primary);
+  --sb-active-stripe: var(--c-accent);
+  --sb-arrow:         var(--c-accent);
+  --sb-head-hover:    var(--c-accent);
+  --sb-link-hover:    var(--c-accent);
+  --sb-arrow-hover:   var(--c-primary);
+}
+
+/* ---- Width, desktop ---------------------------------------------------- */
+
+@media screen and (min-width: 76.25em) {
+  /* ⛔ Widening .md-sidebar alone does nothing: Material caps the nav inside it
+     with .md-sidebar__inner's right padding, and that padding is the gutter.
+     So the nav width is set on the inner, as FaceCue does. */
+  .md-sidebar--primary {
+    width: 16rem;
+  }
+
+  .md-sidebar--primary .md-sidebar__inner {
+    padding-right: calc(100% - 14.5rem);
+  }
+
+  .md-sidebar--primary .md-nav__title {
+    display: none;
+  }
+}
+
+/* ---- Shared ------------------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__link {
+  font-size: 0.74rem;
+  margin-top: 0.35em;
+}
+
+.md-sidebar--primary .md-nav__icon {
+  color: var(--sb-arrow);
+}
+
+/* A chapter row with its own page is a text link beside an arrow label. The
+   link is only as wide as its text and the arrow's label takes the rest of the
+   row, so the text opens the page and everything else, arrow included, folds. */
+.md-sidebar--primary .md-nav__container {
+  display: flex;
+  align-items: center;
+}
+
+.md-sidebar--primary .md-nav__container > a.md-nav__link:first-child {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-right: 0.4em;
+}
+
+.md-sidebar--primary .md-nav__container > label.md-nav__link:last-child {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
+  margin: 0;
+  padding: 0;
+  min-height: 1.6em;
+  cursor: pointer;
+}
+
+.md-sidebar--primary .md-nav__container:hover .md-nav__icon {
+  color: var(--sb-arrow-hover);
+}
+
+.md-sidebar--primary .md-nav__container > a.md-nav__link:hover ~ label.md-nav__link .md-nav__icon {
+  color: var(--sb-arrow);
+}
+
+/* A chapter with no page of its own is one label that folds the group, and
+   nav-sections.js makes the NAME inside it open the chapter's first page. The
+   two have to look different before they are tried: the row keeps an ordinary
+   cursor and only its arrow lights; the name alone takes the hand and the link
+   colour. */
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link {
+  cursor: default;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link:hover {
+  color: var(--sb-head-fg);
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link:hover > .md-nav__icon {
+  color: var(--sb-arrow-hover);
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link > .md-ellipsis {
+  flex: 0 1 auto;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link > .md-nav__icon {
+  margin-left: auto;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.fc-nav-section--linked > .md-ellipsis {
+  cursor: pointer;
+}
+
+.md-sidebar--primary .md-nav__item--nested > label.fc-nav-section--linked > .md-ellipsis:hover {
+  color: var(--sb-link-hover);
+}
+
+/* ---- Inspector rows ----------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav__container,
+.md-sidebar--primary .md-nav__item--nested > label.md-nav__link,
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--nested) > .md-nav__link {
+  margin: 0.3em 0 0;
+  padding: 0.3em 0.5em;
+  background-color: var(--sb-head-bg);
+  border: 1px solid var(--sb-head-border);
+  border-radius: 3px;
+  color: var(--sb-head-fg);
+  font-weight: 600;
+}
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav {
+  padding: 0.2em 0 0.3em 0.35em;
+}
+
+.md-sidebar--primary .md-nav__item--nested .md-nav__item > .md-nav__link {
+  margin-top: 0.1em;
+  padding: 0.14em 0.5em;
+  border-left: 3px solid var(--sb-link-rail);
+  color: var(--sb-link);
+  font-weight: 400;
+}
+
+.md-sidebar--primary .md-nav__item--nested .md-nav__item > .md-nav__link--active {
+  margin-left: 0;
+  border-left: 3px solid var(--sb-active-stripe);
+  border-radius: 0 3px 3px 0;
+  background-color: var(--sb-active-bg);
+  color: var(--sb-active-fg);
+}
+
+/* ---- Hover -------------------------------------------------------------- */
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav__container > a.md-nav__link:hover,
+.md-sidebar--primary .md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--nested) > .md-nav__link:hover {
+  color: var(--sb-head-hover);
+}
+
+.md-sidebar--primary .md-nav__item--nested .md-nav__item > .md-nav__link:hover {
+  color: var(--sb-link-hover);
+}
+
+/* ---- A closed chapter takes no room ------------------------------------ */
+
+/* The padding under a chapter's page list stayed while the list was shut, so a
+   closed chapter took more room than a single page. Shut, the padding goes, and
+   Material's transition is restated with the padding in it so opening still
+   eases. Desktop only, since below 76.25em the drawer replaces the grid. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav__item--nested
+    > .md-nav__toggle:not(:checked):not(.md-toggle--indeterminate) ~ .md-nav {
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: grid-template-rows .25s cubic-bezier(.86, 0, .07, 1),
+      padding .25s cubic-bezier(.86, 0, .07, 1), opacity .25s, visibility 0ms .25s;
+  }
+
+  .md-sidebar--primary .md-nav__item--nested
+    > .md-nav__toggle:is(:checked, .md-toggle--indeterminate) ~ .md-nav {
+    transition: grid-template-rows .25s cubic-bezier(.86, 0, .07, 1),
+      padding .25s cubic-bezier(.86, 0, .07, 1), opacity .15s .1s, visibility 0ms;
+  }
+}
+
+/* ========================================================================
+ * 15 - Abbreviations: the definition and every link back to it.
+ *
+ * Written by hooks/shorthand.py. A page defines each abbreviation where its
+ * full name first appears, and every later use links back there. Chapter 1
+ * alone carries over thirty such links, so they are styled as abbreviations,
+ * not as navigation: the text keeps its own colour and weight, and a dotted
+ * underline in the accent says there is more on hover or click. An ordinary
+ * link colour on every "DD" would turn a paragraph into a field of links.
+ * ==================================================================== */
+
+.md-typeset dfn.abbr-def {
+  font-style: normal;
+}
+
+.md-typeset a.abbr-link,
+.md-typeset a.abbr-link:visited {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--c-accent);
+  text-underline-offset: 0.18em;
+}
+
+.md-typeset a.abbr-link:hover,
+.md-typeset a.abbr-link:focus-visible {
+  color: var(--c-accent);
+  text-decoration-style: solid;
+}
+
+/* The definition is where a link lands, so it shows briefly which word the
+   reader was sent to. */
+.md-typeset dfn.abbr-def:target {
+  background: var(--c-highlight);
+  border-radius: 2px;
+}
+
+/* ========================================================================
+ * 16 - Exam facsimile.
+ *
+ * Each exam page opens with a reproduction of the original paper as one or more
+ * A4 sheets (the 210:297 proportion of the real thing). A paper that does not
+ * fit one sheet at a readable size is authored as two .exam-sheet blocks.
+ *
+ * The type is sized in container units (cqi, one per cent of the sheet width),
+ * so a sheet always holds the same amount of text whatever its rendered width:
+ * the whole page scales like a photograph of the original rather than reflowing.
+ * On a phone that would make the text too small, so below 45em the sheet drops
+ * the fixed A4 height and reflows at a readable fixed size instead.
+ *
+ * The paper is a fixed warm cream with dark ink in every scheme, on purpose: it
+ * is a photocopy-like artifact, dark-on-cream is legible on all four
+ * backgrounds, and a sheet that changed colour with the theme would stop looking
+ * like the original. hooks/shorthand.py skips everything inside .exam-facsimile,
+ * so the paper keeps its own acronyms verbatim (WiFi, LoRaWAN) without our links.
+ * ==================================================================== */
+
+.md-typeset .exam-facsimile {
+  --paper: #faf8f2;
+  --ink: #211e18;
+  --ink-soft: #4c473d;
+  --rule: #cec6b4;
+  /* The container the sheets' cqi type resolves against. Capped to the sheet
+     width so one cqi is one per cent of a sheet, not of the whole content area.
+     container-type establishes it; a name lets the cqi units find it reliably. */
+  container: examsheet / inline-size;
+  width: min(100%, 46rem);
+  margin: 1.4rem auto 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.md-typeset .exam-facsimile .exam-sheet {
+  box-sizing: border-box;
+  width: 100%;
+  /* A4 is the sheet's MINIMUM shape, not a hard clip. A paper that fits sits in
+     an exact 210:297 page; one that runs a little longer lets the sheet grow
+     rather than cut a question off. overflow stays visible so nothing is ever
+     lost. */
+  aspect-ratio: 210 / 297;
+  flex: 0 0 auto;
+  overflow: visible;
+  padding: 5.5cqi 6.5cqi;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.16);
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.95cqi;
+  line-height: 1.34;
+  text-align: justify;
+}
+
+.md-typeset .exam-facsimile .exam-sheet > *:first-child { margin-top: 0; }
+
+.md-typeset .exam-facsimile p,
+.md-typeset .exam-facsimile li {
+  color: var(--ink);
+}
+
+.exam-facsimile__head {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.exam-facsimile__inst {
+  font-weight: 700;
+  font-size: 1.05em;
+  line-height: 1.3;
+}
+
+.exam-facsimile__course {
+  margin-top: 0.8em;
+  line-height: 1.5;
+}
+
+.exam-facsimile__course strong { font-weight: 700; }
+
+.exam-facsimile__fill {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5em;
+  margin: 1em 0 0.4em;
+  color: var(--ink-soft);
+}
+
+.exam-facsimile__fill span:first-child { flex: 1 1 auto; }
+
+.exam-facsimile__fill .line {
+  display: inline-block;
+  border-bottom: 1px solid var(--ink-soft);
+  min-width: 4em;
+}
+
+.exam-facsimile__fill span:first-child .line { min-width: 60%; }
+
+.exam-facsimile__note {
+  text-align: center;
+  font-style: italic;
+  margin: 0.5em 0 1.1em;
+}
+
+.exam-facsimile__theme {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 1.1em 0 0.45em;
+}
+
+.md-typeset .exam-facsimile ol {
+  margin: 0 0 0.4em;
+  padding-left: 1.6em;
+}
+
+.md-typeset .exam-facsimile ol li { margin-bottom: 0.55em; }
+.md-typeset .exam-facsimile ol ol { margin-top: 0.4em; }
+.md-typeset .exam-facsimile p { margin: 0.5em 0; }
+
+.exam-facsimile .marks {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* The topology sketch inside Theme D. Kept out of a <figure> so the corpus
+   figure audit, which targets figure svg, leaves its labels alone: this is a
+   verbatim reproduction of the paper's own diagram, not a corpus step figure. */
+.exam-facsimile__diagram {
+  text-align: center;
+  margin: 0.8em 0;
+}
+
+.exam-facsimile__diagram svg {
+  width: 100%;
+  max-width: 60%;
+  height: auto;
+}
+
+/* On a phone a true A4 would shrink the type past reading. Drop the fixed
+   height and reflow at a readable fixed size, still framed as paper. */
+@media screen and (max-width: 44.98em) {
+  .md-typeset .exam-facsimile .exam-sheet {
+    aspect-ratio: auto;
+    overflow: visible;
+    padding: 1.5rem 1.3rem 1.8rem;
+    font-size: 0.82rem;
+  }
+  .exam-facsimile__diagram svg { max-width: 100%; }
+}
+
+/* ========================================================================
+ * 17 - Answer blocks.
+ *
+ * Below each facsimile, every question gets a short answer (open) and an
+ * expanded one (a collapsible details, closed, so a reader can attempt the
+ * question first). Questions whose chapter is not written yet get a "todo"
+ * note instead, naming the chapter that will carry the answer.
+ * ==================================================================== */
+
+:root {
+  --md-admonition-icon--answer: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/></svg>');
+  --md-admonition-icon--answer-more: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 2H5c-1.11 0-2 .89-2 2v16c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2m0 18H5V4h14v16M7 6h10v2H7V6m0 4h10v2H7v-2m0 4h7v2H7v-2z"/></svg>');
+  --md-admonition-icon--todo: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6,2V8H6V8L10,12L6,16V16H6V22H18V16H18V16L14,12L18,8V8H18V2H6M16,16.5V20H8V16.5L12,12.5L16,16.5M12,11.5L8,7.5V4H16V7.5L12,11.5Z"/></svg>');
+}
+
+.md-typeset .admonition.answer,
+.md-typeset details.answer {
+  border-color: var(--c-primary);
+  border-left-width: 4px;
+  background: var(--c-exam-bg);
+}
+
+.md-typeset .answer > .admonition-title,
+.md-typeset .answer > summary {
+  background: transparent;
+  color: var(--c-primary);
+}
+
+.md-typeset .answer > .admonition-title::before,
+.md-typeset .answer > summary::before {
+  background-color: var(--c-primary);
+  -webkit-mask-image: var(--md-admonition-icon--answer);
+          mask-image: var(--md-admonition-icon--answer);
+}
+
+.md-typeset .admonition.answer-more,
+.md-typeset details.answer-more {
+  border-color: var(--c-border);
+  border-left-width: 4px;
+  background: var(--c-bg-alt);
+}
+
+.md-typeset .answer-more > .admonition-title,
+.md-typeset .answer-more > summary {
+  background: transparent;
+  color: var(--c-text);
+}
+
+.md-typeset .answer-more > .admonition-title::before,
+.md-typeset .answer-more > summary::before {
+  background-color: var(--c-text);
+  -webkit-mask-image: var(--md-admonition-icon--answer-more);
+          mask-image: var(--md-admonition-icon--answer-more);
+}
+
+.md-typeset .admonition.todo,
+.md-typeset details.todo {
+  border-color: var(--c-muted);
+  border-left-width: 4px;
+  background: var(--c-bg-alt);
+}
+
+.md-typeset .todo > .admonition-title,
+.md-typeset .todo > summary {
+  background: transparent;
+  color: var(--c-muted);
+}
+
+.md-typeset .todo > .admonition-title::before,
+.md-typeset .todo > summary::before {
+  background-color: var(--c-muted);
+  -webkit-mask-image: var(--md-admonition-icon--todo);
+          mask-image: var(--md-admonition-icon--todo);
+}
+
+/* A small marks chip beside an answer heading, echoing the paper. */
+.q-marks {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--c-primary);
+  border: 1px solid var(--c-exam-border);
+  background: var(--c-exam-bg);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  vertical-align: 0.12em;
+  margin-left: 0.4rem;
+  white-space: nowrap;
+}
+
+/* ========================================================================
+ * 18 - Formula traces.
+ *
+ * A solve shown in the smallest possible steps: each line changes one thing
+ * from the line above (one substitution, or one arithmetic operation), with a
+ * note in the right column saying exactly what changed, so a reader can see
+ * which number replaced which symbol. Ruled by Chris, 2026-09-16, for every
+ * formula solved in the corpus. The maths is a MathJax `aligned` block; the
+ * per-line notes are kept purely numeric so they render in the maths font.
+ * ==================================================================== */
+
+.md-typeset .trace {
+  margin: 0.9rem 0 1.1rem;
+  padding: 0.15rem 0 0.15rem 1rem;
+  border-left: 3px solid var(--c-accent);
+  overflow-x: auto;
+}
+
+.md-typeset .trace .arithmatex {
+  margin: 0.2rem 0;
+  text-align: left;
+}
+
+/* The step label above a trace: "Γύρος r = 2, βήμα προς βήμα". */
+.md-typeset .trace-label {
+  margin: 0.9rem 0 0.2rem;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+/* ========================================================================
+ * 19 - Animations for the generated step figures.
+ *
+ * Movement here carries information the static panel only implies: traffic
+ * flowing toward the sink, a node under strain, the order in which nodes die.
+ * Slow on purpose, so it informs a reader rather than distracting one, and
+ * fully stilled for prefers-reduced-motion (where the static geometry and the
+ * resting colours still tell the story: arrowheads show direction, hot nodes
+ * stay red, dead nodes stay hollow).
+ *
+ * The generators (tools/ebp_figures.py and friends) tag elements with these
+ * classes. fig-packet is a data dot that travels a route (its offset-path) and
+ * holds at the destination; fig-strain pulses an overused node; fig-die fades a
+ * node's fill from full to near-empty, staggered by an inline animation-delay so
+ * deaths sweep in order.
+ * ==================================================================== */
+
+/* Rule of thumb (Chris, 2026-09-16): a transition is about five seconds, and it
+   holds on its final state for two to three seconds, then loops. */
+
+@keyframes figStrain { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* A message travels its route, ARRIVES, and rests at the destination before the
+   next one starts. It fades in at the source, moves to the end over ~5s, holds
+   there ~2.5s, then fades out and resets to the source while invisible, so the
+   loop has no jump. The static route arrow underneath shows where it goes when
+   motion is off. */
+@keyframes figTravel {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  5%   { offset-distance: 0%;   opacity: 1; }
+  59%  { offset-distance: 100%; opacity: 1; }   /* ~5s of an 8.5s cycle */
+  88%  { offset-distance: 100%; opacity: 1; }   /* held at the destination ~2.5s */
+  95%  { offset-distance: 100%; opacity: 0; }
+  100% { offset-distance: 0%;   opacity: 0; }
+}
+
+/* Full -> drained over ~5s -> held empty ~3s -> quick refill. 0% and 100% match,
+   so the loop seam has no jump. The empty state is the point, so it is held. */
+@keyframes figDie {
+  0%       { fill-opacity: 1; }
+  50%, 80% { fill-opacity: 0.06; }   /* drain by 5s, hold empty to 8s */
+  100%     { fill-opacity: 1; }      /* refill over the last 2s */
+}
+
+.md-typeset .fig-strain {
+  animation: figStrain 2.8s ease-in-out infinite;
+}
+.md-typeset .fig-packet {
+  opacity: 0;
+  animation: figTravel 8.5s ease-in-out infinite;
+}
+.md-typeset .fig-die {
+  animation: figDie 10s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .fig-strain,
+  .md-typeset .fig-packet,
+  .md-typeset .fig-die { animation: none; }
+}

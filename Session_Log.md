@@ -901,3 +901,24 @@ variant exercises and variant theory questions as one section of two pages. Nav,
 
 Recorded the conventions as COOKBOOK §14, including the rule that these pages must be updated in the same
 commit as any chapter change they summarise.
+
+## 2026-09-18 · Chapter 12: RPL, application protocols, wireless power transfer, mobility
+
+Priority 4, never examined, so no exam box carries a hit. Grounded in Lecture 6a (RPL, CoAP and MQTT),
+Lecture 7b slides 30 to 34 (lossy links), Lecture 9 (wireless power transfer) and Lecture 10 (mobile sink).
+
+- **§12.1 RPL:** lossy links, the DAG and DODAG, the DIO/DAO/DIS control messages, construction by rank,
+  Figure 12.1 (a DODAG with preferred and alternate parents), an extra box on why rank prevents cycles.
+- **§12.2 Application protocols:** CoAP against MQTT as request-response against publish-subscribe, in a
+  comparison table, with an extra box on why CoAP runs over UDP.
+- **§12.3 Wireless power transfer:** the technologies, rechargeable networks, and the charging models:
+  Friis, the scalar model, and the vector model, with Figure 12.2 (phasors) and a trace showing two
+  in-phase chargers give 4 against the scalar 2.
+- **§12.4 Mobility:** why a mobile sink, the early results, random walks with inertia (trace δ = 0.06
+  giving 0.31 and 0.23), and full mobility with the ranking R = d²/(ΔP·ΔT) (trace R_A = 0.72, R_B = 4).
+
+Revision pages updated in the same commit, per COOKBOOK §14: a chapter 12 block in the τυπολόγιο, the real
+overview section, exercises 11 to 13 (two chargers scalar vs vector, Friis at 1 m and 2 m, mobility ranking
+and inertia), theory questions q12-1 to q12-4 (now 32). 26 new abbreviations in terms.yml; ZigBee and mW as
+proper names. Nav circle removed, home-page card added, the circle legend retired since every chapter is
+written, COOKBOOK priority table and narrative updated.

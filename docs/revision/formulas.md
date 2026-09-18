@@ -163,6 +163,54 @@ $$t = 0.3 + 0.2 + 0.5 = 1 \text{ ms}$$
 
 Ανάλυση: [ενότητα 10.2](../chapters/10-cloud-edge-industry.md#latency-budget).
 
+## Κεφάλαιο 12 · Δρομολόγηση, ασύρματη ισχύς και κινητικότητα {#ch12}
+
+Κανένας από τους τύπους αυτού του κεφαλαίου δεν έχει εξεταστεί. Είναι εδώ για πληρότητα.
+
+<div class="formula" markdown="1">
+$$\text{EE} = \frac{P_{\text{now}}}{P_{\text{max}}} \cdot 100 \qquad \text{ETX} = \frac{1}{\text{PRR}_{\text{down}} \cdot \text{PRR}_{\text{up}}}$$
+
+<span class="label">Οι μετρικές του Routing Protocol for Low-power and Lossy Networks (RPL): υπολειπόμενη ενέργεια και Expected Transmission Count (ETX) με το Packet Reception Ratio (PRR) (Διάλεξη 6a)</span>
+</div>
+
+- **Τι να θυμάστε.** Το ίδιο ETX με το Κεφάλαιο 4: το PRR, πακέτα που λήφθηκαν προς πακέτα που στάλθηκαν, παίζει τον ρόλο των \(d_f\) και \(d_r\).
+
+<div class="formula" markdown="1">
+$$P_r = P_t\, G_t\, G_r \left(\frac{\lambda}{4\pi R}\right)^2$$
+
+<span class="label">Ο τύπος του Friis (Διάλεξη 9, διαφάνεια 43)</span>
+</div>
+
+- **Τι να θυμάστε.** Η λαμβανόμενη ισχύς πέφτει με το τετράγωνο της απόστασης: διπλάσια απόσταση, τέσσερις φορές λιγότερη ισχύς.
+
+<div class="formula" markdown="1">
+$$P_{v,u} = \frac{\alpha\, r_u^2}{(\beta + \text{dist}(v,u))^2} \quad \text{αν } \text{dist}(v,u) \le r_u, \text{ αλλιώς } 0$$
+
+<span class="label">Ο ρυθμός φόρτισης στο βαθμωτό μοντέλο (Διάλεξη 9, διαφάνεια 39)</span>
+</div>
+
+- **Τι να θυμάστε.** Στο βαθμωτό μοντέλο οι ισχύες από πολλούς φορτιστές **προστίθενται**.
+
+<div class="formula" markdown="1">
+$$\mathbf{E}_{\text{ολικό}} = \sum_{C} \beta\, \frac{1}{d_C} \begin{bmatrix} \cos\!\big(\tfrac{2\pi}{\lambda} d_C\big) \\[0.3em] \sin\!\big(\tfrac{2\pi}{\lambda} d_C\big) \end{bmatrix} \qquad P = \gamma\, \big\lVert \mathbf{E}_{\text{ολικό}} \big\rVert^2$$
+
+<span class="label">Το διανυσματικό μοντέλο: υπέρθεση πεδίων, μετά τετράγωνο (Διάλεξη 9, διαφάνειες 45 και 46)</span>
+</div>
+
+- **Τι να θυμάστε.** Προστίθενται τα **πεδία**, όχι οι ισχύες. Ίδια κατεύθυνση: \((1+1)^2 = 4\) αντί για 2 (ενίσχυση). Αντίθετη: σχεδόν μηδέν (αλληλοαναίρεση).
+
+<div class="formula" markdown="1">
+$$R = \frac{d_{\text{local}}^2}{\Delta P \cdot \Delta T} \qquad p_c^{t+1} = p_c^t \pm \delta, \quad p_r^{t+1} = p_r^t \mp \frac{\delta}{3}$$
+
+<span class="label">Η κατάταξη των εγγραφών όταν κινούνται και οι αισθητήρες, και ο περίπατος με αδράνεια (Διάλεξη 10, διαφάνειες 32 και 48)</span>
+</div>
+
+- **Σύμβολα.** \(d_{\text{local}}\): γείτονες. \(\Delta P\), \(\Delta T\): πόσο μακριά και πόσο παλιά είναι η μέτρηση. Στον περίπατο το πάνω πρόσημο ισχύει όταν βρέθηκαν νέοι αισθητήρες.
+
+<div class="exam-record"><a class="exam-chip" href="../../#exam-papers"><strong>Δεν εξετάστηκε</strong> σε κανένα γνωστό θέμα</a></div>
+
+Ανάλυση: [Κεφάλαιο 12](../chapters/12-rpl-app-protocols.md).
+
 ## Αριθμοί που αξίζει να θυμάστε {#numbers}
 
 Δεν είναι τύποι, αλλά κάνουν μια θεωρητική απάντηση συγκεκριμένη.
@@ -178,3 +226,5 @@ $$t = 0.3 + 0.2 + 0.5 = 1 \text{ ms}$$
 | Απαιτήσεις 5G | 10 έως 100 φορές περισσότερες συσκευές, κάτω από 1 ms, 10 χρόνια μπαταρία, πάνω από 10 Gbit/s | [Κεφάλαιο 11](../chapters/11-security-smart-cities.md#5g) |
 | Ψηφοφορία προτύπου στο Institute of Electrical and Electronics Engineers (IEEE) | τουλάχιστον 75% συμμετοχή και 75% θετικές ψήφοι | [Κεφάλαιο 10](../chapters/10-cloud-edge-industry.md#standardisation) |
 | Μετρικές διάρκειας ζωής | First Node Dies (FND), Half of Nodes Die (HND), Last Node Dies (LND) | [Κεφάλαιο 3](../chapters/03-energy-balance.md#lifetime) |
+| Ασύρματη φόρτιση | ραδιοσυχνότητες: περίπου 0.13%, λίγα μέτρα· μαγνητική σύζευξη: 91 έως 93%, έως 1 m | [Κεφάλαιο 12](../chapters/12-rpl-app-protocols.md#wpt-technologies) |
+| Κινητός sink | ως και 500% μεγαλύτερη διάρκεια ζωής· καθυστέρηση ως και 8 φορές καλύτερη όταν κινούνται και οι αισθητήρες | [Κεφάλαιο 12](../chapters/12-rpl-app-protocols.md#mobility) |

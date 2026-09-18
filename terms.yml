@@ -42,6 +42,31 @@ terms:
     - Threshold sensitive Energy Efficient sensor Network       # named on Lecture 2, slide 68; expansion not in the course
   DD:
     - Directed Diffusion                         # Lecture 2, slides 5 to 8
+  DAG:
+    - Directed Acyclic Graph                     # Lecture 6a, RPL terminology
+  DODAG:
+    - Destination-Oriented Directed Acyclic Graph   # used in Lecture 6a's message names; expansion not in the course
+  DIO:
+    - DODAG Information Object                   # Lecture 6a, RPL control messages
+  DAO:
+    - Destination Advertisement Object           # Lecture 6a
+  DIS:
+    - DODAG Information Solicitation             # Lecture 6a
+  OF:
+    - Objective Function                         # Lecture 6a, RPL terminology
+  PRR:
+    - Packet Reception Ratio                     # Lecture 6a gives only the formula (received / sent); the name is the standard one
+  HTTP:
+    - Hypertext Transfer Protocol                # Lecture 6a ("CoAP, the HTTP of IoT")
+  TCP:
+    - Transmission Control Protocol              # Lecture 6a (MQTT on top of TCP/IP)
+  UDP:
+    - User Datagram Protocol                     # not in the course; named in chapter 12's extra box on CoAP transport
+  IP:
+    - Internet Protocol                          # Lecture 6a
+  RF:
+    - Radio Frequency                            # Lecture 9, slide 3
+    - Radio frequency
   EBP:
     - Energy Balance Protocol                    # Lecture 3, slide 4
   ETX:
@@ -130,4 +155,5 @@ proper_names:
   - LoRa   # the proprietary radio modulation LoRaWAN is built on (Semtech); a name, not an abbreviation
   - nJ     # nanojoule, an energy unit; looks like shorthand but is not an abbreviation to expand
   - kHz    # kilohertz, a frequency unit
+  - mW     # milliwatt, a power unit (chapter 12 exercises)
   - ZigBee # the IEEE 802.15.4-based low-power PAN stack (ZigBee Alliance); a name, not an abbreviation

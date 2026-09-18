@@ -778,18 +778,17 @@ Mapped against the sources on the same day:
 | ✅ | Comparing access protocols (contention vs scheduled, the three criteria) | none | 2025 2α and 2022 2Α (asked twice) | 8a, 7b |
 | ✅ | Cloud and edge computing; Industry 4.0; standardisation | none | 2025 2β to 2δ; 2022 Θέμα 3.3 | 6a, 7a, 7b, 8b, extra notes |
 | ✅ | IEEE 802.11ah; addressing and security; WSN and MANET; smart cities and 5G | none | 2022 Θέμα 1, 2Β to 2Δ, Θέμα 3.2 | 2, 3, 6a, 7a, 7b, 8a, 8b, 9, 10 |
-| 4 | RPL, CoAP and MQTT, wireless power transfer, mobility | only as noted above | none | 6a, 7b, 9, 10 |
+| ✅ | RPL, CoAP and MQTT, wireless power transfer, mobility | only as noted above | none | 6a, 7b, 9, 10 |
 
 ⚠ The Lecture column is checked for priorities 1 and 2 only; for 3 and 4 it is a first guess from the slide titles, to be confirmed when those chapters are written.
 
 **All three 2026 exercises are now written** (LEACH Β.1, EBP Α.2, ETX Δ.1), plus their theory. Chapters 1
 to 10 are done as of 2026-09-17: priorities 1 and 2 (chapters 1 to 7), and tier 3's system design (8),
 access protocols (9), and cloud/edge, Industry 4.0 and standardisation (10). **The 2026 and 2025 papers
-are now fully answered.** **Next up is the last tier-3 chapter, chapter 11** (802.11ah, addressing and
-security, WSN and MANET, smart cities; answers 2022 Θέμα 1 and 2Β to 2Δ, and part 2 of 2022 Θέμα 3), then
-priority 4, chapter 12 (RPL, application protocols, wireless power transfer). Chapters 11 and 12 exist as
-placeholder pages in the menu, marked with a circle; chapters covered by the handwritten notes carry a
-filled star ★ (marker scheme changed 2026-09-16).
+are now fully answered.** Chapter 11 (2026-09-17) completed the 2022 paper, and chapter 12 (2026-09-18,
+priority 4: RPL, CoAP and MQTT, wireless power transfer, mobility; never examined) completed the plan.
+**Every chapter is written**; the circle marker for unwritten chapters is retired. Chapters covered by the
+handwritten notes carry a filled star ★ (marker scheme changed 2026-09-16).
 
 ### 10.1 What the LEACH chapter added to the template
 
@@ -934,8 +933,8 @@ with `practice/exercises.md` and `practice/theory.md`.
 
 - **They summarise, they never add.** Every formula, number and claim must already exist in a chapter, with
   the same notation and source. When a chapter changes, these pages go stale silently. ⛔ **Update them in
-  the same commit as any chapter change that touches a formula, an answer-term list, or an exam mapping**,
-  and write chapter 12 into all four when it lands.
+  the same commit as any chapter change that touches a formula, an answer-term list, or an exam mapping**.
+  Chapter 12 was written into all four on 2026-09-18.
 - **Formula sheet.** One `.formula` box per formula, symbols and traps as bullets underneath, and an
   `exam-record` chip for its status (examined as an exercise / possible exercise / argument only).
 - **Overview.** One section per chapter: exam chips, four to six bullets, the answer-terms pilled (the one
